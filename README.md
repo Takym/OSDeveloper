@@ -1,28 +1,28 @@
-#OSDeveloper IDE
+# OSDeveloper IDE
 Copyright (C) 2018 Takym.
 
-## Œ¾Œê/Language
-* [“ú–{Œê](#ja_index)
+## è¨€èª/Language {lang}
+* [æ—¥æœ¬èª](#ja_index)
 * [English](#en_index)
 
-<!-- “ú–{Œê -->
-## <a href="#ja_index" id="ja_index">–ÚŸ</a>
-* [ŠT—v](#ja_summary)
-* [—˜—p‹K–ñ‚ÆŒÂlî•ñ•ÛŒì•ûj](#ja_license)
-* [•ÏX—š—ğ](ja_versions)
+<!-- æ—¥æœ¬èª -->
+## <a href="#ja_index" id="ja_index">ç›®æ¬¡</a>
+* [æ¦‚è¦](#ja_summary)
+* [åˆ©ç”¨è¦ç´„ã¨å€‹äººæƒ…å ±ä¿è­·æ–¹é‡](#ja_license)
+* [å¤‰æ›´å±¥æ­´](#ja_versions)
 
-## <a href="#ja_summary" id="ja_summary">ŠT—v</a>
-‚±‚Ìƒ\ƒtƒgƒEƒFƒA‚ÍƒIƒyƒŒ[ƒeƒBƒ“ƒOƒVƒXƒeƒ€‚ğŠJ”­‚·‚éˆ×‚Ì“‡ŠJ”­ŠÂ‹«‚Å‚·B
+## <a href="#ja_summary" id="ja_summary">æ¦‚è¦</a>
+ã“ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã¯ã‚ªãƒšãƒ¬ãƒ¼ãƒ†ã‚£ãƒ³ã‚°ã‚·ã‚¹ãƒ†ãƒ ã‚’é–‹ç™ºã™ã‚‹ç‚ºã®çµ±åˆé–‹ç™ºç’°å¢ƒã§ã™ã€‚
 
-## <a href="#ja_license" id="ja_license">—˜—p‹K–ñ‚ÆŒÂlî•ñ•ÛŒì•ûj</a>
-- ‚±‚Ìƒ\ƒtƒgƒEƒFƒA‚Ìƒ‰ƒCƒZƒ“ƒX‚Í[››](./LICENSE.txt)‚Å‚·B
-- —˜—p‚·‚é‚É‚Í‚±‚ê‚É“¯ˆÓ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+## <a href="#ja_license" id="ja_license">åˆ©ç”¨è¦ç´„ã¨å€‹äººæƒ…å ±ä¿è­·æ–¹é‡</a>
+- ã“ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã¯[â—‹â—‹](./LICENSE.txt)ã§ã™ã€‚
+- åˆ©ç”¨ã™ã‚‹ã«ã¯ã“ã‚Œã«åŒæ„ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 
-## <a href="#ja_versions" id="ja_versions">•ÏX—š—ğ</a>
-|˜A”Ô|ƒo[ƒWƒ‡ƒ“|ƒR[ƒh–¼|XV“ú|“à—e|Ú×|
+## <a href="#ja_versions" id="ja_versions">å¤‰æ›´å±¥æ­´</a>
+|é€£ç•ª|ãƒãƒ¼ã‚¸ãƒ§ãƒ³|ã‚³ãƒ¼ãƒ‰å|æ›´æ–°æ—¥æ™‚|å†…å®¹|è©³ç´°|
 |--:|:-:|:--|:-:|:--|:--|
-|0|v0.0.0.0|HinagataAlpha|2018/00/00|Å‰‚ÌƒŠƒŠ[ƒX‚Å‚·B|‚Ü‚¾ƒŠƒŠ[ƒXƒm[ƒg‚Í‚ ‚è‚Ü‚¹‚ñB|
-* [•ÏX—š—ğ‚ğ‘S‚Ä•\¦‚·‚éB](./CHANGELOG.ja.md)
+|0|v0.0.0.0|HinagataAlpha|2018/00/00|æœ€åˆã®ãƒªãƒªãƒ¼ã‚¹ã§ã™ã€‚|ã¾ã ãƒªãƒªãƒ¼ã‚¹ãƒãƒ¼ãƒˆã¯ã‚ã‚Šã¾ã›ã‚“ã€‚|
+* [å¤‰æ›´å±¥æ­´ã‚’å…¨ã¦è¡¨ç¤ºã™ã‚‹ã€‚](./CHANGELOG.ja.md)
 
 
 <!-- English -->
@@ -35,7 +35,7 @@ Copyright (C) 2018 Takym.
 This software is a integrated development environment to develop operating systems.
 
 ## <a href="#en_license" id="en_license">Terms of Service and Privacy Policy</a>
-- The license of this software is: [››](./LICENSE.txt).
+- The license of this software is: [â—‹â—‹](./LICENSE.txt).
 - If you would like to use this application, then you need to agree with it.
 
 ## <a href="#en_versions" id="en_versions">Change Log</a>
@@ -43,3 +43,6 @@ This software is a integrated development environment to develop operating syste
 |--:|:-:|:--|:-:|:--|:--|
 |0|v0.0.0.0|HinagataAlpha|2018/00/00|This is the first release.|Does not have release notes yet.|
 * [Show all change logs.](./CHANGELOG.en.md)
+
+
+[è¨€èª/Language](#lang)
