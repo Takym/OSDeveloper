@@ -104,6 +104,7 @@
     <Compile Include="Core\Workspace\Builder\ICompilerArguments.cs" />
     <Compile Include="Core\Workspace\Builder\InputFormat.cs" />
     <Compile Include="Core\Workspace\Builder\OutputFormat.cs" />
+    <Compile Include="Core\Workspace\Project.cs" />
     <Compile Include="Core\Workspace\Solution.cs" />
     <Compile Include="Core\Workspace\SolutionGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,6 +131,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FileTypeNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.en.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.ja.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.resx">
       <Generator>ResXFileCodeGenerator</Generator>

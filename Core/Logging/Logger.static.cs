@@ -11,7 +11,8 @@ namespace OSDeveloper.Core.Logging
 		private readonly static Dictionary<string, Logger> _loggers = new Dictionary<string, Logger>();
 		private readonly static List<MultipleLogFile> _multiple_logs = new List<MultipleLogFile>();
 		private readonly static LogFile _system_log_file =
-			new LogFile(SystemPaths.Logs.Bond($"{DateTime.Now:yyyy-MM-dd_HH}.[{Process.GetCurrentProcess().Id}].log"));
+			//new LogFile(SystemPaths.Logs.Bond($"{DateTime.Now:yyyy-MM-dd_HH}.[{Process.GetCurrentProcess().Id}].log"));
+			new ProcessReportRecordFile(SystemPaths.Logs.Bond($"{DateTime.Now:yyyy-MM-dd_HH}.[{Process.GetCurrentProcess().Id}].pr2f"));
 
 		static Logger()
 		{

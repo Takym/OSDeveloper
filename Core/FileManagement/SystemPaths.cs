@@ -13,49 +13,20 @@ namespace OSDeveloper.Core.FileManagement
 		/// <summary>
 		///  <see langword="OSDeveloper"/>のプログラムが格納されているディレクトリを取得します。
 		/// </summary>
-		public readonly static PathString Program = new PathString(Application.StartupPath);
-
-		/// <summary>
-		///  設定データを格納しているディレクトリのファイルパスを取得します。
-		/// </summary>
-		public readonly static PathString Settings =
-			((PathString)(Path.Combine(Program, "Settings")));
+		public readonly static PathString Program
+			= ((PathString)(Application.StartupPath));
 
 		/// <summary>
 		///  リソースファイルを格納しているディレクトリのファイルパスを取得します。
 		/// </summary>
-		public readonly static PathString Resources =
-			((PathString)(Path.Combine(Program, "Assets")));
-
-		/// <summary>
-		///  拡張機能を格納しているディレクトリのファイルパスを取得します。
-		/// </summary>
-		public readonly static PathString Extension =
-			((PathString)(Path.Combine(Program, "Extension")));
+		public readonly static PathString Resources
+			= ((PathString)(Path.Combine(Application.StartupPath, "Assets")));
 
 		/// <summary>
 		///  外部ツールを格納しているディレクトリのファイルパスを取得します。
 		/// </summary>
-		public readonly static PathString Toolkits =
-			((PathString)(Path.Combine(Program, "ExternalTools")));
-
-		/// <summary>
-		///  一時ファイルを格納しているディレクトリのファイルパスを取得します。
-		/// </summary>
-		public readonly static PathString Temporary =
-			((PathString)(Path.Combine(Program, "Temp")));
-
-		/// <summary>
-		///  貯蔵されたファイルを格納しているディレクトリのファイルパスを取得します。
-		/// </summary>
-		public readonly static PathString Caches =
-			((PathString)(Path.Combine(Temporary, "Caches")));
-
-		/// <summary>
-		///  ログファイルを格納しているディレクトリのファイルパスを取得します。
-		/// </summary>
-		public readonly static PathString Logs =
-			((PathString)(Path.Combine(Temporary, "Logs")));
+		public readonly static PathString Toolkits
+			= ((PathString)(Path.Combine(Application.StartupPath, "ExternalTools")));
 
 		/// <summary>
 		///  現在のワークスペースディレクトリのパスを取得します。
@@ -69,16 +40,71 @@ namespace OSDeveloper.Core.FileManagement
 		}
 		private static PathString _cwd;
 
+		/// <summary>
+		///  設定データを格納しているディレクトリのファイルパスを取得します。
+		/// </summary>
+		public static PathString Settings
+		{
+			get
+			{
+				return _cwd.Bond("Settings");
+			}
+		}
+
+		/// <summary>
+		///  拡張機能を格納しているディレクトリのファイルパスを取得します。
+		/// </summary>
+		public static PathString Extension
+		{
+			get
+			{
+				return _cwd.Bond("Extension");
+			}
+		}
+
+		/// <summary>
+		///  一時ファイルを格納しているディレクトリのファイルパスを取得します。
+		/// </summary>
+		public static PathString Temporary
+		{
+			get
+			{
+				return _cwd.Bond("Temp");
+			}
+		}
+
+		/// <summary>
+		///  貯蔵されたファイルを格納しているディレクトリのファイルパスを取得します。
+		/// </summary>
+		public static PathString Caches
+		{
+			get
+			{
+				return _cwd.Bond("Temp\\Caches");
+			}
+		}
+
+		/// <summary>
+		///  ログファイルを格納しているディレクトリのファイルパスを取得します。
+		/// </summary>
+		public static PathString Logs
+		{
+			get
+			{
+				return _cwd.Bond("Temp\\Logs");
+			}
+		}
+
 		static SystemPaths()
 		{
-			Directory.CreateDirectory(Settings);
 			Directory.CreateDirectory(Resources);
-			Directory.CreateDirectory(Extension);
 			Directory.CreateDirectory(Toolkits);
-			Directory.CreateDirectory(Temporary);
-			Directory.CreateDirectory(Caches);
-			Directory.CreateDirectory(Logs);
-			_cwd = new PathString(Environment.CurrentDirectory);
+
+#if DEBUG
+			SetWorkspace(Program); // デバッグ時はアプリケーションの配置ディレクトリを、ワークスペースにする
+#else
+			SetWorkspace(new PathString(Environment.CurrentDirectory));
+#endif
 		}
 
 		/// <summary>
@@ -87,9 +113,19 @@ namespace OSDeveloper.Core.FileManagement
 		/// <param name="cwd">新しいワークスペースディレクトリのパス文字列です。</param>
 		public static void SetWorkspace(PathString cwd)
 		{
-			_cwd = new PathString(Path.GetFullPath(cwd));
-			Environment.CurrentDirectory = _cwd;
 			// HACK: ワークスペースを変更した時に必要な動作を全てここに書く。
+			_cwd = new PathString(Path.GetFullPath(cwd));
+
+			// ディレクトリ生成
+			Directory.CreateDirectory(Workspace);
+			Directory.CreateDirectory(Settings);
+			Directory.CreateDirectory(Extension);
+			Directory.CreateDirectory(Temporary);
+			Directory.CreateDirectory(Caches);
+			Directory.CreateDirectory(Logs);
+
+			// 準備が終わったら、ワークスペースを作業ディレクトリに設定
+			Environment.CurrentDirectory = _cwd;
 		}
 	}
 

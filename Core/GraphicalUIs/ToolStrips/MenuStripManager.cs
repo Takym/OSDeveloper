@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using OSDeveloper.Core.Logging;
 
 namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 {
@@ -13,6 +14,13 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		// ファイルの先頭にコンポーネントクラスが無いとコンポーネントデザイナで、
 		// ファイルを開くことが出来ないので、このクラスの宣言を各メニュークラスの先頭に設置する。
 		// OSDeveloper.App.FormMain でも似たような仕組みを使っている。
+
+		internal static readonly Logger Logger;
+
+		static MenuStripManager()
+		{
+			Logger = Logger.GetSystemLogger(nameof(MenuStripManager));
+		}
 	}
 
 	/// <summary>

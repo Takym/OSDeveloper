@@ -6,7 +6,7 @@ namespace OSDeveloper.Core.Workspace
 	///  ワークスペースを表します。
 	///  これは<see cref="OSDeveloper.Core.Workspace.Solution"/>のグループです。
 	/// </summary>
-	public class SolutionGroup
+	public sealed class SolutionGroup
 	{
 		/// <summary>
 		///  このワークスペースが保管されているディレクトリを取得します。

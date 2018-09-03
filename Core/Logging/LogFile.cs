@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using OSDeveloper.Core.FileManagement;
@@ -103,7 +104,8 @@ namespace OSDeveloper.Core.Logging
 		protected LogFile()
 		{
 			_is_disposed = false;
-			_fname = SystemPaths.Logs.Bond($"z_internal.{Path.GetRandomFileName()}.log");
+			//_fname = SystemPaths.Logs.Bond($"z_internal.{Path.GetRandomFileName()}.log");
+			_fname = SystemPaths.Logs.Bond($"{DateTime.Now:yyyy-MM-dd_HH}.[{Process.GetCurrentProcess().Id}].{Guid.NewGuid()}.log");
 			_tw = new StreamWriter(_fname);
 			_log_datas = new List<LogData>();
 		}

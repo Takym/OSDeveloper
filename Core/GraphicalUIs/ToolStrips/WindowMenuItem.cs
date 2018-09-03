@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using static OSDeveloper.Core.GraphicalUIs.ToolStrips.MenuStripManager;
 
 namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 {
@@ -51,9 +52,11 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 		private void _close_all_Click(object sender, EventArgs e)
 		{
+			Logger.Trace($"{nameof(WindowMenuItem)}: Closing all windows...");
 			foreach (var form in _mwnd_base.MdiChildren) {
 				form.Close();
 			}
+			Logger.Trace($"{nameof(WindowMenuItem)}: Closed all windows");
 		}
 
 		private sealed class InternalMenuItem : ToolStripMenuItem
@@ -69,8 +72,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 			protected override void OnClick(EventArgs e)
 			{
+				Logger.Trace($"{nameof(WindowMenuItem)}: Layouting child-windows ... ({_layout})");
 				base.OnClick(e);
+
 				_mwnd_base.LayoutMdi(_layout);
+				
+				Logger.Trace($"{nameof(WindowMenuItem)}: Layoued child-windows ({_layout})");
 			}
 		}
 	}

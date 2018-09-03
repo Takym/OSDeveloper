@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Properties;
@@ -14,8 +15,8 @@ namespace OSDeveloper.App
 		{
 			Logger l = Logger.GetSystemLogger("system");
 			l.Trace($"The application is started with command-line: {{{string.Join(", ", args)}}}");
-			//Application.EnableVisualStyles();
-			Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;
+			Application.EnableVisualStyles();
+			Application.VisualStyleState = VisualStyleState.NoneEnabled;
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new FormMain()); // ここより下でロガーを参照してはいけない
 			return 0;
