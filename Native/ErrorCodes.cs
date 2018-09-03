@@ -16,7 +16,7 @@
 		public const int ERROR_INVALID_FUNCTION = 1;
 
 		/// <summary>
-		///  指定されたファイルが見つかりません。 
+		///  指定されたファイルが見つかりません。
 		/// </summary>
 		public const int ERROR_FILE_NOT_FOUND = 2;
 	}

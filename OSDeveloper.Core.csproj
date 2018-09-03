@@ -55,6 +55,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Core\Error\SerializingException.cs" />
+    <Compile Include="Core\Error\SerializingFailureState.cs" />
+    <Compile Include="Core\FileManagement\FileMetadata.cs" />
     <Compile Include="Core\FileManagement\FileTypeNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +95,9 @@
     <Compile Include="Core\MiscUtils\ArrayUtils.cs" />
     <Compile Include="Core\MiscUtils\StringUtils.cs" />
     <Compile Include="Core\OsdevElement.cs" />
+    <Compile Include="Core\Settings\Serialization\Attributes.cs" />
+    <Compile Include="Core\Settings\Serialization\IYenconSerializable.cs" />
+    <Compile Include="Core\Settings\Serialization\YenconSerializer.cs" />
     <Compile Include="Core\Settings\YenconBooleanKey.cs" />
     <Compile Include="Core\Settings\YenconNode.cs" />
     <Compile Include="Core\Settings\YenconNumberKey.cs" />

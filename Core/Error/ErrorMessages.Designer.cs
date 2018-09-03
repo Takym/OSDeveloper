@@ -61,7 +61,25 @@ namespace OSDeveloper.Core.Error {
         }
         
         /// <summary>
-        ///   StringUtils_ConvertToBoolean に類似しているローカライズされた文字列を検索します。
+        ///   IgnoredRootElement, Format: {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SerializingException_IgnoredRootElement {
+            get {
+                return ResourceManager.GetString("SerializingException_IgnoredRootElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Unknown, Format: {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SerializingFailureState_Unknown {
+            get {
+                return ResourceManager.GetString("SerializingFailureState_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   StringUtils_ConvertToBoolean, can&apos;t convert: に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string StringUtils_ConvertToBoolean {
             get {
@@ -70,7 +88,7 @@ namespace OSDeveloper.Core.Error {
         }
         
         /// <summary>
-        ///   YenconParser_UnknownCharacter に類似しているローカライズされた文字列を検索します。
+        ///   YenconParser_UnknownCharacter, can&apos;t parse: に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string YenconParser_UnknownCharacter {
             get {

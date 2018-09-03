@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SerializingException_IgnoredRootElement" xml:space="preserve">
+    <value>An error occurred when serialize or deserialize an object with {0}. The root element was not found.</value>
+  </data>
+  <data name="SerializingFailureState_Unknown" xml:space="preserve">
+    <value>The unknown error occurred when serialize or deserialize an object with {0}.</value>
+  </data>
   <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
     <value>The specified string cannot convert to a boolean value:</value>
   </data>

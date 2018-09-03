@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.Xml;
+using OSDeveloper.Core.Error;
 using OSDeveloper.Native;
 
 namespace OSDeveloper.Core.Logging
@@ -69,6 +71,7 @@ namespace OSDeveloper.Core.Logging
 			}
 
 			// 例外ごとに特別な情報を書き込み
+			// ログを見ればすぐエラーを解決できるようにしたい。
 			switch (e) {
 				case NotImplementedException nie:
 					this.Notice("The process was not implemented. So, this exception is not serious.");
@@ -84,8 +87,28 @@ namespace OSDeveloper.Core.Logging
 					this.Notice($"The file name is: \"{fle.FileName}\"");
 					break;
 				case Win32Exception w32e:
-					this.Notice($"The error code is: " + w32e.ErrorCode);
-					this.Notice($"The native error code is: " + w32e.NativeErrorCode);
+					this.Notice($"This error is from the Microsoft Windows application program interface.");
+					this.Notice($"The error code is: {w32e.ErrorCode}");
+					this.Notice($"The native error code is: {w32e.NativeErrorCode}");
+					break;
+				case SerializingException se:
+					this.Notice($"The format name: {se.FormatName}");
+					this.Notice($"The reason: {se.Status}");
+					break;
+				case XmlException xe:
+					this.Notice($"The format name: XML");
+					this.Notice($"The target: {xe.SourceUri}");
+					break;
+			}
+			switch (e) { // 共通
+				case IOException ioe:
+					this.Notice($"This exception is a input and output system error.");
+					break;
+				case SystemException se:
+					this.Notice($"This exception is maybe the developer coding error.");
+					break;
+				case ApplicationException ae:
+					this.Notice($"This exception is maybe the user operation error.");
 					break;
 			}
 
