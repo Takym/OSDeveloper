@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA3920AE-42CF-426B-8A23-748F593A5266}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OSDeveloper</RootNamespace>
+    <AssemblyName>OSDeveloper.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Core</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>bin\Debug\OSDeveloper.Core.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;Core</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Error\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Core\FileManagement\FileTypeNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FileTypeNames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Core\FileManagement\FileTypes.cs" />
+    <Compile Include="Core\FileManagement\IKeyNode.cs" />
+    <Compile Include="Core\FileManagement\IKeyNodeParser.cs" />
+    <Compile Include="Core\FileManagement\IKeyNodeValue.cs" />
+    <Compile Include="Core\GraphicalUIs\MainWindowBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\ToolStrips\EditMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\BuildMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\DebugMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\HelpMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\MenuText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuText.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\ToolStrips\WindowMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\ToolMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\ProjectMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\ViewMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\FileMenuItem.cs" />
+    <Compile Include="Core\GraphicalUIs\ToolStrips\MenuStripManager.cs" />
+    <Compile Include="Core\Logging\LogData.cs" />
+    <Compile Include="Core\Logging\Logger.cs" />
+    <Compile Include="Core\Logging\LogLevel.cs" />
+    <Compile Include="Core\FileManagement\SystemPaths.cs" />
+    <Compile Include="Core\Logging\LogFile.cs" />
+    <Compile Include="Core\Logging\MultipleLogFile.cs" />
+    <Compile Include="Core\Logging\ProcessReportRecordFile.cs" />
+    <Compile Include="Core\MiscUtils\ArrayUtils.cs" />
+    <Compile Include="Core\MiscUtils\StringUtils.cs" />
+    <Compile Include="Core\OsdevElement.cs" />
+    <Compile Include="Core\Settings\YenconBooleanKey.cs" />
+    <Compile Include="Core\Settings\YenconNode.cs" />
+    <Compile Include="Core\Settings\YenconNumberKey.cs" />
+    <Compile Include="Core\Settings\YenconParser.cs" />
+    <Compile Include="Core\Settings\YenconSection.cs" />
+    <Compile Include="Core\Settings\YenconStringKey.cs" />
+    <Compile Include="Core\Settings\YenconValue.cs" />
+    <Compile Include="Core\Workspace\Builder\CompilerType.cs" />
+    <Compile Include="Core\Workspace\Builder\ICompiler.cs" />
+    <Compile Include="Core\Workspace\Builder\ICompilerArguments.cs" />
+    <Compile Include="Core\Workspace\Builder\InputFormat.cs" />
+    <Compile Include="Core\Workspace\Builder\OutputFormat.cs" />
+    <Compile Include="Core\Workspace\Solution.cs" />
+    <Compile Include="Core\Workspace\SolutionGroup.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Editors\" />
+    <Folder Include="Core\Extension\" />
+    <Folder Include="Core\Globalization\" />
+    <Folder Include="Core\Toolkits\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Logging\Logger.exceptions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\Error\ErrorMessages.en.resx" />
+    <EmbeddedResource Include="Core\Error\ErrorMessages.ja.resx" />
+    <EmbeddedResource Include="Core\Error\ErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\FileManagement\FileTypeNames.en.resx" />
+    <EmbeddedResource Include="Core\FileManagement\FileTypeNames.ja.resx" />
+    <EmbeddedResource Include="Core\FileManagement\FileTypeNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FileTypeNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.ja.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuText.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Logging\Logger.static.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="OSDeveloper.Native.csproj">
+      <Project>{724b635c-6951-416f-b3dd-d2ef0368d047}</Project>
+      <Name>OSDeveloper.Native</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
