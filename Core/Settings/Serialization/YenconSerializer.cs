@@ -5,10 +5,12 @@ using OSDeveloper.Core.Error;
 
 namespace OSDeveloper.Core.Settings.Serialization
 {
+	// TODO: シリアライズ処理は次のバージョンで作る
+
 	/// <summary>
 	///  オブジェクトを<see langword="Yencon"/>に変換します。
 	/// </summary>
-	public class YenconSerializer
+	internal/*public*/ class YenconSerializer
 	{
 		private Type _type;
 		private Dictionary<string, MemberInfo> _map;

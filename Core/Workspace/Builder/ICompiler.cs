@@ -45,12 +45,12 @@ namespace OSDeveloper.Core.Workspace.Builder
 		/// <summary>
 		///  入力ファイルのフォーマットの種類を取得します。
 		/// </summary>
-		InputFormat InputFormat { get; }
+		FileFormat InputFormat { get; }
 
 		/// <summary>
 		///  出力ファイルのフォーマットの種類を取得します。
 		/// </summary>
-		OutputFormat OutputFormat { get; }
+		FileFormat OutputFormat { get; }
 
 		/// <summary>
 		///  複数の入力ファイルから一つの出力ファイルを生成します。

@@ -15,11 +15,11 @@ namespace OSDeveloper.Core.Workspace.Builder
 		/// <summary>
 		///  コンパイラが利用する標準出力ストリームを取得します。
 		/// </summary>
-		TextWriter StandardOutputStream { get; set; }
+		TextWriter StandardOutputStream { get; }
 
 		/// <summary>
 		///  コンパイラが利用する標準エラーストリームを取得します。
 		/// </summary>
-		TextWriter StandardErrorStream { get; set; }
+		TextWriter StandardErrorStream { get; }
 	}
 }

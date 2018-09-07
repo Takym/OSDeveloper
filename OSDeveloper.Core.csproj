@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="Core\Error\SerializingException.cs" />
     <Compile Include="Core\Error\SerializingFailureState.cs" />
+    <Compile Include="Core\FileManagement\FileFormat.cs" />
     <Compile Include="Core\FileManagement\FileMetadata.cs" />
     <Compile Include="Core\FileManagement\FileTypeNames.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -108,8 +109,6 @@
     <Compile Include="Core\Workspace\Builder\CompilerType.cs" />
     <Compile Include="Core\Workspace\Builder\ICompiler.cs" />
     <Compile Include="Core\Workspace\Builder\ICompilerArguments.cs" />
-    <Compile Include="Core\Workspace\Builder\InputFormat.cs" />
-    <Compile Include="Core\Workspace\Builder\OutputFormat.cs" />
     <Compile Include="Core\Workspace\Project.cs" />
     <Compile Include="Core\Workspace\Solution.cs" />
     <Compile Include="Core\Workspace\SolutionGroup.cs" />

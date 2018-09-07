@@ -3,7 +3,7 @@
 	/// <summary>
 	///  <see langword="Yencon"/>のシリアル化と逆シリアル化を提供します。
 	/// </summary>
-	public interface IYenconSerializable
+	internal/*public*/ interface IYenconSerializable
 	{
 		/// <summary>
 		///  指定された<see langword="Yencon"/>のセクションにこのオブジェクトのデータを書き込みます。

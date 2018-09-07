@@ -7,16 +7,21 @@ namespace OSDeveloper.Core.Settings.Serialization
 	///  <see cref="OSDeveloper.Core.Settings.Serialization.YenconSerializer"/>に渡します。
 	///  このクラスは抽象クラスです。
 	/// </summary>
-	public abstract class YenconAttribute : Attribute
+	internal/*public*/ abstract class YenconAttribute : Attribute
 	{
 		internal YenconAttribute() { } // コンストラクタの隠蔽
 	}
 
 	/// <summary>
+	///  <see langword="Yencon"/>のルートセクションを表します。
+	/// </summary>
+	internal/*public*/ class YenconRootAttribute : YenconAttribute { }
+
+	/// <summary>
 	///  <see langword="Yencon"/>のセクションを表します。
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-	public class YenconSectionAttribute : YenconAttribute
+	internal/*public*/ class YenconSectionAttribute : YenconAttribute
 	{
 		/// <summary>
 		///  セクション名を取得します。
@@ -37,7 +42,7 @@ namespace OSDeveloper.Core.Settings.Serialization
 	///  <see langword="Yencon"/>のキーを表します。
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-	public class YenconKeyAttribute : YenconAttribute
+	internal/*public*/ class YenconKeyAttribute : YenconAttribute
 	{
 		/// <summary>
 		///  キー名を取得します。
@@ -65,12 +70,12 @@ namespace OSDeveloper.Core.Settings.Serialization
 	///  <see langword="Yencon"/>の値として利用しない事を表します。
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-	public class YenconIgnoreAttribute : YenconAttribute { }
+	internal/*public*/ class YenconIgnoreAttribute : YenconAttribute { }
 
 	/// <summary>
 	///  <see cref="OSDeveloper.Core.Settings.Serialization.YenconIgnoreAttribute"/>
 	///  で無視されていた項目を再び有効にします。
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-	public class YenconConsiderAttribute : YenconAttribute { }
+	internal/*public*/ class YenconConsiderAttribute : YenconAttribute { }
 }

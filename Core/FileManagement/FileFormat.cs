@@ -1,10 +1,20 @@
-﻿namespace OSDeveloper.Core.Workspace.Builder
+﻿namespace OSDeveloper.Core.FileManagement
 {
 	/// <summary>
-	///  出力形式を表します。
+	///  ファイルのフォーマットを表します。
 	/// </summary>
-	public enum OutputFormat
+	public enum FileFormat
 	{
+		/// <summary>
+		///  テキスト形式のファイルを表します。
+		/// </summary>
+		TextFile,
+
+		/// <summary>
+		///  バイナリ形式のファイルを表します。
+		/// </summary>
+		BinaryFile,
+
 		/// <summary>
 		///  機械語にコンパイルされたプログラムを表します。
 		/// </summary>
