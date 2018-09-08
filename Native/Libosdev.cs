@@ -90,6 +90,27 @@ namespace OSDeveloper.Native
 				case "TextFile.v0_0_0_0":
 					id = ICON_TextFile_v0_0_0_0;
 					break;
+				case "Folder":
+				case "Folder.v0":
+				case "Folder.v0_0":
+				case "Folder.v0_0_0":
+				case "Folder.v0_0_0_0":
+					id = ICON_Folder_v0_0_0_0;
+					break;
+				case "FolderClose":
+				case "FolderClose.v0":
+				case "FolderClose.v0_0":
+				case "FolderClose.v0_0_0":
+				case "FolderClose.v0_0_0_0":
+					id = ICON_FolderClose_v0_0_0_0;
+					break;
+				case "FolderOpen":
+				case "FolderOpen.v0":
+				case "FolderOpen.v0_0":
+				case "FolderOpen.v0_0_0":
+				case "FolderOpen.v0_0_0_0":
+					id = ICON_FolderOpen_v0_0_0_0;
+					break;
 				default:
 					id = ICON_Unknown_v0_0_0_0;
 					break;

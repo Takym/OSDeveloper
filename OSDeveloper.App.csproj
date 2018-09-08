@@ -55,6 +55,9 @@
   <PropertyGroup>
     <ApplicationIcon>Properties\FormMain.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -97,6 +100,7 @@
     <Content Include="osdev.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

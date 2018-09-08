@@ -24,5 +24,11 @@ namespace OSDeveloper.Core.GraphicalUIs
 			return _mdi_client;
 		}
 		private MdiClient _mdi_client = null;
+
+		/// <summary>
+		///  このウィンドウのステータスメッセージを設定します。
+		/// </summary>
+		/// <param name="msg">ウィンドウ下部に表示されるメッセージです。</param>
+		public abstract void SetStatusMessage(string msg);
 	}
 }

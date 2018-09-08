@@ -6,9 +6,9 @@
 	public enum FileFormat
 	{
 		/// <summary>
-		///  テキスト形式のファイルを表します。
+		///  ディレクトリを表します。
 		/// </summary>
-		TextFile,
+		Directory,
 
 		/// <summary>
 		///  バイナリ形式のファイルを表します。
@@ -16,12 +16,17 @@
 		BinaryFile,
 
 		/// <summary>
+		///  テキスト形式のファイルを表します。
+		/// </summary>
+		TextFile,
+
+		/// <summary>
 		///  機械語にコンパイルされたプログラムを表します。
 		/// </summary>
 		Program,
 
 		/// <summary>
-		///  自動生成されたソースコードを表します。
+		///  ソースコードを表します。
 		/// </summary>
 		SourceCode,
 

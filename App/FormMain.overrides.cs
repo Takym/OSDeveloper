@@ -17,13 +17,15 @@ namespace OSDeveloper.App
 				return;
 			}
 
-
+#if DEBUG
+			// TODO: 以下のコードは必要が無くなったら削除する。
 			for (int i = 0; i < 10; ++i) {
 				Form f = new Form();
 				f.Text = OSDeveloper.Core.MiscUtils.StringUtils.GetRandomText();
 				f.MdiParent = this;
 				f.Visible = true;
 			}
+#endif
 
 			_logger.Trace("Finished OnLoad event of FormMain");
 		}
@@ -50,6 +52,14 @@ namespace OSDeveloper.App
 			base.OnClosed(e);
 
 			_logger.Trace("Finished OnClosed event of FormMain");
+		}
+
+		public override void SetStatusMessage(string msg)
+		{
+			_logger.Trace("The SetStatusMessage method of FormMain was called");
+			_status_label.Text = msg;
+			_logger.Info(msg);
+			_logger.Trace("Finished SetStatusMessage method of FormMain");
 		}
 	}
 }

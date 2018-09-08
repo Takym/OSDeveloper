@@ -110,6 +110,9 @@
     <Image Include="Icons\1003.File.v0_0_0_0.ico" />
     <Image Include="Icons\1004.BinaryFile.v0_0_0_0.ico" />
     <Image Include="Icons\1005.TextFile.v0_0_0_0.ico" />
+    <Image Include="Icons\1006.Folder.v0_0_0_0.ico" />
+    <Image Include="Icons\1007.FolderClose.v0_0_0_0.ico" />
+    <Image Include="Icons\1008.FolderOpen.v0_0_0_0.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

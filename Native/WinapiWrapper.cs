@@ -116,6 +116,24 @@ namespace OSDeveloper.Native
 			public const uint ICON_TextFile_v0_0_0_0		= 005;
 
 			/// <summary>
+			///  フォルダを表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_Folder_v0_0_0_0			= 006;
+
+			/// <summary>
+			///  閉じているフォルダを表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_FolderClose_v0_0_0_0		= 007;
+
+			/// <summary>
+			///  開いているフォルダを表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_FolderOpen_v0_0_0_0		= 008;
+
+			/// <summary>
 			///  指定されたIDのアイコンを取得します。
 			/// </summary>
 			/// <param name="dwIconID">取得するアイコンのリソースIDから1000を引いた値です。</param>

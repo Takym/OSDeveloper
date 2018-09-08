@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="Core\Error\SerializingException.cs" />
     <Compile Include="Core\Error\SerializingFailureState.cs" />
+    <Compile Include="Core\FileManagement\DirMetadata.cs" />
     <Compile Include="Core\FileManagement\FileFormat.cs" />
     <Compile Include="Core\FileManagement\FileMetadata.cs" />
     <Compile Include="Core\FileManagement\FileTypeNames.Designer.cs">
@@ -68,6 +69,12 @@
     <Compile Include="Core\FileManagement\IKeyNode.cs" />
     <Compile Include="Core\FileManagement\IKeyNodeParser.cs" />
     <Compile Include="Core\FileManagement\IKeyNodeValue.cs" />
+    <Compile Include="Core\GraphicalUIs\Explorer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\Explorer.Designer.cs">
+      <DependentUpon>Explorer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\GraphicalUIs\MainWindowBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +142,9 @@
     <EmbeddedResource Include="Core\FileManagement\FileTypeNames.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FileTypeNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\Explorer.resx">
+      <DependentUpon>Explorer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.en.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.ja.resx" />

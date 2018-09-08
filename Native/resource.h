@@ -8,6 +8,9 @@
 #define IDI_ICON003_File_v0_0_0_0            1003
 #define IDI_ICON004_BinaryFile_v0_0_0_0      1004
 #define IDI_ICON005_TextFile_v0_0_0_0        1005
+#define IDI_ICON006_Folder_v0_0_0_0          1006
+#define IDI_ICON007_FolderClose_v0_0_0_0     1007
+#define IDI_ICON008_FolderOpen_v0_0_0_0      1008
 
 // Next default values for new objects
 // 

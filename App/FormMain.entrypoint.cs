@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Properties;
@@ -101,6 +102,11 @@ namespace OSDeveloper.App
 				_explorer_container.Name = nameof(_explorer_container);
 				_explorer_container.Dock = DockStyle.Left;
 				_explorer_container.BorderStyle = BorderStyle.Fixed3D;
+
+				Explorer ex = new Explorer();
+				ex.Directory = new DirMetadata(SystemPaths.Program);
+				ex.Dock = DockStyle.Fill;
+				_explorer_container.Controls.Add(ex);
 
 				// _explorer_splitter
 				_logger.Info("Creating the explorer splitter...");
