@@ -52,59 +52,64 @@ namespace OSDeveloper.Native
 			}
 
 			switch (name) {
+				case "FormMain":
+				case "Unknown":
+				case "File":
+				case "BinaryFile":
+				case "TextFile":
+				case "Folder":
+				case "FolderClose":
+				case "FolderOpen":
+					name += ".v0_0";
+					break;
+			}
+
+			switch (name) {
 				case "Main":
 					id = ICON_Main;
 					break;
-				case "FormMain":
 				case "FormMain.v0":
 				case "FormMain.v0_0":
 				case "FormMain.v0_0_0":
 				case "FormMain.v0_0_0_0":
 					id = ICON_FormMain_v0_0_0_0;
 					break;
-				case "Unknown":
 				case "Unknown.v0":
 				case "Unknown.v0_0":
 				case "Unknown.v0_0_0":
 				case "Unknown.v0_0_0_0":
 					id = ICON_Unknown_v0_0_0_0;
 					break;
-				case "File":
 				case "File.v0":
 				case "File.v0_0":
 				case "File.v0_0_0":
 				case "File.v0_0_0_0":
 					id = ICON_File_v0_0_0_0;
 					break;
-				case "BinaryFile":
 				case "BinaryFile.v0":
 				case "BinaryFile.v0_0":
 				case "BinaryFile.v0_0_0":
 				case "BinaryFile.v0_0_0_0":
 					id = ICON_BinaryFile_v0_0_0_0;
 					break;
-				case "TextFile":
 				case "TextFile.v0":
 				case "TextFile.v0_0":
 				case "TextFile.v0_0_0":
 				case "TextFile.v0_0_0_0":
 					id = ICON_TextFile_v0_0_0_0;
 					break;
-				case "Folder":
 				case "Folder.v0":
 				case "Folder.v0_0":
 				case "Folder.v0_0_0":
 				case "Folder.v0_0_0_0":
 					id = ICON_Folder_v0_0_0_0;
 					break;
-				case "FolderClose":
 				case "FolderClose.v0":
 				case "FolderClose.v0_0":
 				case "FolderClose.v0_0_0":
 				case "FolderClose.v0_0_0_0":
 					id = ICON_FolderClose_v0_0_0_0;
 					break;
-				case "FolderOpen":
 				case "FolderOpen.v0":
 				case "FolderOpen.v0_0":
 				case "FolderOpen.v0_0_0":

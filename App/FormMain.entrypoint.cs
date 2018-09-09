@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Properties;
@@ -17,7 +16,7 @@ namespace OSDeveloper.App
 			Logger l = Logger.GetSystemLogger("system");
 			l.Trace($"The application is started with command-line: {{{string.Join(", ", args)}}}");
 			Application.EnableVisualStyles();
-			Application.VisualStyleState = VisualStyleState.NoneEnabled;
+			Application.VisualStyleState = VisualStyleState.ClientAndNonClientAreasEnabled;
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new FormMain()); // ここより下でロガーを参照してはいけない
 			return 0;
@@ -55,6 +54,7 @@ namespace OSDeveloper.App
 			_menu_container.SuspendLayout();
 			_explorer_container.SuspendLayout();
 			_terminal_container.SuspendLayout();
+			_explorer.SuspendLayout();
 			this.SuspendLayout();
 
 			// コントロールを初期化
@@ -103,10 +103,7 @@ namespace OSDeveloper.App
 				_explorer_container.Dock = DockStyle.Left;
 				_explorer_container.BorderStyle = BorderStyle.Fixed3D;
 
-				Explorer ex = new Explorer();
-				ex.Directory = new DirMetadata(SystemPaths.Program);
-				ex.Dock = DockStyle.Fill;
-				_explorer_container.Controls.Add(ex);
+				this.BuildExplorer();
 
 				// _explorer_splitter
 				_logger.Info("Creating the explorer splitter...");
@@ -153,6 +150,8 @@ namespace OSDeveloper.App
 			_explorer_container.PerformLayout();
 			_terminal_container.ResumeLayout(false);
 			_terminal_container.PerformLayout();
+			_explorer.ResumeLayout(false);
+			_explorer.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 			_logger.Trace("Finished construction of FormMain");

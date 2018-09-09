@@ -9,9 +9,10 @@ namespace OSDeveloper.Core.GraphicalUIs
 {
 	/// <summary>
 	///  メイン画面の左側に表示されるエクスプローラを表します。
+	///  このクラスは継承できません。
 	/// </summary>
 	[DefaultEvent(nameof(DirectoryChanged))]
-	public partial class Explorer : UserControl
+	public sealed partial class Explorer : UserControl
 	{
 		/// <summary>
 		///  このエクスプローラで表示するディレクトリを取得または設定します。
@@ -66,10 +67,11 @@ namespace OSDeveloper.Core.GraphicalUIs
 		{
 			treeView.Nodes.Clear();
 			if (_dir != null) {
-				var root = treeView.Nodes.Add($"{Path.GetFileNameWithoutExtension(_dir.FileName)} ({_dir.FileName})");
-				root.ImageIndex = IconFolder;
+				var root = new FileTreeNode($"{Path.GetFileNameWithoutExtension(_dir.FileName)} ({_dir.FileName})", _dir);
 				root.Expand();
+				treeView.Nodes.Add(root);
 				this.SetDirectoryTo(root, _dir);
+				this.SetIconEx(root);
 			}
 
 			this.DirectoryChanged?.Invoke(this, new EventArgs());
@@ -78,20 +80,53 @@ namespace OSDeveloper.Core.GraphicalUIs
 		private void SetDirectoryTo(TreeNode tree, DirMetadata dir)
 		{
 			foreach (var item in dir.GetDirectories()) {
-				var child = tree.Nodes.Add(item);
-				child.ImageIndex = IconFolderClose;
+				var file = dir.CreateDirectory(item);
+				var child = new FileTreeNode(item, file);
 				child.Collapse();
-				this.SetDirectoryTo(child, dir.CreateDirectory(item));
+				tree.Nodes.Add(child);
+				this.SetDirectoryTo(child, file);
 			}
 
 			foreach (var item in dir.GetFiles()) {
-				var child = tree.Nodes.Add(item);
 				var file = dir.CreateFile(item);
-				if (file.Format == FileFormat.TextFile) {
-					child.ImageIndex = IconTxtFile;
-				} else {
-					child.ImageIndex = IconBinFile;
-				}
+				var child = new FileTreeNode(item, file);
+				tree.Nodes.Add(child);
+			}
+		}
+
+		private void SetIconEx(FileTreeNode node)
+		{
+			if (node == null) return;
+			this.SetIcon(node);
+			foreach (var item in node.Nodes) {
+				this.SetIconEx(item as FileTreeNode);
+			}
+		}
+
+		private void SetIcon(FileTreeNode node)
+		{
+			if (node == null) return;
+			switch (node.File.Format) {
+				case FileFormat.Directory:
+					if (node.Nodes.Count == 0) {
+						node.ImageIndex = IconFolder;
+						node.SelectedImageIndex = IconFolder;
+					} else if (node.IsExpanded) {
+						node.ImageIndex = IconFolderOpen;
+						node.SelectedImageIndex = IconFolderOpen;
+					} else {
+						node.ImageIndex = IconFolderClose;
+						node.SelectedImageIndex = IconFolderClose;
+					}
+					break;
+				case FileFormat.TextFile:
+					node.ImageIndex = IconTxtFile;
+					node.SelectedImageIndex = IconTxtFile;
+					break;
+				default:
+					node.ImageIndex = IconBinFile;
+					node.SelectedImageIndex = IconBinFile;
+					break;
 			}
 		}
 
@@ -102,12 +137,12 @@ namespace OSDeveloper.Core.GraphicalUIs
 
 		private void treeView_AfterExpand(object sender, TreeViewEventArgs e)
 		{
-			e.Node.ImageIndex = IconFolderOpen;
+			this.SetIcon(e.Node as FileTreeNode);
 		}
 
 		private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
 		{
-			e.Node.ImageIndex = IconFolderClose;
+			this.SetIcon(e.Node as FileTreeNode);
 		}
 
 		private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
@@ -118,6 +153,16 @@ namespace OSDeveloper.Core.GraphicalUIs
 		private void treeView_AfterCheck(object sender, TreeViewEventArgs e)
 		{
 
+		}
+
+		private class FileTreeNode : TreeNode
+		{
+			public FileMetadata File { get; }
+
+			public FileTreeNode(string text, FileMetadata file) : base(text)
+			{
+				this.File = file;
+			}
 		}
 	}
 }

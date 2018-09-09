@@ -34,14 +34,16 @@
 			// 
 			// treeView
 			// 
+			this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeView.ImageIndex = 0;
 			this.treeView.ImageList = this.imageList;
+			this.treeView.LabelEdit = true;
 			this.treeView.Location = new System.Drawing.Point(0, 0);
 			this.treeView.Name = "treeView";
 			this.treeView.PathSeparator = "/";
 			this.treeView.SelectedImageIndex = 0;
-			this.treeView.Size = new System.Drawing.Size(150, 150);
+			this.treeView.Size = new System.Drawing.Size(300, 300);
 			this.treeView.TabIndex = 0;
 			this.treeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_AfterLabelEdit);
 			this.treeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterCheck);
@@ -61,6 +63,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.treeView);
 			this.Name = "Explorer";
+			this.Size = new System.Drawing.Size(300, 300);
 			this.Load += new System.EventHandler(this.Explorer_Load);
 			this.ResumeLayout(false);
 

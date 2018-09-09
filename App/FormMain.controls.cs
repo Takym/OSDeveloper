@@ -1,4 +1,6 @@
 ﻿using System.Windows.Forms;
+using OSDeveloper.Core.FileManagement;
+using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.GraphicalUIs.ToolStrips;
 
 namespace OSDeveloper.App
@@ -25,6 +27,8 @@ namespace OSDeveloper.App
 
 			_status_bar = new StatusStrip();
 			_status_label = new ToolStripStatusLabel();
+
+			_explorer = new Explorer();
 		}
 		#endregion
 
@@ -129,6 +133,18 @@ namespace OSDeveloper.App
 			_status_label.Text = "Status Bar";
 
 			_status_bar.Items.Add(_status_label);
+		}
+		#endregion
+
+		#region エクスプローラ
+		private Explorer _explorer;
+
+		public void BuildExplorer()
+		{
+			_explorer.Name = nameof(_explorer);
+			_explorer.Dock = DockStyle.Fill;
+			_explorer.Directory = new DirMetadata(SystemPaths.Program); // TODO: テスト用
+			_explorer_container.Controls.Add(_explorer);
 		}
 		#endregion
 	}
