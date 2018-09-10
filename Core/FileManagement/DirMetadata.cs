@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using OSDeveloper.Core.Error;
 
 namespace OSDeveloper.Core.FileManagement
 {
@@ -9,8 +11,8 @@ namespace OSDeveloper.Core.FileManagement
 	public class DirMetadata : FileMetadata
 	{
 		private DirectoryInfo _dinfo;
-		private Dictionary<string, DirMetadata> _dirs;
-		private Dictionary<string, FileMetadata> _files;
+		private SortedDictionary<string, DirMetadata> _dirs;
+		private SortedDictionary<string, FileMetadata> _files;
 
 		/// <summary>
 		///  このファイルのフォーマットを取得します。
@@ -37,8 +39,8 @@ namespace OSDeveloper.Core.FileManagement
 				_dinfo = Directory.CreateDirectory(dirname);
 			}
 
-			_dirs = new Dictionary<string, DirMetadata>();
-			_files = new Dictionary<string, FileMetadata>();
+			_dirs = new SortedDictionary<string, DirMetadata>();
+			_files = new SortedDictionary<string, FileMetadata>();
 			this.LoadFiles();
 		}
 
@@ -51,8 +53,8 @@ namespace OSDeveloper.Core.FileManagement
 		public DirMetadata(DirectoryInfo dinfo) : base(dinfo.FullName, FileFormat.Directory)
 		{
 			_dinfo = dinfo;
-			_dirs = new Dictionary<string, DirMetadata>();
-			_files = new Dictionary<string, FileMetadata>();
+			_dirs = new SortedDictionary<string, DirMetadata>();
+			_files = new SortedDictionary<string, FileMetadata>();
 			this.LoadFiles();
 		}
 
@@ -61,10 +63,43 @@ namespace OSDeveloper.Core.FileManagement
 			foreach (var dir in _dinfo.GetDirectories()) {
 				_dirs.Add(dir.Name, new DirMetadata(dir));
 			}
-
 			foreach (var file in _dinfo.GetFiles()) {
 				_files.Add(file.Name, new FileMetadata(file.FullName, FileFormat.BinaryFile));
 			}
+		}
+
+		/// <summary>
+		///  ディレクトリを再読み込みします。
+		/// </summary>
+		public void Reload()
+		{
+			List<DirMetadata> tmpDirs = new List<DirMetadata>(_dirs.Values);
+			List<FileMetadata> tmpFiles = new List<FileMetadata>(_files.Values);
+
+			_dirs.Clear();
+			_files.Clear();
+
+			foreach (var dir in tmpDirs) {
+				dir.Reload();
+				_dirs.Add(dir.Name, dir);
+			}
+			foreach (var file in tmpFiles) {
+				_files.Add(file.Name, file);
+			}
+
+			foreach (var dir in _dinfo.GetDirectories()) {
+				if (!_dirs.ContainsKey(dir.Name)) {
+					_dirs.Add(dir.Name, new DirMetadata(dir));
+				}
+			}
+			foreach (var file in _dinfo.GetFiles()) {
+				if (!_files.ContainsKey(file.Name)) {
+					_files.Add(file.Name, new FileMetadata(file.FullName, FileFormat.BinaryFile));
+				}
+			}
+
+			tmpDirs.Clear();
+			tmpFiles.Clear();
 		}
 
 		/// <summary>
@@ -78,7 +113,7 @@ namespace OSDeveloper.Core.FileManagement
 			if (_dirs.ContainsKey(name)) {
 				return _dirs[name];
 			} else {
-				DirMetadata result = new DirMetadata(this.FileName.Bond(name));
+				DirMetadata result = new DirMetadata(this.FilePath.Bond(name));
 				_dirs.Add(name, result);
 				return result;
 			}
@@ -95,7 +130,7 @@ namespace OSDeveloper.Core.FileManagement
 			if (_files.ContainsKey(name)) {
 				return _files[name];
 			} else {
-				FileMetadata result = new FileMetadata(this.FileName.Bond(name));
+				FileMetadata result = new FileMetadata(this.FilePath.Bond(name));
 				_files.Add(name, result);
 				return result;
 			}
@@ -124,7 +159,7 @@ namespace OSDeveloper.Core.FileManagement
 		/// <summary>
 		///  このディレクトリに格納されている全てのディレクトリを取得します。
 		/// </summary>
-		/// <returns>ディレクトリ名のみが格納されている文字列配列です。</returns>
+		/// <returns>ディレクトリ名のみ(完全なパスではない)が格納されている文字列配列です。</returns>
 		public string[] GetDirectories()
 		{
 			var keys = _dirs.Keys;
@@ -140,7 +175,7 @@ namespace OSDeveloper.Core.FileManagement
 		/// <summary>
 		///  このディレクトリに格納されている全てのファイルを取得します。
 		/// </summary>
-		/// <returns>ファイル名のみが格納されている文字列配列です。</returns>
+		/// <returns>ファイル名のみ(完全なパスではない)が格納されている文字列配列です。</returns>
 		public string[] GetFiles()
 		{
 			var keys = _files.Keys;
@@ -161,6 +196,23 @@ namespace OSDeveloper.Core.FileManagement
 		public override Stream CreateStream()
 		{
 			return null;
+		}
+
+		/// <summary>
+		///  ディレクトリ名を変更します。
+		/// </summary>
+		/// <param name="newName">変更後の新しいディレクトリ名です。</param>
+		/// <exception cref="System.ArgumentException" />
+		/// <exception cref="System.ArgumentNullException" />
+		/// <exception cref="System.UnauthorizedAccessException" />
+		/// <exception cref="System.IO.IOException" />
+		/// <exception cref="System.IO.PathTooLongException" />
+		public override void Rename(string newName)
+		{
+			if (newName.IndexOfAny(Path.GetInvalidFileNameChars()) > -1) {
+				throw new ArgumentException(string.Format(ErrorMessages.IO_InvalidDirNameString, newName), nameof(newName));
+			}
+			File.Move(this.FilePath, Path.Combine(Path.GetDirectoryName(this.FilePath), newName));
 		}
 	}
 }

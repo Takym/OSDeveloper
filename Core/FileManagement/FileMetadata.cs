@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using OSDeveloper.Core.Error;
 
 namespace OSDeveloper.Core.FileManagement
 {
@@ -8,12 +10,35 @@ namespace OSDeveloper.Core.FileManagement
 	public class FileMetadata
 	{
 		/// <summary>
-		///  このファイルのファイル名を取得します。
+		///  このオブジェクトが参照しているファイルのファイルパスを取得します。
 		/// </summary>
-		public PathString FileName { get; }
+		public PathString FilePath { get; }
 
 		/// <summary>
-		///  このファイルのフォーマットを取得します。
+		///  このオブジェクトが参照しているファイルの名前を取得します。
+		/// </summary>
+		public string Name
+		{
+			get
+			{
+				return Path.GetFileName(this.FilePath);
+			}
+		}
+
+
+		/// <summary>
+		///  このオブジェクトが参照しているファイルの親ディレクトリのファイルパスを取得します。
+		/// </summary>
+		public PathString ParentPath
+		{
+			get
+			{
+				return new PathString(Path.GetDirectoryName(this.FilePath));
+			}
+		}
+
+		/// <summary>
+		///  このオブジェクトが参照しているファイルのフォーマットを取得します。
 		/// </summary>
 		public virtual FileFormat Format { get; }
 
@@ -21,10 +46,10 @@ namespace OSDeveloper.Core.FileManagement
 		///  型'<see cref="OSDeveloper.Core.FileManagement.FileMetadata"/>'の
 		///  新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="filename">読み込むファイルです。</param>
+		/// <param name="filename">読み込むファイルの名前です。</param>
 		public FileMetadata(string filename)
 		{
-			this.FileName = new PathString(filename);
+			this.FilePath = new PathString(filename);
 			this.Format = FileFormat.BinaryFile;
 		}
 
@@ -32,11 +57,11 @@ namespace OSDeveloper.Core.FileManagement
 		///  型'<see cref="OSDeveloper.Core.FileManagement.FileMetadata"/>'の
 		///  新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="filename">読み込むファイルです。</param>
+		/// <param name="filename">読み込むファイルの名前です。</param>
 		/// <param name="format">読み込むファイルの種類です。</param>
 		public FileMetadata(string filename, FileFormat format)
 		{
-			this.FileName = new PathString(filename);
+			this.FilePath = new PathString(filename);
 			this.Format = format;
 		}
 
@@ -46,7 +71,24 @@ namespace OSDeveloper.Core.FileManagement
 		/// <returns>生成されたストリームです。</returns>
 		public virtual Stream CreateStream()
 		{
-			return new FileStream(this.FileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+			return new FileStream(this.FilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+		}
+
+		/// <summary>
+		///  ファイル名を変更します。
+		/// </summary>
+		/// <param name="newName">変更後の新しいファイル名です。</param>
+		/// <exception cref="System.ArgumentException" />
+		/// <exception cref="System.ArgumentNullException" />
+		/// <exception cref="System.UnauthorizedAccessException" />
+		/// <exception cref="System.IO.IOException" />
+		/// <exception cref="System.IO.PathTooLongException" />
+		public virtual void Rename(string newName)
+		{
+			if (newName.IndexOfAny(Path.GetInvalidFileNameChars()) > -1) {
+				throw new ArgumentException(string.Format(ErrorMessages.IO_InvalidFileNameString, newName), nameof(newName));
+			}
+			File.Move(this.FilePath, Path.Combine(Path.GetDirectoryName(this.FilePath), newName));
 		}
 	}
 }

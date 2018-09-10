@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OSDeveloper.Core.Error {
+namespace OSDeveloper.Core.GraphicalUIs {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace OSDeveloper.Core.Error {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ErrorMessages {
+    internal class ExplorerTexts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ErrorMessages() {
+        internal ExplorerTexts() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace OSDeveloper.Core.Error {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OSDeveloper.Core.Error.ErrorMessages", typeof(ErrorMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OSDeveloper.Core.GraphicalUIs.ExplorerTexts", typeof(ExplorerTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,38 @@ namespace OSDeveloper.Core.Error {
         }
         
         /// <summary>
-        ///   IO_InvalidFileNameString: {0} に類似しているローカライズされた文字列を検索します。
+        ///   CannotRename に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string IO_InvalidDirNameString {
+        internal static string CannotRename {
             get {
-                return ResourceManager.GetString("IO_InvalidDirNameString", resourceCulture);
+                return ResourceManager.GetString("CannotRename", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   IO_InvalidFileNameString: {0} に類似しているローカライズされた文字列を検索します。
+        ///   Collapse に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string IO_InvalidFileNameString {
+        internal static string Collapse {
             get {
-                return ResourceManager.GetString("IO_InvalidFileNameString", resourceCulture);
+                return ResourceManager.GetString("Collapse", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   IgnoredRootElement, Format: {0} に類似しているローカライズされた文字列を検索します。
+        ///   Expand に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string SerializingException_IgnoredRootElement {
+        internal static string Expand {
             get {
-                return ResourceManager.GetString("SerializingException_IgnoredRootElement", resourceCulture);
+                return ResourceManager.GetString("Expand", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Unknown, Format: {0} に類似しているローカライズされた文字列を検索します。
+        ///   Refresh に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string SerializingFailureState_Unknown {
+        internal static string Refresh {
             get {
-                return ResourceManager.GetString("SerializingFailureState_Unknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   StringUtils_ConvertToBoolean, can&apos;t convert: に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string StringUtils_ConvertToBoolean {
-            get {
-                return ResourceManager.GetString("StringUtils_ConvertToBoolean", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   YenconParser_UnknownCharacter, can&apos;t parse: に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string YenconParser_UnknownCharacter {
-            get {
-                return ResourceManager.GetString("YenconParser_UnknownCharacter", resourceCulture);
+                return ResourceManager.GetString("Refresh", resourceCulture);
             }
         }
     }

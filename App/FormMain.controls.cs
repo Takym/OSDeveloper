@@ -143,7 +143,7 @@ namespace OSDeveloper.App
 		{
 			_explorer.Name = nameof(_explorer);
 			_explorer.Dock = DockStyle.Fill;
-			_explorer.Directory = new DirMetadata(SystemPaths.Program); // TODO: テスト用
+			_explorer.Directory = new DirMetadata(SystemPaths.Workspace); // TODO: テスト用
 			_explorer_container.Controls.Add(_explorer);
 		}
 		#endregion

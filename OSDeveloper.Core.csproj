@@ -81,6 +81,11 @@
     <Compile Include="Core\GraphicalUIs\Explorer.Designer.cs">
       <DependentUpon>Explorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\GraphicalUIs\ExplorerTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExplorerTexts.resx</DependentUpon>
+    </Compile>
     <Compile Include="Core\GraphicalUIs\MainWindowBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\Explorer.resx">
       <DependentUpon>Explorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\ExplorerTexts.en.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\ExplorerTexts.ja.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\ExplorerTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExplorerTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.en.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.ja.resx" />

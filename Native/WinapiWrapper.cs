@@ -83,55 +83,73 @@ namespace OSDeveloper.Native
 			/// <summary>
 			///  アプリケーションのアイコンです。
 			/// </summary>
-			public const uint ICON_Main						= 000;
+			public const uint ICON_Main = 0;
 
 			/// <summary>
 			///  メインウィンドウのアイコンです。
 			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
 			/// </summary>
-			public const uint ICON_FormMain_v0_0_0_0		= 001;
+			public const uint ICON_FormMain_v0_0_0_0 = 1;
 
 			/// <summary>
 			///  不明である事を表すアイコンです。
 			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
 			/// </summary>
-			public const uint ICON_Unknown_v0_0_0_0			= 002;
+			public const uint ICON_Unknown_v0_0_0_0 = 2;
 
 			/// <summary>
 			///  ファイルを表すアイコンです。
 			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
 			/// </summary>
-			public const uint ICON_File_v0_0_0_0			= 003;
+			public const uint ICON_File_v0_0_0_0 = 3;
 
 			/// <summary>
 			///  バイナリファイルを表すアイコンです。
 			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
 			/// </summary>
-			public const uint ICON_BinaryFile_v0_0_0_0		= 004;
+			public const uint ICON_BinaryFile_v0_0_0_0 = 4;
 
 			/// <summary>
 			///  テキストファイルを表すアイコンです。
 			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
 			/// </summary>
-			public const uint ICON_TextFile_v0_0_0_0		= 005;
+			public const uint ICON_TextFile_v0_0_0_0 = 5;
 
 			/// <summary>
 			///  フォルダを表すアイコンです。
 			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
 			/// </summary>
-			public const uint ICON_Folder_v0_0_0_0			= 006;
+			public const uint ICON_Folder_v0_0_0_0 = 6;
 
 			/// <summary>
 			///  閉じているフォルダを表すアイコンです。
 			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
 			/// </summary>
-			public const uint ICON_FolderClose_v0_0_0_0		= 007;
+			public const uint ICON_FolderClose_v0_0_0_0 = 7;
 
 			/// <summary>
 			///  開いているフォルダを表すアイコンです。
 			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
 			/// </summary>
-			public const uint ICON_FolderOpen_v0_0_0_0		= 008;
+			public const uint ICON_FolderOpen_v0_0_0_0 = 8;
+
+			/// <summary>
+			///  「更新」を表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_Refresh_v0_0_0_0 = 9;
+
+			/// <summary>
+			///  「全て表示」を表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_Expand_v0_0_0_0 = 10;
+
+			/// <summary>
+			///  「全て隠す」を表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_Collapse_v0_0_0_0 = 11;
 
 			/// <summary>
 			///  指定されたIDのアイコンを取得します。
@@ -145,9 +163,6 @@ namespace OSDeveloper.Native
 			/// <returns>アイコンハンドルを表す型'<see cref="System.IntPtr"/>'の値です。</returns>
 			[DllImport(Path)]
 			public extern static IntPtr osdev_getIcon(uint dwIconID, IntPtr hWnd, out uint pdwHResult);
-
-			/* config.h */
-
 		}
 	}
 }

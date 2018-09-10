@@ -11,6 +11,9 @@
 #define IDI_ICON006_Folder_v0_0_0_0          1006
 #define IDI_ICON007_FolderClose_v0_0_0_0     1007
 #define IDI_ICON008_FolderOpen_v0_0_0_0      1008
+#define IDI_ICON009_Refresh_v0_0_0_0         1009
+#define IDI_ICON010_Expand_v0_0_0_0          1010
+#define IDI_ICON011_Collapse_v0_0_0_0        1011
 
 // Next default values for new objects
 // 

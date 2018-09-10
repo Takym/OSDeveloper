@@ -103,6 +103,7 @@ namespace OSDeveloper.App
 				_explorer_container.Dock = DockStyle.Left;
 				_explorer_container.BorderStyle = BorderStyle.Fixed3D;
 
+				_logger.Info("Creating the explorer panel...");
 				this.BuildExplorer();
 
 				// _explorer_splitter

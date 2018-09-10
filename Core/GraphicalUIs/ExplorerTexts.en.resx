@@ -117,22 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IO_InvalidDirNameString" xml:space="preserve">
-    <value>指定されたディレクトリ名('{0}')には利用できない文字列が含まれています。</value>
+  <data name="CannotRename" xml:space="preserve">
+    <value>The name of a file or a directory could not change.</value>
   </data>
-  <data name="IO_InvalidFileNameString" xml:space="preserve">
-    <value>指定されたファイル名('{0}')には利用できない文字列が含まれています。</value>
+  <data name="Collapse" xml:space="preserve">
+    <value>Hide all</value>
   </data>
-  <data name="SerializingException_IgnoredRootElement" xml:space="preserve">
-    <value>{0}のシリアル化または逆シリアル化中にエラーが発生しました。ルート要素が無視されています。</value>
+  <data name="Expand" xml:space="preserve">
+    <value>Show all</value>
   </data>
-  <data name="SerializingFailureState_Unknown" xml:space="preserve">
-    <value>{0}でシリアル化または逆シリアル化中に、不明なエラーが発生しました。</value>
-  </data>
-  <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
-    <value>指定された文字列は論理値に変換する事はできません：</value>
-  </data>
-  <data name="YenconParser_UnknownCharacter" xml:space="preserve">
-    <value>指定された文字はヱンコンとして解釈する事ができません：</value>
+  <data name="Refresh" xml:space="preserve">
+    <value>Update</value>
   </data>
 </root>

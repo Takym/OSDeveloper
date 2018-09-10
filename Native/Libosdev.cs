@@ -60,6 +60,9 @@ namespace OSDeveloper.Native
 				case "Folder":
 				case "FolderClose":
 				case "FolderOpen":
+				case "Refresh":
+				case "Expand":
+				case "Collapse":
 					name += ".v0_0";
 					break;
 			}
@@ -115,6 +118,24 @@ namespace OSDeveloper.Native
 				case "FolderOpen.v0_0_0":
 				case "FolderOpen.v0_0_0_0":
 					id = ICON_FolderOpen_v0_0_0_0;
+					break;
+				case "Refresh.v0":
+				case "Refresh.v0_0":
+				case "Refresh.v0_0_0":
+				case "Refresh.v0_0_0_0":
+					id = ICON_Refresh_v0_0_0_0;
+					break;
+				case "Expand.v0":
+				case "Expand.v0_0":
+				case "Expand.v0_0_0":
+				case "Expand.v0_0_0_0":
+					id = ICON_Expand_v0_0_0_0;
+					break;
+				case "Collapse.v0":
+				case "Collapse.v0_0":
+				case "Collapse.v0_0_0":
+				case "Collapse.v0_0_0_0":
+					id = ICON_Collapse_v0_0_0_0;
 					break;
 				default:
 					id = ICON_Unknown_v0_0_0_0;

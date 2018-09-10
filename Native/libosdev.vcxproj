@@ -113,6 +113,9 @@
     <Image Include="Icons\1006.Folder.v0_0_0_0.ico" />
     <Image Include="Icons\1007.FolderClose.v0_0_0_0.ico" />
     <Image Include="Icons\1008.FolderOpen.v0_0_0_0.ico" />
+    <Image Include="Icons\1009.Refresh.v0_0_0_0.ico" />
+    <Image Include="Icons\1010.Expand.v0_0_0_0.ico" />
+    <Image Include="Icons\1011.Collapse.v0_0_0_0.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
