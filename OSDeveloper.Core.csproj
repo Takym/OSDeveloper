@@ -56,6 +56,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Editors\EditorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Core\Error\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,7 +136,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\Editors\" />
     <Folder Include="Core\Extension\" />
     <Folder Include="Core\Globalization\" />
     <Folder Include="Core\Toolkits\" />
