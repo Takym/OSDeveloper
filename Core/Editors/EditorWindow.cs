@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.GraphicalUIs;
 
 namespace OSDeveloper.Core.Editors
@@ -12,6 +13,11 @@ namespace OSDeveloper.Core.Editors
 		private new Form MdiParent { get; set; }
 
 		/// <summary>
+		///  このエディタで編集するファイルを取得または設定します。
+		/// </summary>
+		public FileMetadata TargetFile { get; set; }
+
+		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.Editors.EditorWindow"/>'の
 		///  新しいインスタンスを生成します。
 		/// </summary>
@@ -21,5 +27,7 @@ namespace OSDeveloper.Core.Editors
 			_parent = parent;
 			base.MdiParent = parent;
 		}
+
+
 	}
 }
