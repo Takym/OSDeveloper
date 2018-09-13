@@ -152,6 +152,12 @@ namespace OSDeveloper.Native
 			public const uint ICON_Collapse_v0_0_0_0 = 11;
 
 			/// <summary>
+			///  エディタウィンドウ用のアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_EditorWindow_v0_0_0_0 = 12;
+
+			/// <summary>
 			///  指定されたIDのアイコンを取得します。
 			/// </summary>
 			/// <param name="dwIconID">取得するアイコンのリソースIDから1000を引いた値です。</param>

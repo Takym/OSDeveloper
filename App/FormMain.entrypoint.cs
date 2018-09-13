@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
+using OSDeveloper.Core.Settings;
 using OSDeveloper.Properties;
 
 namespace OSDeveloper.App
@@ -13,12 +14,40 @@ namespace OSDeveloper.App
 		[STAThread()]
 		static int Main(string[] args)
 		{
+			// ロガー初期化
 			Logger l = Logger.GetSystemLogger("system");
 			l.Trace($"The application is started with command-line: {{{string.Join(", ", args)}}}");
+
 			Application.EnableVisualStyles();
-			Application.VisualStyleState = VisualStyleState.ClientAndNonClientAreasEnabled;
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new FormMain()); // ここより下でロガーを参照してはいけない
+
+			// ビジュアルスタイルの設定を読み込み
+			if (ConfigManager.System.Children.ContainsKey("visualstyle")) {
+				// キーが存在する場合は、そのまま読み込み
+				var vs_node = ConfigManager.System.Children["visualstyle"];
+				if (vs_node.Kind == YenconType.StringKey) {
+					if (Enum.TryParse(vs_node.Value.GetValue().ToString(), out VisualStyleState vs)) {
+						Application.VisualStyleState = vs;
+					}
+				}
+			} else {
+				// キーが無い場合は、限定の設定から新しく作成
+				var vs_node = new YenconNode();
+				vs_node.Name = "visualstyle";
+				vs_node.Value = new YenconStringKey() {
+					Text = Application.VisualStyleState.ToString(),
+				};
+				ConfigManager.System.Children.Add(vs_node.Name, vs_node);
+				ConfigManager.Save();
+			}
+			l.Debug($"{nameof(Application)}.{nameof(VisualStyleState)} = {Application.VisualStyleState}");
+
+			// メインウィンドウ表示
+			Application.Run(new FormMain());
+
+			// Runメソッドが終了したタイミングでロガーが破棄される為、
+			// ここでロガーを参照してはいけない
+
 			return 0;
 		}
 	}

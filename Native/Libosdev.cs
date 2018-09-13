@@ -63,6 +63,7 @@ namespace OSDeveloper.Native
 				case "Refresh":
 				case "Expand":
 				case "Collapse":
+				case "EditorWindow":
 					name += ".v0_0";
 					break;
 			}
@@ -136,6 +137,12 @@ namespace OSDeveloper.Native
 				case "Collapse.v0_0_0":
 				case "Collapse.v0_0_0_0":
 					id = ICON_Collapse_v0_0_0_0;
+					break;
+				case "EditorWindow.v0":
+				case "EditorWindow.v0_0":
+				case "EditorWindow.v0_0_0":
+				case "EditorWindow.v0_0_0_0":
+					id = ICON_EditorWindow_v0_0_0_0;
 					break;
 				default:
 					id = ICON_Unknown_v0_0_0_0;

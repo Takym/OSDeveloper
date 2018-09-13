@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using OSDeveloper.Core.Editors;
 
 namespace OSDeveloper.App
 {
@@ -20,10 +21,8 @@ namespace OSDeveloper.App
 #if DEBUG
 			// TODO: 以下のコードは必要が無くなったら削除する。
 			for (int i = 0; i < 10; ++i) {
-				Form f = new Form();
-				f.Text = OSDeveloper.Core.MiscUtils.StringUtils.GetRandomText();
-				f.MdiParent = this;
-				f.Visible = true;
+				EditorWindow f = new EditorWindow(this);
+				f.Show();
 			}
 #endif
 

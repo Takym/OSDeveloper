@@ -70,6 +70,9 @@
     <Image Include="Icons\1011.Collapse.v0_0_0_0.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Icons\1012.EditorWindow.v0_0_0_0.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">

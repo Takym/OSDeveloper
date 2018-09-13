@@ -52,6 +52,7 @@ typedef struct __LIB_STATE__ {
 #define ICON_Refresh_v0_0_0_0			 9 // 「更新」を表すアイコンです。           このアイコンは 0.0.0.0 で追加された物です。
 #define ICON_Expand_v0_0_0_0			10 // 「全て表示」を表すアイコンです。       このアイコンは 0.0.0.0 で追加された物です。
 #define ICON_Collapse_v0_0_0_0			11 // 「全て隠す」を表すアイコンです。       このアイコンは 0.0.0.0 で追加された物です。
+#define ICON_EditorWindow_v0_0_0_0		12 // エディタウィンドウ用のアイコンです。   このアイコンは 0.0.0.0 で追加された物です。
 
 /* 関数 */
 #if __cplusplus

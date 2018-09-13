@@ -14,6 +14,7 @@
 #define IDI_ICON009_Refresh_v0_0_0_0         1009
 #define IDI_ICON010_Expand_v0_0_0_0          1010
 #define IDI_ICON011_Collapse_v0_0_0_0        1011
+#define IDI_ICON012_EditorWindow_v0_0_0_0    1012
 
 // Next default values for new objects
 // 

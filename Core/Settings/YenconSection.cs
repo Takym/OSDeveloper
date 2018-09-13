@@ -74,7 +74,7 @@ namespace OSDeveloper.Core.Settings
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("{");
 			foreach (var item in _dic) {
-				sb.AppendLine(item.Value.ToString());
+				sb.Append('\t').AppendLine(item.Value.ToString());
 			}
 			sb.Append("}");
 			return sb.ToString();

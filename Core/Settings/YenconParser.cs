@@ -28,14 +28,6 @@ namespace OSDeveloper.Core.Settings
 			}
 		}
 
-		string IKeyNodeParser.Source
-		{
-			get
-			{
-				throw new System.NotImplementedException();
-			}
-		}
-
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.Settings.YenconParser"/>'の
 		///  新しいインスタンスを生成します。

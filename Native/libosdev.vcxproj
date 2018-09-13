@@ -116,6 +116,7 @@
     <Image Include="Icons\1009.Refresh.v0_0_0_0.ico" />
     <Image Include="Icons\1010.Expand.v0_0_0_0.ico" />
     <Image Include="Icons\1011.Collapse.v0_0_0_0.ico" />
+    <Image Include="Icons\1012.EditorWindow.v0_0_0_0.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
