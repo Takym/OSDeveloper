@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddedKey_Successfully" xml:space="preserve">
+    <value>AddedKey Successfully</value>
+  </data>
+  <data name="AddedSection_Successfully" xml:space="preserve">
+    <value>AddedSection Successfully</value>
+  </data>
+  <data name="CannotDelete" xml:space="preserve">
+    <value>CannotDelete, KeyNotFound</value>
+  </data>
   <data name="CmdHelp" xml:space="preserve">
     <value>CmdHelp/Recognize Uppercase/Lowercase</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="CommandNotFound" xml:space="preserve">
     <value>CommandNotFound: {0}</value>
   </data>
+  <data name="Deleted_Successfully" xml:space="preserve">
+    <value>Deleted Successfully</value>
+  </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>FileNotFound: {0}</value>
   </data>
@@ -176,6 +188,12 @@
   </data>
   <data name="Ready" xml:space="preserve">
     <value>Ready</value>
+  </data>
+  <data name="Reloaded_Successfully" xml:space="preserve">
+    <value>Reloaded Successfully</value>
+  </data>
+  <data name="Saved_Successfully" xml:space="preserve">
+    <value>Saved Successfully</value>
   </data>
   <data name="SectionList_Empty" xml:space="preserve">
     <value>Empty.</value>

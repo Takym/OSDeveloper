@@ -18,7 +18,7 @@ namespace OSDeveloper.App
 			_menu_project = new ProjectMenuItem();
 			_menu_build = new BuildMenuItem();
 			_menu_debug = new DebugMenuItem();
-			_menu_tool = new ToolMenuItem();
+			_menu_tool = new ToolMenuItem(this);
 			_menu_window = new WindowMenuItem(this);
 			_menu_help = new HelpMenuItem();
 

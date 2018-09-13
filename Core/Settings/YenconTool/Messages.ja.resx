@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddedKey_Successfully" xml:space="preserve">
+    <value>指定されたキーはNULL値として追加されました。</value>
+  </data>
+  <data name="AddedSection_Successfully" xml:space="preserve">
+    <value>指定されたキーは空のセクションとして追加されました。</value>
+  </data>
+  <data name="CannotDelete" xml:space="preserve">
+    <value>指定されたキーは存在しないため削除する事はできません。</value>
+  </data>
   <data name="CmdHelp" xml:space="preserve">
     <value>このコマンドラインツールで利用できるコマンドの一覧です。
 (※大文字と小文字は全て区別されます。)</value>
@@ -160,6 +169,9 @@
   <data name="CommandNotFound" xml:space="preserve">
     <value>指定されたコマンド("{0}")は存在しないか現在は利用できません。</value>
   </data>
+  <data name="Deleted_Successfully" xml:space="preserve">
+    <value>指定されたキーは正常に削除されました。</value>
+  </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>指定されたファイル("{0}")は存在しません。</value>
   </data>
@@ -177,6 +189,12 @@
   </data>
   <data name="Ready" xml:space="preserve">
     <value>準備完了</value>
+  </data>
+  <data name="Reloaded_Successfully" xml:space="preserve">
+    <value>設定ファイルから情報を正常に読み直しました。</value>
+  </data>
+  <data name="Saved_Successfully" xml:space="preserve">
+    <value>設定ファイルは正常に保存されました。</value>
   </data>
   <data name="SectionList_Empty" xml:space="preserve">
     <value>空値です。</value>

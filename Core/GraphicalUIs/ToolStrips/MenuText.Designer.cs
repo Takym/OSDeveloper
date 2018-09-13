@@ -61,6 +61,24 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips {
         }
         
         /// <summary>
+        ///   InstallThemepack: {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Tool_InstallThemepack {
+            get {
+                return ResourceManager.GetString("Tool_InstallThemepack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   InstallThemepack_Confirm: {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Tool_InstallThemepack_Confirm {
+            get {
+                return ResourceManager.GetString("Tool_InstallThemepack_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ArrangeIcons に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Window_ArrangeIcons {

@@ -61,6 +61,33 @@ namespace OSDeveloper.Core.Settings.YenconTool {
         }
         
         /// <summary>
+        ///   AddedKey Successfully に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AddedKey_Successfully {
+            get {
+                return ResourceManager.GetString("AddedKey_Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   AddedSection Successfully に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AddedSection_Successfully {
+            get {
+                return ResourceManager.GetString("AddedSection_Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   CannotDelete, KeyNotFound に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotDelete {
+            get {
+                return ResourceManager.GetString("CannotDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   CmdHelp/Recognize Uppercase/Lowercase に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CmdHelp {
@@ -187,6 +214,15 @@ namespace OSDeveloper.Core.Settings.YenconTool {
         }
         
         /// <summary>
+        ///   Deleted Successfully に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Deleted_Successfully {
+            get {
+                return ResourceManager.GetString("Deleted_Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   FileNotFound: {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileNotFound {
@@ -237,6 +273,24 @@ namespace OSDeveloper.Core.Settings.YenconTool {
         internal static string Ready {
             get {
                 return ResourceManager.GetString("Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reloaded Successfully に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Reloaded_Successfully {
+            get {
+                return ResourceManager.GetString("Reloaded_Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Saved Successfully に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Saved_Successfully {
+            get {
+                return ResourceManager.GetString("Saved_Successfully", resourceCulture);
             }
         }
         

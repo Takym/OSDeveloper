@@ -87,6 +87,7 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					using (StreamWriter sw = new StreamWriter(fs, Encoding.Unicode)) {
 						sw.WriteLine(rootSection.ToStringWithoutBrace());
 					}
+					Console.WriteLine(Messages.Saved_Successfully);
 				} else if (cmd == "reload") {
 					// 全ての変更を破棄し、ファイルから設定情報を読み込む。
 					using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -96,12 +97,15 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					}
 					Current = rootSection = new YenconSection(Root.GetNodes());
 					CurrentPath = string.Empty;
+					Console.WriteLine(Messages.Reloaded_Successfully);
 				} else if (cmd.StartsWith("add ")) {
 					// 新しいキーを追加または既存のキーをNULLにする
 					add(cmd.Substring(4));
+					Console.WriteLine(Messages.AddedKey_Successfully);
 				} else if (cmd.StartsWith("mks ")) {
 					// 新しいセクションを追加または既存のキーを空のセクションにする
 					mks(cmd.Substring(4));
+					Console.WriteLine(Messages.AddedSection_Successfully);
 				} else if (cmd.StartsWith("del ") || cmd.StartsWith("rmv ")) {
 					// キーまたはセクションを削除する。
 					delete(cmd.Substring(4));
@@ -223,6 +227,10 @@ namespace OSDeveloper.Core.Settings.YenconTool
 			if (vs.ContainsKey(name)) {
 				// 存在している場合のみ削除
 				vs.Remove(name);
+				Console.WriteLine(Messages.Deleted_Successfully);
+			} else {
+				// 存在しない場合は警告を表示
+				Console.WriteLine(Messages.CannotDelete);
 			}
 		}
 	}

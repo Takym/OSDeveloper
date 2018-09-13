@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using OSDeveloper.Core.MiscUtils;
 
 namespace OSDeveloper.Core.Settings
 {
@@ -74,7 +76,10 @@ namespace OSDeveloper.Core.Settings
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("{");
 			foreach (var item in _dic) {
-				sb.Append('\t').AppendLine(item.Value.ToString());
+				string[] lines = item.Value.ToString().CRtoLF().Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+				for (int i = 0; i < lines.Length; ++i) {
+					sb.Append('\t').AppendLine(lines[i]);
+				}
 			}
 			sb.Append("}");
 			return sb.ToString();
