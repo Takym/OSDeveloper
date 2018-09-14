@@ -68,8 +68,9 @@ namespace OSDeveloper.Core.GraphicalUIs
 			imageList.Images.Add(Libosdev.GetIcon("Folder",      this, out int v0));
 			imageList.Images.Add(Libosdev.GetIcon("FolderClose", this, out int v1));
 			imageList.Images.Add(Libosdev.GetIcon("FolderOpen",  this, out int v2));
-			imageList.Images.Add(Libosdev.GetIcon("BinaryFile",  this, out int v3));
-			imageList.Images.Add(Libosdev.GetIcon("TextFile",    this, out int v4));
+			imageList.Images.Add(Libosdev.GetIcon("File",        this, out int v3));
+			imageList.Images.Add(Libosdev.GetIcon("BinaryFile",  this, out int v4));
+			imageList.Images.Add(Libosdev.GetIcon("TextFile",    this, out int v5));
 
 			_logger.Info("Explorer control was initialized");
 			_logger.Trace("Finished OnLoad event of Explorer");
@@ -78,8 +79,9 @@ namespace OSDeveloper.Core.GraphicalUIs
 		private const int IconFolder      = 0;
 		private const int IconFolderClose = 1;
 		private const int IconFolderOpen  = 2;
-		private const int IconBinFile     = 3;
-		private const int IconTxtFile     = 4;
+		private const int IconFile        = 3;
+		private const int IconBinFile     = 4;
+		private const int IconTxtFile     = 5;
 
 		/// <summary>
 		///  <see cref="OSDeveloper.Core.GraphicalUIs.Explorer.DirectoryChanged"/>イベントを発生させます。
@@ -221,13 +223,17 @@ namespace OSDeveloper.Core.GraphicalUIs
 						node.SelectedImageIndex = IconFolderClose;
 					}
 					break;
+				case FileFormat.BinaryFile:
+					node.ImageIndex = IconBinFile;
+					node.SelectedImageIndex = IconBinFile;
+					break;
 				case FileFormat.TextFile:
 					node.ImageIndex = IconTxtFile;
 					node.SelectedImageIndex = IconTxtFile;
 					break;
 				default:
-					node.ImageIndex = IconBinFile;
-					node.SelectedImageIndex = IconBinFile;
+					node.ImageIndex = IconFile;
+					node.SelectedImageIndex = IconFile;
 					break;
 			}
 		}

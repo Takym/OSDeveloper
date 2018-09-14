@@ -64,7 +64,7 @@ namespace OSDeveloper.Core.FileManagement
 				_dirs.Add(dir.Name, new DirMetadata(dir));
 			}
 			foreach (var file in _dinfo.GetFiles()) {
-				_files.Add(file.Name, new FileMetadata(file.FullName, FileFormat.BinaryFile));
+				_files.Add(file.Name, new FileMetadata(file.FullName));
 			}
 		}
 

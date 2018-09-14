@@ -12,7 +12,7 @@ namespace OSDeveloper.Core.Editors
 	public class EditorWindow : Form
 	{
 		private readonly MainWindowBase _parent;
-		private new Form MdiParent { get; set; }
+		private new Form MdiParent { get; set; } // プロパティの隠蔽
 
 		/// <summary>
 		///  このエディタ専用のロガーを取得します。

@@ -49,8 +49,9 @@ namespace OSDeveloper.Core.FileManagement
 		/// <param name="filename">読み込むファイルの名前です。</param>
 		public FileMetadata(string filename)
 		{
+			var ftype = FileTypes.CheckFileType(Path.GetExtension(filename).Substring(1));
 			this.FilePath = new PathString(filename);
-			this.Format = FileFormat.BinaryFile;
+			this.Format = ftype?.Format ?? FileFormat.Unknown;
 		}
 
 		/// <summary>

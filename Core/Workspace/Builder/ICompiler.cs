@@ -35,12 +35,12 @@ namespace OSDeveloper.Core.Workspace.Builder
 		/// <summary>
 		///  入力ファイルの拡張子の一覧を取得します。
 		/// </summary>
-		(string type, string[] exts) InputFileType { get; }
+		FileType InputFileType { get; }
 
 		/// <summary>
 		///  出力ファイルの拡張子の一覧を取得します。
 		/// </summary>
-		(string type, string[] exts) OutputFileType { get; }
+		FileType OutputFileType { get; }
 
 		/// <summary>
 		///  入力ファイルのフォーマットの種類を取得します。

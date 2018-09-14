@@ -79,6 +79,15 @@ namespace OSDeveloper.Core.FileManagement {
         }
         
         /// <summary>
+        ///   BinaryFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string BinaryFile {
+            get {
+                return ResourceManager.GetString("BinaryFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   LogFile に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LogFile {
@@ -93,6 +102,15 @@ namespace OSDeveloper.Core.FileManagement {
         internal static string ProcessReportRecordFile {
             get {
                 return ResourceManager.GetString("ProcessReportRecordFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TextFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TextFile {
+            get {
+                return ResourceManager.GetString("TextFile", resourceCulture);
             }
         }
         

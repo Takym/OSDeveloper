@@ -123,11 +123,17 @@
   <data name="AllSupportedFiles" xml:space="preserve">
     <value>サポートされている全てのファイル</value>
   </data>
+  <data name="BinaryFile" xml:space="preserve">
+    <value>バイナリファイル</value>
+  </data>
   <data name="LogFile" xml:space="preserve">
     <value>ログファイル</value>
   </data>
   <data name="ProcessReportRecordFile" xml:space="preserve">
     <value>処理報告記録ファイル</value>
+  </data>
+  <data name="TextFile" xml:space="preserve">
+    <value>テキストファイル</value>
   </data>
   <data name="YenconFile" xml:space="preserve">
     <value>ヱンコン環境設定ファイル</value>

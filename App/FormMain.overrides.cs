@@ -24,6 +24,16 @@ namespace OSDeveloper.App
 				EditorWindow f = new EditorWindow(this);
 				f.Show();
 			}
+
+			Button btn = new Button();
+			btn.Text = "ﾌｧｲﾙｦﾋﾗｸ";
+			btn.Location = new System.Drawing.Point(200, 250);
+			btn.Click += new EventHandler((sender, e2) => {
+				OpenFileDialog ofd = new OpenFileDialog();
+				ofd.Filter = Core.FileManagement.FileTypes.CreateFullSPFs();
+				ofd.ShowDialog(this);
+			});
+			this.Controls.Add(btn);
 #endif
 
 			_logger.Trace("Finished OnLoad event of FormMain");

@@ -69,6 +69,7 @@
     <Compile Include="Core\FileManagement\DirMetadata.cs" />
     <Compile Include="Core\FileManagement\FileFormat.cs" />
     <Compile Include="Core\FileManagement\FileMetadata.cs" />
+    <Compile Include="Core\FileManagement\FileType.cs" />
     <Compile Include="Core\FileManagement\FileTypeNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

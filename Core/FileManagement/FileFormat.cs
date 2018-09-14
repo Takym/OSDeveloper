@@ -6,6 +6,11 @@
 	public enum FileFormat
 	{
 		/// <summary>
+		///  不明なファイルを表します。
+		/// </summary>
+		Unknown,
+
+		/// <summary>
 		///  ディレクトリを表します。
 		/// </summary>
 		Directory,

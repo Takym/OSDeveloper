@@ -123,11 +123,17 @@
   <data name="AllSupportedFiles" xml:space="preserve">
     <value>AllSupportedFiles</value>
   </data>
+  <data name="BinaryFile" xml:space="preserve">
+    <value>BinaryFile</value>
+  </data>
   <data name="LogFile" xml:space="preserve">
     <value>LogFile</value>
   </data>
   <data name="ProcessReportRecordFile" xml:space="preserve">
     <value>ProcessReportRecordFile</value>
+  </data>
+  <data name="TextFile" xml:space="preserve">
+    <value>TextFile</value>
   </data>
   <data name="YenconFile" xml:space="preserve">
     <value>YenconFile</value>
