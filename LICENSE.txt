@@ -1,6 +1,9 @@
 公開製品的残留権利 (Residual Rights of the Public Software)
 Copyright (C) [yaer] [author].
 
+※!!!   注 意   !!! このライセンスはまだ未完成です。
+※!!! ATTENTION !!! This license is not finished yet.
+
 0.) 注意事項/Notice
 	* このライセンスには英語翻訳版(英訳版)も含まれますが、日本語原文版(日文版)を基準とします。
 	* 英訳版は参考の為にあります。公式には日文版を利用します。
@@ -10,13 +13,34 @@ Copyright (C) [yaer] [author].
 	* The ETE is only for reference, I will officially use JOE.
 	* This license is interpreted under the laws of Japan.
 
-1.) 目的/Purpose
-
-2.) 定義/Definitions
+1.) 定義/Definitions
 	* 「本規約」はこのライセンスを表します。
 	* 「日文版」はこのライセンスの原文である日本語版を表します。
 	* 「英訳版」はこのライセンスの米国英語の翻訳版を表します。
+	* 「ソフトウェア」とはこのライセンスによって公開されているソフトウェアを表します。
+	* 「作者」とはソフトウェアの開発者を表します。
+	* 「ソースコード」とはソフトウェアの独自のソースコードを表します。
 
 	* "The term" represents this license document.
 	* "JOE" stands for Japanese Original Edition that represents the original document of this license.
 	* "ETE" stands for English Translation Edition that represents the English (US) translated version in of this license.
+	* "The software" is a software published by this license.
+	* "The author" is a developer of the software.
+	* "Its source code" is peculiar source codes of the software.
+
+2.) 許可/Permitted
+	* 勿論、このソフトウェアを個人で利用する事は完全に許可されています。
+	* ただし、ソフトウェアとそのソースコードを家族や友人またはチームでの利用の際にコピーするのも再配布になります。
+	* ソフトウェアとそのソースコードの閲覧、改変、及び再配布も許可されています。
+	* ソフトウェアまたはソースコード(改変版も含む)を再配布する場合は、第3章と第4章の必須事項と禁止事項は守ってください。
+
+	* Of course, you can use completely this software in an individual.
+	* However, copying software and its source code for use by family members, friends or teams will also be redistributed.
+	* Also, it is allowed to view, to modify, and to redistribute the software and its source code.
+	* If you redistribute the software or the source code, please read and follow the 3rd section and the 4th section.
+
+3.) 必須/Required
+
+4.) 禁止/Forbidden
+
+5.) 責任/Responsibility
