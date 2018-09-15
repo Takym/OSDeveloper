@@ -1,0 +1,22 @@
+公開製品的残留権利 (Residual Rights of the Public Software)
+Copyright (C) [yaer] [author].
+
+0.) 注意事項/Notice
+	* このライセンスには英語翻訳版(英訳版)も含まれますが、日本語原文版(日文版)を基準とします。
+	* 英訳版は参考の為にあります。公式には日文版を利用します。
+	* このライセンスは日本国の法律に基づき解釈されます。
+
+	* This license document contains the English Translation Edition (ETE), however the Japanese Original Edition (JOE) takes precedence.
+	* The ETE is only for reference, I will officially use JOE.
+	* This license is interpreted under the laws of Japan.
+
+1.) 目的/Purpose
+
+2.) 定義/Definitions
+	* 「本規約」はこのライセンスを表します。
+	* 「日文版」はこのライセンスの原文である日本語版を表します。
+	* 「英訳版」はこのライセンスの米国英語の翻訳版を表します。
+
+	* "The term" represents this license document.
+	* "JOE" stands for Japanese Original Edition that represents the original document of this license.
+	* "ETE" stands for English Translation Edition that represents the English (US) translated version in of this license.
