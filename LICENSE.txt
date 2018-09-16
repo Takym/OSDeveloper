@@ -1,4 +1,8 @@
-公開製品的残留権利 (Residual Rights of the Public Software)
+  公開製品的残留権利/Residual Rights of the Public Software
+=============================================================
+エディション (   Edition   ): v00-00    標準 (Standard)
+最終更新日   (Last Modified): 2018/00/00
+
 Copyright (C) [yaer] [author].
 
 ※!!!   注 意   !!! このライセンスはまだ未完成です。
@@ -12,6 +16,7 @@ Copyright (C) [yaer] [author].
 	* This license document contains the English Translation Edition (ETE), however the Japanese Original Edition (JOE) takes precedence.
 	* The ETE is only for reference, I will officially use JOE.
 	* This license is interpreted under the laws of Japan.
+
 
 1.) 定義/Definitions
 	* 「本規約」はこのライセンスを表します。
@@ -28,19 +33,30 @@ Copyright (C) [yaer] [author].
 	* "The author" is a developer of the software.
 	* "Its source code" is peculiar source codes of the software.
 
-2.) 許可/Permitted
-	* 勿論、このソフトウェアを個人で利用する事は完全に許可されています。
-	* ただし、ソフトウェアとそのソースコードを家族や友人またはチームでの利用の際にコピーするのも再配布になります。
-	* ソフトウェアとそのソースコードの閲覧、改変、及び再配布も許可されています。
-	* ソフトウェアまたはソースコード(改変版も含む)を再配布する場合は、第3章と第4章の必須事項と禁止事項は守ってください。
 
-	* Of course, you can use completely this software in an individual.
-	* However, copying software and its source code for use by family members, friends or teams will also be redistributed.
-	* Also, it is allowed to view, to modify, and to redistribute the software and its source code.
-	* If you redistribute the software or the source code, please read and follow the 3rd section and the 4th section.
+2.) 許可/Permitted
+勿論、このソフトウェアを個人で利用する事は完全に許可されています。ただし、ソフトウェアとそのソースコードを家族や友人またはチームでの利用の際にコピーするのも再配布になります。ソフトウェアとそのソースコードの閲覧、改変、及び再配布も許可されています。ソフトウェアまたはソースコード(改変版も含む)を再配布する場合は、第3章と第4章の必須事項と禁止事項は守ってください。
+
+Of course, you can use completely this software in an individual. However, copying software and its source code for use by family members, friends or teams will also be redistributed. Also, it is allowed to view, to modify, and to redistribute the software and its source code. If you redistribute the software or the source code (including a modified version), please read and follow the 3rd section and the 4th section.
+
 
 3.) 必須/Required
+このソフトウェア(改変版も含む)を再配布する場合、派生元の著作権表記と入手方法を必ず明記してください。また、Aというソフトウェアの派生物であるBの派生物を公開する場合は、A、B全ての著作権表記と入手方法を明記してください。
+
+When redistributing this software (including a modified version), please be sure to specify the copyright notice and derivation method of the derivation source. Also, if you publish a derivative of B which is a derivative from A, please specify the copyright notice of both A and B.
+
 
 4.) 禁止/Forbidden
 
-5.) 責任/Responsibility
+
+5.) 約束/Promise
+このソフトウェアは無料で提供され且つソースコードも全てのユーザーに提供されます。
+
+This software is provided free of charge, and its source code will be provided to all users.
+
+
+6.) 責任/Responsibility
+このソフトウェアを利用した事で生じた如何なる損傷も作者は責任を負わない事とします。
+
+The author is not responsible for any damage caused by using this software.
+
