@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Native;
@@ -16,6 +17,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 	public partial class Explorer : UserControl
 	{
 		private Logger _logger;
+		private MainWindowBase _mwndbase;
 
 		/// <summary>
 		///  このエクスプローラで表示するディレクトリを取得または設定します。
@@ -44,9 +46,10 @@ namespace OSDeveloper.Core.GraphicalUIs
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Explorer"/>'の
 		///  新しいインスタンスを生成します。
 		/// </summary>
-		public Explorer()
+		public Explorer(MainWindowBase mwndbase)
 		{
 			_logger = Logger.GetSystemLogger(nameof(Explorer));
+			_mwndbase = mwndbase;
 			InitializeComponent();
 		}
 
@@ -64,6 +67,10 @@ namespace OSDeveloper.Core.GraphicalUIs
 			tolbtnCollapse.Text = ExplorerTexts.Collapse;
 			tolbtnCollapse.ToolTipText = ExplorerTexts.Collapse;
 
+			_logger.Info("Setting the popup strip bar for Explorer...");
+			popup_openeditor.Text = ExplorerTexts.Popup_OpenEditor;
+			popup_rename.Text = ExplorerTexts.Popup_Rename;
+
 			_logger.Info("Setting the file icons for Explorer...");
 			imageList.Images.Add(Libosdev.GetIcon("Folder",      this, out int v0));
 			imageList.Images.Add(Libosdev.GetIcon("FolderClose", this, out int v1));
@@ -71,6 +78,8 @@ namespace OSDeveloper.Core.GraphicalUIs
 			imageList.Images.Add(Libosdev.GetIcon("File",        this, out int v3));
 			imageList.Images.Add(Libosdev.GetIcon("BinaryFile",  this, out int v4));
 			imageList.Images.Add(Libosdev.GetIcon("TextFile",    this, out int v5));
+
+			_logger.Info($"GetIcon HResults = REF:{vREF}, EXP:{vEXP}, COL:{vCOL}, 0:{v0}, 1:{v1}, 2:{v2}, 3:{v3}, 4:{v4}, 5:{v5}");
 
 			_logger.Info("Explorer control was initialized");
 			_logger.Trace("Finished OnLoad event of Explorer");
@@ -134,8 +143,10 @@ namespace OSDeveloper.Core.GraphicalUIs
 
 			if (e.Node is FileTreeNode node) {
 				try {
-					node.File.Rename(e.Label);
-					_dir.Reload();
+					if (e.Label != null) {
+						node.File.Rename(e.Label);
+						_dir.Reload();
+					}
 				} catch (Exception error) {
 					_logger.Exception(error);
 					MessageBox.Show(this, error.Message, ExplorerTexts.CannotRename, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -151,6 +162,17 @@ namespace OSDeveloper.Core.GraphicalUIs
 			_logger.Trace("The OnAfterCheck event of Explorer was called");
 
 			_logger.Trace("Finished OnAfterCheck event of Explorer");
+		}
+
+		private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+		{
+			_logger.Trace("The OnNodeMouseDoubleClick event of Explorer was called");
+
+			if (e.Node is FileTreeNode node) {
+				this.OpenEditor(node);
+			}
+
+			_logger.Trace("Finished OnNodeMouseDoubleClick event of Explorer");
 		}
 
 		private void tolbtnRefresh_Click(object sender, EventArgs e)
@@ -179,6 +201,28 @@ namespace OSDeveloper.Core.GraphicalUIs
 			treeView.CollapseAll();
 
 			_logger.Trace("Finished OnClick event of Collapse button in Explorer");
+		}
+
+		private void popup_openeditor_Click(object sender, EventArgs e)
+		{
+			_logger.Trace("The OnClick event of OpenEditor popup-menu in Explorer was called");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				this.OpenEditor(node);
+			}
+
+			_logger.Trace("Finished OnClick event of OpenEditor popup-menu in Explorer");
+		}
+
+		private void popup_rename_Click(object sender, EventArgs e)
+		{
+			_logger.Trace("The OnClick event of Rename popup-menu in Explorer was called");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				node.BeginEdit();
+			}
+
+			_logger.Trace("Finished OnClick event of Rename popup-menu in Explorer");
 		}
 
 		private void SetDirectoryTo(TreeNode tree, DirMetadata dir)
@@ -238,13 +282,27 @@ namespace OSDeveloper.Core.GraphicalUIs
 			}
 		}
 
+		private void OpenEditor(FileTreeNode ftn)
+		{
+			if (ftn.IsNotDir()) {
+				EditorWindow editor = new EditorWindow(_mwndbase);
+				editor.TargetFile = ftn.File;
+				editor.Show();
+			}
+		}
+
 		private class FileTreeNode : TreeNode
 		{
-			public FileMetadata File { get; }
+			internal FileMetadata File { get; }
 
-			public FileTreeNode(string text, FileMetadata file) : base(text)
+			internal FileTreeNode(string text, FileMetadata file) : base(text)
 			{
 				this.File = file;
+			}
+
+			internal bool IsNotDir()
+			{
+				return this.File.Format != FileFormat.Directory;
 			}
 		}
 	}

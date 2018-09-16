@@ -88,6 +88,24 @@ namespace OSDeveloper.Core.GraphicalUIs {
         }
         
         /// <summary>
+        ///   OpenEditor に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Popup_OpenEditor {
+            get {
+                return ResourceManager.GetString("Popup_OpenEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Rename に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Popup_Rename {
+            get {
+                return ResourceManager.GetString("Popup_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Refresh に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Refresh {

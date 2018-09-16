@@ -18,7 +18,7 @@ namespace OSDeveloper.App
 				return;
 			}
 
-#if DEBUG
+#if false//DEBUG
 			// TODO: 以下のコードは必要が無くなったら削除する。
 			for (int i = 0; i < 10; ++i) {
 				EditorWindow f = new EditorWindow(this);

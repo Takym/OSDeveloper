@@ -126,6 +126,12 @@
   <data name="Expand" xml:space="preserve">
     <value>Expand</value>
   </data>
+  <data name="Popup_OpenEditor" xml:space="preserve">
+    <value>OpenEditor</value>
+  </data>
+  <data name="Popup_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>

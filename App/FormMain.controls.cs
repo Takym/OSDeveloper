@@ -28,7 +28,7 @@ namespace OSDeveloper.App
 			_status_bar = new StatusStrip();
 			_status_label = new ToolStripStatusLabel();
 
-			_explorer = new Explorer();
+			_explorer = new Explorer(this);
 		}
 		#endregion
 

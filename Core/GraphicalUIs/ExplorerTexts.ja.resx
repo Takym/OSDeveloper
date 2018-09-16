@@ -126,6 +126,12 @@
   <data name="Expand" xml:space="preserve">
     <value>全て表示</value>
   </data>
+  <data name="Popup_OpenEditor" xml:space="preserve">
+    <value>開く(&amp;O)</value>
+  </data>
+  <data name="Popup_Rename" xml:space="preserve">
+    <value>名前の変更(&amp;M)</value>
+  </data>
   <data name="Refresh" xml:space="preserve">
     <value>更新</value>
   </data>

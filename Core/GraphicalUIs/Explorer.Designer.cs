@@ -30,12 +30,16 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Explorer));
 			this.treeView = new System.Windows.Forms.TreeView();
+			this.popupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.mainContainer = new System.Windows.Forms.ToolStripContainer();
 			this.toolStrip = new System.Windows.Forms.ToolStrip();
 			this.tolbtnRefresh = new System.Windows.Forms.ToolStripButton();
 			this.tolbtnExpand = new System.Windows.Forms.ToolStripButton();
 			this.tolbtnCollapse = new System.Windows.Forms.ToolStripButton();
+			this.popup_openeditor = new System.Windows.Forms.ToolStripMenuItem();
+			this.popup_rename = new System.Windows.Forms.ToolStripMenuItem();
+			this.popupMenu.SuspendLayout();
 			this.mainContainer.ContentPanel.SuspendLayout();
 			this.mainContainer.TopToolStripPanel.SuspendLayout();
 			this.mainContainer.SuspendLayout();
@@ -45,6 +49,7 @@
 			// treeView
 			// 
 			this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.treeView.ContextMenuStrip = this.popupMenu;
 			this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeView.ImageIndex = 0;
 			this.treeView.ImageList = this.imageList;
@@ -60,6 +65,15 @@
 			this.treeView.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterCollapse);
 			this.treeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterExpand);
 			this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
+			this.treeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
+			// 
+			// popupMenu
+			// 
+			this.popupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.popup_openeditor,
+            this.popup_rename});
+			this.popupMenu.Name = "popupMenu";
+			this.popupMenu.Size = new System.Drawing.Size(181, 70);
 			// 
 			// imageList
 			// 
@@ -98,7 +112,7 @@
             this.tolbtnCollapse});
 			this.toolStrip.Location = new System.Drawing.Point(3, 0);
 			this.toolStrip.Name = "toolStrip";
-			this.toolStrip.Size = new System.Drawing.Size(112, 25);
+			this.toolStrip.Size = new System.Drawing.Size(81, 25);
 			this.toolStrip.TabIndex = 0;
 			// 
 			// tolbtnRefresh
@@ -134,6 +148,20 @@
 			this.tolbtnCollapse.ToolTipText = "tolbtnCollapse";
 			this.tolbtnCollapse.Click += new System.EventHandler(this.tolbtnCollapse_Click);
 			// 
+			// popup_openeditor
+			// 
+			this.popup_openeditor.Name = "popup_openeditor";
+			this.popup_openeditor.Size = new System.Drawing.Size(180, 22);
+			this.popup_openeditor.Text = "open_editor";
+			this.popup_openeditor.Click += new System.EventHandler(this.popup_openeditor_Click);
+			// 
+			// popup_rename
+			// 
+			this.popup_rename.Name = "popup_rename";
+			this.popup_rename.Size = new System.Drawing.Size(180, 22);
+			this.popup_rename.Text = "rename";
+			this.popup_rename.Click += new System.EventHandler(this.popup_rename_Click);
+			// 
 			// Explorer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -142,6 +170,7 @@
 			this.Name = "Explorer";
 			this.Size = new System.Drawing.Size(300, 300);
 			this.Load += new System.EventHandler(this.Explorer_Load);
+			this.popupMenu.ResumeLayout(false);
 			this.mainContainer.ContentPanel.ResumeLayout(false);
 			this.mainContainer.TopToolStripPanel.ResumeLayout(false);
 			this.mainContainer.TopToolStripPanel.PerformLayout();
@@ -162,5 +191,8 @@
 		private System.Windows.Forms.ToolStripButton tolbtnRefresh;
 		private System.Windows.Forms.ToolStripButton tolbtnExpand;
 		private System.Windows.Forms.ToolStripButton tolbtnCollapse;
+		private System.Windows.Forms.ContextMenuStrip popupMenu;
+		private System.Windows.Forms.ToolStripMenuItem popup_openeditor;
+		private System.Windows.Forms.ToolStripMenuItem popup_rename;
 	}
 }

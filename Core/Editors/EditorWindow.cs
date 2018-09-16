@@ -29,7 +29,20 @@ namespace OSDeveloper.Core.Editors
 		/// <summary>
 		///  このエディタで編集するファイルを取得または設定します。
 		/// </summary>
-		public FileMetadata TargetFile { get; set; }
+		public FileMetadata TargetFile
+		{
+			get
+			{
+				return _target;
+			}
+
+			set
+			{
+				_target = value;
+				this.Text = _target.Name;
+			}
+		}
+		private FileMetadata _target;
 
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.Editors.EditorWindow"/>'の
@@ -40,9 +53,12 @@ namespace OSDeveloper.Core.Editors
 		{
 			_logger = Logger.GetSystemLogger(this.GetType().Name);
 			_parent = parent;
+			_target = null;
 
 			base.MdiParent = parent;
+			_logger.Info("Loading the icon...");
 			this.Icon = Libosdev.GetIcon("EditorWindow", this, out int v0);
+			_logger.Info("HResult = " + v0);
 
 			if (this.GetType().Equals(typeof(EditorWindow))) { // 自分自身なら
 				this.Text = "<Base Object of EditorWindow>";
