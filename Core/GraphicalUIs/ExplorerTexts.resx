@@ -120,6 +120,9 @@
   <data name="CannotRename" xml:space="preserve">
     <value>CannotRename</value>
   </data>
+  <data name="CannotViewFile" xml:space="preserve">
+    <value>CannotViewFile</value>
+  </data>
   <data name="Collapse" xml:space="preserve">
     <value>Collapse</value>
   </data>

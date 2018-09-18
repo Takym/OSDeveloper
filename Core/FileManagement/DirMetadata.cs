@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.Error;
+using OSDeveloper.Core.GraphicalUIs;
 
 namespace OSDeveloper.Core.FileManagement
 {
@@ -94,7 +96,7 @@ namespace OSDeveloper.Core.FileManagement
 			}
 			foreach (var file in _dinfo.GetFiles()) {
 				if (!_files.ContainsKey(file.Name)) {
-					_files.Add(file.Name, new FileMetadata(file.FullName, FileFormat.BinaryFile));
+					_files.Add(file.Name, new FileMetadata(file.FullName));
 				}
 			}
 
@@ -213,6 +215,16 @@ namespace OSDeveloper.Core.FileManagement
 				throw new ArgumentException(string.Format(ErrorMessages.IO_InvalidDirNameString, newName), nameof(newName));
 			}
 			File.Move(this.FilePath, Path.Combine(Path.GetDirectoryName(this.FilePath), newName));
+		}
+
+		/// <summary>
+		///  <see langword="null"/>を返し、このディレクトリがエディタによって表示できない事を表します。
+		/// </summary>
+		/// <param name="mwndbase">利用されていません。</param>
+		/// <returns>常に<see langword="null"/>を返します。</returns>
+		public override EditorWindow CreateEditor(MainWindowBase mwndbase)
+		{
+			return null;
 		}
 	}
 }

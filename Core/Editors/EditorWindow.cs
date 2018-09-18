@@ -45,6 +45,7 @@ namespace OSDeveloper.Core.Editors
 		private FileMetadata _target;
 
 		/// <summary>
+		///  親ウィンドウを指定して、
 		///  型'<see cref="OSDeveloper.Core.Editors.EditorWindow"/>'の
 		///  新しいインスタンスを生成します。
 		/// </summary>
@@ -55,7 +56,11 @@ namespace OSDeveloper.Core.Editors
 			_parent = parent;
 			_target = null;
 
-			base.MdiParent = parent;
+			if (parent != null) { // nullでなければ、MDI子ウィンドウにする
+				_logger.Debug($"MDI Parent = {parent.GetType().FullName}, Name:{parent.Name}, Text:{parent.Text}");
+				base.MdiParent = parent;
+			}
+
 			_logger.Info("Loading the icon...");
 			this.Icon = Libosdev.GetIcon("EditorWindow", this, out int v0);
 			_logger.Info("HResult = " + v0);
@@ -70,5 +75,16 @@ namespace OSDeveloper.Core.Editors
 			_logger.Notice($"The class type of this window is: {this.GetType().FullName}");
 			_logger.Notice($"The caption of this window is: {this.Text}");
 		}
+
+		/// <summary>
+		///  親ウィンドウを指定せずに単独のウィンドウとして、
+		///  型'<see cref="OSDeveloper.Core.Editors.EditorWindow"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		public EditorWindow()
+#if !DEBUG
+			: this(null)
+#endif
+		{ }
 	}
 }

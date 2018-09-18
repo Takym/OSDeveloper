@@ -117,25 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CannotRename" xml:space="preserve">
-    <value>The name of a file or a directory could not change.</value>
-  </data>
-  <data name="CannotViewFile" xml:space="preserve">
-    <value>The specified file cannot view on an editor.</value>
-  </data>
-  <data name="Collapse" xml:space="preserve">
-    <value>Hide all</value>
-  </data>
-  <data name="Expand" xml:space="preserve">
-    <value>Show all</value>
-  </data>
-  <data name="Popup_OpenEditor" xml:space="preserve">
-    <value>&amp;Open</value>
-  </data>
-  <data name="Popup_Rename" xml:space="preserve">
-    <value>Rena&amp;me</value>
-  </data>
-  <data name="Refresh" xml:space="preserve">
-    <value>Update</value>
-  </data>
 </root>

@@ -61,6 +61,15 @@ namespace OSDeveloper.Core.Error {
         }
         
         /// <summary>
+        ///   FileMetadata_FileCannotBeDir に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FileMetadata_FileCannotBeDir {
+            get {
+                return ResourceManager.GetString("FileMetadata_FileCannotBeDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   IO_InvalidFileNameString: {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string IO_InvalidDirNameString {

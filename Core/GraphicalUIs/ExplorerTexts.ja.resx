@@ -120,6 +120,9 @@
   <data name="CannotRename" xml:space="preserve">
     <value>ファイル名またはディレクトリ名を変更できませんでした。</value>
   </data>
+  <data name="CannotViewFile" xml:space="preserve">
+    <value>指定されたファイルはエディタによって表示する事ができません。</value>
+  </data>
   <data name="Collapse" xml:space="preserve">
     <value>全て折りたたむ</value>
   </data>

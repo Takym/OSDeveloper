@@ -31,14 +31,14 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Explorer));
 			this.treeView = new System.Windows.Forms.TreeView();
 			this.popupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.popup_openeditor = new System.Windows.Forms.ToolStripMenuItem();
+			this.popup_rename = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.mainContainer = new System.Windows.Forms.ToolStripContainer();
 			this.toolStrip = new System.Windows.Forms.ToolStrip();
 			this.tolbtnRefresh = new System.Windows.Forms.ToolStripButton();
 			this.tolbtnExpand = new System.Windows.Forms.ToolStripButton();
 			this.tolbtnCollapse = new System.Windows.Forms.ToolStripButton();
-			this.popup_openeditor = new System.Windows.Forms.ToolStripMenuItem();
-			this.popup_rename = new System.Windows.Forms.ToolStripMenuItem();
 			this.popupMenu.SuspendLayout();
 			this.mainContainer.ContentPanel.SuspendLayout();
 			this.mainContainer.TopToolStripPanel.SuspendLayout();
@@ -73,7 +73,21 @@
             this.popup_openeditor,
             this.popup_rename});
 			this.popupMenu.Name = "popupMenu";
-			this.popupMenu.Size = new System.Drawing.Size(181, 70);
+			this.popupMenu.Size = new System.Drawing.Size(138, 48);
+			// 
+			// popup_openeditor
+			// 
+			this.popup_openeditor.Name = "popup_openeditor";
+			this.popup_openeditor.Size = new System.Drawing.Size(137, 22);
+			this.popup_openeditor.Text = "open_editor";
+			this.popup_openeditor.Click += new System.EventHandler(this.popup_openeditor_Click);
+			// 
+			// popup_rename
+			// 
+			this.popup_rename.Name = "popup_rename";
+			this.popup_rename.Size = new System.Drawing.Size(137, 22);
+			this.popup_rename.Text = "rename";
+			this.popup_rename.Click += new System.EventHandler(this.popup_rename_Click);
 			// 
 			// imageList
 			// 
@@ -110,9 +124,9 @@
             this.tolbtnRefresh,
             this.tolbtnExpand,
             this.tolbtnCollapse});
-			this.toolStrip.Location = new System.Drawing.Point(3, 0);
+			this.toolStrip.Location = new System.Drawing.Point(6, 0);
 			this.toolStrip.Name = "toolStrip";
-			this.toolStrip.Size = new System.Drawing.Size(81, 25);
+			this.toolStrip.Size = new System.Drawing.Size(112, 25);
 			this.toolStrip.TabIndex = 0;
 			// 
 			// tolbtnRefresh
@@ -147,20 +161,6 @@
 			this.tolbtnCollapse.Text = "tolbtnCollapse";
 			this.tolbtnCollapse.ToolTipText = "tolbtnCollapse";
 			this.tolbtnCollapse.Click += new System.EventHandler(this.tolbtnCollapse_Click);
-			// 
-			// popup_openeditor
-			// 
-			this.popup_openeditor.Name = "popup_openeditor";
-			this.popup_openeditor.Size = new System.Drawing.Size(180, 22);
-			this.popup_openeditor.Text = "open_editor";
-			this.popup_openeditor.Click += new System.EventHandler(this.popup_openeditor_Click);
-			// 
-			// popup_rename
-			// 
-			this.popup_rename.Name = "popup_rename";
-			this.popup_rename.Size = new System.Drawing.Size(180, 22);
-			this.popup_rename.Text = "rename";
-			this.popup_rename.Click += new System.EventHandler(this.popup_rename_Click);
 			// 
 			// Explorer
 			// 

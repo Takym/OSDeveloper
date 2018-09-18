@@ -70,6 +70,15 @@ namespace OSDeveloper.Core.GraphicalUIs {
         }
         
         /// <summary>
+        ///   CannotViewFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CannotViewFile {
+            get {
+                return ResourceManager.GetString("CannotViewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Collapse に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Collapse {

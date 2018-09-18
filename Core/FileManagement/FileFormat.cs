@@ -12,6 +12,8 @@
 
 		/// <summary>
 		///  ディレクトリを表します。
+		///  この値を持つ<see cref="OSDeveloper.Core.FileManagement.FileMetadata"/>は
+		///  <see cref="OSDeveloper.Core.FileManagement.DirMetadata"/>を必ず継承している必要があります。
 		/// </summary>
 		Directory,
 

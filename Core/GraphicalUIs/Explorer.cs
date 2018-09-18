@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
-using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Native;
@@ -16,6 +15,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 	[DefaultEvent(nameof(DirectoryChanged))]
 	public partial class Explorer : UserControl
 	{
+		#region 大域変数
 		private Logger _logger;
 		private MainWindowBase _mwndbase;
 
@@ -41,7 +41,9 @@ namespace OSDeveloper.Core.GraphicalUIs
 		///  ディレクトリが変更された時に発生します。
 		/// </summary>
 		public event EventHandler DirectoryChanged;
+		#endregion
 
+		#region 初期化
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Explorer"/>'の
 		///  新しいインスタンスを生成します。
@@ -111,7 +113,9 @@ namespace OSDeveloper.Core.GraphicalUIs
 			this.DirectoryChanged?.Invoke(this, e);
 			_logger.Trace("Finished OnDirectoryChanged event of Explorer");
 		}
+		#endregion
 
+		#region tree view
 		private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
 		{
 			_logger.Trace("The OnAfterSelect event of Explorer was called");
@@ -169,12 +173,16 @@ namespace OSDeveloper.Core.GraphicalUIs
 			_logger.Trace("The OnNodeMouseDoubleClick event of Explorer was called");
 
 			if (e.Node is FileTreeNode node) {
-				this.OpenEditor(node);
+				if (node.IsNotDir()) {
+					this.OpenEditor(node);
+				}
 			}
 
 			_logger.Trace("Finished OnNodeMouseDoubleClick event of Explorer");
 		}
+		#endregion
 
+		#region tool button
 		private void tolbtnRefresh_Click(object sender, EventArgs e)
 		{
 			_logger.Trace("The OnClick event of Refresh button in Explorer was called");
@@ -202,7 +210,9 @@ namespace OSDeveloper.Core.GraphicalUIs
 
 			_logger.Trace("Finished OnClick event of Collapse button in Explorer");
 		}
+		#endregion
 
+		#region context menu
 		private void popup_openeditor_Click(object sender, EventArgs e)
 		{
 			_logger.Trace("The OnClick event of OpenEditor popup-menu in Explorer was called");
@@ -224,7 +234,9 @@ namespace OSDeveloper.Core.GraphicalUIs
 
 			_logger.Trace("Finished OnClick event of Rename popup-menu in Explorer");
 		}
+		#endregion
 
+		#region 便利関数
 		private void SetDirectoryTo(TreeNode tree, DirMetadata dir)
 		{
 			foreach (var item in dir.GetDirectories()) {
@@ -284,9 +296,10 @@ namespace OSDeveloper.Core.GraphicalUIs
 
 		private void OpenEditor(FileTreeNode ftn)
 		{
-			if (ftn.IsNotDir()) {
-				EditorWindow editor = new EditorWindow(_mwndbase);
-				editor.TargetFile = ftn.File;
+			var editor = ftn.File.CreateEditor(_mwndbase);
+			if (editor == null) {
+				MessageBox.Show(this, ExplorerTexts.CannotViewFile, _mwndbase.Text);
+			} else {
 				editor.Show();
 			}
 		}
@@ -305,5 +318,6 @@ namespace OSDeveloper.Core.GraphicalUIs
 				return this.File.Format != FileFormat.Directory;
 			}
 		}
+		#endregion
 	}
 }

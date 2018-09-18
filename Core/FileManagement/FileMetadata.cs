@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.Error;
+using OSDeveloper.Core.GraphicalUIs;
 
 namespace OSDeveloper.Core.FileManagement
 {
@@ -60,8 +62,13 @@ namespace OSDeveloper.Core.FileManagement
 		/// </summary>
 		/// <param name="filename">読み込むファイルの名前です。</param>
 		/// <param name="format">読み込むファイルの種類です。</param>
+		/// <exception cref="System.ArgumentException"/>
 		public FileMetadata(string filename, FileFormat format)
 		{
+			if (format == FileFormat.Directory && !typeof(DirMetadata).IsAssignableFrom(this.GetType())) {
+				throw new ArgumentException(ErrorMessages.FileMetadata_FileCannotBeDir, nameof(format));
+			}
+
 			this.FilePath = new PathString(filename);
 			this.Format = format;
 		}
@@ -90,6 +97,18 @@ namespace OSDeveloper.Core.FileManagement
 				throw new ArgumentException(string.Format(ErrorMessages.IO_InvalidFileNameString, newName), nameof(newName));
 			}
 			File.Move(this.FilePath, Path.Combine(Path.GetDirectoryName(this.FilePath), newName));
+		}
+
+		/// <summary>
+		///  このファイルを編集するためのエディタウィンドウを生成します。
+		/// </summary>
+		/// <param name="mwndbase">このエディタのMDI親ウィンドウです。</param>
+		/// <returns>新しく生成されたエディタウィンドウオブジェクトです。</returns>
+		public virtual EditorWindow CreateEditor(MainWindowBase mwndbase)
+		{
+			var result = new EditorWindow(mwndbase);
+			result.TargetFile = this;
+			return result;
 		}
 	}
 }
