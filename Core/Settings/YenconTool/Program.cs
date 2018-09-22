@@ -65,12 +65,16 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					Console.WriteLine("gset             " + Messages.CmdHelp_Gset);
 					Console.WriteLine("help             " + Messages.CmdHelp_Help);
 					Console.WriteLine("list             " + Messages.CmdHelp_List);
+					Console.WriteLine("list full        " + Messages.CmdHelp_ListFull);
 					Console.WriteLine("mks              " + Messages.CmdHelp_Mks);
 					Console.WriteLine("reload           " + Messages.CmdHelp_Reload);
 					Console.WriteLine("save             " + Messages.CmdHelp_Save);
 				} else if (cmd == "list") {
-					// 現在読み込まれているエントリを全て出力
-					list(Current);
+					// 現在読み込まれているエントリを全て出力 コメントは非表示
+					list(Current, true);
+				} else if (cmd == "list full") {
+					// 現在読み込まれているエントリを全て出力 コメントも表示
+					list(Current, false);
 				} else if (cmd.StartsWith("gset ")) {
 					// 指定された名前のエントリの値を取得・設定
 					gset(cmd.Substring(5));
@@ -118,11 +122,17 @@ namespace OSDeveloper.Core.Settings.YenconTool
 			}
 		}
 
-		public static void list(YenconSection section)
+		public static void list(YenconSection section, bool skipComment)
 		{
 			foreach (var item in section.Children) {
 				string str;
-				if (item.Value.Value is YenconSection) {
+				if (item.Value is YenconComment yc) {
+					if (skipComment) {
+						continue;
+					} else {
+						str = yc.Text + " (" + Messages.TempID + ":" + yc.Name + ")";
+					}
+				} else if (item.Value.Value is YenconSection) {
 					// セクションは値の数のみ表示
 					YenconSection v = item.Value.Value as YenconSection;
 					if (v.Children != null && v.Children.Count != 0) {
@@ -135,7 +145,7 @@ namespace OSDeveloper.Core.Settings.YenconTool
 				} else {
 					str = item.Value.Value.GetValue().ToString().Escape();
 				}
-				Console.WriteLine($"{item.Key.PadRight(24)}({item.Value.Kind.ToString().PadRight(12)}): {str}");
+				Console.WriteLine($"{item.Key.Abridge(36)}({item.Value?.Kind.ToString().PadRight(12)}): {str}");
 			}
 		}
 
@@ -152,7 +162,9 @@ namespace OSDeveloper.Core.Settings.YenconTool
 
 			Console.WriteLine(Messages.KindOfKey + node.Kind);
 			if (node.Kind == YenconType.Section) { // セクションの場合
-				list(node.Value as YenconSection);
+				list(node.Value as YenconSection, false);
+			} else if (node is YenconComment yc) { // コメントの場合
+				Console.WriteLine(yc.Text);
 			} else { // 普通のキーの場合
 				Console.WriteLine(node.Value.GetValue());
 				Console.WriteLine();

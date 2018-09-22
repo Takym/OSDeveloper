@@ -152,7 +152,10 @@
     <value>指定されたセクションを選択します。</value>
   </data>
   <data name="CmdHelp_List" xml:space="preserve">
-    <value>現在選択しているセクションの全ての値をコンソール画面に出力します。</value>
+    <value>現在選択しているセクションの全ての値をコンソール画面に出力します。ただし、コメントは表示しません。</value>
+  </data>
+  <data name="CmdHelp_ListFull" xml:space="preserve">
+    <value>現在選択しているセクションの全ての値をコンソール画面に出力します。また、コメントも表示します。</value>
   </data>
   <data name="CmdHelp_Mks" xml:space="preserve">
     <value>新しいセクションキーを現在のセクションに追加します。既に存在する場合は空のセクションを代入します。</value>
@@ -201,5 +204,8 @@
   </data>
   <data name="SectionList_Present" xml:space="preserve">
     <value>{0}個の項目が存在しています。</value>
+  </data>
+  <data name="TempID" xml:space="preserve">
+    <value>仮ID</value>
   </data>
 </root>

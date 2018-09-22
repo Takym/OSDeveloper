@@ -169,6 +169,15 @@ namespace OSDeveloper.Core.Settings.YenconTool {
         }
         
         /// <summary>
+        ///   List Full に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CmdHelp_ListFull {
+            get {
+                return ResourceManager.GetString("CmdHelp_ListFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Make Section に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CmdHelp_Mks {
@@ -309,6 +318,15 @@ namespace OSDeveloper.Core.Settings.YenconTool {
         internal static string SectionList_Present {
             get {
                 return ResourceManager.GetString("SectionList_Present", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TempID に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TempID {
+            get {
+                return ResourceManager.GetString("TempID", resourceCulture);
             }
         }
     }

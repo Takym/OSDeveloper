@@ -152,7 +152,10 @@
     <value>Change the current selecting section to the specified section.</value>
   </data>
   <data name="CmdHelp_List" xml:space="preserve">
-    <value>Output keys of the current selecting section to the console.</value>
+    <value>Output keys of the current selecting section to the console. However, it does not display the comments.</value>
+  </data>
+  <data name="CmdHelp_ListFull" xml:space="preserve">
+    <value>Output keys of the current selecting section to the console. Also, it displays the comments.</value>
   </data>
   <data name="CmdHelp_Mks" xml:space="preserve">
     <value>Add a new section key to the current section. If the key already exists, assign the empty section.</value>
@@ -201,5 +204,8 @@
   </data>
   <data name="SectionList_Present" xml:space="preserve">
     <value>The {0} values are present.</value>
+  </data>
+  <data name="TempID" xml:space="preserve">
+    <value>Temp. ID</value>
   </data>
 </root>

@@ -85,7 +85,13 @@ namespace OSDeveloper.Core.Settings
 			StringBuilder value = new StringBuilder();
 			for (int i = 0; i < src.Length;) {
 				if (src[i] == ';') { // コメントアウト
-					while (i < src.Length && src[i] != '\n') ++i;
+					value.Clear();
+					while (i < src.Length && src[i] != '\n') {
+						// 必ず ; から始まるので、前置インクリメントを使う
+						value.Append(src[++i]);
+					}
+					YenconComment yc = new YenconComment(value.ToString());
+					_out.Add(yc);
 				} else if (src[i].IsWhitespace()) { // 空白文字無視
 					++i;
 				} else if (src[i].IsIdentifier()) { // キー or セクション

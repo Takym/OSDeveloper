@@ -130,6 +130,7 @@
     <Compile Include="Core\Settings\Serialization\IYenconSerializable.cs" />
     <Compile Include="Core\Settings\Serialization\YenconSerializer.cs" />
     <Compile Include="Core\Settings\YenconBooleanKey.cs" />
+    <Compile Include="Core\Settings\YenconComment.cs" />
     <Compile Include="Core\Settings\YenconNode.cs" />
     <Compile Include="Core\Settings\YenconNumberKey.cs" />
     <Compile Include="Core\Settings\YenconParser.cs" />

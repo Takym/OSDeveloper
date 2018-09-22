@@ -224,5 +224,25 @@ namespace OSDeveloper.Core.MiscUtils
 				|| IsNumber(c)
 				|| c == '_';
 		}
+
+		/// <summary>
+		///  指定された文字列を省略します。
+		/// </summary>
+		/// <param name="str">元の文字列です。</param>
+		/// <param name="count">省略後の文字数です。</param>
+		/// <returns>
+		///  元の文字列の文字数が省略後の文字数より大きい場合は、
+		///  省略後の文字数より三小さい部分を取り出して、最後にピリオドを三つ付けます。
+		///  元の文字列の文字数が省略後の文字数より小さい場合は、
+		///  <see cref="string.PadRight(int)"/>を利用して省略後の文字数に合わせます。
+		/// </returns>
+		public static string Abridge(this string str, int count)
+		{
+			if (str.Length > count) {
+				return str.Remove(count - 3) + "...";
+			} else {
+				return str.PadRight(count);
+			}
+		}
 	}
 }
