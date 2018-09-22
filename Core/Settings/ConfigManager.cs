@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Text;
-using OSDeveloper.Core.FileManagement;
+﻿using OSDeveloper.Core.FileManagement;
 
 namespace OSDeveloper.Core.Settings
 {
@@ -17,6 +15,9 @@ namespace OSDeveloper.Core.Settings
 		{
 			get
 			{
+				if (_system == null) {
+					_system = YenconParser.Load(PathOfSystem);
+				}
 				return _system;
 			}
 		}
@@ -31,22 +32,6 @@ namespace OSDeveloper.Core.Settings
 		static ConfigManager()
 		{
 			PathOfSystem = SystemPaths.Settings.Bond("system.inix");
-			Load();
-		}
-
-		/// <summary>
-		///  現在の設定を破棄して、ファイルから設定データを読み込みます。
-		///  <see cref="OSDeveloper.Core.Settings.YenconSection"/>のインスタンスも再生成されます。
-		/// </summary>
-		public static void Load()
-		{
-			// ---- System ----
-			using (FileStream fs = new FileStream(PathOfSystem, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read))
-			using (StreamReader sr = new StreamReader(fs, Encoding.Unicode)) {
-				var parser = new YenconParser(sr.ReadToEnd());
-				parser.Analyze();
-				_system = new YenconSection(parser.GetNodes());
-			}
 		}
 
 		/// <summary>
@@ -54,9 +39,7 @@ namespace OSDeveloper.Core.Settings
 		/// </summary>
 		public static void Save()
 		{
-			using (StreamWriter sw = new StreamWriter(SystemPaths.Settings.Bond("system.inix"), false, Encoding.Unicode)) {
-				sw.Write(_system.ToStringWithoutBrace());
-			}
+			YenconParser.Save(PathOfSystem, _system);
 		}
 	}
 }

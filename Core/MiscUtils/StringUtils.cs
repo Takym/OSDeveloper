@@ -4,7 +4,7 @@ using OSDeveloper.Core.Error;
 namespace OSDeveloper.Core.MiscUtils
 {
 	/// <summary>
-	///  <see cref="string"/>クラスの拡張メソッドと便利関数を提供します。
+	///  <see cref="string"/>クラスと<see cref="char"/>構造体の拡張メソッドと便利関数を提供します。
 	///  このクラスは静的です。
 	/// </summary>
 	public static class StringUtils
@@ -89,7 +89,7 @@ namespace OSDeveloper.Core.MiscUtils
 		/// </returns>
 		public static bool TryToBoolean(this string s, out bool result)
 		{
-			string text = s.ToLower().Trim(' ', '　', '\t', '\n', '\r');
+			string text = s.ToLower().Trim(' ', '　', '\t', '\r', '\n');
 			switch (text) {
 				case "true":
 				case "yes":
@@ -176,5 +176,53 @@ namespace OSDeveloper.Core.MiscUtils
 		}
 
 		private const string c = "!#$0aAbBcCdDeEfF%&'gGhH1234()-=IiJjKkLlMmNnOoPp^~@[{]}5678qrstuv;+QRSTUV9WXYZwxyz,._";
+
+		/// <summary>
+		///  指定された文字が空白文字かどうか判定します。
+		/// </summary>
+		/// <param name="c">判定対象の一文字です。</param>
+		/// <returns>空白文字の場合は<see langword="true"/>、それ以外は<see langword="false"/>です。</returns>
+		public static bool IsWhitespace(this char c)
+		{
+			return c == ' '
+				|| c == '　'
+				|| c == '\t'
+				|| c == '\r'
+				|| c == '\n';
+		}
+
+		/// <summary>
+		///  指定された文字がラテン文字かどうか判定します。
+		/// </summary>
+		/// <param name="c">判定対象の一文字です。</param>
+		/// <returns>ラテン文字の場合は<see langword="true"/>、それ以外は<see langword="false"/>です。</returns>
+		public static bool IsAlphabet(this char c)
+		{
+			return ('A' <= c && c <= 'Z')
+				|| ('a' <= c && c <= 'z');
+		}
+
+		/// <summary>
+		///  指定された文字が算用数字かどうか判定します。
+		/// </summary>
+		/// <param name="c">判定対象の一文字です。</param>
+		/// <returns>算用数字の場合は<see langword="true"/>、それ以外は<see langword="false"/>です。</returns>
+		public static bool IsNumber(this char c)
+		{
+			return '0' <= c && c <= '9';
+		}
+
+
+		/// <summary>
+		///  指定された文字が英数字またはアンダースコアかどうか判定します。
+		/// </summary>
+		/// <param name="c">判定対象の一文字です。</param>
+		/// <returns>英数字またはアンダースコアの場合は<see langword="true"/>、それ以外は<see langword="false"/>です。</returns>
+		public static bool IsIdentifier(this char c)
+		{
+			return IsAlphabet(c)
+				|| IsNumber(c)
+				|| c == '_';
+		}
 	}
 }

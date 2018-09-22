@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Text;
 using OSDeveloper.Core.Error;
 using OSDeveloper.Core.FileManagement;
-using static OSDeveloper.Core.MiscUtils.StringUtils;
+using OSDeveloper.Core.MiscUtils;
 
 namespace OSDeveloper.Core.Settings
 {
@@ -85,11 +86,11 @@ namespace OSDeveloper.Core.Settings
 			for (int i = 0; i < src.Length;) {
 				if (src[i] == ';') { // コメントアウト
 					while (i < src.Length && src[i] != '\n') ++i;
-				} else if (this.IsWhitespace(src[i])) { // 空白文字無視
+				} else if (src[i].IsWhitespace()) { // 空白文字無視
 					++i;
-				} else if (this.IsIdentifier(src[i])) { // キー or セクション
+				} else if (src[i].IsIdentifier()) { // キー or セクション
 					name.Clear();
-					while (i < src.Length && this.IsIdentifier(src[i])) {
+					while (i < src.Length && src[i].IsIdentifier()) {
 						name.Append(src[i]);
 						++i;
 					}
@@ -132,7 +133,7 @@ namespace OSDeveloper.Core.Settings
 							}
 							case '#': { // 数値キー
 								++i;
-								while (i < src.Length && IsNumber(src[i])) {
+								while (i < src.Length && src[i].IsNumber()) {
 									value.Append(src[i]);
 									++i;
 								}
@@ -194,33 +195,33 @@ namespace OSDeveloper.Core.Settings
 			}
 		}
 
-		// TODO: YenconParser: これより下に定義されている関数は全て StringUtils に移動する。
-
-		private bool IsWhitespace(char c)
+		/// <summary>
+		///  指定されたファイルをヱンコン形式として読み込みます。
+		/// </summary>
+		/// <param name="path">読み込み元のファイルのパスです。</param>
+		/// <returns>読み込んだファイルから生成された<see cref="OSDeveloper.Core.Settings.YenconSection"/>オブジェクトです。</returns>
+		public static YenconSection Load(string path)
 		{
-			return c == ' '
-				|| c == '　'
-				|| c == '\t'
-				|| c == '\r'
-				|| c == '\n';
+			YenconParser parser;
+			using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read))
+			using (StreamReader sr = new StreamReader(fs, Encoding.Unicode)) {
+				parser = new YenconParser(sr.ReadToEnd());
+				parser.Analyze();
+			}
+			return new YenconSection(parser.GetNodes());
 		}
 
-		private bool IsIdentifier(char c)
+		/// <summary>
+		///  指定されたファイルに指定された<see cref="OSDeveloper.Core.Settings.YenconSection"/>オブジェクトの内容を保存します。
+		/// </summary>
+		/// <param name="path">書き込み先のファイルのパスです。</param>
+		/// <param name="section">保存する<see cref="OSDeveloper.Core.Settings.YenconSection"/>オブジェクトです。</param>
+		public static void Save(string path, YenconSection section)
 		{
-			return IsAlphabet(c)
-				|| IsNumber(c)
-				|| c == '_';
-		}
-
-		private bool IsAlphabet(char c)
-		{
-			return ('A' <= c && c <= 'Z')
-				|| ('a' <= c && c <= 'z');
-		}
-
-		private bool IsNumber(char c)
-		{
-			return '0' <= c && c <= '9';
+			using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+			using (StreamWriter sw = new StreamWriter(fs, Encoding.Unicode)) {
+				sw.Write(section.ToStringWithoutBrace());
+			}
 		}
 	}
 }
