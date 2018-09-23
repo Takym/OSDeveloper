@@ -58,7 +58,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 		private void Explorer_Load(object sender, System.EventArgs e)
 		{
 			_logger.Trace("The OnLoad event of Explorer was called");
-			_logger.Info("Setting the tool strip bar for Explorer...");
+			_logger.Info("Setting the tool strip bar of Explorer...");
 			tolbtnRefresh.Image = Libosdev.GetIcon("Refresh", this, out int vREF).ToBitmap();
 			tolbtnRefresh.Text = ExplorerTexts.Refresh;
 			tolbtnRefresh.ToolTipText = ExplorerTexts.Refresh;
@@ -69,7 +69,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 			tolbtnCollapse.Text = ExplorerTexts.Collapse;
 			tolbtnCollapse.ToolTipText = ExplorerTexts.Collapse;
 
-			_logger.Info("Setting the popup strip bar for Explorer...");
+			_logger.Info("Setting the popup strip bar of Explorer...");
 			popup_openeditor.Text = ExplorerTexts.Popup_OpenEditor;
 			popup_rename.Text = ExplorerTexts.Popup_Rename;
 

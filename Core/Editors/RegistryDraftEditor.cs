@@ -1,4 +1,6 @@
 ﻿using OSDeveloper.Core.GraphicalUIs;
+using OSDeveloper.Core.Logging;
+using OSDeveloper.Native;
 
 namespace OSDeveloper.Core.Editors
 {
@@ -7,6 +9,8 @@ namespace OSDeveloper.Core.Editors
 	/// </summary>
 	public partial class RegistryDraftEditor : EditorWindow
 	{
+		private Logger _logger;
+
 		/// <summary>
 		///  親ウィンドウを指定して、
 		///  型'<see cref="OSDeveloper.Core.Editors.RegistryDraftEditor"/>'の
@@ -16,6 +20,7 @@ namespace OSDeveloper.Core.Editors
 		public RegistryDraftEditor(MainWindowBase parent) : base(parent)
 		{
 			this.InitializeComponent();
+			_logger = Logger.GetSystemLogger(nameof(RegistryDraftEditor));
 		}
 
 		/// <summary>
@@ -26,6 +31,25 @@ namespace OSDeveloper.Core.Editors
 		public RegistryDraftEditor()
 		{
 			this.InitializeComponent();
+			_logger = Logger.GetSystemLogger(nameof(RegistryDraftEditor));
+		}
+
+		private void RegistryDraftEditor_Load(object sender, System.EventArgs e)
+		{
+			_logger.Trace("The OnLoad event of RegistryDraftEditor was called");
+			_logger.Info("Setting the tool strip bar for RegistryDraftEditor...");
+
+			_logger.Info("Setting the control buttons of RegistryDraftEditor...");
+			btnRefresh.Image = Libosdev.GetIcon("Refresh", this, out int vREF).ToBitmap();
+			btnRefresh.Text = string.Empty;
+			btnExpand.Image = Libosdev.GetIcon("Expand", this, out int vEXP).ToBitmap();
+			btnExpand.Text = string.Empty;
+			btnCollapse.Image = Libosdev.GetIcon("Collapse", this, out int vCOL).ToBitmap();
+			btnCollapse.Text = string.Empty;
+			_logger.Info($"GetIcon HResults = REF:{vREF}, EXP:{vEXP}, COL:{vCOL}");
+
+			_logger.Info("Explorer control was initialized");
+			_logger.Trace("Finished OnLoad event of Explorer");
 		}
 
 		private void btnRefresh_Click(object sender, System.EventArgs e)

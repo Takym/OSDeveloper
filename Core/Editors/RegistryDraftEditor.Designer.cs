@@ -29,17 +29,17 @@
 		{
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
 			this.treeView = new System.Windows.Forms.TreeView();
-			this.dataGridView = new System.Windows.Forms.DataGridView();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.btnRefresh = new System.Windows.Forms.Button();
 			this.btnExpand = new System.Windows.Forms.Button();
 			this.btnCollapse = new System.Windows.Forms.Button();
+			this.dataGridView = new System.Windows.Forms.DataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
 			this.mainContainer.Panel2.SuspendLayout();
 			this.mainContainer.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
 			this.flowLayoutPanel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainContainer
@@ -67,17 +67,6 @@
 			this.treeView.Name = "treeView";
 			this.treeView.Size = new System.Drawing.Size(200, 429);
 			this.treeView.TabIndex = 1;
-			// 
-			// dataGridView
-			// 
-			this.dataGridView.AllowUserToOrderColumns = true;
-			this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView.Location = new System.Drawing.Point(0, 0);
-			this.dataGridView.Name = "dataGridView";
-			this.dataGridView.RowTemplate.Height = 21;
-			this.dataGridView.Size = new System.Drawing.Size(280, 461);
-			this.dataGridView.TabIndex = 0;
 			// 
 			// flowLayoutPanel1
 			// 
@@ -120,17 +109,29 @@
 			this.btnCollapse.UseVisualStyleBackColor = true;
 			this.btnCollapse.Click += new System.EventHandler(this.btnCollapse_Click);
 			// 
+			// dataGridView
+			// 
+			this.dataGridView.AllowUserToOrderColumns = true;
+			this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridView.Location = new System.Drawing.Point(0, 0);
+			this.dataGridView.Name = "dataGridView";
+			this.dataGridView.RowTemplate.Height = 21;
+			this.dataGridView.Size = new System.Drawing.Size(280, 461);
+			this.dataGridView.TabIndex = 0;
+			// 
 			// RegistryDraftEditor
 			// 
 			this.ClientSize = new System.Drawing.Size(484, 461);
 			this.Controls.Add(this.mainContainer);
 			this.Name = "RegistryDraftEditor";
+			this.Load += new System.EventHandler(this.RegistryDraftEditor_Load);
 			this.mainContainer.Panel1.ResumeLayout(false);
 			this.mainContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).EndInit();
 			this.mainContainer.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
 			this.flowLayoutPanel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
 			this.ResumeLayout(false);
 
 		}

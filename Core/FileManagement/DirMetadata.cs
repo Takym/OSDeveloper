@@ -66,7 +66,8 @@ namespace OSDeveloper.Core.FileManagement
 				_dirs.Add(dir.Name, new DirMetadata(dir));
 			}
 			foreach (var file in _dinfo.GetFiles()) {
-				_files.Add(file.Name, new FileMetadata(file.FullName));
+				var ftype = FileTypes.CheckFileType(Path.GetExtension(file.Name).Substring(1));
+				_files.Add(file.Name, ftype?.CreateMetadata(file.FullName) ?? new FileMetadata(file.FullName));
 			}
 		}
 
@@ -96,7 +97,8 @@ namespace OSDeveloper.Core.FileManagement
 			}
 			foreach (var file in _dinfo.GetFiles()) {
 				if (!_files.ContainsKey(file.Name)) {
-					_files.Add(file.Name, new FileMetadata(file.FullName));
+					var ftype = FileTypes.CheckFileType(Path.GetExtension(file.Name).Substring(1));
+					_files.Add(file.Name, ftype?.CreateMetadata(file.FullName) ?? new FileMetadata(file.FullName));
 				}
 			}
 

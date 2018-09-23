@@ -1,4 +1,7 @@
-﻿namespace OSDeveloper.Core.FileManagement
+﻿using System;
+using System.Reflection;
+
+namespace OSDeveloper.Core.FileManagement
 {
 	/// <summary>
 	///  ファイルの種類を表します。この型は不変です。
@@ -21,6 +24,13 @@
 		public string[] Extensions { get; }
 
 		/// <summary>
+		///  ファイルを表すメタ情報の種類を取得します。
+		/// </summary>
+		public Type MetadataType { get; }
+
+		private ConstructorInfo _ctor_of_metadata;
+
+		/// <summary>
 		///  ファイルのフォーマットと種類と拡張子を指定して、
 		///  型'<see cref="OSDeveloper.Core.FileManagement.FileType"/>'の
 		///  新しいインスタンスを生成します。
@@ -33,6 +43,31 @@
 			this.Format = format;
 			this.Name = name;
 			this.Extensions = ext;
+			this.MetadataType = typeof(FileMetadata);
+			_ctor_of_metadata = this.MetadataType.GetConstructor(new Type[] { typeof(string) });
+		}
+
+		/// <summary>
+		///  ファイルのフォーマットと種類と拡張子を指定して、
+		///  型'<see cref="OSDeveloper.Core.FileManagement.FileType"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="format">ファイルのフォーマットです。</param>
+		/// <param name="metadataType">ファイルを表すメタ情報の種類です。</param>
+		/// <param name="name">ファイルの種類です。</param>
+		/// <param name="ext">ァイルのピリオドの付かない拡張子の一覧を表す配列です。</param>
+		/// <exception cref="System.ArgumentException" />
+		public FileType(FileFormat format, Type metadataType, string name, params string[] ext)
+		{
+			this.Format = format;
+			this.Name = name;
+			this.Extensions = ext;
+
+			if (typeof(FileMetadata).IsAssignableFrom(metadataType)) {
+				_ctor_of_metadata = metadataType.GetConstructor(new Type[] { typeof(string) });
+			} else {
+				throw new ArgumentException();
+			}
 		}
 
 		/// <summary>
@@ -57,6 +92,17 @@
 				}
 			}
 			return false;
+		}
+
+		/// <summary>
+		///  指定されたファイル名からファイル情報オブジェクトを生成します。
+		/// </summary>
+		/// <param name="filename">開くファイルのファイルパスです。</param>
+		/// <returns>生成された<see cref="OSDeveloper.Core.FileManagement.FileMetadata"/>オブジェクトです。</returns>
+		public FileMetadata CreateMetadata(string filename)
+		{
+			var result = _ctor_of_metadata.Invoke(new object[] { filename });
+			return result as FileMetadata;
 		}
 	}
 }
