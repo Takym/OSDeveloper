@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using OSDeveloper.Core.FileManagement.Structures;
 using OSDeveloper.Core.MiscUtils;
 
 namespace OSDeveloper.Core.FileManagement
