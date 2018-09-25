@@ -65,6 +65,11 @@
     <Compile Include="Core\Editors\RegistryDraftEditor.Designer.cs">
       <DependentUpon>RegistryDraftEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Editors\RegistryDraftEditorTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegistryDraftEditorTexts.resx</DependentUpon>
+    </Compile>
     <Compile Include="Core\Error\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,6 +166,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Core\Editors\RegistryDraftEditor.resx">
       <DependentUpon>RegistryDraftEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Editors\RegistryDraftEditorTexts.en.resx" />
+    <EmbeddedResource Include="Core\Editors\RegistryDraftEditorTexts.ja.resx" />
+    <EmbeddedResource Include="Core\Editors\RegistryDraftEditorTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegistryDraftEditorTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Error\ErrorMessages.en.resx" />
     <EmbeddedResource Include="Core\Error\ErrorMessages.ja.resx" />

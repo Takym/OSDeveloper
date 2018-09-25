@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Native;
@@ -49,8 +50,14 @@ namespace OSDeveloper.Core.Editors
 			btnCollapse.Text = string.Empty;
 			_logger.Info($"GetIcon HResults = REF:{vREF}, EXP:{vEXP}, COL:{vCOL}");
 
+			_logger.Info("Setting the popup menus of RegistryDraftEditor...");
+			openMenu.Text = RegistryDraftEditorTexts.Popup_Open;
+			renameMenu.Text = RegistryDraftEditorTexts.Popup_Rename;
+			deleteMenu.Text = RegistryDraftEditorTexts.Popup_Delete;
+			addNewMenu.Text = RegistryDraftEditorTexts.Popup_AddNew;
+
 			if (this.TargetFile != null) {
-				treeView.Nodes.Add(this.TargetFile.Name);
+				// ファイル読み込み処理
 			}
 
 			_logger.Info("Explorer control was initialized");
@@ -61,22 +68,40 @@ namespace OSDeveloper.Core.Editors
 		private void btnRefresh_Click(object sender, EventArgs e)
 		{
 			_logger.Trace("The OnClick event of Refresh button in RegistryDraftEditor was called");
-			// 再読み込みする必要は無いので何もしない
+
+			treeView.SelectedNode = null;
+			treeView.Sort();
+
 			_logger.Trace("Finished OnClick event of Refresh button in RegistryDraftEditor");
 		}
 
 		private void btnExpand_Click(object sender, EventArgs e)
 		{
 			_logger.Trace("The OnClick event of Expand button in RegistryDraftEditor was called");
+
 			treeView.ExpandAll();
+
 			_logger.Trace("Finished OnClick event of Expand button in RegistryDraftEditor");
 		}
 
 		private void btnCollapse_Click(object sender, EventArgs e)
 		{
 			_logger.Trace("The OnClick event of Collapse button in RegistryDraftEditor was called");
+
 			treeView.CollapseAll();
+
 			_logger.Trace("Finished OnClick event of Collapse button in RegistryDraftEditor");
+		}
+		#endregion
+
+		#region ツリービュー
+		private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+		{
+			_logger.Trace("The OnAfterLabelEdit event of the tree view in RegistryDraftEditor was called");
+
+			e.Node.Name = e.Label;
+
+			_logger.Trace("Finished OnAfterLabelEdit event of the tree view in RegistryDraftEditor");
 		}
 		#endregion
 
@@ -91,21 +116,41 @@ namespace OSDeveloper.Core.Editors
 		private void renameMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace("The OnClick event of Rename popup-menu in RegistryDraftEditor was called");
-			treeView.SelectedNode.BeginEdit();
+
+			treeView.SelectedNode?.BeginEdit();
+
 			_logger.Trace("Finished OnClick event of Rename popup-menu in RegistryDraftEditor");
 		}
 
 		private void deleteMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace("The OnClick event of Delete popup-menu in RegistryDraftEditor was called");
-			treeView.SelectedNode.Remove();
+
+			treeView.SelectedNode?.Remove();
+
 			_logger.Trace("Finished OnClick event of Delete popup-menu in RegistryDraftEditor");
 		}
 
 		private void addNewMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace("The OnClick event of AddNew popup-menu in RegistryDraftEditor was called");
-			treeView.SelectedNode.Nodes.Add("New Key");
+
+			TreeNodeCollection nodes;
+			if (treeView.SelectedNode == null) {
+				nodes = treeView.Nodes;
+			} else {
+				nodes = treeView.SelectedNode.Nodes;
+			}
+
+			string name = "New Key";
+			for (int i = 1; i < int.MaxValue; ++i) {
+				name = $"New Key #{i}";
+				if (!nodes.ContainsKey(name)) {
+					break;
+				}
+			}
+			nodes.Add(name, name);
+
 			_logger.Trace("Finished OnClick event of AddNew popup-menu in RegistryDraftEditor");
 		}
 		#endregion

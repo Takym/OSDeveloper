@@ -118,32 +118,32 @@ namespace OSDeveloper.Core.GraphicalUIs
 		#region tree view
 		private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
 		{
-			_logger.Trace("The OnAfterSelect event of Explorer was called");
+			_logger.Trace("The OnAfterSelect event of the tree view in Explorer was called");
 
-			_logger.Trace("Finished OnAfterSelect event of Explorer");
+			_logger.Trace("Finished OnAfterSelect event of the tree view in Explorer");
 		}
 
 		private void treeView_AfterExpand(object sender, TreeViewEventArgs e)
 		{
-			_logger.Trace("The OnAfterExpand event of Explorer was called");
+			_logger.Trace("The OnAfterExpand event of the tree view in Explorer was called");
 
 			this.SetIcon(e.Node as FileTreeNode);
 
-			_logger.Trace("Finished OnAfterExpand event of Explorer");
+			_logger.Trace("Finished OnAfterExpand event of the tree view in Explorer");
 		}
 
 		private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
 		{
-			_logger.Trace("The OnAfterCollapse event of Explorer was called");
+			_logger.Trace("The OnAfterCollapse event of the tree view in Explorer was called");
 
 			this.SetIcon(e.Node as FileTreeNode);
 
-			_logger.Trace("Finished OnAfterCollapse event of Explorer");
+			_logger.Trace("Finished OnAfterCollapse event of the tree view in Explorer");
 		}
 
 		private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
 		{
-			_logger.Trace("The OnAfterLabelEdit event of Explorer was called");
+			_logger.Trace("The OnAfterLabelEdit event of the tree view in Explorer was called");
 
 			if (e.Node is FileTreeNode node) {
 				try {
@@ -158,19 +158,19 @@ namespace OSDeveloper.Core.GraphicalUIs
 				}
 			}
 
-			_logger.Trace("Finished OnAfterLabelEdit event of Explorer");
+			_logger.Trace("Finished OnAfterLabelEdit event of the tree view in Explorer");
 		}
 
 		private void treeView_AfterCheck(object sender, TreeViewEventArgs e)
 		{
-			_logger.Trace("The OnAfterCheck event of Explorer was called");
+			_logger.Trace("The OnAfterCheck event of the tree view in Explorer was called");
 
-			_logger.Trace("Finished OnAfterCheck event of Explorer");
+			_logger.Trace("Finished OnAfterCheck event of the tree view in Explorer");
 		}
 
 		private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
 		{
-			_logger.Trace("The OnNodeMouseDoubleClick event of Explorer was called");
+			_logger.Trace("The OnNodeMouseDoubleClick event of the tree view in Explorer was called");
 
 			if (e.Node is FileTreeNode node) {
 				if (node.IsNotDir()) {
@@ -178,7 +178,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 				}
 			}
 
-			_logger.Trace("Finished OnNodeMouseDoubleClick event of Explorer");
+			_logger.Trace("Finished OnNodeMouseDoubleClick event of the tree view in Explorer");
 		}
 		#endregion
 

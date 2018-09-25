@@ -30,23 +30,23 @@
 			this.components = new System.ComponentModel.Container();
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
 			this.treeView = new System.Windows.Forms.TreeView();
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.btnRefresh = new System.Windows.Forms.Button();
-			this.btnExpand = new System.Windows.Forms.Button();
-			this.btnCollapse = new System.Windows.Forms.Button();
-			this.dataGridView = new System.Windows.Forms.DataGridView();
 			this.popupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.renameMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.addNewMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.btnRefresh = new System.Windows.Forms.Button();
+			this.btnExpand = new System.Windows.Forms.Button();
+			this.btnCollapse = new System.Windows.Forms.Button();
+			this.dataGridView = new System.Windows.Forms.DataGridView();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
 			this.mainContainer.Panel2.SuspendLayout();
 			this.mainContainer.SuspendLayout();
+			this.popupMenu.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-			this.popupMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainContainer
@@ -76,6 +76,45 @@
 			this.treeView.Name = "treeView";
 			this.treeView.Size = new System.Drawing.Size(200, 429);
 			this.treeView.TabIndex = 1;
+			this.treeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_AfterLabelEdit);
+			// 
+			// popupMenu
+			// 
+			this.popupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openMenu,
+            this.renameMenu,
+            this.deleteMenu,
+            this.addNewMenu});
+			this.popupMenu.Name = "popupMenu";
+			this.popupMenu.Size = new System.Drawing.Size(121, 92);
+			// 
+			// openMenu
+			// 
+			this.openMenu.Name = "openMenu";
+			this.openMenu.Size = new System.Drawing.Size(120, 22);
+			this.openMenu.Text = "Open";
+			this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
+			// 
+			// renameMenu
+			// 
+			this.renameMenu.Name = "renameMenu";
+			this.renameMenu.Size = new System.Drawing.Size(120, 22);
+			this.renameMenu.Text = "Rename";
+			this.renameMenu.Click += new System.EventHandler(this.renameMenu_Click);
+			// 
+			// deleteMenu
+			// 
+			this.deleteMenu.Name = "deleteMenu";
+			this.deleteMenu.Size = new System.Drawing.Size(120, 22);
+			this.deleteMenu.Text = "Delete";
+			this.deleteMenu.Click += new System.EventHandler(this.deleteMenu_Click);
+			// 
+			// addNewMenu
+			// 
+			this.addNewMenu.Name = "addNewMenu";
+			this.addNewMenu.Size = new System.Drawing.Size(120, 22);
+			this.addNewMenu.Text = "AddNew";
+			this.addNewMenu.Click += new System.EventHandler(this.addNewMenu_Click);
 			// 
 			// flowLayoutPanel1
 			// 
@@ -129,44 +168,6 @@
 			this.dataGridView.Size = new System.Drawing.Size(280, 461);
 			this.dataGridView.TabIndex = 0;
 			// 
-			// popupMenu
-			// 
-			this.popupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openMenu,
-            this.renameMenu,
-            this.deleteMenu,
-            this.addNewMenu});
-			this.popupMenu.Name = "popupMenu";
-			this.popupMenu.Size = new System.Drawing.Size(121, 92);
-			// 
-			// openMenu
-			// 
-			this.openMenu.Name = "openMenu";
-			this.openMenu.Size = new System.Drawing.Size(120, 22);
-			this.openMenu.Text = "Open";
-			this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
-			// 
-			// renameMenu
-			// 
-			this.renameMenu.Name = "renameMenu";
-			this.renameMenu.Size = new System.Drawing.Size(120, 22);
-			this.renameMenu.Text = "Rename";
-			this.renameMenu.Click += new System.EventHandler(this.renameMenu_Click);
-			// 
-			// deleteMenu
-			// 
-			this.deleteMenu.Name = "deleteMenu";
-			this.deleteMenu.Size = new System.Drawing.Size(120, 22);
-			this.deleteMenu.Text = "Delete";
-			this.deleteMenu.Click += new System.EventHandler(this.deleteMenu_Click);
-			// 
-			// addNewMenu
-			// 
-			this.addNewMenu.Name = "addNewMenu";
-			this.addNewMenu.Size = new System.Drawing.Size(120, 22);
-			this.addNewMenu.Text = "AddNew";
-			this.addNewMenu.Click += new System.EventHandler(this.addNewMenu_Click);
-			// 
 			// RegistryDraftEditor
 			// 
 			this.ClientSize = new System.Drawing.Size(484, 461);
@@ -177,9 +178,9 @@
 			this.mainContainer.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).EndInit();
 			this.mainContainer.ResumeLayout(false);
+			this.popupMenu.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-			this.popupMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
