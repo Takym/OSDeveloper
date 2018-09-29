@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="File_Exit" xml:space="preserve">
+    <value>終了(&amp;X)</value>
+  </data>
+  <data name="File_Newfile" xml:space="preserve">
+    <value>新規作成(&amp;N)</value>
+  </data>
+  <data name="File_Open" xml:space="preserve">
+    <value>開く(&amp;O)</value>
+  </data>
+  <data name="File_Print" xml:space="preserve">
+    <value>印刷...(&amp;P)</value>
+  </data>
+  <data name="File_PrintPreview" xml:space="preserve">
+    <value>印刷プレビュー(&amp;E)</value>
+  </data>
+  <data name="File_Reload" xml:space="preserve">
+    <value>再読み込み(&amp;R)</value>
+  </data>
+  <data name="File_Save" xml:space="preserve">
+    <value>上書き保存(&amp;S)</value>
+  </data>
+  <data name="File_SaveAll" xml:space="preserve">
+    <value>全て保存(&amp;L)</value>
+  </data>
+  <data name="File_SaveAs" xml:space="preserve">
+    <value>名前を付けて保存(&amp;A)</value>
+  </data>
   <data name="Tool_InstallThemepack" xml:space="preserve">
     <value>テーマパック "{0}" をインストールして適用</value>
   </data>

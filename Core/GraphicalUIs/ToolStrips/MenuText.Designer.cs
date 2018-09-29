@@ -61,6 +61,87 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips {
         }
         
         /// <summary>
+        ///   Exit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Exit {
+            get {
+                return ResourceManager.GetString("File_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Newfile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Newfile {
+            get {
+                return ResourceManager.GetString("File_Newfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Open に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Open {
+            get {
+                return ResourceManager.GetString("File_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Print に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Print {
+            get {
+                return ResourceManager.GetString("File_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PrintPreview に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_PrintPreview {
+            get {
+                return ResourceManager.GetString("File_PrintPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Reload に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Reload {
+            get {
+                return ResourceManager.GetString("File_Reload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Save に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Save {
+            get {
+                return ResourceManager.GetString("File_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SaveAll に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_SaveAll {
+            get {
+                return ResourceManager.GetString("File_SaveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SaveAs に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_SaveAs {
+            get {
+                return ResourceManager.GetString("File_SaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   InstallThemepack: {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Tool_InstallThemepack {

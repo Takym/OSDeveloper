@@ -59,6 +59,7 @@
     <Compile Include="Core\Editors\EditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Core\Editors\IFileSaveLoadFeature.cs" />
     <Compile Include="Core\Editors\RegistryDraftEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +106,12 @@
     <Compile Include="Core\GraphicalUIs\MainWindowBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Core\GraphicalUIs\MainWindowStatusMessage.cs" />
+    <Compile Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainWindowStatusMessageAsset.resx</DependentUpon>
+    </Compile>
     <Compile Include="Core\GraphicalUIs\ToolStrips\EditMenuItem.cs" />
     <Compile Include="Core\GraphicalUIs\ToolStrips\BuildMenuItem.cs" />
     <Compile Include="Core\GraphicalUIs\ToolStrips\DebugMenuItem.cs" />
@@ -149,11 +156,6 @@
     <Compile Include="Core\Workspace\Solution.cs" />
     <Compile Include="Core\Workspace\SolutionGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\Extension\" />
@@ -194,15 +196,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExplorerTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.en.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.ja.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainWindowStatusMessageAsset.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.en.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.ja.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuText.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

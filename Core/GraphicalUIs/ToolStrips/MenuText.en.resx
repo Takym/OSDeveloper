@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="File_Exit" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
+  <data name="File_Newfile" xml:space="preserve">
+    <value>Create &amp;new file...</value>
+  </data>
+  <data name="File_Open" xml:space="preserve">
+    <value>&amp;Open</value>
+  </data>
+  <data name="File_Print" xml:space="preserve">
+    <value>&amp;Print...</value>
+  </data>
+  <data name="File_PrintPreview" xml:space="preserve">
+    <value>Print Pr&amp;eview</value>
+  </data>
+  <data name="File_Reload" xml:space="preserve">
+    <value>&amp;Reload</value>
+  </data>
+  <data name="File_Save" xml:space="preserve">
+    <value>Overwrite &amp;save</value>
+  </data>
+  <data name="File_SaveAll" xml:space="preserve">
+    <value>Save a&amp;ll</value>
+  </data>
+  <data name="File_SaveAs" xml:space="preserve">
+    <value>Save &amp;as...</value>
+  </data>
   <data name="Tool_InstallThemepack" xml:space="preserve">
     <value>Install the theme pack "{0}" and Apply it</value>
   </data>

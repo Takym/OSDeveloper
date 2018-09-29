@@ -117,52 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="File_Exit" xml:space="preserve">
-    <value>Exit</value>
+  <data name="Preparing" xml:space="preserve">
+    <value>準備中...</value>
   </data>
-  <data name="File_Newfile" xml:space="preserve">
-    <value>Newfile</value>
+  <data name="Ready" xml:space="preserve">
+    <value>準備完了</value>
   </data>
-  <data name="File_Open" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="File_Print" xml:space="preserve">
-    <value>Print</value>
-  </data>
-  <data name="File_PrintPreview" xml:space="preserve">
-    <value>PrintPreview</value>
-  </data>
-  <data name="File_Reload" xml:space="preserve">
-    <value>Reload</value>
-  </data>
-  <data name="File_Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="File_SaveAll" xml:space="preserve">
-    <value>SaveAll</value>
-  </data>
-  <data name="File_SaveAs" xml:space="preserve">
-    <value>SaveAs</value>
-  </data>
-  <data name="Tool_InstallThemepack" xml:space="preserve">
-    <value>InstallThemepack: {0}</value>
-  </data>
-  <data name="Tool_InstallThemepack_Confirm" xml:space="preserve">
-    <value>InstallThemepack_Confirm: {0}</value>
-  </data>
-  <data name="Window_ArrangeIcons" xml:space="preserve">
-    <value>ArrangeIcons</value>
-  </data>
-  <data name="Window_Cascade" xml:space="preserve">
-    <value>Cascade</value>
-  </data>
-  <data name="Window_CloseAll" xml:space="preserve">
-    <value>CloseAll</value>
-  </data>
-  <data name="Window_Hori" xml:space="preserve">
-    <value>Hori</value>
-  </data>
-  <data name="Window_Vert" xml:space="preserve">
-    <value>Vert</value>
+  <data name="Unimplemented" xml:space="preserve">
+    <value>「{0}」は実装されていない機能です。</value>
   </data>
 </root>
