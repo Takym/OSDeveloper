@@ -2,7 +2,7 @@
 {
 	/// <summary>
 	///  メインウィンドウのステータスバーで表示される、ソフトウェアの状態を表す文字列の一覧です。
-	///  このクラスは継承できません。
+	///  このクラスは静的です。
 	/// </summary>
 	public static class MainWindowStatusMessage
 	{
@@ -32,6 +32,25 @@
 		public static string Unimplemented(string proc)
 		{
 			return string.Format(MainWindowStatusMessageAsset.Unimplemented, proc);
+		}
+
+		/// <summary>
+		///  ファイルが正常に保存された事を表します。
+		/// </summary>
+		/// <param name="file">保存したファイルの名前です。</param>
+		/// <returns>翻訳済みのメッセージです。</returns>
+		public static string FileSaved(string file)
+		{
+			return string.Format(MainWindowStatusMessageAsset.FileSaved, file);
+		}
+
+		/// <summary>
+		///  全てのファイルが正常に保存された事を表します。
+		/// </summary>
+		/// <returns>翻訳済みのメッセージです。</returns>
+		public static string AllSaved()
+		{
+			return MainWindowStatusMessageAsset.AllSaved;
 		}
 	}
 }

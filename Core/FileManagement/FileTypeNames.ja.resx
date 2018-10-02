@@ -132,6 +132,9 @@
   <data name="ProcessReportRecordFile" xml:space="preserve">
     <value>処理報告記録ファイル</value>
   </data>
+  <data name="RegistryDraftFile" xml:space="preserve">
+    <value>Windowsレジストリ 下書きファイル</value>
+  </data>
   <data name="TextFile" xml:space="preserve">
     <value>テキストファイル</value>
   </data>

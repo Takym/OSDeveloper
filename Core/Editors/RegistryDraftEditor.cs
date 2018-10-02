@@ -1,5 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using OSDeveloper.Core.FileManagement;
+using OSDeveloper.Core.FileManagement.Structures;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Native;
@@ -9,7 +13,7 @@ namespace OSDeveloper.Core.Editors
 	/// <summary>
 	///  レジストリの下書きを変種します。
 	/// </summary>
-	public partial class RegistryDraftEditor : EditorWindow
+	public partial class RegistryDraftEditor : EditorWindow, IFileSaveLoadFeature
 	{
 		private Logger _logger;
 
@@ -57,7 +61,7 @@ namespace OSDeveloper.Core.Editors
 			addNewMenu.Text = RegistryDraftEditorTexts.Popup_AddNew;
 
 			if (this.TargetFile != null) {
-				// ファイル読み込み処理
+				this.Reload();
 			}
 
 			_logger.Info("Explorer control was initialized");
@@ -152,6 +156,59 @@ namespace OSDeveloper.Core.Editors
 			nodes.Add(name, name);
 
 			_logger.Trace("Finished OnClick event of AddNew popup-menu in RegistryDraftEditor");
+		}
+		#endregion
+
+		#region IFileSaveLoadFeature
+		/// <summary>
+		///  このエディタがサポートしているファイルの種類を取得します。
+		/// </summary>
+		/// <returns>ファイルの種類を表すオブジェクトです。</returns>
+		public FileType GetFileType()
+		{
+			return FileTypes.RegistryDraftFile;
+		}
+
+		/// <summary>
+		///  ファイルを<see cref="OSDeveloper.Core.Editors.EditorWindow.TargetFile"/>に保存します。
+		/// </summary>
+		public void Save()
+		{
+			// TODO: 保存処理を作成する
+		}
+		
+		/// <summary>
+		///  ファイルを別名で保存します。
+		///  <see cref="OSDeveloper.Core.Editors.EditorWindow.TargetFile"/>は新しいファイルのファイル情報へ変更されます。
+		/// </summary>
+		/// <param name="path">保存先のファイルのパスです。</param>
+		public void SaveAs(string path)
+		{
+			this.TargetFile = new RegistryDraftFile(path);
+			this.Save();
+		}
+
+		/// <summary>
+		///  ファイルを再度読み込みます。変更内容は破棄されます。
+		/// </summary>
+		public void Reload()
+		{
+			// TODO: 読込処理を作成する
+		}
+
+		/// <summary>
+		///  ファイルを別の場所から読み込み、<see cref="OSDeveloper.Core.Editors.EditorWindow.TargetFile"/>を書き換えます。
+		/// </summary>
+		/// <param name="path">読み込み元のファイルのパスです。</param>
+		/// <param name="saveCurrent">
+		///  現在の変更内容を保存してから別のファイルを開く場合は<see langword="true"/>、
+		///  保存しないで開く場合は<see langword="false"/>です。
+		/// </param>
+		public void LoadFrom(string path, bool saveCurrent)
+		{
+			if (saveCurrent) this.Save();
+			this.TargetFile = new RegistryDraftFile(path);
+			this.Reload();
 		}
 		#endregion
 	}

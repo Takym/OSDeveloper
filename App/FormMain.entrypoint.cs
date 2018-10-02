@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using OSDeveloper.Core.GraphicalUIs;
@@ -21,26 +22,9 @@ namespace OSDeveloper.App
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			// ビジュアルスタイルの設定を読み込み
-			if (ConfigManager.System.Children.ContainsKey("visualstyle")) {
-				// キーが存在する場合は、そのまま読み込み
-				var vs_node = ConfigManager.System.Children["visualstyle"];
-				if (vs_node.Kind == YenconType.StringKey) {
-					if (Enum.TryParse(vs_node.Value.GetValue().ToString(), out VisualStyleState vs)) {
-						Application.VisualStyleState = vs;
-					}
-				}
-			} else {
-				// キーが無い場合は、限定の設定から新しく作成
-				var vs_node = new YenconNode();
-				vs_node.Name = "visualstyle";
-				vs_node.Value = new YenconStringKey() {
-					Text = Application.VisualStyleState.ToString(),
-				};
-				ConfigManager.System.Children.Add(vs_node.Name, vs_node);
-				ConfigManager.Save();
-			}
-			l.Debug($"{nameof(Application)}.{nameof(VisualStyleState)} = {Application.VisualStyleState}");
+			ConfigManager.ApplySystemSettings();
+			l.Debug($"{nameof(Application)}.{nameof(Application.VisualStyleState)} = {Application.VisualStyleState}");
+			l.Debug($"{nameof(CultureInfo)}.{nameof(CultureInfo.CurrentCulture)} = {CultureInfo.CurrentCulture}");
 
 			// メインウィンドウ表示
 			Application.Run(new FormMain());
@@ -123,6 +107,7 @@ namespace OSDeveloper.App
 				// _status_bar
 				_logger.Info("Creating the status bar...");
 				this.BuildStatudBar();
+				this.SetStatusMessage(MainWindowStatusMessage.Preparing());
 			}
 
 			{

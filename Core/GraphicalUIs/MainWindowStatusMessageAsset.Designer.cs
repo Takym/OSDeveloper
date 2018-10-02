@@ -61,6 +61,24 @@ namespace OSDeveloper.Core.GraphicalUIs {
         }
         
         /// <summary>
+        ///   AllSaved に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string AllSaved {
+            get {
+                return ResourceManager.GetString("AllSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   FileSaved {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FileSaved {
+            get {
+                return ResourceManager.GetString("FileSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Preparing に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Preparing {

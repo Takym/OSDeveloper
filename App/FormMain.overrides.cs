@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using OSDeveloper.Core.Editors;
+using OSDeveloper.Core.GraphicalUIs;
 
 namespace OSDeveloper.App
 {
@@ -36,6 +36,7 @@ namespace OSDeveloper.App
 			this.Controls.Add(btn);
 #endif
 
+			this.SetStatusMessage(MainWindowStatusMessage.Ready());
 			_logger.Trace("Finished OnLoad event of FormMain");
 		}
 

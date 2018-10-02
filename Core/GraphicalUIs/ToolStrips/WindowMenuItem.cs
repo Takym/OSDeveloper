@@ -56,6 +56,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			foreach (var form in _mwnd_base.MdiChildren) {
 				form.Close();
 			}
+			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			Logger.Trace($"{nameof(WindowMenuItem)}: Closed all windows");
 		}
 
@@ -76,7 +77,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				base.OnClick(e);
 
 				_mwnd_base.LayoutMdi(_layout);
-				
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+
 				Logger.Trace($"{nameof(WindowMenuItem)}: Layoued child-windows ({_layout})");
 			}
 		}

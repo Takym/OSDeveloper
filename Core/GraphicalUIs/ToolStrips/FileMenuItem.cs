@@ -115,7 +115,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IFileSaveLoadFeature fsl) {
 				fsl.Save();
-				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.FileSaved(fsl.TargetFile.FilePath));
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_save.Text));
 			}
@@ -134,8 +134,10 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				var dr = _sfd.ShowDialog();
 				if (dr == DialogResult.Yes) {
 					fsl.SaveAs(_sfd.FileName);
+					_mwnd_base.SetStatusMessage(MainWindowStatusMessage.FileSaved(fsl.TargetFile.FilePath));
+				} else {
+					_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 				}
-				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_saveAs.Text));
 			}
@@ -153,7 +155,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 					fsl.Save();
 				}
 			}
-			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.AllSaved());
 
 			Logger.Trace($"{nameof(FileMenuItem)}: _saveAll end");
 		}

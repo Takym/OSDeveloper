@@ -132,6 +132,9 @@
   <data name="ProcessReportRecordFile" xml:space="preserve">
     <value>ProcessReportRecordFile</value>
   </data>
+  <data name="RegistryDraftFile" xml:space="preserve">
+    <value>RegistryDraftFile</value>
+  </data>
   <data name="TextFile" xml:space="preserve">
     <value>TextFile</value>
   </data>

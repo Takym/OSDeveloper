@@ -50,8 +50,10 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				MessageBoxIcon.Question);
 			if (dr == DialogResult.Yes) {
 				Process.Start(SystemPaths.Resources.Bond("Darkolorfuler.themepack"));
+				_mwnd_base.SetStatusMessage(MenuText.Tool_InstallThemepack_StatusMsg);
 				Logger.Trace($"{nameof(ToolMenuItem)}: Installed Darkolorfuler");
 			} else {
+				_mwnd_base.SetStatusMessage(MenuText.Tool_InstallThemepack_StatusMsg_Cancel);
 				Logger.Trace($"{nameof(ToolMenuItem)}: Canceled to install Darkolorfuler");
 			}
 		}

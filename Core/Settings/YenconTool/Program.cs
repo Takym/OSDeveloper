@@ -18,6 +18,9 @@ namespace OSDeveloper.Core.Settings.YenconTool
 			Console.WriteLine("OSDeveloper - Yencon Command Line Tool");
 			Console.WriteLine("Copyright (C) 2018 Takym.\n");
 
+			// 取り敢えず基本設定読み込み
+			ConfigManager.ApplySystemSettings();
+
 			// コマンドライン解析
 			if (args.Length != 1) {
 				Console.WriteLine(Messages.CommandLine_Invalid);

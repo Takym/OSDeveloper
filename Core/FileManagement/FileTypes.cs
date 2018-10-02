@@ -39,6 +39,16 @@ namespace OSDeveloper.Core.FileManagement
 				"pr2f");
 
 		/// <summary>
+		///  「Windowsレジストリ 下書きファイル」を表す全ての拡張子を取得します。
+		/// </summary>
+		public static readonly FileType RegistryDraftFile
+			= new FileType(
+				FileFormat.Document,
+				typeof(RegistryDraftFile),
+				nameof(FileTypeNames),
+				"rd", "regd");
+
+		/// <summary>
 		///  「テキストファイル」を表す全ての拡張子を取得します。
 		/// </summary>
 		public static readonly FileType TextFile
@@ -67,6 +77,7 @@ namespace OSDeveloper.Core.FileManagement
 					BinaryFile.Extensions,
 					LogFile.Extensions,
 					ProcessReportRecordFile.Extensions,
+					RegistryDraftFile.Extensions,
 					TextFile.Extensions,
 					YenconFile.Extensions));
 
@@ -116,6 +127,7 @@ namespace OSDeveloper.Core.FileManagement
 				+ "|" + BinaryFile.CreateSPF()
 				+ "|" + LogFile.CreateSPF()
 				+ "|" + ProcessReportRecordFile.CreateSPF()
+				+ "|" + RegistryDraftFile.CreateSPF()
 				+ "|" + TextFile.CreateSPF()
 				+ "|" + YenconFile.CreateSPF();
 		}
@@ -136,6 +148,8 @@ namespace OSDeveloper.Core.FileManagement
 				return LogFile;
 			} else if (ProcessReportRecordFile.Contains(ext)) {
 				return ProcessReportRecordFile;
+			} else if (RegistryDraftFile.Contains(ext)) {
+				return RegistryDraftFile;
 			} else if (TextFile.Contains(ext)) {
 				return TextFile;
 			} else if (YenconFile.Contains(ext)) {

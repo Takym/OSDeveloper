@@ -106,6 +106,15 @@ namespace OSDeveloper.Core.FileManagement {
         }
         
         /// <summary>
+        ///   RegistryDraftFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RegistryDraftFile {
+            get {
+                return ResourceManager.GetString("RegistryDraftFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   TextFile に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string TextFile {

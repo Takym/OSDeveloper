@@ -150,6 +150,12 @@
   <data name="Tool_InstallThemepack_Confirm" xml:space="preserve">
     <value>テーマパック "{0}" をコンピュータにインストールしてもよろしいですか？</value>
   </data>
+  <data name="Tool_InstallThemepack_StatusMsg" xml:space="preserve">
+    <value>テーマパック "{0}" は正常にインストールされました。</value>
+  </data>
+  <data name="Tool_InstallThemepack_StatusMsg_Cancel" xml:space="preserve">
+    <value>テーマパック "{0}" のインストールは取り消されました。</value>
+  </data>
   <data name="Window_ArrangeIcons" xml:space="preserve">
     <value>アイコンを整理</value>
   </data>

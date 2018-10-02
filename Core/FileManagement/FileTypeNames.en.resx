@@ -132,6 +132,9 @@
   <data name="ProcessReportRecordFile" xml:space="preserve">
     <value>Process report/record file</value>
   </data>
+  <data name="RegistryDraftFile" xml:space="preserve">
+    <value>Windows Registry draft file</value>
+  </data>
   <data name="TextFile" xml:space="preserve">
     <value>Plain text file</value>
   </data>

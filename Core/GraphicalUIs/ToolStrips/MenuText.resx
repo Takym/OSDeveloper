@@ -150,6 +150,12 @@
   <data name="Tool_InstallThemepack_Confirm" xml:space="preserve">
     <value>InstallThemepack_Confirm: {0}</value>
   </data>
+  <data name="Tool_InstallThemepack_StatusMsg" xml:space="preserve">
+    <value>InstallThemepack_StatusMsg: {0}</value>
+  </data>
+  <data name="Tool_InstallThemepack_StatusMsg_Cancel" xml:space="preserve">
+    <value>Tool_InstallThemepack_StatusMsg_Cancel: {0}</value>
+  </data>
   <data name="Window_ArrangeIcons" xml:space="preserve">
     <value>ArrangeIcons</value>
   </data>

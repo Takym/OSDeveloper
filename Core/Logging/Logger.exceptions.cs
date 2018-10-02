@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Xml;
 using OSDeveloper.Core.Error;
@@ -76,6 +77,11 @@ namespace OSDeveloper.Core.Logging
 				case NotImplementedException nie:
 					this.Notice("The process was not implemented. So, this exception is not serious.");
 					this.Notice("If the application terminated because of this error, then it is a bug.");
+					break;
+				case CultureNotFoundException cnfe:
+					this.Notice($"The culture name: " + cnfe.InvalidCultureName);
+					this.Notice($"The culture ID:" + cnfe.InvalidCultureId);
+					this.Notice($"The argument name is: \'{cnfe.ParamName}\'");
 					break;
 				case ArgumentException ae:
 					this.Notice($"The argument name is: \'{ae.ParamName}\'");
