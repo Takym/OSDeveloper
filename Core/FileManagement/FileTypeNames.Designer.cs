@@ -124,11 +124,29 @@ namespace OSDeveloper.Core.FileManagement {
         }
         
         /// <summary>
+        ///   YenconBinaryFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string YenconBinaryFile {
+            get {
+                return ResourceManager.GetString("YenconBinaryFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   YenconFile に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string YenconFile {
             get {
                 return ResourceManager.GetString("YenconFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   YenconTextFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string YenconTextFile {
+            get {
+                return ResourceManager.GetString("YenconTextFile", resourceCulture);
             }
         }
     }

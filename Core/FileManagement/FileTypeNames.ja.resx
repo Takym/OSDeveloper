@@ -138,7 +138,13 @@
   <data name="TextFile" xml:space="preserve">
     <value>テキストファイル</value>
   </data>
+  <data name="YenconBinaryFile" xml:space="preserve">
+    <value>ヱンコン環境設定ファイル (バイナリ)</value>
+  </data>
   <data name="YenconFile" xml:space="preserve">
-    <value>ヱンコン環境設定ファイル</value>
+    <value>ヱンコン環境設定ファイル (リソース)</value>
+  </data>
+  <data name="YenconTextFile" xml:space="preserve">
+    <value>ヱンコン環境設定ファイル (テキスト)</value>
   </data>
 </root>

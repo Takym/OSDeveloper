@@ -138,7 +138,13 @@
   <data name="TextFile" xml:space="preserve">
     <value>TextFile</value>
   </data>
+  <data name="YenconBinaryFile" xml:space="preserve">
+    <value>YenconBinaryFile</value>
+  </data>
   <data name="YenconFile" xml:space="preserve">
     <value>YenconFile</value>
+  </data>
+  <data name="YenconTextFile" xml:space="preserve">
+    <value>YenconTextFile</value>
   </data>
 </root>

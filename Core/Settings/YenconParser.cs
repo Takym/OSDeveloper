@@ -11,6 +11,7 @@ namespace OSDeveloper.Core.Settings
 	/// <summary>
 	///  ヱンコン環境設定ファイル(<see langword="Yencon Environment Configuration"/>)の
 	///  内容を解析して型'<see cref="OSDeveloper.Core.Settings.YenconNode"/>'リストに変換します。
+	///  このクラスは継承できません。
 	/// </summary>
 	public sealed class YenconParser : IKeyNodeParser<YenconNode, YenconValue>
 	{
@@ -100,10 +101,16 @@ namespace OSDeveloper.Core.Settings
 						name.Append(src[i]);
 						++i;
 					}
+					while (src[i].IsWhitespace()) {
+						++i; // 空白文字無視
+					}
 					YenconNode node = new YenconNode();
 					node.Name = name.ToString();
 					if (src[i] == '=') {
 						++i;
+						while (src[i].IsWhitespace()) {
+							++i; // 空白文字無視
+						}
 						value.Clear();
 						switch (src[i]) { // キーの種類を判別
 							case '{': { // セクション
@@ -144,7 +151,7 @@ namespace OSDeveloper.Core.Settings
 									++i;
 								}
 								++i;
-								node.Value = new YenconNumberKey() { Count = uint.Parse(value.ToString()) };
+								node.Value = new YenconNumberKey() { Count = ulong.Parse(value.ToString()) };
 								_out.Add(node);
 								break;
 							}

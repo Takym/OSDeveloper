@@ -9,7 +9,7 @@
 		/// <summary>
 		///  このキーが保持している数値データです。
 		/// </summary>
-		public uint Count { get; set; }
+		public ulong Count { get; set; }
 
 		/// <summary>
 		///  このセクションまたはキーの種類を取得します。

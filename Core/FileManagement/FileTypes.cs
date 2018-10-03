@@ -58,12 +58,32 @@ namespace OSDeveloper.Core.FileManagement
 				"txt", "text");
 
 		/// <summary>
-		///  「ヱンコン環境設定ファイル」を表す全ての拡張子を取得します。
+		///  「ヱンコン環境設定ファイル (リソース)」を表す全ての拡張子を取得します。
 		/// </summary>
 		public static readonly FileType YenconFile
 			= new FileType(
-				FileFormat.TextFile,
+				FileFormat.Resource,
 				nameof(FileTypeNames.YenconFile),
+				ArrayUtils.Join(
+					YenconTextFile.Extensions,
+					YenconBinaryFile.Extensions));
+
+		/// <summary>
+		///  「ヱンコン環境設定ファイル (バイナリ)」を表す全ての拡張子を取得します。
+		/// </summary>
+		public static readonly FileType YenconBinaryFile
+			= new FileType(
+				FileFormat.BinaryFile,
+				nameof(FileTypeNames.YenconBinaryFile),
+				"bycn", "cfg");
+
+		/// <summary>
+		///  「ヱンコン環境設定ファイル (テキスト)」を表す全ての拡張子を取得します。
+		/// </summary>
+		public static readonly FileType YenconTextFile
+			= new FileType(
+				FileFormat.TextFile,
+				nameof(FileTypeNames.YenconTextFile),
 				"ycn", "inix");
 
 		/// <summary>
@@ -129,7 +149,9 @@ namespace OSDeveloper.Core.FileManagement
 				+ "|" + ProcessReportRecordFile.CreateSPF()
 				+ "|" + RegistryDraftFile.CreateSPF()
 				+ "|" + TextFile.CreateSPF()
-				+ "|" + YenconFile.CreateSPF();
+				+ "|" + YenconFile.CreateSPF()
+				+ "|" + YenconBinaryFile.CreateSPF()
+				+ "|" + YenconTextFile.CreateSPF();
 		}
 
 		/// <summary>
@@ -152,8 +174,10 @@ namespace OSDeveloper.Core.FileManagement
 				return RegistryDraftFile;
 			} else if (TextFile.Contains(ext)) {
 				return TextFile;
-			} else if (YenconFile.Contains(ext)) {
-				return YenconFile;
+			} else if (YenconBinaryFile.Contains(ext)) {
+				return YenconBinaryFile;
+			} else if (YenconTextFile.Contains(ext)) {
+				return YenconTextFile;
 			} else {
 				return null;
 			}
