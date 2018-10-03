@@ -136,7 +136,6 @@
     <Compile Include="Core\Logging\ProcessReportRecordFile.cs" />
     <Compile Include="Core\MiscUtils\ArrayUtils.cs" />
     <Compile Include="Core\MiscUtils\StringUtils.cs" />
-    <Compile Include="Core\OsdevElement.cs" />
     <Compile Include="Core\Settings\ConfigManager.cs" />
     <Compile Include="Core\Settings\Serialization\Attributes.cs" />
     <Compile Include="Core\Settings\Serialization\IYenconSerializable.cs" />
