@@ -26,6 +26,9 @@ namespace OSDeveloper.Core.Settings
 		{
 			List<YenconNode> result;
 			using (MemoryStream ms = new MemoryStream(buf)) {
+				if (ms.Length == 0) {
+					return null;
+				}
 				result = Scan(ms, header);
 			}
 			return result;
@@ -43,6 +46,9 @@ namespace OSDeveloper.Core.Settings
 		{
 			List<YenconNode> result;
 			using (FileStream fs = new FileStream(fname, FileMode.Open, FileAccess.Read, FileShare.Read)) {
+				if (fs.Length == 0) {
+					return null;
+				}
 				result = Scan(fs, header);
 			}
 			return result;
@@ -212,9 +218,17 @@ namespace OSDeveloper.Core.Settings
 
 		private static void Convert_00_00_00(BinaryWriter bw, List<YenconNode> nodes, YenconHeader header)
 		{
-			bw.Write(nodes.Count);
-			for (int i = 0; i < nodes.Count; ++i) {
-				var item = nodes[i];
+			// コメント削除
+			List<YenconNode> nodes2 = new List<YenconNode>();
+			foreach (var item in nodes) {
+				if (!(item is YenconComment)) {
+					nodes2.Add(item);
+				}
+			}
+
+			bw.Write(nodes2.Count);
+			for (int i = 0; i < nodes2.Count; ++i) {
+				var item = nodes2[i];
 
 				// 名前設定
 				byte[] nameb;
@@ -241,28 +255,29 @@ namespace OSDeveloper.Core.Settings
 				// 型と値の設定
 				switch (item.Kind) {
 					case YenconType.Section:
-						bw.Write(0x01); // 型識別子
-						Convert_00_00_00(bw, nodes, header);
+						bw.Write((byte)(0x01)); // 型識別子
+						var r = new List<YenconNode>(((YenconSection)(item.Value)).Children.Values);
+						Convert_00_00_00(bw, r, header);
 						break;
 					case YenconType.StringKey:
-						bw.Write(0x02); // 型識別子
+						bw.Write((byte)(0x02)); // 型識別子
 						byte[] vs = _utf16.GetBytes(((YenconStringKey)(item.Value)).Text);
 						bw.Write(vs.Length);
 						bw.Write(vs);
 						break;
 					case YenconType.NumberKey:
-						bw.Write(0x03); // 型識別子
+						bw.Write((byte)(0x03)); // 型識別子
 						bw.Write(((YenconNumberKey)(item.Value)).Count);
 						break;
 					case YenconType.BooleanKey:
 						if (((YenconBooleanKey)(item.Value)).Flag) {
-							bw.Write(0x04); // 型識別子
+							bw.Write((byte)(0x04)); // 型識別子
 						} else {
-							bw.Write(0x05); // 型識別子
+							bw.Write((byte)(0x05)); // 型識別子
 						}
 						break;
 					default:
-						bw.Write(0x00); // 型識別子
+						bw.Write((byte)(0x00)); // 型識別子
 						break;
 				}
 			}

@@ -58,17 +58,6 @@ namespace OSDeveloper.Core.FileManagement
 				"txt", "text");
 
 		/// <summary>
-		///  「ヱンコン環境設定ファイル (リソース)」を表す全ての拡張子を取得します。
-		/// </summary>
-		public static readonly FileType YenconFile
-			= new FileType(
-				FileFormat.Resource,
-				nameof(FileTypeNames.YenconFile),
-				ArrayUtils.Join(
-					YenconTextFile.Extensions,
-					YenconBinaryFile.Extensions));
-
-		/// <summary>
 		///  「ヱンコン環境設定ファイル (バイナリ)」を表す全ての拡張子を取得します。
 		/// </summary>
 		public static readonly FileType YenconBinaryFile
@@ -85,6 +74,17 @@ namespace OSDeveloper.Core.FileManagement
 				FileFormat.TextFile,
 				nameof(FileTypeNames.YenconTextFile),
 				"ycn", "inix");
+
+		/// <summary>
+		///  「ヱンコン環境設定ファイル (リソース)」を表す全ての拡張子を取得します。
+		/// </summary>
+		public static readonly FileType YenconFile
+			= new FileType(
+				FileFormat.Resource,
+				nameof(FileTypeNames.YenconFile),
+				ArrayUtils.Join(
+					YenconTextFile.Extensions,
+					YenconBinaryFile.Extensions));
 
 		/// <summary>
 		///  「サポートされている全てのファイル」を表す全ての拡張子を取得します。

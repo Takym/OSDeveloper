@@ -66,7 +66,7 @@ namespace OSDeveloper.Core.FileManagement
 				_dirs.Add(dir.Name, new DirMetadata(dir));
 			}
 			foreach (var file in _dinfo.GetFiles()) {
-				var ftype = FileTypes.CheckFileType(Path.GetExtension(file.Name).Substring(1));
+				var ftype = FileTypes.CheckFileType(Path.GetExtension(file.Name)?.Substring(1));
 				_files.Add(file.Name, ftype?.CreateMetadata(file.FullName) ?? new FileMetadata(file.FullName));
 			}
 		}

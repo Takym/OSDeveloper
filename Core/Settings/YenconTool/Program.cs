@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using OSDeveloper.Core.MiscUtils;
@@ -8,7 +9,8 @@ namespace OSDeveloper.Core.Settings.YenconTool
 {
 	static class Program
 	{
-		public static YenconParser Root;
+		public static List<YenconNode> Root;
+		public static YenconHeader Header;
 		public static YenconSection Current;
 		public static string CurrentPath;
 
@@ -34,15 +36,24 @@ namespace OSDeveloper.Core.Settings.YenconTool
 				Console.WriteLine(Messages.FileNotFound, filename);
 				return ErrorCodes.ERROR_FILE_NOT_FOUND;
 			}
-			using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
-			using (StreamReader sr = new StreamReader(fs, Encoding.Unicode)) {
-				Root = new YenconParser(sr.ReadToEnd());
-				Root.Analyze();
+
+			// バイナリ形式
+			Header = new YenconHeader();
+			Root = YenconBinaryFile.Scan(filename, Header);
+			if (Root == null) {
+				// テキスト形式
+				Header = null;
+				using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+				using (StreamReader sr = new StreamReader(fs, Encoding.Unicode)) {
+					var yp = new YenconParser(sr.ReadToEnd());
+					yp.Analyze();
+					Root = new List<YenconNode>(yp.GetNodes());
+				}
 			}
 
 			// プロンプト
 			Console.WriteLine(Messages.Ready + "\n");
-			var rootSection = new YenconSection(Root.GetNodes());
+			var rootSection = new YenconSection(Root);
 			Current = rootSection;
 			while (true) {
 				// 開いているファイルとセクションの位置を表示
@@ -67,11 +78,14 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					Console.WriteLine("goroot           " + Messages.CmdHelp_Goroot);
 					Console.WriteLine("gset             " + Messages.CmdHelp_Gset);
 					Console.WriteLine("help             " + Messages.CmdHelp_Help);
+					Console.WriteLine("into             " + Messages.CmdHelp_Into);
 					Console.WriteLine("list             " + Messages.CmdHelp_List);
 					Console.WriteLine("list full        " + Messages.CmdHelp_ListFull);
 					Console.WriteLine("mks              " + Messages.CmdHelp_Mks);
 					Console.WriteLine("reload           " + Messages.CmdHelp_Reload);
 					Console.WriteLine("save             " + Messages.CmdHelp_Save);
+					Console.WriteLine("saveb            " + Messages.CmdHelp_SaveB);
+					Console.WriteLine("savet            " + Messages.CmdHelp_SaveT);
 				} else if (cmd == "list") {
 					// 現在読み込まれているエントリを全て出力 コメントは非表示
 					list(Current, true);
@@ -90,19 +104,58 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					CurrentPath = string.Empty;
 				} else if (cmd == "save") {
 					// 現在の設定情報をファイルに保存する
+					if (Header == null) {
+						// テキスト形式
+						using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
+						using (StreamWriter sw = new StreamWriter(fs, Encoding.Unicode)) {
+							sw.WriteLine(rootSection.ToStringWithoutBrace());
+						}
+					} else {
+						// バイナリ形式
+						var r = new List<YenconNode>(rootSection.Children.Values);
+						var buf = YenconBinaryFile.ConvertToBinary(r, Header);
+						using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
+						using (BinaryWriter bw = new BinaryWriter(fs)) {
+							bw.Write(buf);
+						}
+					}
+					Console.WriteLine(Messages.Saved_Successfully);
+				} else if (cmd == "savet") {
+					// 現在の設定情報をテキストファイルに保存する
 					using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
 					using (StreamWriter sw = new StreamWriter(fs, Encoding.Unicode)) {
 						sw.WriteLine(rootSection.ToStringWithoutBrace());
 					}
-					Console.WriteLine(Messages.Saved_Successfully);
+				} else if (cmd == "saveb") {
+					// 現在の設定情報をバイナリファイルに保存する
+					if (Header == null) {
+						Header = new YenconHeader();
+						Header.KeyNameSize = 16;
+						Header.UseAsciiKeyName = true;
+						Header.Version = (0x00, 0x00, 0x00);
+					}
+					var r = new List<YenconNode>(rootSection.Children.Values);
+					var buf = YenconBinaryFile.ConvertToBinary(r, Header);
+					using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
+					using (BinaryWriter bw = new BinaryWriter(fs)) {
+						bw.Write(buf);
+					}
 				} else if (cmd == "reload") {
 					// 全ての変更を破棄し、ファイルから設定情報を読み込む。
-					using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
-					using (StreamReader sr = new StreamReader(fs, Encoding.Unicode)) {
-						Root = new YenconParser(sr.ReadToEnd());
-						Root.Analyze();
+					// バイナリ形式
+					Header = new YenconHeader();
+					Root = YenconBinaryFile.Scan(filename, Header);
+					if (Root == null) {
+						// テキスト形式
+						Header = null;
+						using (FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+						using (StreamReader sr = new StreamReader(fs, Encoding.Unicode)) {
+							var yp = new YenconParser(sr.ReadToEnd());
+							yp.Analyze();
+							Root = new List<YenconNode>(yp.GetNodes());
+						}
 					}
-					Current = rootSection = new YenconSection(Root.GetNodes());
+					Current = rootSection = new YenconSection(Root);
 					CurrentPath = string.Empty;
 					Console.WriteLine(Messages.Reloaded_Successfully);
 				} else if (cmd.StartsWith("add ")) {

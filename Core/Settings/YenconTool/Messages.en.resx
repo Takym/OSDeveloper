@@ -166,6 +166,12 @@
   <data name="CmdHelp_Save" xml:space="preserve">
     <value>Save the modified contents to the currently opened setting file.</value>
   </data>
+  <data name="CmdHelp_SaveB" xml:space="preserve">
+    <value>Save the modified contents to the currently opened setting file as a binary format.</value>
+  </data>
+  <data name="CmdHelp_SaveT" xml:space="preserve">
+    <value>Save the modified contents to the currently opened setting file as a text format.</value>
+  </data>
   <data name="CommandLine_Invalid" xml:space="preserve">
     <value>The command line syntax is incorrect. Please call this application as follows.</value>
   </data>

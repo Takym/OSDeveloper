@@ -205,6 +205,24 @@ namespace OSDeveloper.Core.Settings.YenconTool {
         }
         
         /// <summary>
+        ///   SaveB に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CmdHelp_SaveB {
+            get {
+                return ResourceManager.GetString("CmdHelp_SaveB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SaveT に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CmdHelp_SaveT {
+            get {
+                return ResourceManager.GetString("CmdHelp_SaveT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   CommandLine Invalid に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CommandLine_Invalid {
