@@ -135,6 +135,9 @@
   <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
     <value>The specified string cannot convert to a boolean value:</value>
   </data>
+  <data name="YenconBinaryFile_InvalidBitSize" xml:space="preserve">
+    <value>Cannot add the {0} bits data to the Yencon binary file.</value>
+  </data>
   <data name="YenconParser_UnknownCharacter" xml:space="preserve">
     <value>The specified character is unknown in Yencon:</value>
   </data>

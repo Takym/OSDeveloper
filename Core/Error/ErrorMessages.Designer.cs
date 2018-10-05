@@ -115,6 +115,15 @@ namespace OSDeveloper.Core.Error {
         }
         
         /// <summary>
+        ///   YenconBinaryFile_InvalidBitSize: {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string YenconBinaryFile_InvalidBitSize {
+            get {
+                return ResourceManager.GetString("YenconBinaryFile_InvalidBitSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   YenconParser_UnknownCharacter, can&apos;t parse: に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string YenconParser_UnknownCharacter {
