@@ -1,8 +1,0 @@
-﻿1>------ ビルド開始: プロジェクト: OSDeveloper.Core, 構成: Debug Any CPU ------
-1>D:\YaehposProject\Projects\OSDeveloper\Core\Settings\Serialization\YenconSerializer.cs(16,42,16,46): warning CS0169: フィールド 'YenconSerializer._map' は使用されていません。
-1>  OSDeveloper.Core -> D:\YaehposProject\Projects\OSDeveloper\bin\Debug\OSDeveloper.Core.dll
-2>------ ビルド開始: プロジェクト: OSDeveloper.Core.Settings.YenconTool, 構成: Debug Any CPU ------
-2>  OSDeveloper.Core.Settings.YenconTool -> D:\YaehposProject\Projects\OSDeveloper\bin\Debug\OSDeveloper.Core.Settings.YenconTool.exe
-3>------ ビルド開始: プロジェクト: OSDeveloper.App, 構成: Debug Any CPU ------
-3>  OSDeveloper.App -> D:\YaehposProject\Projects\OSDeveloper\bin\Debug\OSDeveloper.App.exe
-========== ビルド: 3 正常終了、0 失敗、4 更新不要、0 スキップ ==========
