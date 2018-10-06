@@ -106,6 +106,15 @@ namespace OSDeveloper.Core.Settings.YenconTool {
         }
         
         /// <summary>
+        ///   Clear に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CmdHelp_Clear {
+            get {
+                return ResourceManager.GetString("CmdHelp_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Delete, Remove に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CmdHelp_DelRmv {

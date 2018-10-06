@@ -133,6 +133,9 @@
   <data name="CmdHelp_Add" xml:space="preserve">
     <value>新しいキーを現在のセクションに追加します。既に存在する場合はNULL値を代入します。</value>
   </data>
+  <data name="CmdHelp_Clear" xml:space="preserve">
+    <value>コンソール画面上の全ての文字を消します。</value>
+  </data>
   <data name="CmdHelp_DelRmv" xml:space="preserve">
     <value>指定されたキーを削除します。</value>
   </data>

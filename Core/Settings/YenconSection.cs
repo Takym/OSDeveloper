@@ -68,6 +68,28 @@ namespace OSDeveloper.Core.Settings
 		}
 
 		/// <summary>
+		///  指定された名前のノードを取得します。
+		/// </summary>
+		/// <param name="name">取得するノードの名前です。</param>
+		/// <param name="defaultValue">値が取得できなかった場合に新たに子ノードとして追加する限定値です。</param>
+		/// <returns>取得した<see cref="OSDeveloper.Core.Settings.YenconNode"/>です。</returns>
+		public YenconNode GetNode(string name, YenconValue defaultValue)
+		{
+			if (this.Children.ContainsKey(name)) {
+				return this.Children[name];
+			} else {
+				if (defaultValue == null) {
+					defaultValue = new YenconNullValue();
+				}
+				var node = new YenconNode();
+				node.Name = name;
+				node.Value = defaultValue;
+				this.Children.Add(name, node);
+				return node;
+			}
+		}
+
+		/// <summary>
 		///  このセクションまたはキーの値を設定ファイルの文字列として取得します。
 		/// </summary>
 		/// <returns>設定ファイルにそのまま埋め込む事ができる文字列です。</returns>

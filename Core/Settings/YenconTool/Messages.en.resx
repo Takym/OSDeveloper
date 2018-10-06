@@ -133,6 +133,9 @@
   <data name="CmdHelp_Add" xml:space="preserve">
     <value>Add a new key to the current section. If the key already exists, assign the NULL value.</value>
   </data>
+  <data name="CmdHelp_Clear" xml:space="preserve">
+    <value>Clear all texts in the console.</value>
+  </data>
   <data name="CmdHelp_DelRmv" xml:space="preserve">
     <value>Delete the specified key.</value>
   </data>

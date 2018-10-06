@@ -73,6 +73,7 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					// 説明書を表示
 					Console.WriteLine(Messages.CmdHelp);
 					Console.WriteLine("add              " + Messages.CmdHelp_Add);
+					Console.WriteLine("clear, cls       " + Messages.CmdHelp_Clear);
 					Console.WriteLine("del, rmv         " + Messages.CmdHelp_DelRmv);
 					Console.WriteLine("end, exit, quit  " + Messages.CmdHelp_EndExitQuit);
 					Console.WriteLine("goroot           " + Messages.CmdHelp_Goroot);
@@ -86,6 +87,9 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					Console.WriteLine("save             " + Messages.CmdHelp_Save);
 					Console.WriteLine("saveb            " + Messages.CmdHelp_SaveB);
 					Console.WriteLine("savet            " + Messages.CmdHelp_SaveT);
+				} else if (cmd == "clear" || cmd == "cls") {
+					// 画面を初期化
+					Console.Clear();
 				} else if (cmd == "list") {
 					// 現在読み込まれているエントリを全て出力 コメントは非表示
 					list(Current, true);
@@ -108,7 +112,7 @@ namespace OSDeveloper.Core.Settings.YenconTool
 						// テキスト形式
 						using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
 						using (StreamWriter sw = new StreamWriter(fs, Encoding.Unicode)) {
-							sw.WriteLine(rootSection.ToStringWithoutBrace());
+							sw.Write(rootSection.ToStringWithoutBrace());
 						}
 					} else {
 						// バイナリ形式
@@ -124,8 +128,9 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					// 現在の設定情報をテキストファイルに保存する
 					using (FileStream fs = new FileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None))
 					using (StreamWriter sw = new StreamWriter(fs, Encoding.Unicode)) {
-						sw.WriteLine(rootSection.ToStringWithoutBrace());
+						sw.Write(rootSection.ToStringWithoutBrace());
 					}
+					Console.WriteLine(Messages.Saved_Successfully);
 				} else if (cmd == "saveb") {
 					// 現在の設定情報をバイナリファイルに保存する
 					if (Header == null) {
@@ -140,6 +145,7 @@ namespace OSDeveloper.Core.Settings.YenconTool
 					using (BinaryWriter bw = new BinaryWriter(fs)) {
 						bw.Write(buf);
 					}
+					Console.WriteLine(Messages.Saved_Successfully);
 				} else if (cmd == "reload") {
 					// 全ての変更を破棄し、ファイルから設定情報を読み込む。
 					// バイナリ形式

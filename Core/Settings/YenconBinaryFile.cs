@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using OSDeveloper.Core.Error;
+using OSDeveloper.Core.MiscUtils;
 
 namespace OSDeveloper.Core.Settings
 {
@@ -45,6 +46,7 @@ namespace OSDeveloper.Core.Settings
 		public static List<YenconNode> Scan(string fname, YenconHeader header)
 		{
 			List<YenconNode> result;
+			if (!File.Exists(fname)) return null;
 			using (FileStream fs = new FileStream(fname, FileMode.Open, FileAccess.Read, FileShare.Read)) {
 				if (fs.Length == 0) {
 					return null;
@@ -190,7 +192,7 @@ namespace OSDeveloper.Core.Settings
 						var str = new YenconStringKey();
 						int len = br.ReadInt32();
 						byte[] vs = br.ReadBytes(len);
-						str.Text = _utf16.GetString(vs);
+						str.Text = _utf16.GetString(vs).Escape();
 						yn.Value = str;
 						break;
 					case 0x03: // 数値
@@ -261,7 +263,7 @@ namespace OSDeveloper.Core.Settings
 						break;
 					case YenconType.StringKey:
 						bw.Write((byte)(0x02)); // 型識別子
-						byte[] vs = _utf16.GetBytes(((YenconStringKey)(item.Value)).Text);
+						byte[] vs = _utf16.GetBytes(((YenconStringKey)(item.Value)).Text.Unescape());
 						bw.Write(vs.Length);
 						bw.Write(vs);
 						break;

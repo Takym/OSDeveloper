@@ -132,6 +132,9 @@
   <data name="CmdHelp_Add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="CmdHelp_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="CmdHelp_DelRmv" xml:space="preserve">
     <value>Delete, Remove</value>
   </data>

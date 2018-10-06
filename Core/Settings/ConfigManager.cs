@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using OSDeveloper.Core.FileManagement;
@@ -20,12 +22,13 @@ namespace OSDeveloper.Core.Settings
 			get
 			{
 				if (_system == null) {
-					_system = YenconParser.Load(PathOfSystem);
+					_system = LoadYencon(PathOfSystem, out _system_header);
 				}
 				return _system;
 			}
 		}
 		private static YenconSection _system;
+		private static YenconHeader _system_header;
 
 		/// <summary>
 		///  <see cref="OSDeveloper.Core.Settings.ConfigManager.System"/>
@@ -44,46 +47,28 @@ namespace OSDeveloper.Core.Settings
 		public static void ApplySystemSettings()
 		{
 			// ビジュアルスタイルの設定を読み込み
-			if (System.Children.ContainsKey("visualstyle")) {
-				// キーが存在する場合は、そのまま読み込み
-				var vs_node = System.Children["visualstyle"];
-				if (vs_node.Kind == YenconType.StringKey) {
-					if (Enum.TryParse(vs_node.Value.GetValue().ToString(), out VisualStyleState vs)) {
-						Application.VisualStyleState = vs;
-					}
+			var vs_node = System.GetNode("visualstyle", new YenconStringKey() {
+				Text = Application.VisualStyleState.ToString()
+			});
+			if (vs_node.Kind == YenconType.StringKey) {
+				if (Enum.TryParse(vs_node.Value.GetValue().ToString(), out VisualStyleState vs)) {
+					Application.VisualStyleState = vs;
 				}
-			} else {
-				// キーが無い場合は、限定の設定から新しく作成
-				var vs_node = new YenconNode();
-				vs_node.Name = "visualstyle";
-				vs_node.Value = new YenconStringKey() {
-					Text = Application.VisualStyleState.ToString(),
-				};
-				System.Children.Add(vs_node.Name, vs_node);
 			}
 
 			// 言語設定を読み込み
-			if (System.Children.ContainsKey("lang")) {
-				// キーが存在する場合は、そのまま読み込み
-				var lang_node = System.Children["lang"];
-				if (lang_node.Kind == YenconType.StringKey) {
-					CultureInfo ci;
-					try {
-						ci = CultureInfo.GetCultureInfo(lang_node.Value.GetValue().ToString());
-					} catch (CultureNotFoundException) {
-						ci = CultureInfo.CurrentCulture;
-					}
-					CultureInfo.CurrentCulture = ci;
-					CultureInfo.CurrentUICulture = ci;
+			var lang_node = System.GetNode("lang", new YenconStringKey() {
+				Text = CultureInfo.CurrentCulture.Name
+			});
+			if (lang_node.Kind == YenconType.StringKey) {
+				CultureInfo ci;
+				try {
+					ci = CultureInfo.GetCultureInfo(lang_node.Value.GetValue().ToString());
+				} catch (CultureNotFoundException) {
+					ci = CultureInfo.CurrentCulture;
 				}
-			} else {
-				// キーが無い場合は、限定の設定から新しく作成
-				var lang_node = new YenconNode();
-				lang_node.Name = "lang";
-				lang_node.Value = new YenconStringKey() {
-					Text = CultureInfo.CurrentCulture.Name,
-				};
-				System.Children.Add(lang_node.Name, lang_node);
+				CultureInfo.CurrentCulture = ci;
+				CultureInfo.CurrentUICulture = ci;
 			}
 
 			// 現在の設定データを保存
@@ -95,7 +80,49 @@ namespace OSDeveloper.Core.Settings
 		/// </summary>
 		public static void Save()
 		{
-			YenconParser.Save(PathOfSystem, _system);
+			SaveYencon(PathOfSystem, _system_header, _system);
+		}
+
+		/// <summary>
+		///  指定されたファイルをヱンコンとして読み込みます。
+		/// </summary>
+		/// <param name="path">読み込むファイルのパスです。</param>
+		/// <param name="binhdr">バイナリ形式の場合はヘッダー情報、テキスト形式の場合は<see langword="null"/>を返します。</param>
+		/// <returns>読み込んだヱンコンオブジェクトです。</returns>
+		public static YenconSection LoadYencon(string path, out YenconHeader binhdr)
+		{
+			var header = new YenconHeader();
+			var result = YenconBinaryFile.Scan(path, header);
+			if (result == null) {
+				// テキスト形式
+				binhdr = null;
+				return YenconParser.Load(path);
+			} else {
+				// バイナリ形式
+				binhdr = header;
+				return new YenconSection(result);
+			}
+		}
+
+		/// <summary>
+		///  指定されたヱンコンオブジェクトを保存します。
+		/// </summary>
+		/// <param name="path">保存先のファイルのパスです。</param>
+		/// <param name="binhdr">バイナリ形式の場合はヘッダー情報、テキスト形式の場合は<see langword="null"/>を指定してください。</param>
+		/// <param name="yencon">保存するヱンコンオブジェクトです。</param>
+		public static void SaveYencon(string path, YenconHeader binhdr, YenconSection yencon)
+		{
+			if (binhdr == null) {
+				// テキスト形式
+				YenconParser.Save(path, yencon);
+			} else {
+				// バイナリ形式
+				byte[] buf = YenconBinaryFile.ConvertToBinary(new List<YenconNode>(yencon.Children.Values), binhdr);
+				using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+				using (BinaryWriter bw = new BinaryWriter(fs)) {
+					bw.Write(buf);
+				}
+			}
 		}
 	}
 }
