@@ -15,7 +15,7 @@ Copyright (C) 2018 Takym.
 このソフトウェアはオペレーティングシステムを開発する為の統合開発環境です。
 
 ## <a id="ja_license">利用規約と個人情報保護方針</a>
-- このソフトウェアのライセンスは[○○](./LICENSE.txt)です。
+- このソフトウェアのライセンスは[GPLv3](./LICENSE.txt)です。
 - 利用するにはこれに同意する必要があります。
 
 ## <a id="ja_versions">変更履歴</a>
@@ -35,7 +35,7 @@ Copyright (C) 2018 Takym.
 This software is a integrated development environment to develop operating systems.
 
 ## <a id="en_license">Terms of Service and Privacy Policy</a>
-- The license of this software is: [○○](./LICENSE.txt).
+- The license of this software is: [GPLv3](./LICENSE.txt).
 - If you would like to use this application, then you need to agree with it.
 
 ## <a id="en_versions">Change Log</a>
