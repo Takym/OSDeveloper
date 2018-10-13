@@ -68,20 +68,25 @@ namespace OSDeveloper.Core.GraphicalUIs
 			tolbtnCollapse.Image = Libosdev.GetIcon("Collapse", this, out int vCOL).ToBitmap();
 			tolbtnCollapse.Text = ExplorerTexts.Collapse;
 			tolbtnCollapse.ToolTipText = ExplorerTexts.Collapse;
+			_logger.Info($"GetIcon HResults = REF:{vREF}, EXP:{vEXP}, COL:{vCOL}");
 
 			_logger.Info("Setting the popup strip bar of Explorer...");
 			popup_openeditor.Text = ExplorerTexts.Popup_OpenEditor;
 			popup_rename.Text = ExplorerTexts.Popup_Rename;
 
 			_logger.Info("Setting the file icons for Explorer...");
-			imageList.Images.Add(Libosdev.GetIcon("Folder",      this, out int v0));
-			imageList.Images.Add(Libosdev.GetIcon("FolderClose", this, out int v1));
-			imageList.Images.Add(Libosdev.GetIcon("FolderOpen",  this, out int v2));
-			imageList.Images.Add(Libosdev.GetIcon("File",        this, out int v3));
-			imageList.Images.Add(Libosdev.GetIcon("BinaryFile",  this, out int v4));
-			imageList.Images.Add(Libosdev.GetIcon("TextFile",    this, out int v5));
+			imageList.Images.Add(Libosdev.GetIcon("Folder",         this, out int v0));
+			imageList.Images.Add(Libosdev.GetIcon("FolderClose",    this, out int v1));
+			imageList.Images.Add(Libosdev.GetIcon("FolderOpen",     this, out int v2));
+			imageList.Images.Add(Libosdev.GetIcon("File",           this, out int v3));
+			imageList.Images.Add(Libosdev.GetIcon("BinaryFile",     this, out int v4));
+			imageList.Images.Add(Libosdev.GetIcon("TextFile",       this, out int v5));
+			imageList.Images.Add(Libosdev.GetIcon("ProgramFile",    this, out int v6));
+			imageList.Images.Add(Libosdev.GetIcon("SourceCodeFile", this, out int v7));
+			imageList.Images.Add(Libosdev.GetIcon("ResourceFile",   this, out int v8));
+			imageList.Images.Add(Libosdev.GetIcon("DocumentFile",   this, out int v9));
 
-			_logger.Info($"GetIcon HResults = REF:{vREF}, EXP:{vEXP}, COL:{vCOL}, 0:{v0}, 1:{v1}, 2:{v2}, 3:{v3}, 4:{v4}, 5:{v5}");
+			_logger.Info($"GetIcon HResults = 0:{v0}, 1:{v1}, 2:{v2}, 3:{v3}, 4:{v4}, 5:{v5}, 6:{v6}, 7:{v7}, 8:{v8}, 9:{v9}");
 
 			_logger.Info("Explorer control was initialized");
 			_logger.Trace("Finished OnLoad event of Explorer");
@@ -93,6 +98,10 @@ namespace OSDeveloper.Core.GraphicalUIs
 		private const int IconFile        = 3;
 		private const int IconBinFile     = 4;
 		private const int IconTxtFile     = 5;
+		private const int IconPrgFile     = 6;
+		private const int IconSrcFile     = 7;
+		private const int IconResFile     = 8;
+		private const int IconDocFile     = 9;
 
 		/// <summary>
 		///  <see cref="OSDeveloper.Core.GraphicalUIs.Explorer.DirectoryChanged"/>イベントを発生させます。
@@ -286,6 +295,22 @@ namespace OSDeveloper.Core.GraphicalUIs
 				case FileFormat.TextFile:
 					node.ImageIndex = IconTxtFile;
 					node.SelectedImageIndex = IconTxtFile;
+					break;
+				case FileFormat.Program:
+					node.ImageIndex = IconPrgFile;
+					node.SelectedImageIndex = IconPrgFile;
+					break;
+				case FileFormat.SourceCode:
+					node.ImageIndex = IconSrcFile;
+					node.SelectedImageIndex = IconSrcFile;
+					break;
+				case FileFormat.Resource:
+					node.ImageIndex = IconResFile;
+					node.SelectedImageIndex = IconResFile;
+					break;
+				case FileFormat.Document:
+					node.ImageIndex = IconDocFile;
+					node.SelectedImageIndex = IconDocFile;
 					break;
 				default:
 					node.ImageIndex = IconFile;

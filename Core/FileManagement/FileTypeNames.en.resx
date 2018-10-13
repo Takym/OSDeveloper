@@ -126,6 +126,9 @@
   <data name="BinaryFile" xml:space="preserve">
     <value>Binary data file</value>
   </data>
+  <data name="Document" xml:space="preserve">
+    <value>Document file</value>
+  </data>
   <data name="LogFile" xml:space="preserve">
     <value>Log file</value>
   </data>

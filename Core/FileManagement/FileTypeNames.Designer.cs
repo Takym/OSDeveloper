@@ -88,6 +88,15 @@ namespace OSDeveloper.Core.FileManagement {
         }
         
         /// <summary>
+        ///   Document に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Document {
+            get {
+                return ResourceManager.GetString("Document", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   LogFile に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LogFile {

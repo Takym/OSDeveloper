@@ -15,6 +15,10 @@
 #define IDI_ICON010_Expand_v0_0_0_0          1010
 #define IDI_ICON011_Collapse_v0_0_0_0        1011
 #define IDI_ICON012_EditorWindow_v0_0_0_0    1012
+#define IDI_ICON013_ProgramFile_v0_0_0_0     1013
+#define IDI_ICON014_SourceCodeFile_v0_0_0_0  1014
+#define IDI_ICON015_ResourceFile_v0_0_0_0    1015
+#define IDI_ICON016_DocumentFile_v0_0_0_0    1016
 
 // Next default values for new objects
 // 

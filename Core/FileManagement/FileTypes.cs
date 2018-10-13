@@ -21,6 +21,15 @@ namespace OSDeveloper.Core.FileManagement
 				"bin", "dat", "hex");
 
 		/// <summary>
+		///  「書類ファイル」を表す全ての拡張子を所得します。
+		/// </summary>
+		public static readonly FileType Document
+			= new FileType(
+				FileFormat.Document,
+				nameof(FileTypeNames.Document),
+				"doc", "docx", "docm", "xls", "xlsx", "xlsm", "ppt", "pptx", "pptm", "rtf", "pdf");
+
+		/// <summary>
 		///  「ログファイル」を表す全ての拡張子を取得します。
 		/// </summary>
 		public static readonly FileType LogFile
@@ -34,7 +43,7 @@ namespace OSDeveloper.Core.FileManagement
 		/// </summary>
 		public static readonly FileType ProcessReportRecordFile
 			= new FileType(
-				FileFormat.BinaryFile,
+				FileFormat.Resource,
 				nameof(FileTypeNames.ProcessReportRecordFile),
 				"pr2f");
 
@@ -45,7 +54,7 @@ namespace OSDeveloper.Core.FileManagement
 			= new FileType(
 				FileFormat.Document,
 				typeof(RegistryDraftFile),
-				nameof(FileTypeNames),
+				nameof(FileTypeNames.RegistryDraftFile),
 				"rd", "regd");
 
 		/// <summary>
@@ -95,6 +104,7 @@ namespace OSDeveloper.Core.FileManagement
 				nameof(FileTypeNames.AllSupportedFiles),
 				ArrayUtils.Join(
 					BinaryFile.Extensions,
+					Document.Extensions,
 					LogFile.Extensions,
 					ProcessReportRecordFile.Extensions,
 					RegistryDraftFile.Extensions,
@@ -145,6 +155,7 @@ namespace OSDeveloper.Core.FileManagement
 			return $"{FileTypeNames.AllFiles}|*"
 				+ "|" + AllSupportedFiles.CreateSPF()
 				+ "|" + BinaryFile.CreateSPF()
+				+ "|" + Document.CreateSPF()
 				+ "|" + LogFile.CreateSPF()
 				+ "|" + ProcessReportRecordFile.CreateSPF()
 				+ "|" + RegistryDraftFile.CreateSPF()
@@ -166,6 +177,8 @@ namespace OSDeveloper.Core.FileManagement
 		{
 			if (BinaryFile.Contains(ext)) {
 				return BinaryFile;
+			} else if (Document.Contains(ext)) {
+				return Document;
 			} else if (LogFile.Contains(ext)) {
 				return LogFile;
 			} else if (ProcessReportRecordFile.Contains(ext)) {

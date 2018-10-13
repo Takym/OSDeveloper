@@ -14,7 +14,7 @@ namespace OSDeveloper.Core.FileManagement.Structures
 		///  新しいインスタンスを生成します。
 		/// </summary>
 		/// <param name="filename">読み込むファイルの名前です。</param>
-		public RegistryDraftFile(string filename) : base(filename, FileFormat.TextFile) { }
+		public RegistryDraftFile(string filename) : base(filename, FileFormat.Document) { }
 
 		/// <summary>
 		///  このファイルを編集するためのエディタウィンドウを生成します。

@@ -158,6 +158,30 @@ namespace OSDeveloper.Native
 			public const uint ICON_EditorWindow_v0_0_0_0 = 12;
 
 			/// <summary>
+			///  プログラムファイルを表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_ProgramFile_v0_0_0_0 = 13;
+
+			/// <summary>
+			///  ソースコードファイルを表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_SourceCodeFile_v0_0_0_0 = 14;
+
+			/// <summary>
+			///  リソースファイルを表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_ResourceFile_v0_0_0_0 = 15;
+
+			/// <summary>
+			///  ドキュメントファイルを表すアイコンです。
+			///  このアイコンは<c>0.0.0.0</c>で追加された物です。
+			/// </summary>
+			public const uint ICON_DocumentFile_v0_0_0_0 = 16;
+
+			/// <summary>
 			///  指定されたIDのアイコンを取得します。
 			/// </summary>
 			/// <param name="dwIconID">取得するアイコンのリソースIDから1000を引いた値です。</param>

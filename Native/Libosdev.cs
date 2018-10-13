@@ -64,6 +64,10 @@ namespace OSDeveloper.Native
 				case "Expand":
 				case "Collapse":
 				case "EditorWindow":
+				case "ProgramFile":
+				case "SourceCodeFile":
+				case "ResourceFile":
+				case "DocumentFile":
 					name += ".v0_0";
 					break;
 			}
@@ -143,6 +147,30 @@ namespace OSDeveloper.Native
 				case "EditorWindow.v0_0_0":
 				case "EditorWindow.v0_0_0_0":
 					id = ICON_EditorWindow_v0_0_0_0;
+					break;
+				case "ProgramFile.v0":
+				case "ProgramFile.v0_0":
+				case "ProgramFile.v0_0_0":
+				case "ProgramFile.v0_0_0_0":
+					id = ICON_ProgramFile_v0_0_0_0;
+					break;
+				case "SourceCodeFile.v0":
+				case "SourceCodeFile.v0_0":
+				case "SourceCodeFile.v0_0_0":
+				case "SourceCodeFile.v0_0_0_0":
+					id = ICON_SourceCodeFile_v0_0_0_0;
+					break;
+				case "ResourceFile.v0":
+				case "ResourceFile.v0_0":
+				case "ResourceFile.v0_0_0":
+				case "ResourceFile.v0_0_0_0":
+					id = ICON_ResourceFile_v0_0_0_0;
+					break;
+				case "DocumentFile.v0":
+				case "DocumentFile.v0_0":
+				case "DocumentFile.v0_0_0":
+				case "DocumentFile.v0_0_0_0":
+					id = ICON_DocumentFile_v0_0_0_0;
 					break;
 				default:
 					id = ICON_Unknown_v0_0_0_0;
