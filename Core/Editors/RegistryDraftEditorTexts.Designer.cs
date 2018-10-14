@@ -61,6 +61,33 @@ namespace OSDeveloper.Core.Editors {
         }
         
         /// <summary>
+        ///   Identifier に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DataGridView_Identifier {
+            get {
+                return ResourceManager.GetString("DataGridView_Identifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Type に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DataGridView_Type {
+            get {
+                return ResourceManager.GetString("DataGridView_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Value に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DataGridView_Value {
+            get {
+                return ResourceManager.GetString("DataGridView_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   addnew に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Popup_AddNew {

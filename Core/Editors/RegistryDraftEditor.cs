@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.FileManagement.Structures;
 using OSDeveloper.Core.GraphicalUIs;
@@ -59,6 +57,11 @@ namespace OSDeveloper.Core.Editors
 			renameMenu.Text = RegistryDraftEditorTexts.Popup_Rename;
 			deleteMenu.Text = RegistryDraftEditorTexts.Popup_Delete;
 			addNewMenu.Text = RegistryDraftEditorTexts.Popup_AddNew;
+
+			_logger.Info("Setting the data grid view of RegistryDraftEditor...");
+			identifier.HeaderText = RegistryDraftEditorTexts.DataGridView_Identifier;
+			type.HeaderText = RegistryDraftEditorTexts.DataGridView_Type;
+			value.HeaderText = RegistryDraftEditorTexts.DataGridView_Value;
 
 			if (this.TargetFile != null) {
 				this.Reload();
@@ -156,6 +159,23 @@ namespace OSDeveloper.Core.Editors
 			nodes.Add(name, name);
 
 			_logger.Trace("Finished OnClick event of AddNew popup-menu in RegistryDraftEditor");
+		}
+		#endregion
+
+		#region データグリッドビュー
+		private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+
+		private void dataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+		{
+
+		}
+
+		private void dataGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+		{
+
 		}
 		#endregion
 

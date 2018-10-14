@@ -40,6 +40,9 @@
 			this.btnExpand = new System.Windows.Forms.Button();
 			this.btnCollapse = new System.Windows.Forms.Button();
 			this.dataGridView = new System.Windows.Forms.DataGridView();
+			this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.type = new System.Windows.Forms.DataGridViewComboBoxColumn();
+			this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
 			this.mainContainer.Panel2.SuspendLayout();
@@ -159,14 +162,45 @@
 			// 
 			// dataGridView
 			// 
-			this.dataGridView.AllowUserToOrderColumns = true;
 			this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Identifier,
+            this.Type,
+            this.Value});
 			this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView.Name = "dataGridView";
 			this.dataGridView.RowTemplate.Height = 21;
 			this.dataGridView.Size = new System.Drawing.Size(280, 461);
 			this.dataGridView.TabIndex = 0;
+			this.dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEndEdit);
+			this.dataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView_RowsAdded);
+			this.dataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView_RowsRemoved);
+			// 
+			// identifier
+			// 
+			this.identifier.Frozen = true;
+			this.identifier.HeaderText = "Identifier";
+			this.identifier.Name = "identifier";
+			// 
+			// type
+			// 
+			this.type.Frozen = true;
+			this.type.HeaderText = "Type";
+			this.type.Items.AddRange(new object[] {
+            "REG_SZ",
+            "REG_BINARY",
+            "REG_DWORD",
+            "REG_QWORD",
+            "REG_MULTI_SZ",
+            "REG_EXPAND_SZ"});
+			this.type.Name = "type";
+			// 
+			// value
+			// 
+			this.value.Frozen = true;
+			this.value.HeaderText = "Value";
+			this.value.Name = "value";
 			// 
 			// RegistryDraftEditor
 			// 
@@ -199,5 +233,8 @@
 		private System.Windows.Forms.ToolStripMenuItem renameMenu;
 		private System.Windows.Forms.ToolStripMenuItem deleteMenu;
 		private System.Windows.Forms.ToolStripMenuItem addNewMenu;
+		private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
+		private System.Windows.Forms.DataGridViewComboBoxColumn type;
+		private System.Windows.Forms.DataGridViewTextBoxColumn value;
 	}
 }

@@ -21,7 +21,7 @@ namespace OSDeveloper.App
 #if true//false//DEBUG
 			// TODO: 以下のコードは必要が無くなったら削除する。
 			for (int i = 0; i < 10; ++i) {
-				OSDeveloper.Core.Editors.EditorWindow f = new OSDeveloper.Core.Editors.EditorWindow(this);
+				var f = new OSDeveloper.Core.Editors.EditorWindow(this);
 				f.Show();
 			}
 
@@ -34,6 +34,9 @@ namespace OSDeveloper.App
 				ofd.ShowDialog(this);
 			});
 			this.Controls.Add(btn);
+
+			var rde = new OSDeveloper.Core.Editors.RegistryDraftEditor(this);
+			rde.Show();
 #endif
 
 			this.SetStatusMessage(MainWindowStatusMessage.Ready());
