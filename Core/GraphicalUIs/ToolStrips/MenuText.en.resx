@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Edit_ClearSelection" xml:space="preserve">
+    <value>Clear &amp;selection</value>
+  </data>
+  <data name="Edit_Copy" xml:space="preserve">
+    <value>&amp;Copy</value>
+  </data>
+  <data name="Edit_Cut" xml:space="preserve">
+    <value>Cu&amp;t</value>
+  </data>
+  <data name="Edit_Delete" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="Edit_Paste" xml:space="preserve">
+    <value>&amp;Paste</value>
+  </data>
+  <data name="Edit_Redo" xml:space="preserve">
+    <value>&amp;Redo</value>
+  </data>
+  <data name="Edit_SelectAll" xml:space="preserve">
+    <value>Select &amp;all</value>
+  </data>
+  <data name="Edit_Undo" xml:space="preserve">
+    <value>&amp;Undo</value>
+  </data>
   <data name="File_Exit" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>

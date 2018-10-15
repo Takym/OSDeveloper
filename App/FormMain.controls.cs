@@ -13,7 +13,7 @@ namespace OSDeveloper.App
 		{
 			_mainmenu = new MenuStrip();
 			_menu_file = new FileMenuItem(this);
-			_menu_edit = new EditMenuItem();
+			_menu_edit = new EditMenuItem(this);
 			_menu_view = new ViewMenuItem();
 			_menu_project = new ProjectMenuItem();
 			_menu_build = new BuildMenuItem();

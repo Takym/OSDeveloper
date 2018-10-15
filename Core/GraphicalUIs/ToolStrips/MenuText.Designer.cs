@@ -61,6 +61,78 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips {
         }
         
         /// <summary>
+        ///   ClearSelection に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_ClearSelection {
+            get {
+                return ResourceManager.GetString("Edit_ClearSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Copy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Copy {
+            get {
+                return ResourceManager.GetString("Edit_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cut に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Cut {
+            get {
+                return ResourceManager.GetString("Edit_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delete に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Delete {
+            get {
+                return ResourceManager.GetString("Edit_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Paste に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Paste {
+            get {
+                return ResourceManager.GetString("Edit_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Redo に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Redo {
+            get {
+                return ResourceManager.GetString("Edit_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SelectAll に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_SelectAll {
+            get {
+                return ResourceManager.GetString("Edit_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Undo に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Undo {
+            get {
+                return ResourceManager.GetString("Edit_Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Exit に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string File_Exit {
