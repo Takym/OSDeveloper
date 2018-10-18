@@ -118,81 +118,84 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Edit_ClearSelection" xml:space="preserve">
-    <value>ClearSelection</value>
+    <value>Clear &amp;selection</value>
   </data>
   <data name="Edit_Copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>&amp;Copy</value>
   </data>
   <data name="Edit_Cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Cu&amp;t</value>
   </data>
   <data name="Edit_Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>&amp;Delete</value>
+  </data>
+  <data name="Edit_Find" xml:space="preserve">
+    <value>Search &amp;&amp; Replace (&amp;F)</value>
   </data>
   <data name="Edit_Paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>&amp;Paste</value>
   </data>
   <data name="Edit_Redo" xml:space="preserve">
-    <value>Redo</value>
+    <value>&amp;Redo</value>
   </data>
   <data name="Edit_SelectAll" xml:space="preserve">
-    <value>SelectAll</value>
+    <value>Select &amp;all</value>
   </data>
   <data name="Edit_Undo" xml:space="preserve">
-    <value>Undo</value>
+    <value>&amp;Undo</value>
   </data>
   <data name="File_Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>E&amp;xit</value>
   </data>
   <data name="File_Newfile" xml:space="preserve">
-    <value>Newfile</value>
+    <value>Create &amp;new file...</value>
   </data>
   <data name="File_Open" xml:space="preserve">
-    <value>Open</value>
+    <value>&amp;Open</value>
   </data>
   <data name="File_Print" xml:space="preserve">
-    <value>Print</value>
+    <value>&amp;Print...</value>
   </data>
   <data name="File_PrintPreview" xml:space="preserve">
-    <value>PrintPreview</value>
+    <value>Print Pr&amp;eview</value>
   </data>
   <data name="File_Reload" xml:space="preserve">
-    <value>Reload</value>
+    <value>&amp;Reload</value>
   </data>
   <data name="File_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Overwrite &amp;save</value>
   </data>
   <data name="File_SaveAll" xml:space="preserve">
-    <value>SaveAll</value>
+    <value>Save a&amp;ll</value>
   </data>
   <data name="File_SaveAs" xml:space="preserve">
-    <value>SaveAs</value>
+    <value>Save &amp;as...</value>
   </data>
   <data name="Tool_InstallThemepack" xml:space="preserve">
-    <value>InstallThemepack: {0}</value>
+    <value>Install the theme pack "{0}" and Apply it</value>
   </data>
   <data name="Tool_InstallThemepack_Confirm" xml:space="preserve">
-    <value>InstallThemepack_Confirm: {0}</value>
+    <value>Are you sure to install the theme pack "{0}" on your computer?</value>
   </data>
   <data name="Tool_InstallThemepack_StatusMsg" xml:space="preserve">
-    <value>InstallThemepack_StatusMsg: {0}</value>
+    <value>The theme pack "{0}" was installed successfully.</value>
   </data>
   <data name="Tool_InstallThemepack_StatusMsg_Cancel" xml:space="preserve">
-    <value>Tool_InstallThemepack_StatusMsg_Cancel: {0}</value>
+    <value>Canceled installing the theme pack "{0}".</value>
   </data>
   <data name="Window_ArrangeIcons" xml:space="preserve">
-    <value>ArrangeIcons</value>
+    <value>Arrange icons</value>
   </data>
   <data name="Window_Cascade" xml:space="preserve">
-    <value>Cascade</value>
+    <value>Cascade windows</value>
   </data>
   <data name="Window_CloseAll" xml:space="preserve">
-    <value>CloseAll</value>
+    <value>Close all windows</value>
   </data>
   <data name="Window_Hori" xml:space="preserve">
-    <value>Hori</value>
+    <value>Tile horizontal</value>
   </data>
   <data name="Window_Vert" xml:space="preserve">
-    <value>Vert</value>
+    <value>Tile vertical</value>
   </data>
 </root>

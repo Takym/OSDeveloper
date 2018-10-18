@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using OSDeveloper.Core.GraphicalUIs;
@@ -19,12 +20,25 @@ namespace OSDeveloper.App
 			Logger l = Logger.GetSystemLogger("system");
 			l.Trace($"The application is started with command-line: {{{string.Join(", ", args)}}}");
 
+			// Application初期化
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
+			// システム設定適応
 			ConfigManager.ApplySystemSettings();
+
+			// ログ用に言語情報取得
+			var tmp_culture = Thread.CurrentThread.CurrentUICulture;
+			Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
+			string culture = tmp_culture.Name
+				+ "; EN: " + tmp_culture.EnglishName
+				+ "; 日: " + tmp_culture.DisplayName
+				+ "; ::: " + tmp_culture.NativeName;
+			Thread.CurrentThread.CurrentUICulture = tmp_culture;
+
+			// システム設定をログに書き込み
 			l.Debug($"{nameof(Application)}.{nameof(Application.VisualStyleState)} = {Application.VisualStyleState}");
-			l.Debug($"{nameof(CultureInfo)}.{nameof(CultureInfo.CurrentCulture)} = {CultureInfo.CurrentCulture}");
+			l.Debug($"{nameof(CultureInfo)}.{nameof(CultureInfo.CurrentCulture)} = {culture}");
 
 			// メインウィンドウ表示
 			Application.Run(new FormMain());

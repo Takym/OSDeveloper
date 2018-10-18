@@ -23,11 +23,19 @@
 		bool FindNext(string str);
 
 		/// <summary>
+		///  選択中の文字列を<paramref name="newStr"/>に置換します。
+		///  選択中の文字列が存在しない場合は挿入されます。
+		/// </summary>
+		/// <param name="newStr">置換後の文字列です</param>
+		void ReplaceSelected(string newStr);
+
+		/// <summary>
 		///  <paramref name="oldStr"/>を編集内容から検索し<paramref name="newStr"/>に置換します。
 		/// </summary>
 		/// <param name="oldStr">検索する文字列です。</param>
 		/// <param name="newStr">置換後の文字列です。</param>
-		///  編集内容に<paramref name="str"/>が存在し置換に成功した場合は<see langword="true"/>、
+		/// <returns>
+		///  編集内容に<paramref name="oldStr"/>が存在し置換に成功した場合は<see langword="true"/>、
 		///  存在しない場合は<see langword="false"/>です。
 		/// </returns>
 		bool ReplaceNext(string oldStr, string newStr);

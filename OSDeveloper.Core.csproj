@@ -107,6 +107,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExplorerTexts.resx</DependentUpon>
     </Compile>
+    <Compile Include="Core\GraphicalUIs\FormSearchReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\FormSearchReplace.Designer.cs">
+      <DependentUpon>FormSearchReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\FormSearchReplaceTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormSearchReplaceTexts.resx</DependentUpon>
+    </Compile>
     <Compile Include="Core\GraphicalUIs\MainWindowBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,10 +131,10 @@
     <Compile Include="Core\GraphicalUIs\ToolStrips\BuildMenuItem.cs" />
     <Compile Include="Core\GraphicalUIs\ToolStrips\DebugMenuItem.cs" />
     <Compile Include="Core\GraphicalUIs\ToolStrips\HelpMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\MenuText.Designer.cs">
+    <Compile Include="Core\GraphicalUIs\ToolStrips\MenuTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MenuText.resx</DependentUpon>
+      <DependentUpon>MenuTexts.resx</DependentUpon>
     </Compile>
     <Compile Include="Core\GraphicalUIs\ToolStrips\WindowMenuItem.cs" />
     <Compile Include="Core\GraphicalUIs\ToolStrips\ToolMenuItem.cs" />
@@ -200,17 +211,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExplorerTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\FormSearchReplace.resx">
+      <DependentUpon>FormSearchReplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\FormSearchReplaceTexts.en.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\FormSearchReplaceTexts.ja.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\FormSearchReplaceTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormSearchReplaceTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.en.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.ja.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MainWindowStatusMessageAsset.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.en.resx" />
-    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.ja.resx" />
-    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuText.resx">
+    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.en.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.ja.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MenuText.Designer.cs</LastGenOutput>
+      <LastGenOutput>MenuTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

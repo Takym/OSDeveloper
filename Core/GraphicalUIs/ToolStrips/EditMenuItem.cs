@@ -16,6 +16,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		private readonly ToolStripMenuItem _undo, _redo;
 		private readonly ToolStripMenuItem _copy, _paste, _cut, _delete;
 		private readonly ToolStripMenuItem _select_all, _clear_selection;
+		private readonly ToolStripMenuItem _find;
 
 		/// <summary>
 		///  このメニューの操作対象を指定して、
@@ -34,30 +35,35 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_delete = new ToolStripMenuItem();
 			_select_all = new ToolStripMenuItem();
 			_clear_selection = new ToolStripMenuItem();
+			_find = new ToolStripMenuItem();
 
-			_undo.Text = MenuText.Edit_Undo;
+			_undo.Text = MenuTexts.Edit_Undo;
 			_undo.ShortcutKeys = Keys.Control | Keys.Z;
 			_undo.Click += this._undo_Click;
-			_redo.Text = MenuText.Edit_Redo;
+			_redo.Text = MenuTexts.Edit_Redo;
 			_redo.ShortcutKeys = Keys.Control | Keys.Y;
 			_redo.Click += this._redo_Click;
-			_copy.Text = MenuText.Edit_Copy;
+			_copy.Text = MenuTexts.Edit_Copy;
 			_copy.ShortcutKeys = Keys.Control | Keys.C;
 			_copy.Click += this._copy_Click;
-			_paste.Text = MenuText.Edit_Paste;
+			_paste.Text = MenuTexts.Edit_Paste;
 			_paste.ShortcutKeys = Keys.Control | Keys.V;
 			_paste.Click += this._paste_Click;
-			_cut.Text = MenuText.Edit_Cut;
+			_cut.Text = MenuTexts.Edit_Cut;
 			_cut.ShortcutKeys = Keys.Control | Keys.X;
 			_cut.Click += this._cut_Click;
-			_delete.Text = MenuText.Edit_Delete;
+			_delete.Text = MenuTexts.Edit_Delete;
 			_delete.ShortcutKeys = Keys.Delete;
 			_delete.Click += this._delete_Click;
-			_select_all.Text = MenuText.Edit_SelectAll;
+			_select_all.Text = MenuTexts.Edit_SelectAll;
 			_select_all.ShortcutKeys = Keys.Control | Keys.A;
 			_select_all.Click += this._select_all_Click;
-			_clear_selection.Text = MenuText.Edit_ClearSelection;
+			_clear_selection.Text = MenuTexts.Edit_ClearSelection;
+			_clear_selection.ShortcutKeys = Keys.Shift | Keys.Delete;
 			_clear_selection.Click += this._clear_selection_Click;
+			_find.Text = MenuTexts.Edit_Find;
+			_find.ShortcutKeys = Keys.Control | Keys.F;
+			_find.Click += this._find_Click;
 
 			this.DropDownItems.Add(_undo);
 			this.DropDownItems.Add(_redo);
@@ -69,6 +75,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_select_all);
 			this.DropDownItems.Add(_clear_selection);
+			this.DropDownItems.Add(new ToolStripSeparator());
+			this.DropDownItems.Add(_find);
 		}
 
 		private void _undo_Click(object sender, EventArgs e)
@@ -189,6 +197,23 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			}
 
 			Logger.Trace($"{nameof(EditMenuItem)}: _clear_selection end");
+		}
+
+		private void _find_Click(object sender, EventArgs e)
+		{
+			Logger.Trace($"{nameof(EditMenuItem)}: _find begin");
+
+			var editor = _mwnd_base.GetActiveEditor();
+			if (editor is ISearchReplaceFeature srf) {
+				Form f = new FormSearchReplace(srf);
+				f.Show(_mwnd_base);
+				//f.ShowDialog(_mwnd_base);
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+			} else {
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_find.Text));
+			}
+
+			Logger.Trace($"{nameof(EditMenuItem)}: _find end");
 		}
 	}
 }

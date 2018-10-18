@@ -117,82 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Edit_ClearSelection" xml:space="preserve">
-    <value>選択を解除(&amp;S)</value>
+  <data name="BtnClose" xml:space="preserve">
+    <value>btnClose</value>
   </data>
-  <data name="Edit_Copy" xml:space="preserve">
-    <value>コピー(&amp;C)</value>
+  <data name="BtnCount" xml:space="preserve">
+    <value>btnCount</value>
   </data>
-  <data name="Edit_Cut" xml:space="preserve">
-    <value>切り取り(&amp;T)</value>
+  <data name="BtnNext" xml:space="preserve">
+    <value>btnNext</value>
   </data>
-  <data name="Edit_Delete" xml:space="preserve">
-    <value>削除(&amp;D)</value>
+  <data name="BtnRepAll" xml:space="preserve">
+    <value>btnRepAll</value>
   </data>
-  <data name="Edit_Paste" xml:space="preserve">
-    <value>貼り付け(&amp;P)</value>
+  <data name="BtnReplace" xml:space="preserve">
+    <value>btnReplace</value>
   </data>
-  <data name="Edit_Redo" xml:space="preserve">
-    <value>やり直し(&amp;R)</value>
+  <data name="Caption" xml:space="preserve">
+    <value>FormSearchReplace</value>
   </data>
-  <data name="Edit_SelectAll" xml:space="preserve">
-    <value>全て選択(&amp;A)</value>
+  <data name="LabelDesc" xml:space="preserve">
+    <value>labelDesc</value>
   </data>
-  <data name="Edit_Undo" xml:space="preserve">
-    <value>元に戻す(&amp;U)</value>
+  <data name="LabelNew" xml:space="preserve">
+    <value>labelNew</value>
   </data>
-  <data name="File_Exit" xml:space="preserve">
-    <value>終了(&amp;X)</value>
+  <data name="LabelOld" xml:space="preserve">
+    <value>labelOld</value>
   </data>
-  <data name="File_Newfile" xml:space="preserve">
-    <value>新規作成(&amp;N)</value>
-  </data>
-  <data name="File_Open" xml:space="preserve">
-    <value>開く(&amp;O)</value>
-  </data>
-  <data name="File_Print" xml:space="preserve">
-    <value>印刷...(&amp;P)</value>
-  </data>
-  <data name="File_PrintPreview" xml:space="preserve">
-    <value>印刷プレビュー(&amp;E)</value>
-  </data>
-  <data name="File_Reload" xml:space="preserve">
-    <value>再読み込み(&amp;R)</value>
-  </data>
-  <data name="File_Save" xml:space="preserve">
-    <value>上書き保存(&amp;S)</value>
-  </data>
-  <data name="File_SaveAll" xml:space="preserve">
-    <value>全て保存(&amp;L)</value>
-  </data>
-  <data name="File_SaveAs" xml:space="preserve">
-    <value>名前を付けて保存(&amp;A)</value>
-  </data>
-  <data name="Tool_InstallThemepack" xml:space="preserve">
-    <value>テーマパック "{0}" をインストールして適用</value>
-  </data>
-  <data name="Tool_InstallThemepack_Confirm" xml:space="preserve">
-    <value>テーマパック "{0}" をコンピュータにインストールしてもよろしいですか？</value>
-  </data>
-  <data name="Tool_InstallThemepack_StatusMsg" xml:space="preserve">
-    <value>テーマパック "{0}" は正常にインストールされました。</value>
-  </data>
-  <data name="Tool_InstallThemepack_StatusMsg_Cancel" xml:space="preserve">
-    <value>テーマパック "{0}" のインストールは取り消されました。</value>
-  </data>
-  <data name="Window_ArrangeIcons" xml:space="preserve">
-    <value>アイコンを整理</value>
-  </data>
-  <data name="Window_Cascade" xml:space="preserve">
-    <value>重ねて表示</value>
-  </data>
-  <data name="Window_CloseAll" xml:space="preserve">
-    <value>ウィンドウを全て閉じる</value>
-  </data>
-  <data name="Window_Hori" xml:space="preserve">
-    <value>上下に並べて表示</value>
-  </data>
-  <data name="Window_Vert" xml:space="preserve">
-    <value>左右に並べて表示</value>
+  <data name="MsgCount" xml:space="preserve">
+    <value>msgCount {0} : {1}</value>
   </data>
 </root>

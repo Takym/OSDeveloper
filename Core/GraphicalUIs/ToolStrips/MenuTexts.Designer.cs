@@ -22,14 +22,14 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class MenuText {
+    internal class MenuTexts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MenuText() {
+        internal MenuTexts() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OSDeveloper.Core.GraphicalUIs.ToolStrips.MenuText", typeof(MenuText).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OSDeveloper.Core.GraphicalUIs.ToolStrips.MenuTexts", typeof(MenuTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -93,6 +93,15 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips {
         internal static string Edit_Delete {
             get {
                 return ResourceManager.GetString("Edit_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Find に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Find {
+            get {
+                return ResourceManager.GetString("Edit_Find", resourceCulture);
             }
         }
         

@@ -26,7 +26,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_mwnd_base = mwndBase;
 			_install_themepack_darkolorfuler = new ToolStripMenuItem();
 
-			_install_themepack_darkolorfuler.Text = string.Format(MenuText.Tool_InstallThemepack, "Darkolorfuler");
+			_install_themepack_darkolorfuler.Text = string.Format(MenuTexts.Tool_InstallThemepack, "Darkolorfuler");
 			_install_themepack_darkolorfuler.Click += this._install_themepack_darkolorfuler_Click;
 
 			this.DropDownItems.Add(new ToolStripSeparator());
@@ -44,16 +44,16 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			//                    メインウィンドウとMDI子ウィンドウのタイトルバーがカラフルになる。
 
 			var dr = MessageBox.Show(_mwnd_base,
-				string.Format(MenuText.Tool_InstallThemepack_Confirm, "Darkolorfuler"),
+				string.Format(MenuTexts.Tool_InstallThemepack_Confirm, "Darkolorfuler"),
 				_mwnd_base.Text,
 				MessageBoxButtons.YesNo,
 				MessageBoxIcon.Question);
 			if (dr == DialogResult.Yes) {
 				Process.Start(SystemPaths.Resources.Bond("Darkolorfuler.themepack"));
-				_mwnd_base.SetStatusMessage(MenuText.Tool_InstallThemepack_StatusMsg);
+				_mwnd_base.SetStatusMessage(MenuTexts.Tool_InstallThemepack_StatusMsg);
 				Logger.Trace($"{nameof(ToolMenuItem)}: Installed Darkolorfuler");
 			} else {
-				_mwnd_base.SetStatusMessage(MenuText.Tool_InstallThemepack_StatusMsg_Cancel);
+				_mwnd_base.SetStatusMessage(MenuTexts.Tool_InstallThemepack_StatusMsg_Cancel);
 				Logger.Trace($"{nameof(ToolMenuItem)}: Canceled to install Darkolorfuler");
 			}
 		}

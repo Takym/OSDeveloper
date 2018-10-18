@@ -30,15 +30,15 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_vert = new InternalMenuItem(mwndBase, MdiLayout.TileVertical);
 			_close_all = new ToolStripMenuItem();
 
-			_icons.Text = MenuText.Window_ArrangeIcons;
+			_icons.Text = MenuTexts.Window_ArrangeIcons;
 			_icons.ShortcutKeys = Keys.Alt | Keys.Left;
-			_cascade.Text = MenuText.Window_Cascade;
+			_cascade.Text = MenuTexts.Window_Cascade;
 			_cascade.ShortcutKeys = Keys.Alt | Keys.Up;
-			_hori.Text = MenuText.Window_Hori;
+			_hori.Text = MenuTexts.Window_Hori;
 			_hori.ShortcutKeys = Keys.Alt | Keys.Down;
-			_vert.Text = MenuText.Window_Vert;
+			_vert.Text = MenuTexts.Window_Vert;
 			_vert.ShortcutKeys = Keys.Alt | Keys.Right;
-			_close_all.Text = MenuText.Window_CloseAll;
+			_close_all.Text = MenuTexts.Window_CloseAll;
 			_close_all.ShortcutKeys = Keys.Alt | Keys.Delete;
 			_close_all.Click += this._close_all_Click;
 
