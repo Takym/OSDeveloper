@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.FileManagement.Structures;
@@ -116,13 +117,16 @@ namespace OSDeveloper.Core.Editors
 		{
 			_logger.Trace($"executing {nameof(openMenu_Click)}...");
 
-			// 危険だけどリフレクションを使って Rows プロパティ書き換え
-			// .NET Framework v4.7.2 バージョンでは DataGridView プロパティは dataGridViewRows を利用している。
-			// https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/DataGridView.cs,2cc4e2a42be6fd3c
+			if (treeView.SelectedNode != null && treeView.SelectedNode is RegistryDraftTreeNode rdtn) {
 
-			var t = gridView.GetType();
-			var f = t.GetField("dataGridViewRows");
+				// 危険だけどリフレクションを使って Rows プロパティ書き換え
+				// .NET Framework v4.7.2 バージョンでは DataGridView プロパティは dataGridViewRows を利用している。
+				// https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/DataGridView.cs,2cc4e2a42be6fd3c
 
+				var t = gridView.GetType();
+				var f = t.GetField("dataGridViewRows", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.SetField);
+				f.SetValue(gridView, rdtn.GetRows());
+			}
 
 			_logger.Trace($"completed {nameof(openMenu_Click)}");
 		}
