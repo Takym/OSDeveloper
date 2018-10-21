@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Reflection;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.FileManagement.Structures;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
+using OSDeveloper.Core.MiscUtils;
+using OSDeveloper.Core.Settings;
 using OSDeveloper.Native;
 
 namespace OSDeveloper.Core.Editors
@@ -15,7 +17,10 @@ namespace OSDeveloper.Core.Editors
 	public partial class RegistryDraftEditor : EditorWindow, IFileSaveLoadFeature
 	{
 		private Logger _logger;
+		private YenconHeader _header;
+		private List<DataGridViewRow> _current_rows;
 
+		#region 初期化
 		/// <summary>
 		///  親ウィンドウを指定して、
 		///  型'<see cref="OSDeveloper.Core.Editors.RegistryDraftEditor"/>'の
@@ -26,6 +31,8 @@ namespace OSDeveloper.Core.Editors
 		{
 			this.InitializeComponent();
 			_logger = Logger.GetSystemLogger(nameof(RegistryDraftEditor));
+			_header = null;
+			_current_rows = null;
 		}
 
 		/// <summary>
@@ -58,6 +65,8 @@ namespace OSDeveloper.Core.Editors
 			renameMenu.Text = RegistryDraftEditorTexts.Popup_Rename;
 			deleteMenu.Text = RegistryDraftEditorTexts.Popup_Delete;
 			addNewMenu.Text = RegistryDraftEditorTexts.Popup_AddNew;
+			clearSelectMenu.Text = RegistryDraftEditorTexts.Popup_ClearSelect;
+			grid_removeMenu.Text = RegistryDraftEditorTexts.Popup_Grid_Remove;
 
 			_logger.Info("Setting the data grid view of RegistryDraftEditor...");
 			identifier.HeaderText = RegistryDraftEditorTexts.DataGridView_Identifier;
@@ -70,6 +79,7 @@ namespace OSDeveloper.Core.Editors
 
 			_logger.Info("Explorer control was initialized");
 		}
+		#endregion
 
 		#region コントロールボタン
 		private void btnRefresh_Click(object sender, EventArgs e)
@@ -110,6 +120,24 @@ namespace OSDeveloper.Core.Editors
 
 			_logger.Trace($"completed {nameof(treeView_AfterLabelEdit)}");
 		}
+
+		private void treeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_NodeMouseClick)}...");
+
+			this.OpenNode();
+
+			_logger.Trace($"completed {nameof(treeView_NodeMouseClick)}");
+		}
+
+		private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_NodeMouseDoubleClick)}...");
+
+			this.OpenNode();
+
+			_logger.Trace($"completed {nameof(treeView_NodeMouseDoubleClick)}");
+		}
 		#endregion
 
 		#region ポップアップメニュー
@@ -117,16 +145,7 @@ namespace OSDeveloper.Core.Editors
 		{
 			_logger.Trace($"executing {nameof(openMenu_Click)}...");
 
-			if (treeView.SelectedNode != null && treeView.SelectedNode is RegistryDraftTreeNode rdtn) {
-
-				// 危険だけどリフレクションを使って Rows プロパティ書き換え
-				// .NET Framework v4.7.2 バージョンでは DataGridView プロパティは dataGridViewRows を利用している。
-				// https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/DataGridView.cs,2cc4e2a42be6fd3c
-
-				var t = gridView.GetType();
-				var f = t.GetField("dataGridViewRows", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.SetField);
-				f.SetValue(gridView, rdtn.GetRows());
-			}
+			this.OpenNode();
 
 			_logger.Trace($"completed {nameof(openMenu_Click)}");
 		}
@@ -167,9 +186,31 @@ namespace OSDeveloper.Core.Editors
 					break;
 				}
 			}
-			nodes.Add(new RegistryDraftTreeNode(name, gridView));
+			nodes.Add(new RegistryDraftTreeNode(name));
 
 			_logger.Trace($"completed {nameof(addNewMenu_Click)}");
+		}
+
+		private void clearSelectMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(clearSelectMenu_Click)}...");
+
+			treeView.SelectedNode = null;
+
+			_logger.Trace($"completed {nameof(clearSelectMenu_Click)}");
+		}
+
+		private void grid_removeMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(grid_removeMenu_Click)}...");
+
+			foreach (DataGridViewRow item in gridView.SelectedRows) {
+				if (!item.IsNewRow) {
+					gridView.Rows.Remove(item);
+				}
+			}
+
+			_logger.Trace($"completed {nameof(grid_removeMenu_Click)}");
 		}
 		#endregion
 
@@ -205,14 +246,6 @@ namespace OSDeveloper.Core.Editors
 		{
 			return FileTypes.RegistryDraftFile;
 		}
-
-		/// <summary>
-		///  ファイルを<see cref="OSDeveloper.Core.Editors.EditorWindow.TargetFile"/>に保存します。
-		/// </summary>
-		public void Save()
-		{
-			// TODO: 保存処理を作成する
-		}
 		
 		/// <summary>
 		///  ファイルを別名で保存します。
@@ -223,14 +256,6 @@ namespace OSDeveloper.Core.Editors
 		{
 			this.TargetFile = new RegistryDraftFile(path);
 			this.Save();
-		}
-
-		/// <summary>
-		///  ファイルを再度読み込みます。変更内容は破棄されます。
-		/// </summary>
-		public void Reload()
-		{
-			// TODO: 読込処理を作成する
 		}
 
 		/// <summary>
@@ -247,22 +272,157 @@ namespace OSDeveloper.Core.Editors
 			this.TargetFile = new RegistryDraftFile(path);
 			this.Reload();
 		}
+
+		/// <summary>
+		///  ファイルを<see cref="OSDeveloper.Core.Editors.EditorWindow.TargetFile"/>に保存します。
+		/// </summary>
+		public void Save()
+		{
+			this.SaveNode();
+			var data = this.SaveInternal(treeView.Nodes);
+			ConfigManager.SaveYencon(this.TargetFile.FilePath, _header, data);
+		}
+
+		private YenconSection SaveInternal(TreeNodeCollection tnc)
+		{
+			YenconSection section = new YenconSection();
+			for (int i = 0; i < tnc.Count; ++i) {
+				if (tnc[i] is RegistryDraftTreeNode key) {
+					YenconSection ykey = new YenconSection();
+					ykey.SetNode("keyname", new YenconStringKey(key.Name));
+					ykey.SetNode("subkeys", this.SaveInternal(key.Nodes));
+					ykey.SetNode("values", this.SaveValues(key.GetRows()));
+					section.SetNode($"Key_{i}", ykey);
+				}
+			}
+			return section;
+		}
+
+		private YenconSection SaveValues(List<DataGridViewRow> rows)
+		{
+			YenconSection section = new YenconSection();
+			section.SetNode("_count", new YenconNumberKey(rows.Count));
+			for (int i = 0; i < rows.Count; ++i) {
+				var c = rows[i].Cells;
+				YenconSection value = new YenconSection();
+				switch (c.Count) {
+					case 0:
+						break;
+					case 1:
+						value.SetNode("name", new YenconStringKey(c[0].Value));
+						break;
+					case 2:
+						value.SetNode("name", new YenconStringKey(c[0].Value));
+						value.SetNode("type", new YenconStringKey(c[1].Value));
+						break;
+					default:
+						value.SetNode("name", new YenconStringKey(c[0].Value));
+						value.SetNode("type", new YenconStringKey(c[1].Value));
+						value.SetNode("data", new YenconStringKey(c[2].Value));
+						break;
+				}
+				section.SetNode(i.ToString(), value);
+			}
+			return section;
+		}
+
+		/// <summary>
+		///  ファイルを再度読み込みます。変更内容は破棄されます。
+		/// </summary>
+		public void Reload()
+		{
+			_current_rows = null;
+			var data = ConfigManager.LoadYencon(this.TargetFile.FilePath, out var _header);
+			treeView.Nodes.Clear();
+			this.ReloadInternal(data, treeView.Nodes);
+			if (treeView.Nodes.Count > 0) {
+				treeView.SelectedNode = treeView.Nodes[0];
+				this.OpenNode();
+			}
+		}
+
+		private void ReloadInternal(YenconSection section, TreeNodeCollection tnc)
+		{
+			if (section == null) return;
+			foreach (var item in section.Children) {
+				YenconSection ykey = item.Value.Value as YenconSection;
+				if (section != null) {
+					var keyname = ykey["keyname"] as YenconStringKey;
+					if (keyname != null) {
+						RegistryDraftTreeNode rdtn = new RegistryDraftTreeNode(keyname.Text.Unescape());
+						this.ReloadInternal(ykey["subkeys"] as YenconSection, rdtn.Nodes);
+						this.ReloadValues(ykey["values"] as YenconSection, rdtn.GetRows());
+						tnc.Add(rdtn);
+					}
+				}
+			}
+		}
+
+		private void ReloadValues(YenconSection section, List<DataGridViewRow> rows)
+		{
+			var _count = section["_count"] as YenconNumberKey;
+			if (_count == null) return;
+			for (int i = 0; i < ((int)(_count.Count)); ++i) {
+				var value = section[i.ToString()] as YenconSection;
+				if (value != null) {
+					var r = new DataGridViewRow();
+					string name = (value["name"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
+					string type = (value["type"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
+					string data = (value["data"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
+					r.CreateCells(gridView, name, type, data);
+					rows.Add(r);
+				}
+			}
+		}
 		#endregion
 
-		#region TreeNodeCollection
+		#region RegistryDraftTreeNode
 		private class RegistryDraftTreeNode : TreeNode
 		{
-			private DataGridViewRowCollection _rows;
+			private List<DataGridViewRow> _rows;
 
-			public RegistryDraftTreeNode(string name, DataGridView gridView)
+			public RegistryDraftTreeNode(string name)
 			{
 				this.Name = name;
 				this.Text = name;
-				_rows = new DataGridViewRowCollection(gridView);
+				_rows = new List<DataGridViewRow>();
 			}
 
-			public DataGridViewRowCollection GetRows() => _rows;
+			public List<DataGridViewRow> GetRows() => _rows;
 		}
+		#endregion
+
+		#region 共通処理
+
+		private void OpenNode()
+		{
+			if (treeView.SelectedNode != null && treeView.SelectedNode is RegistryDraftTreeNode rdtn) {
+				// 以下の処理は時間がかかるけど、DataGridView.Rows を書き換える方法がないので我慢する。
+
+				this.SaveNode();
+
+				// rdtn.GetRows() から gridView.Rows にコピーする。_current_rowsも代入。
+				gridView.Rows.Clear();
+				_current_rows = rdtn.GetRows();
+				foreach (var item in _current_rows) {
+					gridView.Rows.Add(item);
+				}
+			}
+		}
+
+		private void SaveNode()
+		{
+			// _current_rows が存在する場合、現在の内容をコピーする。
+			if (_current_rows != null) {
+				_current_rows.Clear();
+				foreach (DataGridViewRow item in gridView.Rows) {
+					if (!item.IsNewRow) {
+						_current_rows.Add(item);
+					}
+				}
+			}
+		}
+
 		#endregion
 	}
 }

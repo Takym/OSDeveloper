@@ -35,6 +35,7 @@
 			this.renameMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.addNewMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.clearSelectMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.btnRefresh = new System.Windows.Forms.Button();
 			this.btnExpand = new System.Windows.Forms.Button();
@@ -43,6 +44,8 @@
 			this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.type = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.gridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.grid_removeMenu = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
 			this.mainContainer.Panel2.SuspendLayout();
@@ -50,6 +53,7 @@
 			this.popupMenu.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
+			this.gridMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// mainContainer
@@ -80,6 +84,8 @@
 			this.treeView.Size = new System.Drawing.Size(200, 429);
 			this.treeView.TabIndex = 1;
 			this.treeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_AfterLabelEdit);
+			this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseClick);
+			this.treeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseDoubleClick);
 			// 
 			// popupMenu
 			// 
@@ -87,37 +93,45 @@
             this.openMenu,
             this.renameMenu,
             this.deleteMenu,
-            this.addNewMenu});
+            this.addNewMenu,
+            this.clearSelectMenu});
 			this.popupMenu.Name = "popupMenu";
-			this.popupMenu.Size = new System.Drawing.Size(121, 92);
+			this.popupMenu.Size = new System.Drawing.Size(132, 114);
 			// 
 			// openMenu
 			// 
 			this.openMenu.Name = "openMenu";
-			this.openMenu.Size = new System.Drawing.Size(120, 22);
+			this.openMenu.Size = new System.Drawing.Size(131, 22);
 			this.openMenu.Text = "Open";
 			this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
 			// 
 			// renameMenu
 			// 
 			this.renameMenu.Name = "renameMenu";
-			this.renameMenu.Size = new System.Drawing.Size(120, 22);
+			this.renameMenu.Size = new System.Drawing.Size(131, 22);
 			this.renameMenu.Text = "Rename";
 			this.renameMenu.Click += new System.EventHandler(this.renameMenu_Click);
 			// 
 			// deleteMenu
 			// 
 			this.deleteMenu.Name = "deleteMenu";
-			this.deleteMenu.Size = new System.Drawing.Size(120, 22);
+			this.deleteMenu.Size = new System.Drawing.Size(131, 22);
 			this.deleteMenu.Text = "Delete";
 			this.deleteMenu.Click += new System.EventHandler(this.deleteMenu_Click);
 			// 
 			// addNewMenu
 			// 
 			this.addNewMenu.Name = "addNewMenu";
-			this.addNewMenu.Size = new System.Drawing.Size(120, 22);
+			this.addNewMenu.Size = new System.Drawing.Size(131, 22);
 			this.addNewMenu.Text = "AddNew";
 			this.addNewMenu.Click += new System.EventHandler(this.addNewMenu_Click);
+			// 
+			// clearSelectMenu
+			// 
+			this.clearSelectMenu.Name = "clearSelectMenu";
+			this.clearSelectMenu.Size = new System.Drawing.Size(131, 22);
+			this.clearSelectMenu.Text = "ClearSelect";
+			this.clearSelectMenu.Click += new System.EventHandler(this.clearSelectMenu_Click);
 			// 
 			// flowLayoutPanel1
 			// 
@@ -167,6 +181,7 @@
             this.identifier,
             this.type,
             this.value});
+			this.gridView.ContextMenuStrip = this.gridMenu;
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.Location = new System.Drawing.Point(0, 0);
 			this.gridView.Name = "gridView";
@@ -202,6 +217,20 @@
 			this.value.HeaderText = "Value";
 			this.value.Name = "value";
 			// 
+			// gridMenu
+			// 
+			this.gridMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.grid_removeMenu});
+			this.gridMenu.Name = "gridMenu";
+			this.gridMenu.Size = new System.Drawing.Size(117, 26);
+			// 
+			// grid_removeMenu
+			// 
+			this.grid_removeMenu.Name = "grid_removeMenu";
+			this.grid_removeMenu.Size = new System.Drawing.Size(116, 22);
+			this.grid_removeMenu.Text = "Remove";
+			this.grid_removeMenu.Click += new System.EventHandler(this.grid_removeMenu_Click);
+			// 
 			// RegistryDraftEditor
 			// 
 			this.ClientSize = new System.Drawing.Size(484, 461);
@@ -215,6 +244,7 @@
 			this.popupMenu.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
+			this.gridMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -236,5 +266,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
 		private System.Windows.Forms.DataGridViewComboBoxColumn type;
 		private System.Windows.Forms.DataGridViewTextBoxColumn value;
+		private System.Windows.Forms.ContextMenuStrip gridMenu;
+		private System.Windows.Forms.ToolStripMenuItem grid_removeMenu;
+		private System.Windows.Forms.ToolStripMenuItem clearSelectMenu;
 	}
 }

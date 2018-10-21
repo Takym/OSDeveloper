@@ -303,14 +303,18 @@ namespace OSDeveloper.Core.Settings
 		public bool UseAsciiKeyName { get; set; }
 
 		/// <summary>
-		///  キー名でASCIIを利用するかどうかを表す論理値を取得します。
-		///  この値を変更するには<see cref="OSDeveloper.Core.Settings.YenconHeader.UseAsciiKeyName"/>を利用してください。
+		///  キー名でUnicode(UTF-16)を利用するかどうかを表す論理値を取得または設定します。
 		/// </summary>
 		public bool UseUtf16KeyName
 		{
 			get
 			{
 				return !this.UseAsciiKeyName;
+			}
+
+			set
+			{
+				this.UseAsciiKeyName = !value;
 			}
 		}
 

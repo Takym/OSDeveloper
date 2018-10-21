@@ -26,6 +26,37 @@ namespace OSDeveloper.Core.Settings
 		}
 
 		/// <summary>
+		///  型'<see cref="OSDeveloper.Core.Settings.YenconStringKey"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		public YenconStringKey()
+		{
+			this.Text = string.Empty;
+		}
+
+		/// <summary>
+		///  保持する文字列を指定して、
+		///  型'<see cref="OSDeveloper.Core.Settings.YenconStringKey"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="str">保持する文字列です。</param>
+		public YenconStringKey(string str)
+		{
+			this.Text = str?.Escape() ?? string.Empty;
+		}
+
+		/// <summary>
+		///  保持する文字列を指定して、
+		///  型'<see cref="OSDeveloper.Core.Settings.YenconStringKey"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="obj">保持する文字列に変換可能なオブジェクトです。</param>
+		public YenconStringKey(object obj)
+		{
+			this.Text = obj?.ToString()?.Escape() ?? string.Empty;
+		}
+
+		/// <summary>
 		///  このセクションまたはキーの値を取得します。
 		/// </summary>
 		/// <returns>このセクションまたはキーの値です。</returns>

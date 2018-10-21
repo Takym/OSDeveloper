@@ -23,6 +23,37 @@
 		}
 
 		/// <summary>
+		///  型'<see cref="OSDeveloper.Core.Settings.YenconNumberKey"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		public YenconNumberKey()
+		{
+			this.Count = 0;
+		}
+
+		/// <summary>
+		///  保持する数値を指定して、
+		///  型'<see cref="OSDeveloper.Core.Settings.YenconNumberKey"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="value">保持する数値です。</param>
+		public YenconNumberKey(long value)
+		{
+			this.Count = unchecked((ulong)(value));
+		}
+
+		/// <summary>
+		///  保持する数値を指定して、
+		///  型'<see cref="OSDeveloper.Core.Settings.YenconNumberKey"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="value">保持する数値です。</param>
+		public YenconNumberKey(ulong value)
+		{
+			this.Count = value;
+		}
+
+		/// <summary>
 		///  このセクションまたはキーの値を取得します。
 		/// </summary>
 		/// <returns>このセクションまたはキーの値です。</returns>

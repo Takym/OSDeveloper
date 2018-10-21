@@ -129,8 +129,14 @@
   <data name="Popup_AddNew" xml:space="preserve">
     <value>Add &amp;new key</value>
   </data>
+  <data name="Popup_ClearSelect" xml:space="preserve">
+    <value>&amp;Clear select</value>
+  </data>
   <data name="Popup_Delete" xml:space="preserve">
     <value>&amp;Delete</value>
+  </data>
+  <data name="Popup_Grid_Remove" xml:space="preserve">
+    <value>&amp;Remove selected rows</value>
   </data>
   <data name="Popup_Open" xml:space="preserve">
     <value>&amp;Open</value>

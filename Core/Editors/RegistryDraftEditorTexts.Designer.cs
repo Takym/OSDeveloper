@@ -97,11 +97,29 @@ namespace OSDeveloper.Core.Editors {
         }
         
         /// <summary>
+        ///   clear_select に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Popup_ClearSelect {
+            get {
+                return ResourceManager.GetString("Popup_ClearSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   delete に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Popup_Delete {
             get {
                 return ResourceManager.GetString("Popup_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   remove に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Popup_Grid_Remove {
+            get {
+                return ResourceManager.GetString("Popup_Grid_Remove", resourceCulture);
             }
         }
         
