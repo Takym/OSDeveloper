@@ -57,7 +57,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 
 		private void Explorer_Load(object sender, System.EventArgs e)
 		{
-			_logger.Trace("The OnLoad event of Explorer was called");
+			_logger.Trace($"executing {nameof(Explorer_Load)}...");
 			_logger.Info("Setting the tool strip bar of Explorer...");
 			tolbtnRefresh.Image = Libosdev.GetIcon("Refresh", this, out int vREF).ToBitmap();
 			tolbtnRefresh.Text = ExplorerTexts.Refresh;
@@ -89,7 +89,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 			_logger.Info($"GetIcon HResults = 0:{v0}, 1:{v1}, 2:{v2}, 3:{v3}, 4:{v4}, 5:{v5}, 6:{v6}, 7:{v7}, 8:{v8}, 9:{v9}");
 
 			_logger.Info("Explorer control was initialized");
-			_logger.Trace("Finished OnLoad event of Explorer");
+			_logger.Trace($"completed {nameof(Explorer_Load)}");
 		}
 
 		private const int IconFolder      = 0;
@@ -108,7 +108,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 		/// </summary>
 		protected virtual void OnDirectoryChanged(EventArgs e)
 		{
-			_logger.Trace("The OnDirectoryChanged event of Explorer was called");
+			_logger.Trace($"executing {nameof(OnDirectoryChanged)}...");
 
 			treeView.Nodes.Clear();
 			if (_dir != null) {
@@ -120,39 +120,39 @@ namespace OSDeveloper.Core.GraphicalUIs
 			}
 
 			this.DirectoryChanged?.Invoke(this, e);
-			_logger.Trace("Finished OnDirectoryChanged event of Explorer");
+			_logger.Trace($"completed {nameof(OnDirectoryChanged)}");
 		}
 		#endregion
 
 		#region tree view
 		private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
 		{
-			_logger.Trace("The OnAfterSelect event of the tree view in Explorer was called");
+			_logger.Trace($"executing {nameof(treeView_AfterSelect)}...");
 
-			_logger.Trace("Finished OnAfterSelect event of the tree view in Explorer");
+			_logger.Trace($"completed {nameof(treeView_AfterSelect)}");
 		}
 
 		private void treeView_AfterExpand(object sender, TreeViewEventArgs e)
 		{
-			_logger.Trace("The OnAfterExpand event of the tree view in Explorer was called");
+			_logger.Trace($"executing {nameof(treeView_AfterExpand)}...");
 
 			this.SetIcon(e.Node as FileTreeNode);
 
-			_logger.Trace("Finished OnAfterExpand event of the tree view in Explorer");
+			_logger.Trace($"completed {nameof(treeView_AfterExpand)}");
 		}
 
 		private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
 		{
-			_logger.Trace("The OnAfterCollapse event of the tree view in Explorer was called");
+			_logger.Trace($"executing {nameof(treeView_AfterCollapse)}...");
 
 			this.SetIcon(e.Node as FileTreeNode);
 
-			_logger.Trace("Finished OnAfterCollapse event of the tree view in Explorer");
+			_logger.Trace($"completed {nameof(treeView_AfterCollapse)}");
 		}
 
 		private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
 		{
-			_logger.Trace("The OnAfterLabelEdit event of the tree view in Explorer was called");
+			_logger.Trace($"executing {nameof(treeView_AfterLabelEdit)}...");
 
 			if (e.Node is FileTreeNode node) {
 				try {
@@ -167,19 +167,19 @@ namespace OSDeveloper.Core.GraphicalUIs
 				}
 			}
 
-			_logger.Trace("Finished OnAfterLabelEdit event of the tree view in Explorer");
+			_logger.Trace($"completed {nameof(treeView_AfterLabelEdit)}");
 		}
 
 		private void treeView_AfterCheck(object sender, TreeViewEventArgs e)
 		{
-			_logger.Trace("The OnAfterCheck event of the tree view in Explorer was called");
+			_logger.Trace($"executing {nameof(treeView_AfterCheck)}...");
 
-			_logger.Trace("Finished OnAfterCheck event of the tree view in Explorer");
+			_logger.Trace($"completed {nameof(treeView_AfterCheck)}");
 		}
 
 		private void treeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
 		{
-			_logger.Trace("The OnNodeMouseDoubleClick event of the tree view in Explorer was called");
+			_logger.Trace($"executing {nameof(treeView_NodeMouseDoubleClick)}...");
 
 			if (e.Node is FileTreeNode node) {
 				if (node.IsNotDir()) {
@@ -187,61 +187,61 @@ namespace OSDeveloper.Core.GraphicalUIs
 				}
 			}
 
-			_logger.Trace("Finished OnNodeMouseDoubleClick event of the tree view in Explorer");
+			_logger.Trace($"completed {nameof(treeView_NodeMouseDoubleClick)}");
 		}
 		#endregion
 
 		#region tool button
 		private void tolbtnRefresh_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Refresh button in Explorer was called");
+			_logger.Trace($"executing {nameof(tolbtnRefresh_Click)}...");
 
 			_dir.Reload();
 			this.OnDirectoryChanged(new EventArgs());
 
-			_logger.Trace("Finished OnClick event of Refresh button in Explorer");
+			_logger.Trace($"completed {nameof(tolbtnRefresh_Click)}");
 		}
 
 		private void tolbtnExpand_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Expand button in Explorer was called");
+			_logger.Trace($"executing {nameof(tolbtnExpand_Click)}...");
 
 			treeView.ExpandAll();
 
-			_logger.Trace("Finished OnClick event of Expand button in Explorer");
+			_logger.Trace($"completed {nameof(tolbtnExpand_Click)}");
 		}
 
 		private void tolbtnCollapse_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Collapse button in Explorer was called");
+			_logger.Trace($"executing {nameof(tolbtnCollapse_Click)}...");
 
 			treeView.CollapseAll();
 
-			_logger.Trace("Finished OnClick event of Collapse button in Explorer");
+			_logger.Trace($"completed {nameof(tolbtnCollapse_Click)}");
 		}
 		#endregion
 
 		#region context menu
 		private void popup_openeditor_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of OpenEditor popup-menu in Explorer was called");
+			_logger.Trace($"executing {nameof(popup_openeditor_Click)}...");
 
 			if (treeView.SelectedNode is FileTreeNode node) {
 				this.OpenEditor(node);
 			}
 
-			_logger.Trace("Finished OnClick event of OpenEditor popup-menu in Explorer");
+			_logger.Trace($"completed {nameof(popup_openeditor_Click)}");
 		}
 
 		private void popup_rename_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Rename popup-menu in Explorer was called");
+			_logger.Trace($"executing {nameof(popup_rename_Click)}...");
 
 			if (treeView.SelectedNode is FileTreeNode node) {
 				node.BeginEdit();
 			}
 
-			_logger.Trace("Finished OnClick event of Rename popup-menu in Explorer");
+			_logger.Trace($"completed {nameof(popup_rename_Click)}");
 		}
 		#endregion
 

@@ -40,7 +40,7 @@ namespace OSDeveloper.Core.Editors
 
 		private void RegistryDraftEditor_Load(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnLoad event of RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(RegistryDraftEditor_Load)}...");
 			_logger.Info("Setting the tool strip bar for RegistryDraftEditor...");
 
 			_logger.Info("Setting the control buttons of RegistryDraftEditor...");
@@ -68,79 +68,86 @@ namespace OSDeveloper.Core.Editors
 			}
 
 			_logger.Info("Explorer control was initialized");
-			_logger.Trace("Finished OnLoad event of RegistryDraftEditor");
 		}
 
 		#region コントロールボタン
 		private void btnRefresh_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Refresh button in RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(btnRefresh_Click)}...");
 
 			treeView.SelectedNode = null;
 			treeView.Sort();
 
-			_logger.Trace("Finished OnClick event of Refresh button in RegistryDraftEditor");
+			_logger.Trace($"completed {nameof(btnRefresh_Click)}");
 		}
 
 		private void btnExpand_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Expand button in RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(btnExpand_Click)}...");
 
 			treeView.ExpandAll();
 
-			_logger.Trace("Finished OnClick event of Expand button in RegistryDraftEditor");
+			_logger.Trace($"completed {nameof(btnExpand_Click)}");
 		}
 
 		private void btnCollapse_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Collapse button in RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(btnCollapse_Click)}...");
 
 			treeView.CollapseAll();
 
-			_logger.Trace("Finished OnClick event of Collapse button in RegistryDraftEditor");
+			_logger.Trace($"completed {nameof(btnCollapse_Click)}");
 		}
 		#endregion
 
 		#region ツリービュー
 		private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
 		{
-			_logger.Trace("The OnAfterLabelEdit event of the tree view in RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(treeView_AfterLabelEdit)}...");
 
 			e.Node.Name = e.Label;
 
-			_logger.Trace("Finished OnAfterLabelEdit event of the tree view in RegistryDraftEditor");
+			_logger.Trace($"completed {nameof(treeView_AfterLabelEdit)}");
 		}
 		#endregion
 
 		#region ポップアップメニュー
 		private void openMenu_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Open popup-menu in RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(openMenu_Click)}...");
 
-			_logger.Trace("Finished OnClick event of Open popup-menu in RegistryDraftEditor");
+			// 危険だけどリフレクションを使って Rows プロパティ書き換え
+			// .NET Framework v4.7.2 バージョンでは DataGridView プロパティは dataGridViewRows を利用している。
+			// https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/DataGridView.cs,2cc4e2a42be6fd3c
+
+			var t = gridView.GetType();
+			var f = t.GetField("dataGridViewRows");
+
+
+			_logger.Trace($"completed {nameof(openMenu_Click)}");
 		}
 
 		private void renameMenu_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Rename popup-menu in RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(renameMenu_Click)}...");
 
 			treeView.SelectedNode?.BeginEdit();
 
-			_logger.Trace("Finished OnClick event of Rename popup-menu in RegistryDraftEditor");
+			_logger.Trace($"completed {nameof(renameMenu_Click)}");
 		}
 
 		private void deleteMenu_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of Delete popup-menu in RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
 
 			treeView.SelectedNode?.Remove();
 
-			_logger.Trace("Finished OnClick event of Delete popup-menu in RegistryDraftEditor");
+			_logger.Trace($"completed {nameof(deleteMenu_Click)}");
 		}
 
 		private void addNewMenu_Click(object sender, EventArgs e)
 		{
-			_logger.Trace("The OnClick event of AddNew popup-menu in RegistryDraftEditor was called");
+			_logger.Trace($"executing {nameof(addNewMenu_Click)}...");
 
 			TreeNodeCollection nodes;
 			if (treeView.SelectedNode == null) {
@@ -156,26 +163,32 @@ namespace OSDeveloper.Core.Editors
 					break;
 				}
 			}
-			nodes.Add(name, name);
+			nodes.Add(new RegistryDraftTreeNode(name, gridView));
 
-			_logger.Trace("Finished OnClick event of AddNew popup-menu in RegistryDraftEditor");
+			_logger.Trace($"completed {nameof(addNewMenu_Click)}");
 		}
 		#endregion
 
 		#region データグリッドビュー
-		private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		private void gridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(gridView_CellEndEdit)}...");
 
+			_logger.Trace($"completed {nameof(gridView_CellEndEdit)}");
 		}
 
-		private void dataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+		private void gridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(gridView_RowsAdded)}...");
 
+			_logger.Trace($"completed {nameof(gridView_RowsAdded)}");
 		}
 
-		private void dataGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+		private void gridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(gridView_RowsRemoved)}...");
 
+			_logger.Trace($"completed {nameof(gridView_RowsRemoved)}");
 		}
 		#endregion
 
@@ -229,6 +242,22 @@ namespace OSDeveloper.Core.Editors
 			if (saveCurrent) this.Save();
 			this.TargetFile = new RegistryDraftFile(path);
 			this.Reload();
+		}
+		#endregion
+
+		#region TreeNodeCollection
+		private class RegistryDraftTreeNode : TreeNode
+		{
+			private DataGridViewRowCollection _rows;
+
+			public RegistryDraftTreeNode(string name, DataGridView gridView)
+			{
+				this.Name = name;
+				this.Text = name;
+				_rows = new DataGridViewRowCollection(gridView);
+			}
+
+			public DataGridViewRowCollection GetRows() => _rows;
 		}
 		#endregion
 	}

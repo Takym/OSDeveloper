@@ -39,7 +39,7 @@
 			this.btnRefresh = new System.Windows.Forms.Button();
 			this.btnExpand = new System.Windows.Forms.Button();
 			this.btnCollapse = new System.Windows.Forms.Button();
-			this.dataGridView = new System.Windows.Forms.DataGridView();
+			this.gridView = new System.Windows.Forms.DataGridView();
 			this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.type = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +49,7 @@
 			this.mainContainer.SuspendLayout();
 			this.popupMenu.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainContainer
@@ -65,7 +65,7 @@
 			// 
 			// mainContainer.Panel2
 			// 
-			this.mainContainer.Panel2.Controls.Add(this.dataGridView);
+			this.mainContainer.Panel2.Controls.Add(this.gridView);
 			this.mainContainer.Size = new System.Drawing.Size(484, 461);
 			this.mainContainer.SplitterDistance = 200;
 			this.mainContainer.TabIndex = 0;
@@ -160,22 +160,22 @@
 			this.btnCollapse.UseVisualStyleBackColor = true;
 			this.btnCollapse.Click += new System.EventHandler(this.btnCollapse_Click);
 			// 
-			// dataGridView
+			// gridView
 			// 
-			this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.gridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.identifier,
             this.type,
             this.value});
-			this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView.Location = new System.Drawing.Point(0, 0);
-			this.dataGridView.Name = "dataGridView";
-			this.dataGridView.RowTemplate.Height = 21;
-			this.dataGridView.Size = new System.Drawing.Size(280, 461);
-			this.dataGridView.TabIndex = 0;
-			this.dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEndEdit);
-			this.dataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView_RowsAdded);
-			this.dataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView_RowsRemoved);
+			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridView.Location = new System.Drawing.Point(0, 0);
+			this.gridView.Name = "gridView";
+			this.gridView.RowTemplate.Height = 21;
+			this.gridView.Size = new System.Drawing.Size(280, 461);
+			this.gridView.TabIndex = 0;
+			this.gridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellEndEdit);
+			this.gridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gridView_RowsAdded);
+			this.gridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gridView_RowsRemoved);
 			// 
 			// identifier
 			// 
@@ -214,7 +214,7 @@
 			this.mainContainer.ResumeLayout(false);
 			this.popupMenu.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -223,7 +223,7 @@
 
 		private System.Windows.Forms.SplitContainer mainContainer;
 		private System.Windows.Forms.TreeView treeView;
-		private System.Windows.Forms.DataGridView dataGridView;
+		private System.Windows.Forms.DataGridView gridView;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.Button btnRefresh;
 		private System.Windows.Forms.Button btnExpand;

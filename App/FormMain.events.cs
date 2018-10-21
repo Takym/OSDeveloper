@@ -8,6 +8,8 @@ namespace OSDeveloper.App
 	{
 		private void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(Application_ThreadException)}...");
+
 			_logger.Exception(e.Exception, true);
 			var dr = MessageBox.Show(this,
 				string.Format(DialogMessages.ThreadException, e.Exception.Message),
@@ -22,6 +24,8 @@ namespace OSDeveloper.App
 					MessageBoxIcon.Error);
 				Application.Exit();
 			}
+
+			_logger.Trace($"completed {nameof(Application_ThreadException)}");
 		}
 	}
 }

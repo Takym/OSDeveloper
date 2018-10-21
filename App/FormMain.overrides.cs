@@ -10,7 +10,7 @@ namespace OSDeveloper.App
 	{
 		protected override void OnLoad(EventArgs e)
 		{
-			_logger.Trace("The OnLoad event of FormMain was called");
+			_logger.Trace($"executing {nameof(OnLoad)}...");
 			base.OnLoad(e);
 
 			// libosdev.dll の動作確認
@@ -40,39 +40,39 @@ namespace OSDeveloper.App
 #endif
 
 			this.SetStatusMessage(MainWindowStatusMessage.Ready());
-			_logger.Trace("Finished OnLoad event of FormMain");
+			_logger.Trace($"completed {nameof(OnLoad)}");
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			_logger.Trace("The OnPaint event of FormMain was called");
+			_logger.Trace($"executing {nameof(OnPaint)}...");
 			base.OnPaint(e);
 
-			_logger.Trace("Finished OnPaint event of FormMain");
+			_logger.Trace($"completed {nameof(OnPaint)}");
 		}
 
 		protected override void OnClosing(CancelEventArgs e)
 		{
-			_logger.Trace("The OnClosing event of FormMain was called");
+			_logger.Trace($"executing {nameof(OnClosing)}...");
 			base.OnClosing(e);
 
-			_logger.Trace("Finished OnClosing event of FormMain");
+			_logger.Trace($"completed {nameof(OnClosing)}");
 		}
 
 		protected override void OnClosed(EventArgs e)
 		{
-			_logger.Trace("The OnClosed event of FormMain was called");
+			_logger.Trace($"executing {nameof(OnClosed)}...");
 			base.OnClosed(e);
 
-			_logger.Trace("Finished OnClosed event of FormMain");
+			_logger.Trace($"completed {nameof(OnClosed)}");
 		}
 
 		public override void SetStatusMessage(string msg)
 		{
-			_logger.Trace("The SetStatusMessage method of FormMain was called");
+			_logger.Trace($"executing {nameof(SetStatusMessage)}...");
 			_status_label.Text = msg;
 			_logger.Info(msg);
-			_logger.Trace("Finished SetStatusMessage method of FormMain");
+			_logger.Trace($"completed {nameof(SetStatusMessage)}");
 		}
 	}
 }
