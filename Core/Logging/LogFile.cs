@@ -16,6 +16,16 @@ namespace OSDeveloper.Core.Logging
 		private TextWriter _tw;
 
 		/// <summary>
+		///  内部ログファイルを生成しない場合は<see langword="true"/>、生成する場合は<see langword="false"/>です。
+		/// </summary>
+		public static bool NoInternalLog { get; internal set; }
+
+		/// <summary>
+		///  内部ログファイルのファイル名の種類です。
+		/// </summary>
+		public static ulong InternalNameKind { get; internal set; }
+
+		/// <summary>
 		///  このオブジェクトが破棄されているかどうかを表す論理値を取得します。
 		/// </summary>
 		protected bool IsDisposed
@@ -104,9 +114,36 @@ namespace OSDeveloper.Core.Logging
 		protected LogFile()
 		{
 			_is_disposed = false;
-			//_fname = SystemPaths.Logs.Bond($"z_internal.{Path.GetRandomFileName()}.log");
-			_fname = SystemPaths.Logs.Bond($"{DateTime.Now:yyyy-MM-dd_HH}.[{Process.GetCurrentProcess().Id}].{Guid.NewGuid()}.log");
-			_tw = new StreamWriter(_fname);
+			if (NoInternalLog) {
+				_tw = new StringWriter();
+			} else {
+				var dt = DateTime.Now;
+				var pid = Process.GetCurrentProcess().Id;
+				var guid = Guid.NewGuid();
+				var rfn = Path.GetRandomFileName();
+				switch (InternalNameKind) {
+					case 1:
+						_fname = SystemPaths.Logs.Bond($"{dt:yyyy-MM-dd_HH}.[{pid}].{guid}.log");
+						break;
+					case 2: {
+						var dir = SystemPaths.Logs.Bond($"{dt:yyyy-MMdd}");
+						Directory.CreateDirectory(dir);
+						_fname = dir.Bond($"{dt:MMdd-HH}_[{pid}].{{{guid}}}.{rfn}.log");
+						break;
+					}
+					case 3: {
+						var dir = SystemPaths.Logs.Bond($"{dt:yyyy-MMdd}");
+						Directory.CreateDirectory(dir);
+						_fname = dir.Bond($"PID:{pid}__{rfn}.log");
+						break;
+					}
+					default:
+						_fname = SystemPaths.Logs.Bond($"z_internal.{rfn}.log");
+						break;
+
+				}
+				_tw = new StreamWriter(_fname);
+			}
 			_log_datas = new List<LogData>();
 		}
 

@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Core.Settings;
@@ -16,16 +15,18 @@ namespace OSDeveloper.App
 		[STAThread()]
 		static int Main(string[] args)
 		{
-			// ロガー初期化
-			Logger l = Logger.GetSystemLogger("system");
-			l.Trace($"The application is started with command-line: {{{string.Join(", ", args)}}}");
-
 			// Application初期化
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			// システム設定適応
 			ConfigManager.ApplySystemSettings();
+
+			// ロガー初期化
+			Logger l = Logger.GetSystemLogger("system");
+			l.Trace($"The application is started with command-line: {{{string.Join(", ", args)}}}");
+			l.Trace("System.Windows.Forms.Application was initialized already");
+			l.Trace("Syatem Settings was loaded already");
 
 			// ログ用に言語情報取得
 			var tmp_culture = Thread.CurrentThread.CurrentUICulture;
@@ -39,6 +40,8 @@ namespace OSDeveloper.App
 			// システム設定をログに書き込み
 			l.Debug($"{nameof(Application)}.{nameof(Application.VisualStyleState)} = {Application.VisualStyleState}");
 			l.Debug($"{nameof(CultureInfo)}.{nameof(CultureInfo.CurrentCulture)} = {culture}");
+			l.Debug($"{nameof(LogFile)}.{nameof(LogFile.NoInternalLog)} = {LogFile.NoInternalLog}");
+			l.Debug($"{nameof(LogFile)}.{nameof(LogFile.InternalNameKind)} = {LogFile.InternalNameKind}");
 
 			// メインウィンドウ表示
 			Application.Run(new FormMain());
