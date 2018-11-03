@@ -134,7 +134,7 @@ namespace OSDeveloper.Core.Logging
 					case 3: {
 						var dir = SystemPaths.Logs.Bond($"{dt:yyyy-MMdd}");
 						Directory.CreateDirectory(dir);
-						_fname = dir.Bond($"PID:{pid}__{rfn}.log");
+						_fname = dir.Bond($"PID={pid};__{rfn}.log");
 						break;
 					}
 					default:

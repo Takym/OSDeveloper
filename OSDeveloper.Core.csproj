@@ -75,6 +75,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RegistryDraftEditorTexts.resx</DependentUpon>
     </Compile>
+    <Compile Include="Core\Editors\TextEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Editors\TextEditor.Designer.cs">
+      <DependentUpon>TextEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\Error\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,6 +102,12 @@
     <Compile Include="Core\FileManagement\IKeyNodeParser.cs" />
     <Compile Include="Core\FileManagement\IKeyNodeValue.cs" />
     <Compile Include="Core\FileManagement\Structures\RegistryDraftFile.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.Designer.cs">
+      <DependentUpon>OsdevTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\GraphicalUIs\Explorer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -190,6 +202,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegistryDraftEditorTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Core\Editors\TextEditor.resx">
+      <DependentUpon>TextEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Core\Error\ErrorMessages.en.resx" />
     <EmbeddedResource Include="Core\Error\ErrorMessages.ja.resx" />
     <EmbeddedResource Include="Core\Error\ErrorMessages.resx">
@@ -201,6 +216,9 @@
     <EmbeddedResource Include="Core\FileManagement\FileTypeNames.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FileTypeNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\Controls\OsdevTextBox.resx">
+      <DependentUpon>OsdevTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\Explorer.resx">
       <DependentUpon>Explorer.cs</DependentUpon>

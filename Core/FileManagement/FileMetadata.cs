@@ -106,7 +106,8 @@ namespace OSDeveloper.Core.FileManagement
 		/// <returns>新しく生成されたエディタウィンドウオブジェクトです。</returns>
 		public virtual EditorWindow CreateEditor(MainWindowBase mwndbase)
 		{
-			var result = new EditorWindow(mwndbase);
+			//var result = new EditorWindow(mwndbase);
+			var result = new TextEditor(mwndbase);
 			result.TargetFile = this;
 			return result;
 		}
