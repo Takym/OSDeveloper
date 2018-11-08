@@ -20,6 +20,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public OsdevTextBox()
 		{
 			InitializeComponent();
+			this.SetStyle(
+				ControlStyles.UserPaint |
+				ControlStyles.Opaque |
+				ControlStyles.ResizeRedraw |
+				ControlStyles.Selectable |
+				ControlStyles.AllPaintingInWmPaint |
+				ControlStyles.OptimizedDoubleBuffer,
+				true);
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
@@ -27,15 +35,43 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.SuspendLayout();
 			base.OnPaint(e);
 
-			using (Font f = new Font("MS Gothic", 12, FontStyle.Regular, GraphicsUnit.Point)){
+			e.Graphics.Clear(Color.Black);
+			using (Font f = new Font("MS Gothic", 12, FontStyle.Regular, GraphicsUnit.Point)) {
 				string[] lines = this.Text.CRtoLF().Split('\n');
+				{
+					int x = f.Height * 3;
+					e.Graphics.DrawLine(Pens.Salmon, x, 0, x, this.Height);
+					for (int i = 0; i < this.Width; ++i) {
+						x = i * f.Height / 2;
+						if (i % 2 == 0) {
+							e.Graphics.DrawLine(Pens.LightSalmon, x, 0, x, f.Height);
+						} else {
+							e.Graphics.DrawLine(Pens.DarkSalmon, x, 0, x, f.Height / 2);
+						}
+					}
+				}
 				for (int i = 0; i < lines.Length; ++i) {
-					int y = i * f.Height;
-					e.Graphics.DrawString(lines[i], f, Brushes.Black, new Point(0, y));
+					int y = (i + 1) * f.Height;
+					e.Graphics.DrawString($"{i + 1:D5}", f, Brushes.Salmon, new Point(0, y));
+					e.Graphics.DrawString(lines[i], f, Brushes.White, new Point(f.Height * 3, y));
 				}
 			}
 
 			this.ResumeLayout(false);
+		}
+
+		protected override void OnKeyPress(KeyPressEventArgs e)
+		{
+			base.OnKeyPress(e);
+
+			this.Text += e.KeyChar;
+			e.Handled = true;
+			this.Invalidate();
+		}
+
+		protected override void OnPaintBackground(PaintEventArgs pevent)
+		{
+			//base.OnPaintBackground(pevent);
 		}
 	}
 }
