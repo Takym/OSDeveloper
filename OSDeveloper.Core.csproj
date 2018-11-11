@@ -276,6 +276,7 @@
     <Content Include="Assets\IPAexfont00301\ipaexm.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
