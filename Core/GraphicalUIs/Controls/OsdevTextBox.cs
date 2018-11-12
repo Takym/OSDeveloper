@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using OSDeveloper.Assets;
 using OSDeveloper.Core.MiscUtils;
 
 namespace OSDeveloper.Core.GraphicalUIs.Controls
@@ -36,7 +37,10 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			base.OnPaint(e);
 
 			e.Graphics.Clear(Color.Black);
-			using (Font f = new Font("MS Gothic", 12, FontStyle.Regular, GraphicsUnit.Point)) {
+			//using (Font f = new Font("MS Gothic", 12, FontStyle.Regular, GraphicsUnit.Point))
+			using (Font f = FontResources.CreateGothic())
+			//using (Font f = FontResources.CreateSerif())
+			{
 				string[] lines = this.Text.CRtoLF().Split('\n');
 				{
 					int x = f.Height * 3;
