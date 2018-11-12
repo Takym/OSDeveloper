@@ -17,7 +17,8 @@ Copyright (C) 2018 Takym.
 ## <a id="ja_license">利用規約と個人情報保護方針</a>
 - このソフトウェアのライセンスは[GPLv3](./LICENSE.txt)です。
 - 利用するにはこれに同意する必要があります。
-- また、IPAexフォントのライセンスは[IPA Font License Agreement v1.0](./Assets/IPAexfont00301/IPA_Font_License_Agreement_v1.0.txt)です。
+- また、IPAフォントのライセンスは[IPA Font License Agreement v1.0](./Assets/IPAfont00303/IPA_Font_License_Agreement_v1.0.txt)です。
+- IPAexフォントのライセンスは[IPA Font License Agreement v1.0](./Assets/IPAexfont00301/IPA_Font_License_Agreement_v1.0.txt)です。
 
 ## <a id="ja_versions">変更履歴</a>
 |連番|バージョン|コード名|更新日時|内容|詳細|
@@ -38,7 +39,8 @@ This software is a integrated development environment to develop operating syste
 ## <a id="en_license">Terms of Service and Privacy Policy</a>
 - The license of this software is: [GPLv3](./LICENSE.txt).
 - If you would like to use this application, then you need to agree with it.
-- Also, the license of IPAex Font is: [IPA Font License Agreement v1.0](./Assets/IPAexfont00301/IPA_Font_License_Agreement_v1.0.txt).
+- Also, the license of IPA Font is: [IPA Font License Agreement v1.0](./Assets/IPAfont00303/IPA_Font_License_Agreement_v1.0.txt).
+- The license of IPAex Font is: [IPA Font License Agreement v1.0](./Assets/IPAexfont00301/IPA_Font_License_Agreement_v1.0.txt).
 
 ## <a id="en_versions">Change Log</a>
 |#|Version|Code Name|Date Modified|Subject|Details|

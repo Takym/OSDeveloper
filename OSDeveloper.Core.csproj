@@ -277,6 +277,24 @@
     <Content Include="Assets\IPAexfont00301\ipaexm.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\IPAfont00303\IPA_Font_License_Agreement_v1.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\IPAfont00303\Readme_IPAfont00303.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\IPAfont00303\ipag.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\IPAfont00303\ipagp.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\IPAfont00303\ipam.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\IPAfont00303\ipamp.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.md" />
     <None Include="packages.config" />
   </ItemGroup>

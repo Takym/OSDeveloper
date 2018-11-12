@@ -44,9 +44,6 @@ namespace OSDeveloper.App
 			l.Debug($"{nameof(LogFile)}.{nameof(LogFile.NoInternalLog)} = {LogFile.NoInternalLog}");
 			l.Debug($"{nameof(LogFile)}.{nameof(LogFile.InternalNameKind)} = {LogFile.InternalNameKind}");
 
-			// フォント読み込み
-			FontResources.Init();
-
 			// メインウィンドウ表示
 			Application.Run(new FormMain());
 

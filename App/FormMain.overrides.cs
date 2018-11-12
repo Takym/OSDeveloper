@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using OSDeveloper.Assets;
 using OSDeveloper.Core.GraphicalUIs;
 
 namespace OSDeveloper.App
@@ -17,6 +18,9 @@ namespace OSDeveloper.App
 			if (!CheckLibosdev()) {
 				return;
 			}
+
+			// FontResources生成
+			FontResources.Init();
 
 #if false//DEBUG
 			// TODO: 以下のコードは必要が無くなったら削除する。
@@ -63,6 +67,9 @@ namespace OSDeveloper.App
 		{
 			_logger.Trace($"executing {nameof(OnClosed)}...");
 			base.OnClosed(e);
+
+			// FontResources解放
+			FontResources.Final();
 
 			_logger.Trace($"completed {nameof(OnClosed)}");
 		}
