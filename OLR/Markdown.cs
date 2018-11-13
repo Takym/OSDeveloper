@@ -37,8 +37,11 @@ namespace OSDeveloper.OLR
 		///  指定された<see langword="Markdown"/>文字列を<see langword="HTML"/>に変換します。
 		/// </summary>
 		/// <param name="text">変換する<see langword="Markdown"/>文字列です。</param>
-		/// <param name="title">生成された<see langword="HTML"/>の題名です。</param>
-		/// <param name="enc">生成された<see langword="HTML"/>のヘッダー情報に埋め込まれる文字コードです。</param>
+		/// <param name="title">生成される<see langword="HTML"/>の題名です。</param>
+		/// <param name="enc">
+		///  生成される<see langword="HTML"/>のヘッダー情報に埋め込まれる文字コードです。
+		///  実際のエンコーディングは変更されません。
+		/// </param>
 		/// <param name="parser"><see langword="Markdown"/>を変換するライブラリの種類です。</param>
 		/// <returns>変換結果の<see langword="HTML"/>文字列です。</returns>
 		public string Transform(string text, string title, Encoding enc, MarkdownConverterType parser)
@@ -82,6 +85,18 @@ namespace OSDeveloper.OLR
 		{
 			return this.Transform(text, "untitled", Encoding.UTF8, MarkdownConverterType.MarkedJS);
 		}
+
+		/// <summary>
+		///  指定された<see langword="Markdown"/>文字列を<see langword="HTML"/>に変換します。
+		/// </summary>
+		/// <param name="text">変換する<see langword="Markdown"/>文字列です。</param>
+		/// <param name="title">生成される<see langword="HTML"/>の題名です。</param>
+		/// <returns>変換結果の<see langword="HTML"/>文字列です。</returns>
+		public static string Transform(string text, string title)
+		{
+			return _inst.Transform(text, title, Encoding.UTF8, MarkdownConverterType.MarkedJS);
+		}
+		private readonly static Markdown _inst = new Markdown();
 	}
 
 	/// <summary>
