@@ -15,6 +15,17 @@ namespace OSDeveloper.Assets
 		private static PrivateFontCollection _pfc;
 		private static bool _initialized;
 
+		/// <summary>
+		///  読み込んだ複数のフォントを配列形式で取得します。 
+		/// </summary>
+		public static FontFamily[] Families
+		{
+			get
+			{
+				return _pfc.Families;
+			}
+		}
+
 		static FontResources()
 		{
 			Init();
