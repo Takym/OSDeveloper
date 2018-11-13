@@ -16,6 +16,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		private readonly MainWindowBase _mwnd_base;
 		private readonly ToolStripMenuItem _newfile, _open, _reload, _save, _saveAs, _saveAll, _print, _printPreview, _exit;
 		private readonly SaveFileDialog _sfd;
+		private readonly PrintDialog _pd;
+		private readonly PrintPreviewDialog _ppd;
 
 		/// <summary>
 		///  このメニューの操作対象を指定して、
@@ -36,6 +38,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_printPreview = new ToolStripMenuItem();
 			_exit = new ToolStripMenuItem();
 			_sfd = new SaveFileDialog();
+			_pd = new PrintDialog();
+			_ppd = new PrintPreviewDialog();
 
 			_newfile.Text = MenuTexts.File_Newfile;
 			_newfile.ShortcutKeys = Keys.Control | Keys.N;
@@ -163,14 +167,39 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		private void _print_Click(object sender, EventArgs e)
 		{
 			Logger.Trace($"{nameof(FileMenuItem)}: _print begin");
-			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_print.Text));
+
+			var window = _mwnd_base.GetActiveEditor();
+			if (window is IPrintingFeature p) {
+				_pd.Reset();
+				_pd.Document = p.PrintDocument;
+				var dr = _pd.ShowDialog();
+				if (dr == DialogResult.OK) {
+					p.PrintDocument.Print();
+					_mwnd_base.SetStatusMessage(MainWindowStatusMessage.PrintStarted());
+				} else {
+					_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+				}
+			} else {
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_print.Text));
+			}
+
 			Logger.Trace($"{nameof(FileMenuItem)}: _print end");
 		}
 
 		private void _printPreview_Click(object sender, EventArgs e)
 		{
 			Logger.Trace($"{nameof(FileMenuItem)}: _printPreview begin");
-			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_printPreview.Text));
+
+			var window = _mwnd_base.GetActiveEditor();
+			if (window is IPrintingFeature p) {
+				_ppd.Document = p.PrintDocument;
+				_ppd.MdiParent = _mwnd_base;
+				_ppd.Show();
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+			} else {
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_printPreview.Text));
+			}
+
 			Logger.Trace($"{nameof(FileMenuItem)}: _printPreview end");
 		}
 

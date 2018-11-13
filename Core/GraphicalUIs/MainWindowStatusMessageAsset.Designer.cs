@@ -88,6 +88,15 @@ namespace OSDeveloper.Core.GraphicalUIs {
         }
         
         /// <summary>
+        ///   PrintStarted に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PrintStarted {
+            get {
+                return ResourceManager.GetString("PrintStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ready に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Ready {

@@ -52,5 +52,14 @@
 		{
 			return MainWindowStatusMessageAsset.AllSaved;
 		}
+
+		/// <summary>
+		///  印刷が開始された事を表します。
+		/// </summary>
+		/// <returns>翻訳済みのメッセージです。</returns>
+		public static string PrintStarted()
+		{
+			return MainWindowStatusMessageAsset.PrintStarted;
+		}
 	}
 }
