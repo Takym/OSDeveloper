@@ -36,7 +36,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 		private void _install_themepack_darkolorfuler_Click(object sender, System.EventArgs e)
 		{
-			Logger.Trace($"{nameof(ToolMenuItem)}: Installing Darkolorfuler...");
+			_logger.Trace($"{nameof(ToolMenuItem)}: Installing Darkolorfuler...");
 
 			// OSDeveloper独自のテーマパックをインストールする
 			//  - Darkolorfuler : 全体的に黒っぽいテーマ。
@@ -51,10 +51,10 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			if (dr == DialogResult.Yes) {
 				Process.Start(SystemPaths.Resources.Bond("Darkolorfuler.themepack"));
 				_mwnd_base.SetStatusMessage(MenuTexts.Tool_InstallThemepack_StatusMsg);
-				Logger.Trace($"{nameof(ToolMenuItem)}: Installed Darkolorfuler");
+				_logger.Trace($"{nameof(ToolMenuItem)}: Installed Darkolorfuler");
 			} else {
 				_mwnd_base.SetStatusMessage(MenuTexts.Tool_InstallThemepack_StatusMsg_Cancel);
-				Logger.Trace($"{nameof(ToolMenuItem)}: Canceled to install Darkolorfuler");
+				_logger.Trace($"{nameof(ToolMenuItem)}: Canceled to install Darkolorfuler");
 			}
 		}
 	}

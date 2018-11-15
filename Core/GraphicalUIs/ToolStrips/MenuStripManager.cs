@@ -15,11 +15,23 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		// ファイルを開くことが出来ないので、このクラスの宣言を各メニュークラスの先頭に設置する。
 		// OSDeveloper.App.FormMain でも似たような仕組みを使っている。
 
-		internal static readonly Logger Logger;
+		internal static readonly Logger _logger;
+		internal static bool _use_ex_dialog;
+
+		/// <summary>
+		///  印刷ダイアログの拡張モードを有効にするかどうかを表す値を取得します。
+		/// </summary>
+		public static bool UseEXDialog
+		{
+			get
+			{
+				return _use_ex_dialog;
+			}
+		}
 
 		static MenuStripManager()
 		{
-			Logger = Logger.GetSystemLogger(nameof(MenuStripManager));
+			_logger = Logger.GetSystemLogger(nameof(MenuStripManager));
 		}
 	}
 

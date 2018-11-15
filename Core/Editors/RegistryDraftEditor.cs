@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.FileManagement.Structures;
@@ -14,7 +15,7 @@ namespace OSDeveloper.Core.Editors
 	/// <summary>
 	///  レジストリの下書きを変種します。
 	/// </summary>
-	public partial class RegistryDraftEditor : EditorWindow, IFileSaveLoadFeature
+	public partial class RegistryDraftEditor : EditorWindow, IFileSaveLoadFeature, IPrintingFeature
 	{
 		private Logger _logger;
 		private YenconHeader _header;
@@ -339,6 +340,7 @@ namespace OSDeveloper.Core.Editors
 				treeView.SelectedNode = treeView.Nodes[0];
 				this.OpenNode();
 			}
+			printDoc.DocumentName = this.TargetFile.Name;
 		}
 
 		private void ReloadInternal(YenconSection section, TreeNodeCollection tnc)
@@ -372,6 +374,19 @@ namespace OSDeveloper.Core.Editors
 					r.CreateCells(gridView, name, type, data);
 					rows.Add(r);
 				}
+			}
+		}
+		#endregion
+
+		#region IPrintingFeature
+		/// <summary>
+		///  印刷に使用するドキュメントを取得します。
+		/// </summary>
+		public PrintDocument PrintDocument
+		{
+			get
+			{
+				return printDoc;
 			}
 		}
 		#endregion

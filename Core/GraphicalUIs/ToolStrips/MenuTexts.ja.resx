@@ -153,6 +153,9 @@
   <data name="File_Open" xml:space="preserve">
     <value>開く(&amp;O)</value>
   </data>
+  <data name="File_PageSetup" xml:space="preserve">
+    <value>ページ設定(&amp;U)</value>
+  </data>
   <data name="File_Print" xml:space="preserve">
     <value>印刷...(&amp;P)</value>
   </data>

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using OSDeveloper.Assets;
 using OSDeveloper.Core.GraphicalUIs;
+using OSDeveloper.Core.GraphicalUIs.ToolStrips;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Core.Settings;
 using OSDeveloper.Properties;
@@ -43,6 +44,7 @@ namespace OSDeveloper.App
 			l.Debug($"{nameof(CultureInfo)}.{nameof(CultureInfo.CurrentCulture)} = {culture}");
 			l.Debug($"{nameof(LogFile)}.{nameof(LogFile.NoInternalLog)} = {LogFile.NoInternalLog}");
 			l.Debug($"{nameof(LogFile)}.{nameof(LogFile.InternalNameKind)} = {LogFile.InternalNameKind}");
+			l.Debug($"{nameof(MenuStripManager)}.{nameof(MenuStripManager.UseEXDialog)} = {MenuStripManager.UseEXDialog}");
 
 			// メインウィンドウ表示
 			Application.Run(new FormMain());

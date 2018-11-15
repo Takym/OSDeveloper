@@ -153,6 +153,9 @@
   <data name="File_Open" xml:space="preserve">
     <value>&amp;Open</value>
   </data>
+  <data name="File_PageSetup" xml:space="preserve">
+    <value>Page Set&amp;up</value>
+  </data>
   <data name="File_Print" xml:space="preserve">
     <value>&amp;Print...</value>
   </data>

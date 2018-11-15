@@ -14,10 +14,13 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 	public class FileMenuItem : MainMenuItem
 	{
 		private readonly MainWindowBase _mwnd_base;
-		private readonly ToolStripMenuItem _newfile, _open, _reload, _save, _saveAs, _saveAll, _print, _printPreview, _exit;
+		private readonly ToolStripMenuItem _newfile, _open, _reload;
+		private readonly ToolStripMenuItem _save, _saveAs, _saveAll;
+		private readonly ToolStripMenuItem _print, _printPreview, _pageSetup;
+		private readonly ToolStripMenuItem _exit;
 		private readonly SaveFileDialog _sfd;
 		private readonly PrintDialog _pd;
-		private readonly PrintPreviewDialog _ppd;
+		private readonly PageSetupDialog _psd;
 
 		/// <summary>
 		///  このメニューの操作対象を指定して、
@@ -36,10 +39,11 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_saveAll = new ToolStripMenuItem();
 			_print = new ToolStripMenuItem();
 			_printPreview = new ToolStripMenuItem();
+			_pageSetup = new ToolStripMenuItem();
 			_exit = new ToolStripMenuItem();
 			_sfd = new SaveFileDialog();
 			_pd = new PrintDialog();
-			_ppd = new PrintPreviewDialog();
+			_psd = new PageSetupDialog();
 
 			_newfile.Text = MenuTexts.File_Newfile;
 			_newfile.ShortcutKeys = Keys.Control | Keys.N;
@@ -65,6 +69,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_printPreview.Text = MenuTexts.File_PrintPreview;
 			_printPreview.ShortcutKeys = Keys.Control | Keys.Shift | Keys.P;
 			_printPreview.Click += this._printPreview_Click;
+			_pageSetup.Text = MenuTexts.File_PageSetup;
+			_pageSetup.Click += this._pageSetup_Click;
 			_exit.Text = MenuTexts.File_Exit;
 			_exit.ShortcutKeys = Keys.Control | Keys.Shift | Keys.Alt | Keys.Escape;
 			_exit.Click += this._exit_Click;
@@ -79,27 +85,28 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_print);
 			this.DropDownItems.Add(_printPreview);
+			this.DropDownItems.Add(_pageSetup);
 			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_exit);
 		}
 
 		private void _newfile_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _newfile begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _newfile begin");
 			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_newfile.Text));
-			Logger.Trace($"{nameof(FileMenuItem)}: _newfile end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _newfile end");
 		}
 
 		private void _open_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _open begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _open begin");
 			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_open.Text));
-			Logger.Trace($"{nameof(FileMenuItem)}: _open end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _open end");
 		}
 
 		private void _reload_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _reload begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _reload begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IFileSaveLoadFeature fsl) {
@@ -109,12 +116,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_reload.Text));
 			}
 
-			Logger.Trace($"{nameof(FileMenuItem)}: _reload end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _reload end");
 		}
 
 		private void _save_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _save begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _save begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IFileSaveLoadFeature fsl) {
@@ -124,12 +131,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_save.Text));
 			}
 
-			Logger.Trace($"{nameof(FileMenuItem)}: _save end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _save end");
 		}
 
 		private void _saveAs_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _saveAs begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _saveAs begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IFileSaveLoadFeature fsl) {
@@ -146,12 +153,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_saveAs.Text));
 			}
 
-			Logger.Trace($"{nameof(FileMenuItem)}: _saveAs end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _saveAs end");
 		}
 
 		private void _saveAll_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _saveAll begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _saveAll begin");
 
 			foreach (var win in _mwnd_base.MdiChildren) {
 				var fsl = win as IFileSaveLoadFeature;
@@ -161,17 +168,18 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			}
 			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.AllSaved());
 
-			Logger.Trace($"{nameof(FileMenuItem)}: _saveAll end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _saveAll end");
 		}
 
 		private void _print_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _print begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _print begin");
 
 			var window = _mwnd_base.GetActiveEditor();
 			if (window is IPrintingFeature p) {
 				_pd.Reset();
 				_pd.Document = p.PrintDocument;
+				_pd.UseEXDialog = _use_ex_dialog;
 				var dr = _pd.ShowDialog();
 				if (dr == DialogResult.OK) {
 					p.PrintDocument.Print();
@@ -183,33 +191,51 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_print.Text));
 			}
 
-			Logger.Trace($"{nameof(FileMenuItem)}: _print end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _print end");
 		}
 
 		private void _printPreview_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _printPreview begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _printPreview begin");
 
 			var window = _mwnd_base.GetActiveEditor();
 			if (window is IPrintingFeature p) {
-				_ppd.Document = p.PrintDocument;
-				_ppd.MdiParent = _mwnd_base;
-				_ppd.Show();
+				var ppd = new PrintPreviewDialog();
+				ppd.Document = p.PrintDocument;
+				ppd.MdiParent = _mwnd_base;
+				ppd.Show();
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_printPreview.Text));
 			}
 
-			Logger.Trace($"{nameof(FileMenuItem)}: _printPreview end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _printPreview end");
+		}
+
+		private void _pageSetup_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"{nameof(FileMenuItem)}: _pageSetup begin");
+
+			var window = _mwnd_base.GetActiveEditor();
+			if (window is IPrintingFeature p) {
+				_psd.Reset();
+				_psd.Document = p.PrintDocument;
+				_psd.ShowDialog();
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+			} else {
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_pageSetup.Text));
+			}
+
+			_logger.Trace($"{nameof(FileMenuItem)}: _pageSetup end");
 		}
 
 		private void _exit_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(FileMenuItem)}: _exit begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: _exit begin");
 
 			_mwnd_base.Close();
 
-			Logger.Trace($"{nameof(FileMenuItem)}: _exit end");
+			_logger.Trace($"{nameof(FileMenuItem)}: _exit end");
 		}
 	}
 }

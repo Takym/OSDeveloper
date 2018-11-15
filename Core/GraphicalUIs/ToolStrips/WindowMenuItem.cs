@@ -52,12 +52,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 		private void _close_all_Click(object sender, EventArgs e)
 		{
-			Logger.Trace($"{nameof(WindowMenuItem)}: Closing all windows...");
+			_logger.Trace($"{nameof(WindowMenuItem)}: Closing all windows...");
 			foreach (var form in _mwnd_base.MdiChildren) {
 				form.Close();
 			}
 			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
-			Logger.Trace($"{nameof(WindowMenuItem)}: Closed all windows");
+			_logger.Trace($"{nameof(WindowMenuItem)}: Closed all windows");
 		}
 
 		private sealed class InternalMenuItem : ToolStripMenuItem
@@ -73,13 +73,13 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 			protected override void OnClick(EventArgs e)
 			{
-				Logger.Trace($"{nameof(WindowMenuItem)}: Layouting child-windows ... ({_layout})");
+				_logger.Trace($"{nameof(WindowMenuItem)}: Layouting child-windows ... ({_layout})");
 				base.OnClick(e);
 
 				_mwnd_base.LayoutMdi(_layout);
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 
-				Logger.Trace($"{nameof(WindowMenuItem)}: Layoued child-windows ({_layout})");
+				_logger.Trace($"{nameof(WindowMenuItem)}: Layoued child-windows ({_layout})");
 			}
 		}
 	}

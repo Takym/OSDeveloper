@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using OSDeveloper.Core.FileManagement;
+using OSDeveloper.Core.GraphicalUIs.ToolStrips;
 using OSDeveloper.Core.Logging;
 
 namespace OSDeveloper.Core.Settings
@@ -77,7 +78,7 @@ namespace OSDeveloper.Core.Settings
 			}
 
 			{
-				// 内ログの設定を読み込み
+				// 内部ログの設定を読み込み
 				var log_node = System.GetNode("debug_and_logs", new YenconSection(new YenconNode[] {
 					new YenconNode() { Name = "no_internal_log", Value = new YenconBooleanKey() { Flag = false } },
 					new YenconNode() { Name = "fname_kind", Value = new YenconNumberKey() { Count = 2 } }
@@ -94,6 +95,17 @@ namespace OSDeveloper.Core.Settings
 					if (fname_kind.Kind == YenconType.NumberKey) {
 						LogFile.InternalNameKind = ((YenconNumberKey)(fname_kind)).Count;
 					}
+				}
+			}
+
+			{
+				// 印刷でEXダイアログを利用するかどうか
+				var exmode_node = System.GetNode("use_exdialog", new YenconBooleanKey() {
+					Flag = true
+				});
+				if (exmode_node.Kind == YenconType.BooleanKey) {
+					YenconBooleanKey flag = ((YenconBooleanKey)(exmode_node.Value));
+					MenuStripManager._use_ex_dialog = flag.Flag;
 				}
 			}
 

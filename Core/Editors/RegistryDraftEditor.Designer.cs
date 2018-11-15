@@ -46,6 +46,7 @@
 			this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.gridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.grid_removeMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.printDoc = new System.Drawing.Printing.PrintDocument();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
 			this.mainContainer.Panel2.SuspendLayout();
@@ -269,5 +270,6 @@
 		private System.Windows.Forms.ContextMenuStrip gridMenu;
 		private System.Windows.Forms.ToolStripMenuItem grid_removeMenu;
 		private System.Windows.Forms.ToolStripMenuItem clearSelectMenu;
+		private System.Drawing.Printing.PrintDocument printDoc;
 	}
 }

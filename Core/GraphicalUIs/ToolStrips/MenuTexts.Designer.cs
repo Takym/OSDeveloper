@@ -169,6 +169,15 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips {
         }
         
         /// <summary>
+        ///   PageSetup に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_PageSetup {
+            get {
+                return ResourceManager.GetString("File_PageSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Print に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string File_Print {
