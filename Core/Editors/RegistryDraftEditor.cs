@@ -348,7 +348,7 @@ namespace OSDeveloper.Core.Editors
 			if (section == null) return;
 			foreach (var item in section.Children) {
 				YenconSection ykey = item.Value.Value as YenconSection;
-				if (section != null) {
+				if (ykey != null) {
 					var keyname = ykey["keyname"] as YenconStringKey;
 					if (keyname != null) {
 						RegistryDraftTreeNode rdtn = new RegistryDraftTreeNode(keyname.Text.Unescape());
@@ -389,6 +389,56 @@ namespace OSDeveloper.Core.Editors
 				return printDoc;
 			}
 		}
+
+		private void printDoc_PrintPage(object sender, PrintPageEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(printDoc_PrintPage)}...");
+
+			this.SaveNode();
+			var data = this.SaveInternal(treeView.Nodes);
+			this.GetKeysAsDict(data);
+
+			// <--- ???
+
+			_logger.Trace($"completed {nameof(printDoc_PrintPage)}");
+		}
+
+		private sealed class ValuesList : List<(string name, string type, string data)> { }
+		private sealed class SubkeyDict : Dictionary<string, (SubkeyDict keys, ValuesList vals)> { }
+
+		private SubkeyDict GetKeysAsDict(YenconSection section)
+		{
+			var result = new SubkeyDict();
+			foreach (var item in section.Children) {
+				YenconSection ykey = item.Value.Value as YenconSection;
+				if (ykey != null) {
+					var keyname = ykey["keyname"] as YenconStringKey;
+					if (keyname != null) {
+						var keys = this.GetKeysAsDict(ykey["subkeys"] as YenconSection);
+						var vals = this.GetValsAsDict(ykey["values"] as YenconSection);
+						result.Add(keyname.Text.Unescape(), (keys, vals));
+					}
+				}
+			}
+			return result;
+		}
+
+		private ValuesList GetValsAsDict(YenconSection section)
+		{
+			var _count = section["_count"] as YenconNumberKey;
+			if (_count == null) return null;
+			var result = new ValuesList();
+			for (int i = 0; i < ((int)(_count.Count)); ++i) {
+				var value = section[i.ToString()] as YenconSection;
+				if (value != null) {
+					string name = (value["name"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
+					string type = (value["type"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
+					string data = (value["data"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
+					result.Add((name, type, data));
+				}
+			}
+			return result;
+		}
 		#endregion
 
 		#region RegistryDraftTreeNode
@@ -408,7 +458,6 @@ namespace OSDeveloper.Core.Editors
 		#endregion
 
 		#region 共通処理
-
 		private void OpenNode()
 		{
 			if (treeView.SelectedNode != null && treeView.SelectedNode is RegistryDraftTreeNode rdtn) {
@@ -437,7 +486,6 @@ namespace OSDeveloper.Core.Editors
 				}
 			}
 		}
-
 		#endregion
 	}
 }

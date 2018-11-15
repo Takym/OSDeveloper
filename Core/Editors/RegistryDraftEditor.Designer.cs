@@ -232,6 +232,10 @@
 			this.grid_removeMenu.Text = "Remove";
 			this.grid_removeMenu.Click += new System.EventHandler(this.grid_removeMenu_Click);
 			// 
+			// printDoc
+			// 
+			this.printDoc.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDoc_PrintPage);
+			// 
 			// RegistryDraftEditor
 			// 
 			this.ClientSize = new System.Drawing.Size(484, 461);
