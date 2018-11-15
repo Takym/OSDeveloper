@@ -16,9 +16,9 @@ namespace OSDeveloper.Assets
 		private static bool _initialized;
 
 		/// <summary>
-		///  読み込んだ複数のフォントを配列形式で取得します。 
+		///  読み込んだ複数のフォントを配列形式で取得します。
 		/// </summary>
-		public static FontFamily[] Families
+		internal static FontFamily[] Families
 		{
 			get
 			{
@@ -93,6 +93,42 @@ namespace OSDeveloper.Assets
 		public static Font CreateSerif()
 		{
 			return new Font(_pfc.Families[5], 12, FontStyle.Regular, GraphicsUnit.Point);
+		}
+
+		/// <summary>
+		///  本文用フォントを新しく生成します。
+		/// </summary>
+		/// <returns>生成されたフォントオブジェクトです。</returns>
+		public static Font CreateTextFont()
+		{
+			return new Font(_pfc.Families[2], 12, FontStyle.Regular, GraphicsUnit.Point);
+		}
+
+		/// <summary>
+		///  上部見出し用フォントを新しく生成します。
+		/// </summary>
+		/// <returns>生成されたフォントオブジェクトです。</returns>
+		public static Font CreateHeaderFont()
+		{
+			return new Font(_pfc.Families[2], 24, FontStyle.Bold, GraphicsUnit.Point);
+		}
+
+		/// <summary>
+		///  下部見出し用フォントを新しく生成します。
+		/// </summary>
+		/// <returns>生成されたフォントオブジェクトです。</returns>
+		public static Font CreateFooterFont()
+		{
+			return new Font(_pfc.Families[3], 10.5F, FontStyle.Italic, GraphicsUnit.Point);
+		}
+
+		/// <summary>
+		///  小見出し用フォントを新しく生成します。
+		/// </summary>
+		/// <returns>生成されたフォントオブジェクトです。</returns>
+		public static Font CreateCaptionFont()
+		{
+			return new Font(_pfc.Families[0], 14, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point);
 		}
 	}
 }
