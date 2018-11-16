@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.Windows.Forms;
+using OSDeveloper.Assets;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.FileManagement.Structures;
 using OSDeveloper.Core.GraphicalUIs;
@@ -390,15 +392,40 @@ namespace OSDeveloper.Core.Editors
 			}
 		}
 
+		private SubkeyDict _print_root;
+
 		private void printDoc_PrintPage(object sender, PrintPageEventArgs e)
 		{
 			_logger.Trace($"executing {nameof(printDoc_PrintPage)}...");
 
-			this.SaveNode();
-			var data = this.SaveInternal(treeView.Nodes);
-			this.GetKeysAsDict(data);
+			if (_print_root == null) {
+				this.SaveNode();
+				var data = this.SaveInternal(treeView.Nodes);
+				_print_root = this.GetKeysAsDict(data);
+			}
 
-			// <--- ???
+			// TODO: 失敗作
+			using (Font h = FontResources.CreateHeaderFont()) {
+				Graphics g = e.Graphics;
+				int x = e.MarginBounds.X;
+				int y = e.MarginBounds.Y;
+				var names = _print_root.Keys.GetEnumerator();
+				var keyvals = _print_root.Values.GetEnumerator();
+				names.MoveNext();
+
+				while (names.Current != null) {
+					g.DrawString(names.Current, h, Brushes.Black, new Point(x, y));
+					names.MoveNext();
+					keyvals.MoveNext();
+					y += h.Height;
+					if (y > e.MarginBounds.Height) {
+						e.HasMorePages = true;
+						return;
+					}
+				}
+			}
+
+			_print_root = null;
 
 			_logger.Trace($"completed {nameof(printDoc_PrintPage)}");
 		}
