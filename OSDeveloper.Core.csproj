@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\FontResources.cs" />
-    <Compile Include="Core\Editors\Dictionary.cs" />
     <Compile Include="Core\Editors\EditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
