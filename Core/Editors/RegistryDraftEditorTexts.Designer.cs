@@ -140,5 +140,14 @@ namespace OSDeveloper.Core.Editors {
                 return ResourceManager.GetString("Popup_Rename", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   no values. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Print_NoVals {
+            get {
+                return ResourceManager.GetString("Print_NoVals", resourceCulture);
+            }
+        }
     }
 }

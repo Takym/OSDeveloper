@@ -126,6 +126,9 @@
   <data name="Preparing" xml:space="preserve">
     <value>Preparing</value>
   </data>
+  <data name="PrintDialogShown" xml:space="preserve">
+    <value>PrintDialogShown</value>
+  </data>
   <data name="PrintStarted" xml:space="preserve">
     <value>PrintStarted</value>
   </data>

@@ -40,13 +40,13 @@
 			this.btnRefresh = new System.Windows.Forms.Button();
 			this.btnExpand = new System.Windows.Forms.Button();
 			this.btnCollapse = new System.Windows.Forms.Button();
+			this.wb = new System.Windows.Forms.WebBrowser();
 			this.gridView = new System.Windows.Forms.DataGridView();
 			this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.type = new System.Windows.Forms.DataGridViewComboBoxColumn();
 			this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.gridMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.grid_removeMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.printDoc = new System.Drawing.Printing.PrintDocument();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
 			this.mainContainer.Panel2.SuspendLayout();
@@ -139,6 +139,7 @@
 			this.flowLayoutPanel1.Controls.Add(this.btnRefresh);
 			this.flowLayoutPanel1.Controls.Add(this.btnExpand);
 			this.flowLayoutPanel1.Controls.Add(this.btnCollapse);
+			this.flowLayoutPanel1.Controls.Add(this.wb);
 			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -174,6 +175,16 @@
 			this.btnCollapse.Text = "C";
 			this.btnCollapse.UseVisualStyleBackColor = true;
 			this.btnCollapse.Click += new System.EventHandler(this.btnCollapse_Click);
+			// 
+			// wb
+			// 
+			this.wb.Location = new System.Drawing.Point(3, 32);
+			this.wb.MinimumSize = new System.Drawing.Size(20, 20);
+			this.wb.Name = "wb";
+			this.wb.Size = new System.Drawing.Size(250, 250);
+			this.wb.TabIndex = 3;
+			this.wb.WebBrowserShortcutsEnabled = false;
+			this.wb.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wb_DocumentCompleted);
 			// 
 			// gridView
 			// 
@@ -232,10 +243,6 @@
 			this.grid_removeMenu.Text = "Remove";
 			this.grid_removeMenu.Click += new System.EventHandler(this.grid_removeMenu_Click);
 			// 
-			// printDoc
-			// 
-			this.printDoc.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDoc_PrintPage);
-			// 
 			// RegistryDraftEditor
 			// 
 			this.ClientSize = new System.Drawing.Size(484, 461);
@@ -274,6 +281,6 @@
 		private System.Windows.Forms.ContextMenuStrip gridMenu;
 		private System.Windows.Forms.ToolStripMenuItem grid_removeMenu;
 		private System.Windows.Forms.ToolStripMenuItem clearSelectMenu;
-		private System.Drawing.Printing.PrintDocument printDoc;
+		private System.Windows.Forms.WebBrowser wb;
 	}
 }

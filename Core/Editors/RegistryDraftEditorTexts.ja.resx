@@ -144,4 +144,7 @@
   <data name="Popup_Rename" xml:space="preserve">
     <value>名前の変更(&amp;M)</value>
   </data>
+  <data name="Print_NoVals" xml:space="preserve">
+    <value>このキーに値は存在しません。</value>
+  </data>
 </root>
