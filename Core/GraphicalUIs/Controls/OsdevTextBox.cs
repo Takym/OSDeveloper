@@ -70,9 +70,10 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.Invalidate();
 		}
 
-		protected override void OnPaintBackground(PaintEventArgs pevent)
+		protected override void OnPaintBackground(PaintEventArgs e)
 		{
-			//base.OnPaintBackground(pevent);
+			// 処理速度向上のため背景描画停止。
+			//base.OnPaintBackground(e);
 		}
 	}
 }
