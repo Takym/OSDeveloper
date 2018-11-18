@@ -60,6 +60,7 @@
     <Compile Include="Core\Editors\EditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Core\Editors\ICustomPrintingFeature.cs" />
     <Compile Include="Core\Editors\IPrintingFeature.cs" />
     <Compile Include="Core\Editors\ISearchReplaceFeature.cs" />
     <Compile Include="Core\Editors\IClipboardFeature.cs" />
@@ -186,11 +187,7 @@
     <Compile Include="Core\Workspace\SolutionGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\Extension\" />
-    <Folder Include="Core\Globalization\" />
-    <Folder Include="Core\Toolkits\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Core\Logging\Logger.exceptions.cs" />
   </ItemGroup>
@@ -296,6 +293,9 @@
     <Content Include="Assets\IPAfont00303\ipamp.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Core\Extension\placeholder.txt" />
+    <Content Include="Core\Globalization\placeholder.txt" />
+    <Content Include="Core\Toolkits\placeholder.txt" />
     <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.md" />
     <None Include="packages.config" />
   </ItemGroup>

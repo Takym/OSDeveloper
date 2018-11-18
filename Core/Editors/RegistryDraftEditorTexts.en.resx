@@ -144,4 +144,7 @@
   <data name="Popup_Rename" xml:space="preserve">
     <value>Rena&amp;me</value>
   </data>
+  <data name="Print_NoVals" xml:space="preserve">
+    <value>This key does not contain any values.</value>
+  </data>
 </root>

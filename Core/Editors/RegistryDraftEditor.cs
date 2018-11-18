@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Printing;
 using System.Windows.Forms;
-using OSDeveloper.Assets;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.FileManagement.Structures;
 using OSDeveloper.Core.GraphicalUIs;
@@ -17,7 +14,7 @@ namespace OSDeveloper.Core.Editors
 	/// <summary>
 	///  レジストリの下書きを変種します。
 	/// </summary>
-	public partial class RegistryDraftEditor : EditorWindow, IFileSaveLoadFeature, IPrintingFeature
+	public partial class RegistryDraftEditor : EditorWindow, IFileSaveLoadFeature, ICustomPrintingFeature
 	{
 		private Logger _logger;
 		private YenconHeader _header;
@@ -342,7 +339,6 @@ namespace OSDeveloper.Core.Editors
 				treeView.SelectedNode = treeView.Nodes[0];
 				this.OpenNode();
 			}
-			printDoc.DocumentName = this.TargetFile.Name;
 		}
 
 		private void ReloadInternal(YenconSection section, TreeNodeCollection tnc)
@@ -380,90 +376,107 @@ namespace OSDeveloper.Core.Editors
 		}
 		#endregion
 
-		#region IPrintingFeature
+		#region ICustomPrintingFeature
+		private int _print_mode;
+
 		/// <summary>
-		///  印刷に使用するドキュメントを取得します。
+		///  印刷ダイアログを表示して印刷します。
 		/// </summary>
-		public PrintDocument PrintDocument
+		public void ShowPrintDialog()
 		{
-			get
-			{
-				return printDoc;
-			}
+			wb.DocumentText = this.CreateHTML();
+			_print_mode = 1;
 		}
 
-		private SubkeyDict _print_root;
-
-		private void printDoc_PrintPage(object sender, PrintPageEventArgs e)
+		/// <summary>
+		///  印刷プレビューダイアログを表示します。
+		/// </summary>
+		public void ShowPrintPreviewDialog()
 		{
-			_logger.Trace($"executing {nameof(printDoc_PrintPage)}...");
-
-			if (_print_root == null) {
-				this.SaveNode();
-				var data = this.SaveInternal(treeView.Nodes);
-				_print_root = this.GetKeysAsDict(data);
-			}
-
-			// TODO: 失敗作
-			using (Font h = FontResources.CreateHeaderFont()) {
-				Graphics g = e.Graphics;
-				int x = e.MarginBounds.X;
-				int y = e.MarginBounds.Y;
-				var names = _print_root.Keys.GetEnumerator();
-				var keyvals = _print_root.Values.GetEnumerator();
-				names.MoveNext();
-
-				while (names.Current != null) {
-					g.DrawString(names.Current, h, Brushes.Black, new Point(x, y));
-					names.MoveNext();
-					keyvals.MoveNext();
-					y += h.Height;
-					if (y > e.MarginBounds.Height) {
-						e.HasMorePages = true;
-						return;
-					}
-				}
-			}
-
-			_print_root = null;
-
-			_logger.Trace($"completed {nameof(printDoc_PrintPage)}");
+			wb.DocumentText = this.CreateHTML();
+			_print_mode = 2;
 		}
 
-		private sealed class ValuesList : List<(string name, string type, string data)> { }
-		private sealed class SubkeyDict : Dictionary<string, (SubkeyDict keys, ValuesList vals)> { }
-
-		private SubkeyDict GetKeysAsDict(YenconSection section)
+		/// <summary>
+		///  ページ設定ダイアログを表示します。
+		/// </summary>
+		public void ShowPageSetupDialog()
 		{
-			var result = new SubkeyDict();
+			wb.DocumentText = this.CreateHTML();
+			_print_mode = 3;
+		}
+
+		private void wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+		{
+			switch (_print_mode) {
+				case 1:
+					wb.ShowPrintDialog();
+					break;
+				case 2:
+					wb.ShowPrintPreviewDialog();
+					break;
+				case 3:
+					wb.ShowPageSetupDialog();
+					break;
+			}
+			_print_mode = 0;
+		}
+
+		private string CreateHTML()
+		{
+			this.SaveNode();
+			var data = this.SaveInternal(treeView.Nodes);
+			return "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><!DOCTYPE html>"
+				+ "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>"
+				+ $"<title>{this.TargetFile.Name}</title></head><body>"
+				+ $"<h1>{this.TargetFile.FilePath}</h1>"
+				+ this.GetKeysAsHTML(data, string.Empty)
+				+ "</body></html>";
+		}
+
+		private string GetKeysAsHTML(YenconSection section, string root)
+		{
+			var result = string.Empty;
+
 			foreach (var item in section.Children) {
 				YenconSection ykey = item.Value.Value as YenconSection;
 				if (ykey != null) {
 					var keyname = ykey["keyname"] as YenconStringKey;
 					if (keyname != null) {
-						var keys = this.GetKeysAsDict(ykey["subkeys"] as YenconSection);
-						var vals = this.GetValsAsDict(ykey["values"] as YenconSection);
-						result.Add(keyname.Text.Unescape(), (keys, vals));
+						var path = $"{root}/{keyname.Text.Unescape()}";
+						result += $"<h2>{path}</h2>";
+						result += this.GetValsAsHTML(ykey["values"] as YenconSection);
+						result += this.GetKeysAsHTML(ykey["subkeys"] as YenconSection, path);
 					}
 				}
 			}
+
 			return result;
 		}
 
-		private ValuesList GetValsAsDict(YenconSection section)
+		private string GetValsAsHTML(YenconSection section)
 		{
 			var _count = section["_count"] as YenconNumberKey;
-			if (_count == null) return null;
-			var result = new ValuesList();
+			if (_count == null || ((int)(_count.Count)) == 0) {
+				return $"<p>{RegistryDraftEditorTexts.Print_NoVals}</p>";
+			}
+
+			var result = "<table border=\"1\"><thead><tr>"
+				+ $"<th>{RegistryDraftEditorTexts.DataGridView_Identifier}</th>"
+				+ $"<th>{RegistryDraftEditorTexts.DataGridView_Type}</th>"
+				+ $"<th>{RegistryDraftEditorTexts.DataGridView_Value}</th>"
+				+ "</tr></thead><tbody>";
 			for (int i = 0; i < ((int)(_count.Count)); ++i) {
 				var value = section[i.ToString()] as YenconSection;
 				if (value != null) {
 					string name = (value["name"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
 					string type = (value["type"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
 					string data = (value["data"] as YenconStringKey)?.Text?.Unescape() ?? string.Empty;
-					result.Add((name, type, data));
+					result += $"<tr><td>{name}</td><td>{type}</td><td>{data}</td></tr>";
 				}
 			}
+			result += "</tbody></table>";
+
 			return result;
 		}
 		#endregion

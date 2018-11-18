@@ -88,6 +88,15 @@ namespace OSDeveloper.Core.GraphicalUIs {
         }
         
         /// <summary>
+        ///   PrintDialogShown に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PrintDialogShown {
+            get {
+                return ResourceManager.GetString("PrintDialogShown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   PrintStarted に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PrintStarted {

@@ -144,4 +144,7 @@
   <data name="Popup_Rename" xml:space="preserve">
     <value>rename</value>
   </data>
+  <data name="Print_NoVals" xml:space="preserve">
+    <value>no values.</value>
+  </data>
 </root>

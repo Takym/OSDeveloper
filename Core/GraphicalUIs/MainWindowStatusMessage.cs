@@ -61,5 +61,14 @@
 		{
 			return MainWindowStatusMessageAsset.PrintStarted;
 		}
+
+		/// <summary>
+		///  印刷ダイアログが表示された事を表します。
+		/// </summary>
+		/// <returns>翻訳済みのメッセージです。</returns>
+		public static string PrintDialogShown()
+		{
+			return MainWindowStatusMessageAsset.PrintDialogShown;
+		}
 	}
 }

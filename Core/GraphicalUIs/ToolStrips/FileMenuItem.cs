@@ -187,6 +187,10 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				} else {
 					_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 				}
+			} else if (window is ICustomPrintingFeature cp) {
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.PrintDialogShown());
+				cp.ShowPrintDialog();
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_print.Text));
 			}
@@ -205,6 +209,9 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				ppd.MdiParent = _mwnd_base;
 				ppd.Show();
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+			} else if (window is ICustomPrintingFeature cp) {
+				cp.ShowPrintPreviewDialog();
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_printPreview.Text));
 			}
@@ -221,6 +228,9 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_psd.Reset();
 				_psd.Document = p.PrintDocument;
 				_psd.ShowDialog();
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+			} else if (window is ICustomPrintingFeature cp) {
+				cp.ShowPageSetupDialog();
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_pageSetup.Text));
