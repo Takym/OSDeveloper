@@ -2,6 +2,7 @@
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.Logging;
+using OSDeveloper.Core.MiscUtils;
 using OSDeveloper.Native;
 
 namespace OSDeveloper.Core.Editors
@@ -52,7 +53,7 @@ namespace OSDeveloper.Core.Editors
 		/// <param name="parent">親ウィンドウです。</param>
 		public EditorWindow(MainWindowBase parent)
 		{
-			if (this.DesignMode) {
+			if (this.DesignMode || WinFormUtils.DesignMode) {
 				_parent = parent;
 				if (parent != null) base.MdiParent = parent;
 				this.Text = "EditorWindow (* this editor window is design mode!)";

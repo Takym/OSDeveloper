@@ -76,16 +76,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public override void ResetFont()
 		{
 			_font?.Dispose();
-			if (this.DesignMode) {
+			if (this.DesignMode || WinFormUtils.DesignMode) {
 				_font = new Font("MS Gothic", 16, FontStyle.Regular, GraphicsUnit.Pixel);
 			} else {
 				_font = FontResources.CreateGothic();
 			}
 			base.Font = _font;
 		}
-#endregion
+		#endregion
 
-#region カーソル
+		#region カーソル
 		/// <summary>
 		///  限定のカーソルを取得します。
 		/// </summary>
@@ -104,9 +104,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			this.Cursor = this.DefaultCursor;
 		}
-#endregion
+		#endregion
 
-#region RTL言語
+		#region RTL言語
 		/// <summary>
 		///  このコントロールでは文字列を右から左に表示する事はできません。
 		/// </summary>
@@ -131,9 +131,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			base.RightToLeft = RightToLeft.No;
 		}
-#endregion
+		#endregion
 
-#region 文字色
+		#region 文字色
 		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.BackColor"/>プロパティを限定値にリセットします。
 		/// </summary>
@@ -149,6 +149,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			this.ForeColor = Color.White;
 		}
-#endregion
+		#endregion
 	}
 }

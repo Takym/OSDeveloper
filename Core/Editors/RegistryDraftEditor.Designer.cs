@@ -248,6 +248,7 @@
 			this.ClientSize = new System.Drawing.Size(484, 461);
 			this.Controls.Add(this.mainContainer);
 			this.Name = "RegistryDraftEditor";
+			this.Text = "RegistryDraftEditor";
 			this.Load += new System.EventHandler(this.RegistryDraftEditor_Load);
 			this.mainContainer.Panel1.ResumeLayout(false);
 			this.mainContainer.Panel2.ResumeLayout(false);

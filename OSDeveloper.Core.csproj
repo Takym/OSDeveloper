@@ -167,6 +167,7 @@
     <Compile Include="Core\Logging\MultipleLogFile.cs" />
     <Compile Include="Core\Logging\ProcessReportRecordFile.cs" />
     <Compile Include="Core\MiscUtils\ArrayUtils.cs" />
+    <Compile Include="Core\MiscUtils\WinFormUtils.cs" />
     <Compile Include="Core\MiscUtils\StringUtils.cs" />
     <Compile Include="Core\Settings\ConfigManager.cs" />
     <Compile Include="Core\Settings\Serialization\Attributes.cs" />
