@@ -32,9 +32,13 @@
 			// 
 			// osdevTextBox1
 			// 
+			this.osdevTextBox1.BackColor = System.Drawing.Color.Black;
 			this.osdevTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.osdevTextBox1.Lines = new string[] {
+        "osdevTextBox1"};
 			this.osdevTextBox1.Location = new System.Drawing.Point(0, 0);
 			this.osdevTextBox1.Name = "osdevTextBox1";
+			this.osdevTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.osdevTextBox1.Size = new System.Drawing.Size(800, 450);
 			this.osdevTextBox1.TabIndex = 0;
 			this.osdevTextBox1.Text = "osdevTextBox1";

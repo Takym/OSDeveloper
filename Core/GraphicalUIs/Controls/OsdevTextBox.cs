@@ -10,6 +10,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 {
 	/// <summary>
 	///  <see langword="OSDeveloper"/>のテキストエディタで利用される専用のテキストボックスです。
+	///  このコントロールはデザイナで編集する事はできません。
 	/// </summary>
 	[Docking(DockingBehavior.Ask)]
 	[DefaultProperty(nameof(Text))]
@@ -53,12 +54,60 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		private string[] _lines;
 
 		/// <summary>
+		///  このテキストボックスに表示されるテキストデータのフォントを取得します。
+		///  このプロパティを変更しても反映されません。
+		/// </summary>
+		public override Font Font
+		{
+			get
+			{
+				return _font;
+			}
+
+			set
+			{
+				// 変更不可能。
+				// overrideしている為、setterも実装する必要がある。
+			}
+		}
+		private Font _font;
+
+		/// <summary>
+		///  限定のカーソルを取得します。
+		/// </summary>
+		protected override Cursor DefaultCursor
+		{
+			get
+			{
+				return Cursors.IBeam;
+			}
+		}
+
+		/// <summary>
+		///  このコントロールでは文字列を右から左に表示する事はできません。
+		/// </summary>
+		public override RightToLeft RightToLeft
+		{
+			get
+			{
+				return RightToLeft.No;
+			}
+
+			set
+			{
+				// 変更不可能。
+				// overrideしている為、setterも実装する必要がある。
+			}
+		}
+
+
+		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox"/>'の
 		///  新しいインスタンスを生成します。
 		/// </summary>
 		public OsdevTextBox()
 		{
-			InitializeComponent();
+			this.InitializeComponent();
 			this.SetStyle(
 				ControlStyles.UserPaint |
 				ControlStyles.Opaque |
@@ -68,6 +117,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.OptimizedDoubleBuffer,
 				true);
+			this.ResetFont();
+			this.ResetBackColor();
+			this.ResetForeColor();
+			this.ResetCursor();
+			this.ResetRightToLeft();
 		}
 
 		/// <summary>
@@ -140,6 +194,48 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
 			// 処理速度向上のため背景描画停止。
+		}
+
+		/// <summary>
+		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.Font"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public override void ResetFont()
+		{
+			_font?.Dispose();
+			_font = FontResources.CreateGothic();
+			base.Font = _font;
+		}
+
+		/// <summary>
+		///  <see cref="System.Windows.Forms.Control.BackColor"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public override void ResetBackColor()
+		{
+			this.BackColor = Color.Black;
+		}
+
+		/// <summary>
+		///  <see cref="System.Windows.Forms.Control.BackColor"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public override void ResetForeColor()
+		{
+			this.BackColor = Color.White;
+		}
+
+		/// <summary>
+		///  <see cref="System.Windows.Forms.Control.Cursor"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public override void ResetCursor()
+		{
+			this.Cursor = this.DefaultCursor;
+		}
+
+		/// <summary>
+		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.RightToLeft"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public override void ResetRightToLeft()
+		{
+			base.RightToLeft = RightToLeft.No;
 		}
 	}
 }
