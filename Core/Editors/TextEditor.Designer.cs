@@ -27,29 +27,24 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.osdevTextBox1 = new OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox();
+			this.tbox = new OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox();
 			this.SuspendLayout();
 			// 
-			// osdevTextBox1
+			// tbox
 			// 
-			this.osdevTextBox1.BackColor = System.Drawing.Color.Black;
-			this.osdevTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.osdevTextBox1.Lines = new string[] {
-        "osdevTextBox1"};
-			this.osdevTextBox1.Location = new System.Drawing.Point(0, 0);
-			this.osdevTextBox1.Name = "osdevTextBox1";
-			this.osdevTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.osdevTextBox1.Size = new System.Drawing.Size(800, 450);
-			this.osdevTextBox1.TabIndex = 0;
-			this.osdevTextBox1.Text = "osdevTextBox1";
-			this.osdevTextBox1.TextChanged += new System.EventHandler(this.osdevTextBox1_TextChanged);
+			this.tbox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbox.Location = new System.Drawing.Point(0, 0);
+			this.tbox.Name = "tbox";
+			this.tbox.Size = new System.Drawing.Size(800, 450);
+			this.tbox.TabIndex = 0;
+			this.tbox.Text = "abcd\nHello, World!!\nThe quick brown fox jumped over the lazy dogs.\n0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\thoge\tfuga\tpiyo\tfoobar\nテストてすとUnicodeの実験文字文字文字あいうえおｶｷｸｹｺ\n";
 			// 
 			// TextEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.osdevTextBox1);
+			this.Controls.Add(this.tbox);
 			this.Name = "TextEditor";
 			this.Text = "TextEditor";
 			this.Load += new System.EventHandler(this.TextEditor_Load);
@@ -59,6 +54,6 @@
 
 		#endregion
 
-		private GraphicalUIs.Controls.OsdevTextBox osdevTextBox1;
+		private GraphicalUIs.Controls.OsdevTextBox tbox;
 	}
 }

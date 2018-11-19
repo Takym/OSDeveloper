@@ -83,7 +83,7 @@ namespace OSDeveloper.Assets
 		/// <returns>生成されたフォントオブジェクトです。</returns>
 		public static Font CreateGothic()
 		{
-			return new Font(_pfc.Families[4], 12, FontStyle.Regular, GraphicsUnit.Point);
+			return new Font(_pfc.Families[4], 16, FontStyle.Regular, GraphicsUnit.Pixel);
 		}
 
 		/// <summary>
@@ -92,7 +92,7 @@ namespace OSDeveloper.Assets
 		/// <returns>生成されたフォントオブジェクトです。</returns>
 		public static Font CreateSerif()
 		{
-			return new Font(_pfc.Families[5], 12, FontStyle.Regular, GraphicsUnit.Point);
+			return new Font(_pfc.Families[5], 16, FontStyle.Regular, GraphicsUnit.Pixel);
 		}
 
 		/// <summary>

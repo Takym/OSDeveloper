@@ -6,7 +6,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 {
 	/// <summary>
 	///  <see langword="OSDeveloper"/>のテキストエディタで利用される専用のテキストボックスです。
-	///  このコントロールはデザイナで編集する事はできません。
 	/// </summary>
 	[Docking(DockingBehavior.Ask)]
 	[DefaultProperty(nameof(Text))]

@@ -52,28 +52,34 @@ namespace OSDeveloper.Core.Editors
 		/// <param name="parent">親ウィンドウです。</param>
 		public EditorWindow(MainWindowBase parent)
 		{
-			_logger = Logger.GetSystemLogger(this.GetType().Name);
-			_parent = parent;
-			_target = null;
-
-			if (parent != null) { // nullでなければ、MDI子ウィンドウにする
-				_logger.Debug($"MDI Parent = {parent.GetType().FullName}, Name:{parent.Name}, Text:{parent.Text}");
-				base.MdiParent = parent;
-			}
-
-			_logger.Info("Loading the icon...");
-			this.Icon = Libosdev.GetIcon("EditorWindow", this, out int v0);
-			_logger.Info("HResult = " + v0);
-
-			if (this.GetType().Equals(typeof(EditorWindow))) { // 自分自身なら
-				this.Text = "<Base Object of EditorWindow>";
+			if (this.DesignMode) {
+				_parent = parent;
+				if (parent != null) base.MdiParent = parent;
+				this.Text = "EditorWindow (* this editor window is design mode!)";
 			} else {
-				this.Text = this.GetType().Name;
-			}
+				_logger = Logger.GetSystemLogger(this.GetType().Name);
+				_parent = parent;
+				_target = null;
 
-			_logger.Info("New editor window is initialized");
-			_logger.Notice($"The class type of this window is: {this.GetType().FullName}");
-			_logger.Notice($"The caption of this window is: {this.Text}");
+				if (parent != null) { // nullでなければ、MDI子ウィンドウにする
+					_logger.Debug($"MDI Parent = {parent.GetType().FullName}, Name:{parent.Name}, Text:{parent.Text}");
+					base.MdiParent = parent;
+				}
+
+				_logger.Info("Loading the icon...");
+				this.Icon = Libosdev.GetIcon("EditorWindow", this, out int v0);
+				_logger.Info("HResult = " + v0);
+
+				if (this.GetType().Equals(typeof(EditorWindow))) { // 自分自身なら
+					this.Text = "<Base Object of EditorWindow>";
+				} else {
+					this.Text = this.GetType().Name;
+				}
+
+				_logger.Info("New editor window is initialized");
+				_logger.Notice($"The class type of this window is: {this.GetType().FullName}");
+				_logger.Notice($"The caption of this window is: {this.Text}");
+			}
 		}
 
 		/// <summary>
@@ -81,10 +87,6 @@ namespace OSDeveloper.Core.Editors
 		///  型'<see cref="OSDeveloper.Core.Editors.EditorWindow"/>'の
 		///  新しいインスタンスを生成します。
 		/// </summary>
-		public EditorWindow()
-#if !DEBUG
-			: this(null)
-#endif
-		{ }
+		public EditorWindow() : this(null) { }
 	}
 }

@@ -12,17 +12,12 @@ namespace OSDeveloper.Core.Editors
 
 		private void TextEditor_Load(object sender, EventArgs e)
 		{
-			osdevTextBox1.Text = "abcd\n"
-			                   + "Hello, World!!\n"
-			                   + "The quick brown fox jumped over the lazy dogs.\n"
-			                   + "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
-			                   + "\thoge\tfuga\tpiyo\tfoobar\n"
-			                   + "テストてすとUnicodeの実験文字文字文字あいうえおｶｷｸｹｺ\n";
-		}
-
-		private void osdevTextBox1_TextChanged(object sender, EventArgs e)
-		{
-
+			tbox.Text = "abcd\n"
+			          + "Hello, World!!\n"
+			          + "The quick brown fox jumped over the lazy dogs.\n"
+			          + "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
+			          + "\thoge\tfuga\tpiyo\tfoobar\n"
+			          + "テストてすとUnicodeの実験文字文字文字あいうえおｶｷｸｹｺ\n";
 		}
 	}
 }
