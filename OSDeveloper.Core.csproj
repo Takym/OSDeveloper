@@ -296,6 +296,7 @@
     <Content Include="Core\Extension\placeholder.txt" />
     <Content Include="Core\Globalization\placeholder.txt" />
     <Content Include="Core\Toolkits\placeholder.txt" />
+    <Content Include="Core\Workspace\Debugging\placeholder.txt" />
     <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.md" />
     <None Include="packages.config" />
   </ItemGroup>
