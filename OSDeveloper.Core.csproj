@@ -111,6 +111,8 @@
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.Designer.cs">
       <DependentUpon>OsdevTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.drawing.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.keyboard.cs" />
     <Compile Include="Core\GraphicalUIs\Explorer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -298,6 +300,7 @@
     <Content Include="Core\Toolkits\placeholder.txt" />
     <Content Include="Core\Workspace\Debugging\placeholder.txt" />
     <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.md" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.properties.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

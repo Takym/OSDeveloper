@@ -1,10 +1,6 @@
-﻿#pragma warning disable CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします
-using System;
+﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
-using OSDeveloper.Assets;
-using OSDeveloper.Core.MiscUtils;
 
 namespace OSDeveloper.Core.GraphicalUIs.Controls
 {
@@ -17,90 +13,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 	[DefaultEvent(nameof(TextChanged))]
 	public partial class OsdevTextBox : Control
 	{
-		/// <summary>
-		///  このテキストボックスに格納されている文字列を取得または設定します。
-		/// </summary>
-		public override string Text
-		{
-			get
-			{
-				return base.Text;
-			}
-
-			set
-			{
-				_lines = value.CRtoLF().Split('\n');
-				base.Text = value;
-			}
-		}
-
-		/// <summary>
-		///  このテキストボックスに格納されているテキスト行を取得または設定します。
-		///  配列の値には改行コード(LFやCR等)を含む場合は無視されます。
-		/// </summary>
-		public string[] Lines
-		{
-			get
-			{
-				return _lines;
-			}
-
-			set
-			{
-				_lines = value;
-				base.Text = string.Join("\r\n", value);
-			}
-		}
-		private string[] _lines;
-
-		/// <summary>
-		///  このテキストボックスに表示されるテキストデータのフォントを取得します。
-		///  このプロパティを変更しても反映されません。
-		/// </summary>
-		public override Font Font
-		{
-			get
-			{
-				return _font;
-			}
-
-			set
-			{
-				// 変更不可能。
-				// overrideしている為、setterも実装する必要がある。
-			}
-		}
-		private Font _font;
-
-		/// <summary>
-		///  限定のカーソルを取得します。
-		/// </summary>
-		protected override Cursor DefaultCursor
-		{
-			get
-			{
-				return Cursors.IBeam;
-			}
-		}
-
-		/// <summary>
-		///  このコントロールでは文字列を右から左に表示する事はできません。
-		/// </summary>
-		public override RightToLeft RightToLeft
-		{
-			get
-			{
-				return RightToLeft.No;
-			}
-
-			set
-			{
-				// 変更不可能。
-				// overrideしている為、setterも実装する必要がある。
-			}
-		}
-
-
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox"/>'の
 		///  新しいインスタンスを生成します。
@@ -125,56 +37,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		}
 
 		/// <summary>
-		///  <see cref="System.Windows.Forms.Control.Paint"/>イベントを発生させます。
-		/// </summary>
-		/// <param name="e">
-		///  イベントデータを格納している<see cref="System.Windows.Forms.PaintEventArgs"/>オブジェクトです。
-		/// </param>
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			this.SuspendLayout();
-			base.OnPaint(e);
-
-			e.Graphics.Clear(Color.Black);
-			using (Font f = FontResources.CreateGothic()) {
-				string[] lines = this.Text.CRtoLF().Split('\n');
-				{
-					int x = f.Height * 3;
-					e.Graphics.DrawLine(Pens.Salmon, x, 0, x, this.Height);
-					for (int i = 0; i < this.Width; ++i) {
-						x = i * f.Height / 2;
-						if (i % 2 == 0) {
-							e.Graphics.DrawLine(Pens.LightSalmon, x, 0, x, f.Height);
-						} else {
-							e.Graphics.DrawLine(Pens.DarkSalmon, x, 0, x, f.Height / 2);
-						}
-					}
-				}
-				for (int i = 0; i < lines.Length; ++i) {
-					int y = (i + 1) * f.Height;
-					e.Graphics.DrawString($"{i + 1:D5}", f, Brushes.Salmon, new Point(0, y));
-					e.Graphics.DrawString(lines[i], f, Brushes.White, new Point(f.Height * 3, y));
-				}
-			}
-
-			this.ResumeLayout(false);
-		}
-
-		/// <summary>
-		///  <see cref="System.Windows.Forms.Control.KeyPress"/>イベントを発生させます。
-		/// </summary>
-		/// <param name="e">
-		///  イベントデータを格納している<see cref="System.Windows.Forms.KeyPressEventArgs"/>オブジェクトです。
-		/// </param>
-		protected override void OnKeyPress(KeyPressEventArgs e)
-		{
-			base.OnKeyPress(e);
-
-			this.Text += e.KeyChar;
-			e.Handled = true;
-		}
-
-		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.TextChanged"/>イベントを発生させます。
 		/// </summary>
 		/// <param name="e">
@@ -186,6 +48,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.Invalidate();
 		}
 
+#pragma warning disable CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします
 		/// <summary>
 		///  背景描画イベントを無効化します。
 		/// </summary>
@@ -195,47 +58,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			// 処理速度向上のため背景描画停止。
 		}
-
-		/// <summary>
-		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.Font"/>プロパティを限定値にリセットします。
-		/// </summary>
-		public override void ResetFont()
-		{
-			_font?.Dispose();
-			_font = FontResources.CreateGothic();
-			base.Font = _font;
-		}
-
-		/// <summary>
-		///  <see cref="System.Windows.Forms.Control.BackColor"/>プロパティを限定値にリセットします。
-		/// </summary>
-		public override void ResetBackColor()
-		{
-			this.BackColor = Color.Black;
-		}
-
-		/// <summary>
-		///  <see cref="System.Windows.Forms.Control.BackColor"/>プロパティを限定値にリセットします。
-		/// </summary>
-		public override void ResetForeColor()
-		{
-			this.BackColor = Color.White;
-		}
-
-		/// <summary>
-		///  <see cref="System.Windows.Forms.Control.Cursor"/>プロパティを限定値にリセットします。
-		/// </summary>
-		public override void ResetCursor()
-		{
-			this.Cursor = this.DefaultCursor;
-		}
-
-		/// <summary>
-		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.RightToLeft"/>プロパティを限定値にリセットします。
-		/// </summary>
-		public override void ResetRightToLeft()
-		{
-			base.RightToLeft = RightToLeft.No;
-		}
+#pragma warning restore CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします
 	}
 }
