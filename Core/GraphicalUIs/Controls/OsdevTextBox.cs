@@ -28,13 +28,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 			set
 			{
-				base.Text = value;
 				_lines = value.CRtoLF().Split('\n');
+				base.Text = value;
 			}
 		}
 
 		/// <summary>
-		///  このテキストボックスに格納されている文字列を取得または設定します。
+		///  このテキストボックスに格納されているテキスト行を取得または設定します。
+		///  配列の値には改行コード(LFやCR等)を含む場合は無視されます。
 		/// </summary>
 		public string[] Lines
 		{
@@ -47,7 +48,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			{
 				_lines = value;
 				base.Text = string.Join("\r\n", value);
-				this.OnTextChanged(new EventArgs());
 			}
 		}
 		private string[] _lines;
@@ -64,6 +64,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				ControlStyles.Opaque |
 				ControlStyles.ResizeRedraw |
 				ControlStyles.Selectable |
+				ControlStyles.UserMouse |
 				ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.OptimizedDoubleBuffer,
 				true);
@@ -117,7 +118,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 			this.Text += e.KeyChar;
 			e.Handled = true;
-			this.Invalidate();
 		}
 
 		/// <summary>
