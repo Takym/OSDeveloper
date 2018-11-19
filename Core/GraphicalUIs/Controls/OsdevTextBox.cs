@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿#pragma warning disable CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします
+using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using OSDeveloper.Assets;
@@ -31,6 +33,12 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				true);
 		}
 
+		/// <summary>
+		///  <see cref="System.Windows.Forms.Control.Paint"/>イベントを発生させます。
+		/// </summary>
+		/// <param name="e">
+		///  イベントデータを格納している<see cref="System.Windows.Forms.PaintEventArgs"/>オブジェクトです。
+		/// </param>
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			this.SuspendLayout();
@@ -61,6 +69,12 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.ResumeLayout(false);
 		}
 
+		/// <summary>
+		///  <see cref="System.Windows.Forms.Control.KeyPress"/>イベントを発生させます。
+		/// </summary>
+		/// <param name="e">
+		///  イベントデータを格納している<see cref="System.Windows.Forms.KeyPressEventArgs"/>オブジェクトです。
+		/// </param>
 		protected override void OnKeyPress(KeyPressEventArgs e)
 		{
 			base.OnKeyPress(e);
@@ -70,10 +84,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.Invalidate();
 		}
 
+		/// <summary>
+		///  背景描画イベントを無効化します。
+		/// </summary>
+		/// <param name="e">利用されていません。互換性の為に存在しています。</param>
+		[Obsolete("このクラスでは背景描画イベントは利用されていません。")]
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
 			// 処理速度向上のため背景描画停止。
-			//base.OnPaintBackground(e);
 		}
 	}
 }
