@@ -68,7 +68,7 @@ namespace OSDeveloper.Core.Editors
 			if (this.GetType().Equals(typeof(EditorWindow))) { // 自分自身なら
 				this.Text = "<Base Object of EditorWindow>";
 			} else {
-				this.Text = this.GetType().FullName;
+				this.Text = this.GetType().Name;
 			}
 
 			_logger.Info("New editor window is initialized");

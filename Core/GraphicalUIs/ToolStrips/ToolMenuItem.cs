@@ -23,6 +23,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		/// <param name="mwndBase">このメニューの親ウィンドウです。</param>
 		public ToolMenuItem(MainWindowBase mwndBase)
 		{
+			_logger.Info($"creating a {nameof(ToolMenuItem)}...");
+
 			_mwnd_base = mwndBase;
 			_install_themepack_darkolorfuler = new ToolStripMenuItem();
 
@@ -32,6 +34,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_install_themepack_darkolorfuler);
 			this.DropDownItems.Add(new ToolStripSeparator());
+
+			_logger.Info($"{nameof(ToolMenuItem)} is created successfully");
 		}
 
 		private void _install_themepack_darkolorfuler_Click(object sender, System.EventArgs e)

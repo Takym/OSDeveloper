@@ -23,6 +23,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		/// <param name="mwndBase">このメニューの親ウィンドウです。</param>
 		public WindowMenuItem(MainWindowBase mwndBase)
 		{
+			_logger.Info($"creating a {nameof(WindowMenuItem)}...");
+
 			_mwnd_base = mwndBase;
 			_icons = new InternalMenuItem(mwndBase, MdiLayout.ArrangeIcons);
 			_cascade = new InternalMenuItem(mwndBase, MdiLayout.Cascade);
@@ -48,6 +50,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(_vert);
 			this.DropDownItems.Add(_close_all);
 			this.DropDownItems.Add(new ToolStripSeparator());
+
+			_logger.Info($"{nameof(WindowMenuItem)} is created successfully");
 		}
 
 		private void _close_all_Click(object sender, EventArgs e)

@@ -26,6 +26,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		/// <param name="mwndBase">このメニューの親ウィンドウです。</param>
 		public EditMenuItem(MainWindowBase mwndBase)
 		{
+			_logger.Info($"creating a {nameof(EditMenuItem)}...");
+
 			_mwnd_base = mwndBase;
 			_undo = new ToolStripMenuItem();
 			_redo = new ToolStripMenuItem();
@@ -77,6 +79,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(_clear_selection);
 			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_find);
+
+			_logger.Info($"{nameof(EditMenuItem)} is created successfully");
 		}
 
 		private void _undo_Click(object sender, EventArgs e)
