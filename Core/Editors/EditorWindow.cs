@@ -53,7 +53,7 @@ namespace OSDeveloper.Core.Editors
 		/// <param name="parent">親ウィンドウです。</param>
 		public EditorWindow(MainWindowBase parent)
 		{
-			if (this.DesignMode || WinFormUtils.DesignMode) {
+			if (this.IsDesignMode()) {
 				_parent = parent;
 				if (parent != null) base.MdiParent = parent;
 				this.Text = "EditorWindow (* this editor window is design mode!)";

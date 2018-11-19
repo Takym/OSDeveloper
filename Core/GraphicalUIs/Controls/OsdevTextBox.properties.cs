@@ -76,7 +76,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public override void ResetFont()
 		{
 			_font?.Dispose();
-			if (this.DesignMode || WinFormUtils.DesignMode) {
+			if (this.IsDesignMode()) {
 				_font = new Font("MS Gothic", 16, FontStyle.Regular, GraphicsUnit.Pixel);
 			} else {
 				_font = FontResources.CreateGothic();
