@@ -78,6 +78,74 @@ namespace OSDeveloper.Assets
 		}
 
 		/// <summary>
+		///  フォント名からフォントファミリを検索して返します。
+		/// </summary>
+		/// <param name="name">検索するフォントの名前です。</param>
+		/// <returns>
+		///  フォントが見つかった場合はそのフォントを表す<see cref="System.Drawing.FontFamily"/>オブジェクト、
+		///  見つからなかった場合は<see langword="null"/>です。
+		/// </returns>
+		public static FontFamily GetFontFromName(string name)
+		{
+			foreach (var item in _pfc.Families) {
+				if (item.Name == name) {
+					return item;
+				}
+			}
+			return null;
+		}
+
+		/// <summary>
+		///  フォント名からフォントファミリを検索して返します。
+		///  フォント名の言語をLCID形式で指定する事ができます。
+		/// </summary>
+		/// <param name="name">検索するフォントの名前です。</param>
+		/// <param name="lcid">フォント名の言語のLCIDです。</param>
+		/// <returns>
+		///  フォントが見つかった場合はそのフォントを表す<see cref="System.Drawing.FontFamily"/>オブジェクト、
+		///  見つからなかった場合は<see langword="null"/>です。
+		/// </returns>
+		public static FontFamily GetFontFromName(string name, int lcid)
+		{
+			foreach (var item in _pfc.Families) {
+				if (item.GetName(lcid) == name) {
+					return item;
+				}
+			}
+			return null;
+		}
+
+		/// <summary>
+		///  フォント名からフォントファミリを検索して返します。
+		///  フォント名の言語をISO言語コード形式で指定する事ができます。
+		/// </summary>
+		/// <param name="name">検索するフォントの名前です。</param>
+		/// <param name="lang">フォント名の言語のISO言語コードです。</param>
+		/// <returns>
+		///  フォントが見つかった場合はそのフォントを表す<see cref="System.Drawing.FontFamily"/>オブジェクト、
+		///  見つからなかった場合は<see langword="null"/>です。
+		/// </returns>
+		public static FontFamily GetFontFromName(string name, string lang)
+		{
+			return GetFontFromName(name, CultureInfo.GetCultureInfo(lang).LCID);
+		}
+
+		/// <summary>
+		///  フォント名からフォントファミリを検索して返します。
+		///  フォント名の言語のカルチャを指定する事ができます。
+		/// </summary>
+		/// <param name="name">検索するフォントの名前です。</param>
+		/// <param name="cult">フォント名の言語のカルチャ情報オブジェクトです。</param>
+		/// <returns>
+		///  フォントが見つかった場合はそのフォントを表す<see cref="System.Drawing.FontFamily"/>オブジェクト、
+		///  見つからなかった場合は<see langword="null"/>です。
+		/// </returns>
+		public static FontFamily GetFontFromName(string name, CultureInfo cult)
+		{
+			return GetFontFromName(name, cult.LCID);
+		}
+
+		/// <summary>
 		///  ゴシック体のフォントを新しく生成します。
 		/// </summary>
 		/// <returns>生成されたフォントオブジェクトです。</returns>
