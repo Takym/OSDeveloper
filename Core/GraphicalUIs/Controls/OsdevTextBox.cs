@@ -9,13 +9,49 @@ using OSDeveloper.Core.MiscUtils;
 namespace OSDeveloper.Core.GraphicalUIs.Controls
 {
 	/// <summary>
-	///  <see langword="OSDeveloper"/>専用のテキストエディタです。
+	///  <see langword="OSDeveloper"/>のテキストエディタで利用される専用のテキストボックスです。
 	/// </summary>
 	[Docking(DockingBehavior.Ask)]
 	[DefaultProperty(nameof(Text))]
 	[DefaultEvent(nameof(TextChanged))]
 	public partial class OsdevTextBox : Control
 	{
+		/// <summary>
+		///  このテキストボックスに格納されている文字列を取得または設定します。
+		/// </summary>
+		public override string Text
+		{
+			get
+			{
+				return base.Text;
+			}
+
+			set
+			{
+				base.Text = value;
+				_lines = value.CRtoLF().Split('\n');
+			}
+		}
+
+		/// <summary>
+		///  このテキストボックスに格納されている文字列を取得または設定します。
+		/// </summary>
+		public string[] Lines
+		{
+			get
+			{
+				return _lines;
+			}
+
+			set
+			{
+				_lines = value;
+				base.Text = string.Join("\r\n", value);
+				this.OnTextChanged(new EventArgs());
+			}
+		}
+		private string[] _lines;
+
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox"/>'の
 		///  新しいインスタンスを生成します。
@@ -81,6 +117,18 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 			this.Text += e.KeyChar;
 			e.Handled = true;
+			this.Invalidate();
+		}
+
+		/// <summary>
+		///  <see cref="System.Windows.Forms.Control.TextChanged"/>イベントを発生させます。
+		/// </summary>
+		/// <param name="e">
+		///  イベントデータを格納している<see cref="System.EventArgs"/>オブジェクトです。
+		/// </param>
+		protected override void OnTextChanged(EventArgs e)
+		{
+			base.OnTextChanged(e);
 			this.Invalidate();
 		}
 
