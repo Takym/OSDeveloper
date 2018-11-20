@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using OSDeveloper.Core.GraphicalUIs.Controls.Design;
 
 namespace OSDeveloper.Core.GraphicalUIs.Controls
 {
@@ -7,6 +8,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 	///  <see langword="OSDeveloper"/>独自のコントロールで利用されるカラーテーマを定義します。
 	///  このカラーテーマには三つの基本色が含まれます。
 	/// </summary>
+	[TypeConverter(typeof(OsdevColorThemeConverter))]
 	public class OsdevColorTheme
 	{
 		/// <summary>

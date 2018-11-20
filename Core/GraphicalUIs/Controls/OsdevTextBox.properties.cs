@@ -158,6 +158,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		[Browsable(true)]
 		[Category(nameof(CategoryAttribute.Appearance))]
 		[Description("グリッドのカラーテーマを変更します。")]
+		[DefaultValue(typeof(OsdevColorTheme), "Salmon")]
 		public OsdevColorTheme GridColor { get; set; }
 
 		/// <summary>
