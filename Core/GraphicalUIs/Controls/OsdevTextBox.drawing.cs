@@ -20,17 +20,19 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			e.Graphics.Clear(this.BackColor);
 			int fh = _font.Height, fw = fh / 2;
 
-			using (Pen a = new Pen(this.GridColor.Light))
-			using (Pen b = new Pen(this.GridColor.Dark))
-			using (Pen c = new Pen(this.GridColor.Normal)) {
+			using (Pen a = new Pen(_grid_col.Light))
+			using (Pen b = new Pen(_grid_col.Dark))
+			using (Pen c = new Pen(_grid_col.Normal)) {
 				this.DrawGrid(e.Graphics, fh, fw, a, b, c);
 			}
 
+			// !!! <未完成>
 			for (int i = 0; i < _lines.Length; ++i) {
 				int y = (i + 1) * _font.Height;
 				e.Graphics.DrawString($"{i + 1:D5}", _font, Brushes.Salmon, new Point(0, y));
 				e.Graphics.DrawString(_lines[i], _font, new SolidBrush(this.ForeColor), new Point(_font.Height * 3, y));
 			}
+			// !!! </未完成>
 
 			this.ResumeLayout(false);
 		}

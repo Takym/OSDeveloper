@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using OSDeveloper.Assets;
@@ -156,7 +157,20 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		///  画面上に表示されるグリッドの色を取得または設定します。
 		/// </summary>
 		[Browsable(false)]
-		public OsdevColorTheme GridColor { get; set; }
+		public OsdevColorTheme GridColor
+		{
+			get
+			{
+				return _grid_col;
+			}
+
+			set
+			{
+				_grid_col = value;
+				this.OnGridColorChanged(new EventArgs());
+			}
+		}
+		private OsdevColorTheme _grid_col;
 
 		/// <summary>
 		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.GridColor"/>プロパティを限定値にリセットします。
