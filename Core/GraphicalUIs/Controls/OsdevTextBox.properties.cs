@@ -34,7 +34,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		[Browsable(true)]
 		[Category(nameof(CategoryAttribute.Appearance))]
 		[Description("このテキストボックスに格納されているテキスト行を表します。")]
-		public string[] Lines
+		public virtual string[] Lines
 		{
 			get
 			{
@@ -73,7 +73,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <summary>
 		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.Font"/>プロパティを限定値にリセットします。
 		/// </summary>
-		public override void ResetFont()
+		public sealed override void ResetFont()
 		{
 			_font?.Dispose();
 			if (this.IsDesignMode()) {
@@ -89,7 +89,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <summary>
 		///  限定のカーソルを取得します。
 		/// </summary>
-		protected override Cursor DefaultCursor
+		protected sealed override Cursor DefaultCursor
 		{
 			get
 			{
@@ -100,7 +100,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.Cursor"/>プロパティを限定値にリセットします。
 		/// </summary>
-		public override void ResetCursor()
+		public sealed override void ResetCursor()
 		{
 			this.Cursor = this.DefaultCursor;
 		}
@@ -127,7 +127,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <summary>
 		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.RightToLeft"/>プロパティを限定値にリセットします。
 		/// </summary>
-		public override void ResetRightToLeft()
+		public sealed override void ResetRightToLeft()
 		{
 			base.RightToLeft = RightToLeft.No;
 		}
@@ -148,6 +148,24 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public override void ResetForeColor()
 		{
 			this.ForeColor = Color.White;
+		}
+		#endregion
+
+		#region カラーテーマ
+		/// <summary>
+		///  画面上に表示されるグリッドの色を取得または設定します。
+		/// </summary>
+		[Browsable(true)]
+		[Category(nameof(CategoryAttribute.Appearance))]
+		[Description("グリッドのカラーテーマを変更します。")]
+		public OsdevColorTheme GridColor { get; set; }
+
+		/// <summary>
+		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.GridColor"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public virtual void ResetGridColor()
+		{
+			this.GridColor = OsdevColorThemes.Salmon;
 		}
 		#endregion
 	}

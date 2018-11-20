@@ -32,12 +32,27 @@
 			// 
 			// tbox
 			// 
+			this.tbox.BackColor = System.Drawing.Color.Black;
+			this.tbox.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.tbox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tbox.Font = new System.Drawing.Font("ＭＳ ゴシック", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.tbox.ForeColor = System.Drawing.Color.White;
+			this.tbox.Lines = new string[] {
+        "abcd",
+        "Hello, World!!",
+        "The quick brown fox jumped over the lazy dogs.",
+        "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "\thoge\tfuga\tpiyo\tfoobar",
+        "テストてすとUnicodeの実験文字文字文字あいうえおｶｷｸｹｺ",
+        ""};
 			this.tbox.Location = new System.Drawing.Point(0, 0);
 			this.tbox.Name = "tbox";
+			this.tbox.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.tbox.Size = new System.Drawing.Size(800, 450);
 			this.tbox.TabIndex = 0;
-			this.tbox.Text = "abcd\nHello, World!!\nThe quick brown fox jumped over the lazy dogs.\n0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ\n\thoge\tfuga\tpiyo\tfoobar\nテストてすとUnicodeの実験文字文字文字あいうえおｶｷｸｹｺ\n";
+			this.tbox.Text = "abcd\nHello, World!!\nThe quick brown fox jumped over the lazy dogs.\n0123456789 ABC" +
+    "DEFGHIJKLMNOPQRSTUVWXYZ\n\thoge\tfuga\tpiyo\tfoobar\nテストてすとUnicodeの実験文字文字文字あいうえおｶｷｸｹｺ\n" +
+    "";
 			// 
 			// TextEditor
 			// 

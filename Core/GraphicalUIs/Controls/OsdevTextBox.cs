@@ -33,6 +33,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.ResetForeColor();
 			this.ResetCursor();
 			this.ResetRightToLeft();
+			this.ResetGridColor();
 		}
 
 		/// <summary>
