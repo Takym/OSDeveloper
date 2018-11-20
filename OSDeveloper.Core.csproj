@@ -105,7 +105,6 @@
     <Compile Include="Core\FileManagement\IKeyNodeParser.cs" />
     <Compile Include="Core\FileManagement\IKeyNodeValue.cs" />
     <Compile Include="Core\FileManagement\Structures\RegistryDraftFile.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\Design\OsdevColorThemeConverter.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorTheme.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorThemes.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.cs">
