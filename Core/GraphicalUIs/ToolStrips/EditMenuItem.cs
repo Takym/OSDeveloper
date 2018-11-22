@@ -85,7 +85,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 		private void _undo_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _undo begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_undo)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IUndoRedoFeature urf) {
@@ -95,12 +95,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_undo.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _undo end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_undo)} end");
 		}
 
 		private void _redo_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _redo begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_redo)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IUndoRedoFeature urf) {
@@ -110,12 +110,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_redo.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _redo end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_redo)} end");
 		}
 
 		private void _copy_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _copy begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_copy)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IClipboardFeature cf) {
@@ -125,12 +125,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_copy.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _copy end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_copy)} end");
 		}
 
 		private void _paste_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _paste begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_paste)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IClipboardFeature cf) {
@@ -140,12 +140,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_paste.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _paste end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_paste)} end");
 		}
 
 		private void _cut_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _cut begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_cut)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IClipboardFeature cf) {
@@ -155,12 +155,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_cut.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _cut end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_cut)} end");
 		}
 
 		private void _delete_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _delete begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_delete)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IClipboardFeature cf) {
@@ -170,12 +170,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_delete.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _delete end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_delete)} end");
 		}
 
 		private void _select_all_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _select_all begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_select_all)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is ISelectionFeature sf) {
@@ -185,12 +185,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_select_all.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _select_all end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_select_all)} end");
 		}
 
 		private void _clear_selection_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _clear_selection begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_clear_selection)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is ISelectionFeature sf) {
@@ -200,12 +200,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_clear_selection.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _clear_selection end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_clear_selection)} end");
 		}
 
 		private void _find_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(EditMenuItem)}: _find begin");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_find)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is ISearchReplaceFeature srf) {
@@ -217,7 +217,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_find.Text));
 			}
 
-			_logger.Trace($"{nameof(EditMenuItem)}: _find end");
+			_logger.Trace($"{nameof(EditMenuItem)}: {nameof(_find)} end");
 		}
 	}
 }

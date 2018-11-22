@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActiveCaptured" xml:space="preserve">
+    <value>「{0}」が正常にキャプチャされました。画像はクリップボードにあります。</value>
+  </data>
   <data name="AllSaved" xml:space="preserve">
     <value>エディタで開いている全てのファイルが正常に保存されました。</value>
+  </data>
+  <data name="EntireCaptured" xml:space="preserve">
+    <value>画面全体が正常にキャプチャされました。画像はクリップボードにあります。</value>
   </data>
   <data name="FileSaved" xml:space="preserve">
     <value>「{0}」は正常に保存されました。</value>

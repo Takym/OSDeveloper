@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActiveCaptured" xml:space="preserve">
+    <value>"{0}" was captured on the clipboard.</value>
+  </data>
   <data name="AllSaved" xml:space="preserve">
     <value>All files were saved successfully.</value>
+  </data>
+  <data name="EntireCaptured" xml:space="preserve">
+    <value>The main window was captured on the clipboard.</value>
   </data>
   <data name="FileSaved" xml:space="preserve">
     <value>"{0}" was saved successfully.</value>

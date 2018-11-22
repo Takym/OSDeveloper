@@ -142,6 +142,24 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips {
         }
         
         /// <summary>
+        ///   CaptureActive に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_CaptureActive {
+            get {
+                return ResourceManager.GetString("File_CaptureActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   CaptureEntire に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_CaptureEntire {
+            get {
+                return ResourceManager.GetString("File_CaptureEntire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Exit に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string File_Exit {

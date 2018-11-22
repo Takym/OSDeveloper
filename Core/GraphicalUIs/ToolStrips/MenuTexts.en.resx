@@ -144,6 +144,12 @@
   <data name="Edit_Undo" xml:space="preserve">
     <value>&amp;Undo</value>
   </data>
+  <data name="File_CaptureActive" xml:space="preserve">
+    <value>&amp;Capture an active window or control</value>
+  </data>
+  <data name="File_CaptureEntire" xml:space="preserve">
+    <value>&amp;Capture the entire screen</value>
+  </data>
   <data name="File_Exit" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>

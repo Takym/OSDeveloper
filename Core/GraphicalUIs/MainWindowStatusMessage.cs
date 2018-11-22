@@ -70,5 +70,24 @@
 		{
 			return MainWindowStatusMessageAsset.PrintDialogShown;
 		}
+
+		/// <summary>
+		///  画面全体が正常にキャプチャされた事を表します。
+		/// </summary>
+		/// <returns>翻訳済みのメッセージです。</returns>
+		public static string EntireCaptured()
+		{
+			return MainWindowStatusMessageAsset.EntireCaptured;
+		}
+
+		/// <summary>
+		///  アクティブウィンドウまたはコントロールが正常にキャプチャされた事を表します。
+		/// </summary>
+		/// <param name="caption">アクティブウィンドウまたはコントロールの表示名です。</param>
+		/// <returns>翻訳済みのメッセージです。</returns>
+		public static string ActiveCaptured(string caption)
+		{
+			return string.Format(MainWindowStatusMessageAsset.ActiveCaptured, caption);
+		}
 	}
 }

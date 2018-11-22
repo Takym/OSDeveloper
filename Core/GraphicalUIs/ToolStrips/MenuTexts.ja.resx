@@ -144,6 +144,12 @@
   <data name="Edit_Undo" xml:space="preserve">
     <value>元に戻す(&amp;U)</value>
   </data>
+  <data name="File_CaptureActive" xml:space="preserve">
+    <value>アクティブウィンドウまたはコントロールをキャプチャ</value>
+  </data>
+  <data name="File_CaptureEntire" xml:space="preserve">
+    <value>画面全体をキャプチャ(&amp;C)</value>
+  </data>
   <data name="File_Exit" xml:space="preserve">
     <value>終了(&amp;X)</value>
   </data>

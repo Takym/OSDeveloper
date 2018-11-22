@@ -61,11 +61,29 @@ namespace OSDeveloper.Core.GraphicalUIs {
         }
         
         /// <summary>
+        ///   ActiveCaptured {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ActiveCaptured {
+            get {
+                return ResourceManager.GetString("ActiveCaptured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   AllSaved に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string AllSaved {
             get {
                 return ResourceManager.GetString("AllSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   EntireCaptured に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EntireCaptured {
+            get {
+                return ResourceManager.GetString("EntireCaptured", resourceCulture);
             }
         }
         

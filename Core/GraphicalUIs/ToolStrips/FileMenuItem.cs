@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.FileManagement;
+using OSDeveloper.Native;
 using static OSDeveloper.Core.GraphicalUIs.ToolStrips.MenuStripManager;
 
 namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
@@ -17,6 +18,7 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 		private readonly ToolStripMenuItem _newfile, _open, _reload;
 		private readonly ToolStripMenuItem _save, _saveAs, _saveAll;
 		private readonly ToolStripMenuItem _print, _printPreview, _pageSetup;
+		private readonly ToolStripMenuItem _capture_entire, _capture_active;
 		private readonly ToolStripMenuItem _exit;
 		private readonly SaveFileDialog _sfd;
 		private readonly PrintDialog _pd;
@@ -42,6 +44,8 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_print = new ToolStripMenuItem();
 			_printPreview = new ToolStripMenuItem();
 			_pageSetup = new ToolStripMenuItem();
+			_capture_entire = new ToolStripMenuItem();
+			_capture_active = new ToolStripMenuItem();
 			_exit = new ToolStripMenuItem();
 			_sfd = new SaveFileDialog();
 			_pd = new PrintDialog();
@@ -73,6 +77,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_printPreview.Click += this._printPreview_Click;
 			_pageSetup.Text = MenuTexts.File_PageSetup;
 			_pageSetup.Click += this._pageSetup_Click;
+			_capture_entire.Text = MenuTexts.File_CaptureEntire;
+			_capture_entire.ShortcutKeys = Keys.Shift | Keys.F1;
+			_capture_entire.Click += this._capture_entire_Click;
+			_capture_active.Text = MenuTexts.File_CaptureActive;
+			_capture_active.ShortcutKeys = Keys.Shift | Keys.F2;
+			_capture_active.Click += this._capture_active_Click;
 			_exit.Text = MenuTexts.File_Exit;
 			_exit.ShortcutKeys = Keys.Control | Keys.Shift | Keys.Alt | Keys.Escape;
 			_exit.Click += this._exit_Click;
@@ -89,6 +99,9 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(_printPreview);
 			this.DropDownItems.Add(_pageSetup);
 			this.DropDownItems.Add(new ToolStripSeparator());
+			this.DropDownItems.Add(_capture_entire);
+			this.DropDownItems.Add(_capture_active);
+			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_exit);
 
 			_logger.Info($"{nameof(FileMenuItem)} is created successfully");
@@ -96,21 +109,21 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 		private void _newfile_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _newfile begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_newfile)} begin");
 			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_newfile.Text));
-			_logger.Trace($"{nameof(FileMenuItem)}: _newfile end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_newfile)} end");
 		}
 
 		private void _open_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _open begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_open)} begin");
 			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_open.Text));
-			_logger.Trace($"{nameof(FileMenuItem)}: _open end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_open)} end");
 		}
 
 		private void _reload_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _reload begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_reload)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IFileSaveLoadFeature fsl) {
@@ -120,12 +133,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_reload.Text));
 			}
 
-			_logger.Trace($"{nameof(FileMenuItem)}: _reload end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_reload)} end");
 		}
 
 		private void _save_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _save begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_save)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IFileSaveLoadFeature fsl) {
@@ -135,12 +148,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_save.Text));
 			}
 
-			_logger.Trace($"{nameof(FileMenuItem)}: _save end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_save)} end");
 		}
 
 		private void _saveAs_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _saveAs begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_saveAs)} begin");
 
 			var editor = _mwnd_base.GetActiveEditor();
 			if (editor is IFileSaveLoadFeature fsl) {
@@ -157,12 +170,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_saveAs.Text));
 			}
 
-			_logger.Trace($"{nameof(FileMenuItem)}: _saveAs end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_saveAs)} end");
 		}
 
 		private void _saveAll_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _saveAll begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_saveAll)} begin");
 
 			foreach (var win in _mwnd_base.MdiChildren) {
 				var fsl = win as IFileSaveLoadFeature;
@@ -172,12 +185,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			}
 			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.AllSaved());
 
-			_logger.Trace($"{nameof(FileMenuItem)}: _saveAll end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_saveAll)} end");
 		}
 
 		private void _print_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _print begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_print)} begin");
 
 			var window = _mwnd_base.GetActiveEditor();
 			if (window is IPrintingFeature p) {
@@ -199,12 +212,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_print.Text));
 			}
 
-			_logger.Trace($"{nameof(FileMenuItem)}: _print end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_print)} end");
 		}
 
 		private void _printPreview_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _printPreview begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_printPreview)} begin");
 
 			var window = _mwnd_base.GetActiveEditor();
 			if (window is IPrintingFeature p) {
@@ -220,12 +233,12 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_printPreview.Text));
 			}
 
-			_logger.Trace($"{nameof(FileMenuItem)}: _printPreview end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_printPreview)} end");
 		}
 
 		private void _pageSetup_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _pageSetup begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_pageSetup)} begin");
 
 			var window = _mwnd_base.GetActiveEditor();
 			if (window is IPrintingFeature p) {
@@ -240,16 +253,43 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_pageSetup.Text));
 			}
 
-			_logger.Trace($"{nameof(FileMenuItem)}: _pageSetup end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_pageSetup)} end");
+		}
+
+		private void _capture_entire_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_capture_entire)} begin");
+
+			var img = User32.CaptureControl(_mwnd_base);
+			Clipboard.SetImage(img);
+			_mwnd_base.SetStatusMessage(MainWindowStatusMessage.EntireCaptured());
+
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_capture_entire)} end");
+		}
+
+		private void _capture_active_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_capture_active)} begin");
+
+			var c = _mwnd_base.ActiveControl ?? _mwnd_base.ActiveMdiChild;
+			if (c != null) {
+				var img = User32.CaptureControl(c);
+				Clipboard.SetImage(img);
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.ActiveCaptured($"{c.Text}/{c.Name}"));
+			} else {
+				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+			}
+
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_capture_active)} end");
 		}
 
 		private void _exit_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"{nameof(FileMenuItem)}: _exit begin");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_exit)} begin");
 
 			_mwnd_base.Close();
 
-			_logger.Trace($"{nameof(FileMenuItem)}: _exit end");
+			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_exit)} end");
 		}
 	}
 }
