@@ -42,6 +42,23 @@ namespace OSDeveloper.Native
 		}
 
 		/// <summary>
+		///  <see langword="USER32.DLL"/>内のAPIを呼び出します。
+		/// </summary>
+		public static class User32
+		{
+			/// <summary>
+			///  このクラスで読み込むライブラリのファイルパスを取得します。
+			/// </summary>
+			public const string Path = "C:\\Windows\\System32\\user32.dll";
+
+			public const uint PW_CLIENTONLY        = 0x00000001;
+			public const uint PW_RENDERFULLCONTENT = 0x00000002;
+
+			[DllImport(Path)]
+			public static extern bool PrintWindow(IntPtr hwnd, IntPtr hdcBlt, uint nFlags);
+		}
+
+		/// <summary>
 		///  <see langword="LIBOSDEV.DLL"/>内のAPIを呼び出します。
 		/// </summary>
 		public static class Libosdev
@@ -193,6 +210,15 @@ namespace OSDeveloper.Native
 			/// <returns>アイコンハンドルを表す型'<see cref="System.IntPtr"/>'の値です。</returns>
 			[DllImport(Path)]
 			public extern static IntPtr osdev_getIcon(uint dwIconID, IntPtr hWnd, out uint pdwHResult);
+
+			/// <summary>
+			///  指定されたキーコードをコントロールに送信します。
+			/// </summary>
+			/// <param name="hCtrl">送信先のコントロールです。</param>
+			/// <param name="nKeyCode">送信するキーのキーコードです。</param>
+			/// <param name="nModifier">送信する修飾キーのキーコードです。</param>
+			[DllImport(Path)]
+			public extern static void osdev_sendKey(IntPtr hCtrl, uint nKeyCode, uint nModifier);
 		}
 	}
 }

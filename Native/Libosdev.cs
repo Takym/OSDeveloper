@@ -181,6 +181,18 @@ namespace OSDeveloper.Native
 			hResult = ((int)(pdwHRes));
 			return Icon.FromHandle(p);
 		}
+
+		/// <summary>
+		///  指定されたキーを指定されたコントロールに送信します。
+		/// </summary>
+		/// <param name="ctrl">送信対象のコントロールです。</param>
+		/// <param name="key">送信するキーコードです。 </param>
+		public static void SendKey(Control ctrl, Keys key)
+		{
+			uint k = ((uint)(key & Keys.KeyCode));
+			uint mod = ((uint)(key & Keys.Modifiers));
+			osdev_sendKey(ctrl.Handle, k, mod);
+		}
 	}
 
 	/// <summary>

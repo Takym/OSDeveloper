@@ -64,13 +64,21 @@ extern "C" {
 #endif // __cplusplus
 
 	// ライブラリの状態を確認します。
+	// 戻り値：ライブラリの状態を表す番号です。
 	LIBOSDEV_API(LIB_STATE) osdev_checkStatus(void);
 
 	// 指定されたIDのアイコンを取得します。
+	// 戻り値：アイコンハンドルを表す型HICONの値です。
 	LIBOSDEV_API(HICON) osdev_getIcon(
 		DWORD  dwIconID,    // 取得するアイコンのリソースIDから1000を引いた値です。
 		HWND   hWnd,        // エラーダイアログを表示する場合は、親ウィンドウのハンドル、表示しない場合、NULLを指定します。
 		PDWORD pdwHResult); // エラーが発生した場合、そのエラーの番号が代入されます。
+
+	// 指定されたキーコードをコントロールに送信します。
+	LIBOSDEV_API(void) osdev_sendKey(
+		HWND hCtrl,              // 送信先のコントロールです。
+		unsigned int nKeyCode,   // 送信するキーのキーコードです。
+		unsigned int nModifier); // 送信する修飾キーのキーコードです。
 
 #if __cplusplus
 }
