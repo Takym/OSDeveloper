@@ -38,14 +38,17 @@
 			this.vScrollBar.Name = "vScrollBar";
 			this.vScrollBar.Size = new System.Drawing.Size(17, 80);
 			this.vScrollBar.TabIndex = 0;
+			this.vScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar_Scroll);
 			// 
 			// hScrollBar
 			// 
 			this.hScrollBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.hScrollBar.Enabled = false;
 			this.hScrollBar.Location = new System.Drawing.Point(0, 0);
 			this.hScrollBar.Name = "hScrollBar";
 			this.hScrollBar.Size = new System.Drawing.Size(80, 17);
 			this.hScrollBar.TabIndex = 0;
+			this.hScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar_Scroll);
 			this.ResumeLayout(false);
 
 		}

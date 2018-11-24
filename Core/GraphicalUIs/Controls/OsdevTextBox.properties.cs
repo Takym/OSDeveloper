@@ -25,6 +25,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			{
 				_lines = value.CRtoLF().Split('\n');
 				base.Text = value;
+				vScrollBar.Maximum = _lines.Length;
 			}
 		}
 
@@ -46,9 +47,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			{
 				_lines = value;
 				base.Text = string.Join("\r\n", value);
+				vScrollBar.Maximum = _lines.Length;
 			}
 		}
 		private string[] _lines;
+		private int _line;
 		#endregion
 
 		#region フォント

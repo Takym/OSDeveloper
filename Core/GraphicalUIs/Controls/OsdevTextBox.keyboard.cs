@@ -15,7 +15,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			base.OnKeyPress(e);
 
-			this.Text += e.KeyChar;
+			if (e.KeyChar == '\b') {
+				if (this.Text.Length != 0) {
+					this.Text = this.Text.Substring(0, this.Text.Length - 1);
+				}
+			} else {
+				this.Text += e.KeyChar;
+			}
+			_line = _lines.Length - this.Height / _font.Height + 2;
+			if (_line < 0) _line = 0;
+			this.Invalidate();
 			e.Handled = true;
 		}
 	}

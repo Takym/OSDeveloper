@@ -34,6 +34,12 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.ResetCursor();
 			this.ResetRightToLeft();
 			this.ResetGridColor();
+
+			// スクロールバー設定
+			hScrollBar.Cursor = Cursors.Arrow;
+			vScrollBar.Cursor = Cursors.Arrow;
+			this.Controls.Add(hScrollBar);
+			this.Controls.Add(vScrollBar);
 		}
 
 		/// <summary>
@@ -48,13 +54,24 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.Invalidate();
 		}
 
+		private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
+		{
+
+		}
+
+		private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
+		{
+			_line = e.NewValue;
+			this.Invalidate();
+		}
+
 #pragma warning disable CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします
 		/// <summary>
 		///  背景描画イベントを無効化します。
 		/// </summary>
 		/// <param name="e">利用されていません。互換性の為に存在しています。</param>
 		[Obsolete("このクラスでは背景描画イベントは利用されていません。")]
-		protected override void OnPaintBackground(PaintEventArgs e)
+		protected sealed override void OnPaintBackground(PaintEventArgs e)
 		{
 			// 処理速度向上のため背景描画停止。
 		}

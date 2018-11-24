@@ -26,13 +26,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				this.DrawGrid(e.Graphics, fh, fw, a, b, c);
 			}
 
-			// !!! <未完成>
-			for (int i = 0; i < _lines.Length; ++i) {
-				int y = (i + 1) * _font.Height;
-				e.Graphics.DrawString($"{i + 1:D5}", _font, Brushes.Salmon, new Point(0, y));
-				e.Graphics.DrawString(_lines[i], _font, new SolidBrush(this.ForeColor), new Point(_font.Height * 3, y));
+			using (SolidBrush l = new SolidBrush(_grid_col.Normal))
+			using (SolidBrush t = new SolidBrush(this.ForeColor)) {
+				int y = fh;
+				for (int i = _line; i < _lines.Length; ++i) {
+					e.Graphics.DrawString($"{i + 1:D5}", _font, l, new Point(0, y));
+					this.DrawTextLine(e.Graphics, fh, fw, i, y, t);
+					y += fh;
+					if (y >= this.Height) return;
+				}
 			}
-			// !!! </未完成>
 
 			this.ResumeLayout(false);
 		}
@@ -55,6 +58,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 					}
 				}
 			}
+		}
+
+		private void DrawTextLine(Graphics g, int fh, int fw, int i, int y, SolidBrush t)
+		{
+			g.DrawString(_lines[i], _font, t, new Point(fw * 6, y));
 		}
 	}
 }
