@@ -24,6 +24,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			}
 			_line = _lines.Length - this.Height / _font.Height + 2;
 			if (_line < 0) _line = 0;
+			vScrollBar.Value = _line;
 			this.Invalidate();
 			e.Handled = true;
 		}
