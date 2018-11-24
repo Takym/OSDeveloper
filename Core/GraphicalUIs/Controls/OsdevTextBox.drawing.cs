@@ -31,7 +31,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				int y = fh;
 				for (int i = _line; i < _lines.Length; ++i) {
 					e.Graphics.DrawString($"{i + 1:D5}", _font, l, new Point(0, y));
-					this.DrawTextLine(e.Graphics, fh, fw, i, y, t);
+					this.DrawTextLine(e.Graphics, fh, fw, i, y, t, l);
 					y += fh;
 					if (y >= this.Height) return;
 				}
@@ -60,9 +60,36 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			}
 		}
 
-		private void DrawTextLine(Graphics g, int fh, int fw, int i, int y, SolidBrush t)
+		private void DrawTextLine(Graphics g, int fh, int fw, int i, int y, SolidBrush t, SolidBrush ws)
 		{
-			g.DrawString(_lines[i], _font, t, new Point(fw * 6, y));
+			// 一文字ずつ描画
+			int x = 0;
+			for (int j = 0; j < _lines[i].Length; ++j) {
+				char c = _lines[i][j];
+				switch (c) {
+					case '\t':
+						g.DrawString("→", _font, ws, new Point(fw * (x + 6), y));
+						break;
+					case ' ':
+						g.DrawString("・", _font, ws, new Point(fw * (x + 6) - fw / 2, y));
+						break;
+					case '　':
+						g.DrawString("▪", _font, ws, new Point(fw * (x + 6) + fw / 2, y));
+						break;
+					default:
+						g.DrawString(c.ToString(), _font, t, new Point(fw * (x + 6), y));
+						break;
+				}
+				if (0x20 <= c && c <= 0x7F) { // 半角文字
+					if (c == '\t') {
+						x += 4 - (x % 4);
+					} else {
+						++x;
+					}
+				} else { // 全角文字 (一部半角文字)
+					x += 2;
+				}
+			}
 		}
 	}
 }
