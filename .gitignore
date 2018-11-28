@@ -267,3 +267,8 @@ __pycache__/
 
 # desktop.ini íœ
 desktop.ini
+
+# localesƒuƒ‰ƒ“ƒ`ê—p
+*.cs
+*.c
+*.h
