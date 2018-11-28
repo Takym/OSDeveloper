@@ -134,6 +134,7 @@
       <LastGenOutput>MainWindowStatusMessageAsset.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.en.resx" />
+    <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.ja-JP.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.ja.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
