@@ -56,160 +56,52 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FontResources.cs" />
-    <Compile Include="Core\Editors\EditorWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\Editors\ICustomPrintingFeature.cs" />
-    <Compile Include="Core\Editors\IPrintingFeature.cs" />
-    <Compile Include="Core\Editors\ISearchReplaceFeature.cs" />
-    <Compile Include="Core\Editors\IClipboardFeature.cs" />
-    <Compile Include="Core\Editors\IFileSaveLoadFeature.cs" />
-    <Compile Include="Core\Editors\ISelectionFeature.cs" />
-    <Compile Include="Core\Editors\IUndoRedoFeature.cs" />
-    <Compile Include="Core\Editors\RegistryDraftEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\Editors\RegistryDraftEditor.Designer.cs">
-      <DependentUpon>RegistryDraftEditor.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\Editors\RegistryDraftEditorTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RegistryDraftEditorTexts.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Core\Editors\TextEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\Editors\TextEditor.Designer.cs">
-      <DependentUpon>TextEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Error\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="Core\Error\SerializingException.cs" />
-    <Compile Include="Core\Error\SerializingFailureState.cs" />
-    <Compile Include="Core\FileManagement\DirMetadata.cs" />
-    <Compile Include="Core\FileManagement\FileFormat.cs" />
-    <Compile Include="Core\FileManagement\FileMetadata.cs" />
-    <Compile Include="Core\FileManagement\FileType.cs" />
     <Compile Include="Core\FileManagement\FileTypeNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FileTypeNames.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Core\FileManagement\FileTypes.cs" />
-    <Compile Include="Core\FileManagement\IKeyNode.cs" />
-    <Compile Include="Core\FileManagement\IKeyNodeParser.cs" />
-    <Compile Include="Core\FileManagement\IKeyNodeValue.cs" />
-    <Compile Include="Core\FileManagement\Structures\RegistryDraftFile.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevColorTheme.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevColorThemes.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.Designer.cs">
-      <DependentUpon>OsdevTextBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.drawing.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.events.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.keyboard.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.mouse.cs" />
-    <Compile Include="Core\GraphicalUIs\Explorer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Core\GraphicalUIs\Explorer.Designer.cs">
-      <DependentUpon>Explorer.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\GraphicalUIs\ExplorerTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ExplorerTexts.resx</DependentUpon>
     </Compile>
-    <Compile Include="Core\GraphicalUIs\FormSearchReplace.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\GraphicalUIs\FormSearchReplace.Designer.cs">
-      <DependentUpon>FormSearchReplace.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\GraphicalUIs\FormSearchReplaceTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FormSearchReplaceTexts.resx</DependentUpon>
     </Compile>
-    <Compile Include="Core\GraphicalUIs\MainWindowBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\GraphicalUIs\MainWindowStatusMessage.cs" />
     <Compile Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainWindowStatusMessageAsset.resx</DependentUpon>
     </Compile>
-    <Compile Include="Core\GraphicalUIs\ToolStrips\EditMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\BuildMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\DebugMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\HelpMenuItem.cs" />
     <Compile Include="Core\GraphicalUIs\ToolStrips\MenuTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuTexts.resx</DependentUpon>
     </Compile>
-    <Compile Include="Core\GraphicalUIs\ToolStrips\WindowMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\ToolMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\ProjectMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\ViewMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\FileMenuItem.cs" />
-    <Compile Include="Core\GraphicalUIs\ToolStrips\MenuStripManager.cs" />
-    <Compile Include="Core\Logging\LogData.cs" />
-    <Compile Include="Core\Logging\Logger.cs" />
-    <Compile Include="Core\Logging\LogLevel.cs" />
-    <Compile Include="Core\FileManagement\SystemPaths.cs" />
-    <Compile Include="Core\Logging\LogFile.cs" />
-    <Compile Include="Core\Logging\MultipleLogFile.cs" />
-    <Compile Include="Core\Logging\ProcessReportRecordFile.cs" />
-    <Compile Include="Core\MiscUtils\ArrayUtils.cs" />
-    <Compile Include="Core\MiscUtils\WinFormUtils.cs" />
-    <Compile Include="Core\MiscUtils\StringUtils.cs" />
-    <Compile Include="Core\Settings\ConfigManager.cs" />
-    <Compile Include="Core\Settings\Serialization\Attributes.cs" />
-    <Compile Include="Core\Settings\Serialization\IYenconSerializable.cs" />
-    <Compile Include="Core\Settings\Serialization\YenconSerializer.cs" />
-    <Compile Include="Core\Settings\YenconBinaryFile.cs" />
-    <Compile Include="Core\Settings\YenconBooleanKey.cs" />
-    <Compile Include="Core\Settings\YenconComment.cs" />
-    <Compile Include="Core\Settings\YenconNode.cs" />
-    <Compile Include="Core\Settings\YenconNumberKey.cs" />
-    <Compile Include="Core\Settings\YenconParser.cs" />
-    <Compile Include="Core\Settings\YenconSection.cs" />
-    <Compile Include="Core\Settings\YenconStringKey.cs" />
-    <Compile Include="Core\Settings\YenconValue.cs" />
-    <Compile Include="Core\Workspace\Builder\CompilerType.cs" />
-    <Compile Include="Core\Workspace\Builder\ICompiler.cs" />
-    <Compile Include="Core\Workspace\Builder\ICompilerArguments.cs" />
-    <Compile Include="Core\Workspace\Project.cs" />
-    <Compile Include="Core\Workspace\Solution.cs" />
-    <Compile Include="Core\Workspace\SolutionGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="Core\Logging\Logger.exceptions.cs" />
+    <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Core\Editors\RegistryDraftEditor.resx">
-      <DependentUpon>RegistryDraftEditor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Core\Editors\RegistryDraftEditorTexts.en.resx" />
     <EmbeddedResource Include="Core\Editors\RegistryDraftEditorTexts.ja.resx" />
     <EmbeddedResource Include="Core\Editors\RegistryDraftEditorTexts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegistryDraftEditorTexts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Core\Editors\TextEditor.resx">
-      <DependentUpon>TextEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Error\ErrorMessages.en.resx" />
     <EmbeddedResource Include="Core\Error\ErrorMessages.ja.resx" />
@@ -223,20 +115,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FileTypeNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Core\GraphicalUIs\Controls\OsdevTextBox.resx">
-      <DependentUpon>OsdevTextBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Core\GraphicalUIs\Explorer.resx">
-      <DependentUpon>Explorer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\ExplorerTexts.en.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ExplorerTexts.ja.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ExplorerTexts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExplorerTexts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Core\GraphicalUIs\FormSearchReplace.resx">
-      <DependentUpon>FormSearchReplace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\FormSearchReplaceTexts.en.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\FormSearchReplaceTexts.ja.resx" />
@@ -258,54 +141,22 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Logging\Logger.static.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="OSDeveloper.Native.csproj">
       <Project>{724b635c-6951-416f-b3dd-d2ef0368d047}</Project>
       <Name>OSDeveloper.Native</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Darkolorfuler.themepack">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAexfont00301\IPA_Font_License_Agreement_v1.0.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAexfont00301\Readme_IPAexfont00301.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAexfont00301\ipaexg.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAexfont00301\ipaexm.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAfont00303\IPA_Font_License_Agreement_v1.0.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAfont00303\Readme_IPAfont00303.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAfont00303\ipag.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAfont00303\ipagp.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAfont00303\ipam.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\IPAfont00303\ipamp.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Core\Extension\placeholder.txt" />
+    <Content Include="Core\FileManagement\Structures\placeholder.txt" />
     <Content Include="Core\Globalization\placeholder.txt" />
+    <Content Include="Core\GraphicalUIs\Controls\placeholder.txt" />
+    <Content Include="Core\Logging\placeholder.txt" />
+    <Content Include="Core\MiscUtils\placeholder.txt" />
+    <Content Include="Core\Settings\placeholder.txt" />
     <Content Include="Core\Toolkits\placeholder.txt" />
+    <Content Include="Core\Workspace\Builder\placeholder.txt" />
     <Content Include="Core\Workspace\Debugging\placeholder.txt" />
-    <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.md" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.properties.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

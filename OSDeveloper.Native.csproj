@@ -52,12 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Native\ErrorCodes.cs" />
-    <Compile Include="Native\Kernel32.cs" />
-    <Compile Include="Native\Libosdev.cs" />
-    <Compile Include="Native\User32.cs" />
-    <Compile Include="Native\WinapiWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Native\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

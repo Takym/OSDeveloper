@@ -77,15 +77,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DialogMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="App\FormMain.entrypoint.cs" />
-    <Compile Include="App\FormMain.events.cs" />
-    <Compile Include="App\FormMain.load-phase.cs" />
     <Compile Include="App\MainMenuText.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainMenuText.resx</DependentUpon>
     </Compile>
-    <Compile Include="App\ToolStripRendererEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -95,11 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Compile Include="App\FormMain.overrides.cs" />
-    <Compile Include="App\FormMain.controls.cs" />
-    <Content Include="osdev.cmd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
@@ -142,9 +133,6 @@
     <EmbeddedResource Include="App\DialogMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DialogMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App\FormMain.overrides.resx">
-      <DependentUpon>FormMain.overrides.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="App\MainMenuText.en.resx" />
     <EmbeddedResource Include="App\MainMenuText.ja.resx" />

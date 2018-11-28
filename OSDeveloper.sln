@@ -5,11 +5,8 @@ VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{9C20E750-A78F-4A5A-A68D-A2595A1AF7DE}"
 	ProjectSection(SolutionItems) = preProject
-		CHANGELOG.en.md = CHANGELOG.en.md
-		CHANGELOG.ja.md = CHANGELOG.ja.md
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
-		UML.xlsx = UML.xlsx
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libosdev", "Native\libosdev.vcxproj", "{473B5640-9E50-42FC-A2E7-17519CD6C714}"
