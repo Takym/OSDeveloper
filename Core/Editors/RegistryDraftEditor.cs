@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 using OSDeveloper.Core.FileManagement;
 using OSDeveloper.Core.FileManagement.Structures;
@@ -14,7 +15,7 @@ namespace OSDeveloper.Core.Editors
 	/// <summary>
 	///  レジストリの下書きを変種します。
 	/// </summary>
-	public partial class RegistryDraftEditor : EditorWindow, IFileSaveLoadFeature, ICustomPrintingFeature
+	public partial class RegistryDraftEditor : EditorWindow, IFileSaveLoadFeature, IPrintingFeature
 	{
 		private Logger _logger;
 		private YenconHeader _header;
@@ -376,8 +377,34 @@ namespace OSDeveloper.Core.Editors
 		}
 		#endregion
 
-		#region ICustomPrintingFeature
+		#region IPrintingFeature
 		private int _print_mode;
+
+		/// <summary>
+		///  この値は常に<see langword="null"/>です。
+		/// </summary>
+		/// <seealso cref="OSDeveloper.Core.Editors.IPrintingFeature.PrintDocument"/>
+		/// <seealso cref="OSDeveloper.Core.Editors.IPrintingFeature.UseCustomDialogs"/>
+		[Obsolete("この値は常にnullです。ShowPrintDialog()等のメソッドを利用してください。")]
+		public PrintDocument PrintDocument
+		{
+			get
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		///  独自の印刷ダイアログを利用する為、この値は常に<see langword="true"/>です。
+		/// </summary>
+		/// <seealso cref="OSDeveloper.Core.Editors.IPrintingFeature.UseCustomDialogs"/>
+		public bool UseCustomDialogs
+		{
+			get
+			{
+				return true;
+			}
+		}
 
 		/// <summary>
 		///  印刷ダイアログを表示して印刷します。

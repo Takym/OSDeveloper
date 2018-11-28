@@ -194,20 +194,22 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 			var window = _mwnd_base.GetActiveEditor();
 			if (window is IPrintingFeature p) {
-				_pd.Reset();
-				_pd.Document = p.PrintDocument;
-				_pd.UseEXDialog = _use_ex_dialog;
-				var dr = _pd.ShowDialog();
-				if (dr == DialogResult.OK) {
-					p.PrintDocument.Print();
-					_mwnd_base.SetStatusMessage(MainWindowStatusMessage.PrintStarted());
-				} else {
+				if (p.UseCustomDialogs) { // 独自ダイアログ
+					_mwnd_base.SetStatusMessage(MainWindowStatusMessage.PrintDialogShown());
+					p.ShowPrintDialog();
 					_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+				} else { // 標準ダイアログ
+					_pd.Reset();
+					_pd.Document = p.PrintDocument;
+					_pd.UseEXDialog = _use_ex_dialog;
+					var dr = _pd.ShowDialog();
+					if (dr == DialogResult.OK) {
+						p.PrintDocument.Print();
+						_mwnd_base.SetStatusMessage(MainWindowStatusMessage.PrintStarted());
+					} else {
+						_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
+					}
 				}
-			} else if (window is ICustomPrintingFeature cp) {
-				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.PrintDialogShown());
-				cp.ShowPrintDialog();
-				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_print.Text));
 			}
@@ -220,14 +222,15 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 			_logger.Trace($"{nameof(FileMenuItem)}: {nameof(_printPreview)} begin");
 
 			var window = _mwnd_base.GetActiveEditor();
-			if (window is IPrintingFeature p) {
-				var ppd = new PrintPreviewDialog();
-				ppd.Document = p.PrintDocument;
-				ppd.MdiParent = _mwnd_base;
-				ppd.Show();
-				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
-			} else if (window is ICustomPrintingFeature cp) {
-				cp.ShowPrintPreviewDialog();
+			if (window is IPrintingFeature p) { // 独自ダイアログ
+				if (p.UseCustomDialogs) {
+					p.ShowPrintPreviewDialog();
+				} else { // 標準ダイアログ
+					var ppd = new PrintPreviewDialog();
+					ppd.Document = p.PrintDocument;
+					ppd.MdiParent = _mwnd_base;
+					ppd.Show();
+				}
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_printPreview.Text));
@@ -242,12 +245,13 @@ namespace OSDeveloper.Core.GraphicalUIs.ToolStrips
 
 			var window = _mwnd_base.GetActiveEditor();
 			if (window is IPrintingFeature p) {
-				_psd.Reset();
-				_psd.Document = p.PrintDocument;
-				_psd.ShowDialog();
-				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
-			} else if (window is ICustomPrintingFeature cp) {
-				cp.ShowPageSetupDialog();
+				if (p.UseCustomDialogs) { // 独自ダイアログ
+					p.ShowPageSetupDialog();
+				} else { // 標準ダイアログ
+					_psd.Reset();
+					_psd.Document = p.PrintDocument;
+					_psd.ShowDialog();
+				}
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Ready());
 			} else {
 				_mwnd_base.SetStatusMessage(MainWindowStatusMessage.Unimplemented(_pageSetup.Text));

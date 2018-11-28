@@ -60,7 +60,6 @@
     <Compile Include="Core\Editors\EditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Editors\ICustomPrintingFeature.cs" />
     <Compile Include="Core\Editors\IPrintingFeature.cs" />
     <Compile Include="Core\Editors\ISearchReplaceFeature.cs" />
     <Compile Include="Core\Editors\IClipboardFeature.cs" />
