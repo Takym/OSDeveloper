@@ -27,6 +27,21 @@ namespace OSDeveloper.Core.GraphicalUIs
 		private MdiClient _mdi_client = null;
 
 		/// <summary>
+		///  このウィンドウの<see cref="System.Windows.Forms.MdiClient"/>を取得します。
+		/// </summary>
+		protected MdiClient MdiClient
+		{
+			get
+			{
+				if (_mdi_client == null) {
+					return this.GetMdiClient();
+				} else {
+					return _mdi_client;
+				}
+			}
+		}
+
+		/// <summary>
 		///  現在利用されているエディタウィンドウ(MDI子ウィンドウ)を取得します。
 		/// </summary>
 		/// <returns>
