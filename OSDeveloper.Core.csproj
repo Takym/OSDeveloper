@@ -147,6 +147,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainWindowStatusMessageAsset.resx</DependentUpon>
     </Compile>
+    <Compile Include="Core\GraphicalUIs\TerminalTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\TerminalTab.Designer.cs">
+      <DependentUpon>TerminalTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\GraphicalUIs\ToolStrips\EditMenuItem.cs" />
     <Compile Include="Core\GraphicalUIs\ToolStrips\BuildMenuItem.cs" />
     <Compile Include="Core\GraphicalUIs\ToolStrips\DebugMenuItem.cs" />
@@ -248,6 +254,9 @@
     <EmbeddedResource Include="Core\GraphicalUIs\MainWindowStatusMessageAsset.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MainWindowStatusMessageAsset.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\TerminalTab.resx">
+      <DependentUpon>TerminalTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.en.resx" />
     <EmbeddedResource Include="Core\GraphicalUIs\ToolStrips\MenuTexts.ja.resx" />

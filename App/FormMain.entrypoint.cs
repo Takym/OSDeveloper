@@ -63,7 +63,7 @@ namespace OSDeveloper.App
 		private string _base_title;
 		private ToolStripPanel _menu_container;
 		private Panel _explorer_container;
-		private TabControl _terminal_container;
+		private TerminalTab _terminal_container;
 		private Splitter _explorer_splitter, _terminal_splitter;
 
 		#region UI/UX生成処理
@@ -76,7 +76,7 @@ namespace OSDeveloper.App
 			_logger.Info("Generating the instances pf controls...");
 			_menu_container = new ToolStripPanel();
 			_explorer_container = new Panel();
-			_terminal_container = new TabControl();
+			_terminal_container = new TerminalTab();
 			_explorer_splitter = new Splitter();
 			_terminal_splitter = new Splitter();
 			this.CreateInstances();
@@ -155,7 +155,8 @@ namespace OSDeveloper.App
 
 				_logger.Info("Creating the terminal tabs...");
 				this.BuildTerminal();
-				_terminal_container.Controls.Add(_terminal_empty);
+				_terminal_container.TabPages.Add(_terminal_empty);
+				_terminal_container.TabPages.Add(new TabPage());
 
 				// _terminal_splitter
 				_logger.Info("Creating the terminal splitter...");
