@@ -29,6 +29,8 @@ namespace OSDeveloper.App
 			_status_label = new ToolStripStatusLabel();
 
 			_explorer = new Explorer(this);
+
+			_terminal_empty = new TabPage();
 		}
 		#endregion
 
@@ -139,12 +141,22 @@ namespace OSDeveloper.App
 		#region エクスプローラ
 		private Explorer _explorer;
 
-		public void BuildExplorer()
+		void BuildExplorer()
 		{
 			_explorer.Name = nameof(_explorer);
 			_explorer.Dock = DockStyle.Fill;
 			_explorer.Directory = new DirMetadata(SystemPaths.Workspace); // TODO: テスト用
 			_explorer_container.Controls.Add(_explorer);
+		}
+		#endregion
+
+		#region ターミナルタブ
+		private TabPage _terminal_empty;
+
+		void BuildTerminal()
+		{
+			_terminal_empty.Name = nameof(_terminal_empty);
+			_terminal_empty.Text = "Empty";
 		}
 		#endregion
 	}

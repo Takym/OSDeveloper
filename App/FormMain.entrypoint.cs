@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using OSDeveloper.Assets;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.GraphicalUIs.ToolStrips;
 using OSDeveloper.Core.Logging;
@@ -14,6 +13,7 @@ namespace OSDeveloper.App
 {
 	internal static partial class Program // デザイナ避け
 	{
+		#region 起動処理
 		[STAThread()]
 		static int Main(string[] args)
 		{
@@ -54,6 +54,7 @@ namespace OSDeveloper.App
 
 			return 0;
 		}
+		#endregion
 	}
 
 	public sealed partial class FormMain : MainWindowBase
@@ -65,6 +66,7 @@ namespace OSDeveloper.App
 		private TabControl _terminal_container;
 		private Splitter _explorer_splitter, _terminal_splitter;
 
+		#region UI/UX生成処理
 		public FormMain()
 		{
 			_logger = Logger.GetSystemLogger(nameof(FormMain));
@@ -81,14 +83,15 @@ namespace OSDeveloper.App
 
 			// レイアウトロジック停止
 			_logger.Info("Suspending the layout logic...");
-			_mainmenu.SuspendLayout();
-			_toolmenu.SuspendLayout();
-			_status_bar.SuspendLayout();
-			_menu_container.SuspendLayout();
-			_explorer_container.SuspendLayout();
-			_terminal_container.SuspendLayout();
-			_explorer.SuspendLayout();
-			this.SuspendLayout();
+			_mainmenu				.SuspendLayout();
+			_toolmenu				.SuspendLayout();
+			_status_bar				.SuspendLayout();
+			_menu_container			.SuspendLayout();
+			_explorer_container		.SuspendLayout();
+			_terminal_container		.SuspendLayout();
+			_explorer				.SuspendLayout();
+			_terminal_empty			.SuspendLayout();
+			this					.SuspendLayout();
 
 			// コントロールを初期化
 			{
@@ -150,6 +153,10 @@ namespace OSDeveloper.App
 				_terminal_container.Name = nameof(_terminal_container);
 				_terminal_container.Dock = DockStyle.Bottom;
 
+				_logger.Info("Creating the terminal tabs...");
+				this.BuildTerminal();
+				_terminal_container.Controls.Add(_terminal_empty);
+
 				// _terminal_splitter
 				_logger.Info("Creating the terminal splitter...");
 				_terminal_splitter.Name = nameof(_terminal_splitter);
@@ -173,23 +180,17 @@ namespace OSDeveloper.App
 
 			// レイアウトロジック再開
 			_logger.Info("Resuming the layout logic...");
-			_mainmenu.ResumeLayout(false);
-			_mainmenu.PerformLayout();
-			_toolmenu.ResumeLayout(false);
-			_toolmenu.PerformLayout();
-			_status_bar.ResumeLayout(false);
-			_status_bar.PerformLayout();
-			_menu_container.ResumeLayout(false);
-			_menu_container.PerformLayout();
-			_explorer_container.ResumeLayout(false);
-			_explorer_container.PerformLayout();
-			_terminal_container.ResumeLayout(false);
-			_terminal_container.PerformLayout();
-			_explorer.ResumeLayout(false);
-			_explorer.PerformLayout();
-			this.ResumeLayout(false);
-			this.PerformLayout();
+			_mainmenu				.ResumeLayout(false);	_mainmenu				.PerformLayout();
+			_toolmenu				.ResumeLayout(false);	_toolmenu				.PerformLayout();
+			_status_bar				.ResumeLayout(false);	_status_bar				.PerformLayout();
+			_menu_container			.ResumeLayout(false);	_menu_container			.PerformLayout();
+			_explorer_container		.ResumeLayout(false);	_explorer_container		.PerformLayout();
+			_terminal_container		.ResumeLayout(false);	_terminal_container		.PerformLayout();
+			_explorer				.ResumeLayout(false);	_explorer				.PerformLayout();
+			_terminal_empty			.ResumeLayout(false);	_terminal_empty			.PerformLayout();
+			this					.ResumeLayout(false);	this					.PerformLayout();
 			_logger.Trace("Finished construction of FormMain");
 		}
+		#endregion
 	}
 }
