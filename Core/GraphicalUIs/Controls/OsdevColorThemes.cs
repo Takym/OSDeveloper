@@ -30,7 +30,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		}
 
 		/// <summary>
-		///  爽やかな青系のカラーテーマを取得します。
+		///  爽やかな青系の色のカラーテーマを取得します。
 		///  これは<see cref="OSDeveloper.Core.GraphicalUIs.Controls.MdiChildrenTab.ButtonColor"/>向けに設計されました。
 		/// </summary>
 		public static OsdevColorTheme FreshBlue { get { return OCT_FRESH_BLUE._inst; } }
@@ -44,17 +44,17 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		}
 
 		/// <summary>
-		///  シアン色のカラーテーマを取得します。
+		///  爽やかなシアン系の色のカラーテーマを取得します。
 		///  これは<see cref="OSDeveloper.Core.GraphicalUIs.Controls.MdiChildrenTab.MouseActionButtonColor"/>向けに設計されました。
 		/// </summary>
-		public static OsdevColorTheme Cyan { get { return OCT_CYAN._inst; } }
-		private sealed class OCT_CYAN : OsdevColorTheme
+		public static OsdevColorTheme FreshCyan { get { return OCT_FRESH_CYAN._inst; } }
+		private sealed class OCT_FRESH_CYAN : OsdevColorTheme
 		{
-			private OCT_CYAN() { }
-			public override Color Normal { get { return Color.Cyan; } }
+			private OCT_FRESH_CYAN() { }
+			public override Color Normal { get { return Color.AliceBlue; } }
 			public override Color Light { get { return Color.LightCyan; } }
 			public override Color Dark { get { return Color.DarkCyan; } }
-			internal readonly static OCT_CYAN _inst = new OCT_CYAN();
+			internal readonly static OCT_FRESH_CYAN _inst = new OCT_FRESH_CYAN();
 		}
 	}
 }

@@ -32,7 +32,7 @@
 			// MdiChildrenTab
 			// 
 			this.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Size = new System.Drawing.Size(192, 24);
+			this.Size = new System.Drawing.Size(192, 26);
 			this.ResumeLayout(false);
 
 		}
