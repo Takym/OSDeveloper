@@ -110,10 +110,10 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			base.OnPaint(e);
 
 			// 処理に必要な変数を初期化
-			var children = _mdi_client.MdiChildren;
+			var children = _mdi_client?.MdiChildren;
 			var g = e.Graphics;
 			g.Clear(this.BackColor);
-			if (children.Length == 0) goto end;
+			if (children == null || children.Length == 0) goto end;
 			int wid = (this.Width - 8) / children.Length;
 			int hei = this.Height - 8;
 			int x = 4, y = 4;
@@ -171,8 +171,8 @@ end:
 			base.OnMouseMove(e);
 
 			// 処理に必要な変数を初期化
-			var children = _mdi_client.MdiChildren;
-			if (children.Length == 0) goto end;
+			var children = _mdi_client?.MdiChildren;
+			if (children == null || children.Length == 0) goto end;
 			int wid = (this.Width - 6) / children.Length;
 			int hei = this.Height - 6;
 			int x = 3, y = 3;
@@ -222,8 +222,8 @@ end:
 			// 左クリックされている時のみ有効
 			if (e.Button.HasFlag(MouseButtons.Left)) {
 				// 処理に必要な変数を初期化
-				var children = _mdi_client.MdiChildren;
-				if (children.Length == 0) goto end;
+				var children = _mdi_client?.MdiChildren;
+				if (children == null || children.Length == 0) goto end;
 				int wid = (this.Width - 6) / children.Length;
 				int hei = this.Height - 6;
 				int x = 3, y = 3;
@@ -257,8 +257,8 @@ end:
 			// 左クリックされている時のみ有効
 			if (e.Button.HasFlag(MouseButtons.Left)) {
 				// 処理に必要な変数を初期化
-				var children = _mdi_client.MdiChildren;
-				if (children.Length == 0) goto end;
+				var children = _mdi_client?.MdiChildren;
+				if (children == null || children.Length == 0) goto end;
 				int wid = (this.Width - 6) / children.Length;
 				int hei = this.Height - 6;
 				int x = 3, y = 3;
@@ -286,7 +286,6 @@ end:
 			_logger.Trace($"executing {nameof(_mdi_client_ControlAdded)}...");
 
 			if (e.Control is Form f) {
-				//_children.Add(f);
 				_logger.Info($"the added form is: {f.Text}");
 				this.Invalidate();
 			}
@@ -299,7 +298,6 @@ end:
 			_logger.Trace($"executing {nameof(_mdi_client_ControlRemoved)}...");
 
 			if (e.Control is Form f) {
-				//_children.Remove(f);
 				_logger.Info($"the removed form is: {f.Text}");
 				this.Invalidate();
 			}
