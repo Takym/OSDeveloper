@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using OSDeveloper.Core.MiscUtils;
 
 namespace OSDeveloper.Core.FileManagement
 {
@@ -97,14 +98,19 @@ namespace OSDeveloper.Core.FileManagement
 
 		static SystemPaths()
 		{
-			Directory.CreateDirectory(Resources);
-			Directory.CreateDirectory(Toolkits);
+			if (WinFormUtils.DesignMode) {
+				// デザイン時は一時ディレクトリにする
+				SetWorkspace(((PathString)(Path.GetTempPath())).Bond(Path.GetRandomFileName()));
+			} else {
+				Directory.CreateDirectory(Resources);
+				Directory.CreateDirectory(Toolkits);
 
 #if DEBUG
-			SetWorkspace(Program); // デバッグ時はアプリケーションの配置ディレクトリを、ワークスペースにする
+				SetWorkspace(Program); // デバッグ時はアプリケーションの配置ディレクトリを、ワークスペースにする
 #else
-			SetWorkspace(new PathString(Environment.CurrentDirectory));
+				SetWorkspace(new PathString(Environment.CurrentDirectory));
 #endif
+			}
 		}
 
 		/// <summary>
@@ -115,6 +121,7 @@ namespace OSDeveloper.Core.FileManagement
 		{
 			// HACK: ワークスペースを変更した時に必要な動作を全てここに書く。
 			_cwd = new PathString(Path.GetFullPath(cwd));
+			Directory.CreateDirectory(_cwd);
 
 			// ディレクトリ生成
 			Directory.CreateDirectory(Workspace);
