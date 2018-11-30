@@ -27,7 +27,14 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
+			this.SuspendLayout();
+			// 
+			// MdiChildrenTab
+			// 
+			this.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Size = new System.Drawing.Size(192, 24);
+			this.ResumeLayout(false);
+
 		}
 
 		#endregion

@@ -13,12 +13,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 {
 	/// <summary>
 	///  MDI子フォームをタブ形式で切り替えます。
+	///  このクラスは継承できません。
 	/// </summary>
-	public partial class MdiChildrenTab : Control
+	public sealed partial class MdiChildrenTab : Control
 	{
 		/// <summary>
-		///  このコントロールで管理するMDIクライアントです。
+		///  このコントロールで管理するMDIクライアントを取得または設定します。
 		/// </summary>
+		[Browsable(false)]
 		public MdiClient MdiClient
 		{
 			get
@@ -40,6 +42,12 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		}
 		private MdiClient _mdi_client;
 
+		/// <summary>
+		///  タブボタンのカラーテーマを取得または設定します。
+		/// </summary>
+		[Browsable(false)]
+		public OsdevColorTheme ButtonColor { get; set; }
+
 		private Logger _logger;
 		private List<Form> _children;
 
@@ -52,6 +60,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			_logger = Logger.GetSystemLogger(nameof(MdiChildrenTab));
 			_children = new List<Form>();
 			this.InitializeComponent();
+			this.ResetButtonColor();
 			this.SetStyle(
 				ControlStyles.UserPaint |
 				ControlStyles.Opaque |
@@ -61,6 +70,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.OptimizedDoubleBuffer,
 				true);
+		}
+
+		/// <summary>
+		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.MdiChildrenTab.ButtonColor"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public void ResetButtonColor()
+		{
+			this.ButtonColor = OsdevColorThemes.FreshBlue;
 		}
 
 		/// <summary>
@@ -74,6 +91,24 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			_logger.Trace($"executing {nameof(OnPaint)}...");
 			this.SuspendLayout();
 			base.OnPaint(e);
+
+
+			int wid = (this.Width - 4) / _children.Count;
+			int hei = this.Height - 4;
+			int x = 2, y = 2;
+			var g = e.Graphics;
+			g.Clear(this.BackColor);
+
+			using (Brush back = new SolidBrush(this.ButtonColor.Light))
+			using (Brush fore = new SolidBrush(this.ForeColor))
+			using (Pen border = new Pen(this.ButtonColor.Dark)) {
+				for (int i = 0; i < _children.Count; ++i) {
+					g.FillRectangle(back, x, y, wid, hei);
+					g.DrawRectangle(border, x, y, wid, hei);
+					g.DrawString(_children[i].Text, this.Font, fore, new Rectangle(x + 4, y + 4, wid - 8, hei - 8));
+					x += wid;
+				}
+			}
 
 			this.ResumeLayout(false);
 			_logger.Trace($"completed {nameof(OnPaint)}");

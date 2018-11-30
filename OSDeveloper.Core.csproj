@@ -234,6 +234,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FileTypeNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\Controls\MdiChildrenTab.resx">
+      <DependentUpon>MdiChildrenTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\Controls\OsdevTextBox.resx">
       <DependentUpon>OsdevTextBox.cs</DependentUpon>
     </EmbeddedResource>
