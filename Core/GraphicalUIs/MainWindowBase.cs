@@ -58,5 +58,11 @@ namespace OSDeveloper.Core.GraphicalUIs
 		/// </summary>
 		/// <param name="msg">ウィンドウ下部に表示されるメッセージです。</param>
 		public abstract void SetStatusMessage(string msg);
+
+		/// <summary>
+		///  指定されたタブページをターミナルタブに追加して表示します。
+		/// </summary>
+		/// <param name="tab">開くタブページコントロールです。</param>
+		public abstract void OpenTerminalTab(TabPage tab);
 	}
 }

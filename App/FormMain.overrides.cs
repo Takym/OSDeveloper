@@ -81,5 +81,14 @@ namespace OSDeveloper.App
 			_logger.Info(msg);
 			_logger.Trace($"completed {nameof(SetStatusMessage)}");
 		}
+
+		public override void OpenTerminalTab(TabPage tab)
+		{
+			_logger.Trace($"executing {nameof(OpenTerminalTab)}...");
+			_terminal_container.TabPages.Add(tab);
+			_terminal_container.SelectedTab = tab;
+			tab.Focus();
+			_logger.Trace($"completed {nameof(OpenTerminalTab)}");
+		}
 	}
 }
