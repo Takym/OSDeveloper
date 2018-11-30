@@ -2,14 +2,13 @@
 using System.Windows.Forms;
 using OSDeveloper.Assets;
 using OSDeveloper.Core.Logging;
-using OSDeveloper.Core.MiscUtils;
 
 namespace OSDeveloper.Core.GraphicalUIs
 {
 	/// <summary>
 	///  ターミナルタブを表します。
 	///  ターミナルタブとは画面下部に表示される複数のコンソール出力、エラー一覧、タスク一覧等を
-	///  管理しタブ形式で表示するコントロールです。
+	///  管理しタブ形式で表示するコントロールです。このコントロールはデザイナから利用する事はできません。
 	/// </summary>
 	public partial class TerminalTab : TabControl
 	{
@@ -62,13 +61,8 @@ namespace OSDeveloper.Core.GraphicalUIs
 			}
 			e.Graphics.FillRectangle(back1, e.Bounds);
 			e.Graphics.FillRectangle(back2, back2_r);
-			// 非デザイン時のみ、独自のフォント(現在は、IPAexゴシック)で表示
-			if (!this.IsDesignMode()) {
-				using (var font = FontResources.CreateTabFont()) {
-					e.Graphics.DrawString(caption, font, SystemBrushes.ControlText, e.Bounds.Left + 4, e.Bounds.Top + 4);
-				}
-			} else {
-				e.Graphics.DrawString(caption, e.Font, SystemBrushes.ControlText, e.Bounds.Left + 4, e.Bounds.Top + 4);
+			using (var font = FontResources.CreateTabFont()) {
+				e.Graphics.DrawString(caption, font, SystemBrushes.ControlText, e.Bounds.Left + 4, e.Bounds.Top + 4);
 			}
 
 			// 閉じるボタン描画
