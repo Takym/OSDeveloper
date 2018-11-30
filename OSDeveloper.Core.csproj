@@ -104,6 +104,12 @@
     <Compile Include="Core\FileManagement\IKeyNodeParser.cs" />
     <Compile Include="Core\FileManagement\IKeyNodeValue.cs" />
     <Compile Include="Core\FileManagement\Structures\RegistryDraftFile.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\MdiChildrenTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\Controls\MdiChildrenTab.Designer.cs">
+      <DependentUpon>MdiChildrenTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorTheme.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorThemes.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.cs">
