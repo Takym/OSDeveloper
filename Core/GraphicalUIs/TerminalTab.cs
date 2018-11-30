@@ -21,6 +21,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 	public partial class TerminalTab : TabControl
 	{
 		private Logger _logger;
+		private int _closebtn_clicked;
 
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.TerminalTab"/>'の
@@ -30,6 +31,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 		{
 			_logger = Logger.GetSystemLogger(nameof(TerminalTab));
 			this.InitializeComponent();
+			_closebtn_clicked = -1;
 			_logger.Trace(nameof(TerminalTab) + " is constructed");
 		}
 
@@ -41,6 +43,7 @@ namespace OSDeveloper.Core.GraphicalUIs
 		/// </param>
 		protected override void OnDrawItem(DrawItemEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnDrawItem)}...");
 			this.SuspendLayout();
 			base.OnDrawItem(e);
 
@@ -75,23 +78,81 @@ namespace OSDeveloper.Core.GraphicalUIs
 				e.Graphics.DrawString(caption, e.Font, SystemBrushes.ControlText, e.Bounds.Left + 4, e.Bounds.Top + 4);
 			}
 
-			// 選択されている場合は、閉じるボタンを表示
-			if (e.State.HasFlag(DrawItemState.Selected)) {
-				var closebtn = new Rectangle(e.Bounds.Right - 16, e.Bounds.Top + 4, 12, 12);
+			// 閉じるボタン描画
+			var closebtn = new Rectangle(e.Bounds.Right - 16, e.Bounds.Top + 4, 12, 12);
+			// 背景と枠を描画
+			if (e.Index == _closebtn_clicked) {
+				// 押されているなら、明るい色で描画
+				e.Graphics.FillRectangle(SystemBrushes.ControlDark, closebtn);
+			} else {
+				// 押されてないなら、普通の色で描画
 				e.Graphics.FillRectangle(SystemBrushes.ButtonFace, closebtn);
-				e.Graphics.DrawRectangle(SystemPens.ButtonShadow, closebtn);
-				e.Graphics.DrawLine(
-					SystemPens.ControlText,
-					closebtn.Left + 4, closebtn.Top + 4, closebtn.Right - 4, closebtn.Bottom - 4);
-				e.Graphics.DrawLine(
-					SystemPens.ControlText,
-					closebtn.Right - 4, closebtn.Top + 4, closebtn.Left + 4, closebtn.Bottom - 4);
 			}
+			e.Graphics.DrawRectangle(SystemPens.ButtonShadow, closebtn);
+			// 罰印描画
+			e.Graphics.DrawLine(
+				SystemPens.ControlText,
+				closebtn.Left + 4, closebtn.Top + 4, closebtn.Right - 4, closebtn.Bottom - 4);
+			e.Graphics.DrawLine(
+				SystemPens.ControlText,
+				closebtn.Right - 4, closebtn.Top + 4, closebtn.Left + 4, closebtn.Bottom - 4);
 
 			// 後片付け
 			e.DrawFocusRectangle();
 			_logger.Trace($"drawed the tab-item {caption}");
 			this.ResumeLayout();
+			_logger.Trace($"completed {nameof(OnDrawItem)}");
+		}
+
+		/// <summary>
+		///  <see cref="System.Windows.Forms.Control.MouseDown"/>を発生させます。
+		/// </summary>
+		/// <param name="e">
+		///  イベントデータを格納している<see cref="System.Windows.Forms.MouseEventArgs"/>オブジェクトです。
+		/// </param>
+		protected override void OnMouseDown(MouseEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(OnMouseDown)}...");
+			base.OnMouseDown(e);
+
+			if (e.Button.HasFlag(MouseButtons.Left)) {
+				var bounds = this.GetTabRect(this.SelectedIndex);
+				var closebtn = new Rectangle(bounds.Right - 16, bounds.Top + 4, 12, 12);
+				if (closebtn.Contains(e.Location)) {
+					_closebtn_clicked = this.SelectedIndex;
+					this.Invalidate();
+					_logger.Info($"the close button of {_closebtn_clicked}:{this.SelectedTab.Text} clicked");
+				}
+			}
+
+			_logger.Trace($"completed {nameof(OnMouseDown)}");
+		}
+
+		/// <summary>
+		///  <see cref="System.Windows.Forms.Control.MouseUp"/>を発生させます。
+		/// </summary>
+		/// <param name="e">
+		///  イベントデータを格納している<see cref="System.Windows.Forms.MouseEventArgs"/>オブジェクトです。
+		/// </param>
+		protected override void OnMouseUp(MouseEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(OnMouseUp)}...");
+			base.OnMouseUp(e);
+
+			if (e.Button.HasFlag(MouseButtons.Left)) {
+				var bounds = this.GetTabRect(this.SelectedIndex);
+				var closebtn = new Rectangle(bounds.Right - 16, bounds.Top + 4, 12, 12);
+				if (closebtn.Contains(e.Location) && _closebtn_clicked == this.SelectedIndex) {
+					_logger.Info($"closing {_closebtn_clicked}:{this.SelectedTab.Text}...");
+					this.TabPages.Remove(this.SelectedTab);
+				} else {
+					_logger.Info($"cancelled to close {_closebtn_clicked}:{this.SelectedTab.Text}");
+				}
+				this.Invalidate();
+				_closebtn_clicked = -1;
+			}
+
+			_logger.Trace($"completed {nameof(OnMouseUp)}");
 		}
 	}
 }
