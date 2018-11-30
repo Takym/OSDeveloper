@@ -32,11 +32,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				if (_mdi_client != null) {
 					_mdi_client.ControlAdded -= this._mdi_client_ControlAdded;
 					_mdi_client.ControlRemoved -= this._mdi_client_ControlRemoved;
-					_children.Clear();
+					//_children.Clear();
 				}
 				value.ControlAdded += this._mdi_client_ControlAdded;
 				value.ControlRemoved += this._mdi_client_ControlAdded;
-				_children.AddRange(value.MdiChildren);
+				//_children.AddRange(value.MdiChildren);
 				_mdi_client = value;
 			}
 		}
@@ -49,7 +49,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public OsdevColorTheme ButtonColor { get; set; }
 
 		private Logger _logger;
-		private List<Form> _children;
+		//private List<Form> _children;
 
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Controls.MdiChildrenTab"/>'の
@@ -58,7 +58,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public MdiChildrenTab()
 		{
 			_logger = Logger.GetSystemLogger(nameof(MdiChildrenTab));
-			_children = new List<Form>();
+			//_children = new List<Form>();
 			this.InitializeComponent();
 			this.ResetButtonColor();
 			this.SetStyle(
@@ -92,24 +92,28 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.SuspendLayout();
 			base.OnPaint(e);
 
-
-			int wid = (this.Width - 4) / _children.Count;
-			int hei = this.Height - 4;
-			int x = 2, y = 2;
+			// 処理に必要な変数を初期化
+			var children = _mdi_client.MdiChildren;
 			var g = e.Graphics;
 			g.Clear(this.BackColor);
+			if (children.Length == 0) goto end;
+			int wid = (this.Width - 6) / children.Length;
+			int hei = this.Height - 6;
+			int x = 2, y = 2;
 
+			// タブボタン描画
 			using (Brush back = new SolidBrush(this.ButtonColor.Light))
 			using (Brush fore = new SolidBrush(this.ForeColor))
 			using (Pen border = new Pen(this.ButtonColor.Dark)) {
-				for (int i = 0; i < _children.Count; ++i) {
+				for (int i = 0; i < children.Length; ++i) {
 					g.FillRectangle(back, x, y, wid, hei);
 					g.DrawRectangle(border, x, y, wid, hei);
-					g.DrawString(_children[i].Text, this.Font, fore, new Rectangle(x + 4, y + 4, wid - 8, hei - 8));
+					g.DrawString(children[i].Text, this.Font, fore, new Rectangle(x + 4, y + 4, wid - 8, hei - 8));
 					x += wid;
 				}
 			}
 
+end:
 			this.ResumeLayout(false);
 			_logger.Trace($"completed {nameof(OnPaint)}");
 		}
@@ -119,7 +123,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			_logger.Trace($"executing {nameof(_mdi_client_ControlAdded)}...");
 
 			if (e.Control is Form f) {
-				_children.Add(f);
+				//_children.Add(f);
 				_logger.Info($"the added form is: {f.Text}");
 				this.Invalidate();
 			}
@@ -132,7 +136,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			_logger.Trace($"executing {nameof(_mdi_client_ControlRemoved)}...");
 
 			if (e.Control is Form f) {
-				_children.Remove(f);
+				//_children.Remove(f);
 				_logger.Info($"the removed form is: {f.Text}");
 				this.Invalidate();
 			}

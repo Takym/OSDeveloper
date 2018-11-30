@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using OSDeveloper.Core.GraphicalUIs;
+using OSDeveloper.Core.GraphicalUIs.Controls;
 using OSDeveloper.Core.GraphicalUIs.ToolStrips;
 using OSDeveloper.Core.Logging;
 using OSDeveloper.Core.Settings;
@@ -65,6 +66,7 @@ namespace OSDeveloper.App
 		private Panel _explorer_container;
 		private TerminalTab _terminal_container;
 		private Splitter _explorer_splitter, _terminal_splitter;
+		private MdiChildrenTab _children_tab;
 
 		#region UI/UX生成処理
 		public FormMain()
@@ -79,6 +81,7 @@ namespace OSDeveloper.App
 			_terminal_container = new TerminalTab();
 			_explorer_splitter = new Splitter();
 			_terminal_splitter = new Splitter();
+			_children_tab = new MdiChildrenTab();
 			this.CreateInstances();
 
 			// レイアウトロジック停止
@@ -91,6 +94,7 @@ namespace OSDeveloper.App
 			_terminal_container		.SuspendLayout();
 			_explorer				.SuspendLayout();
 			_terminal_empty			.SuspendLayout();
+			_children_tab			.SuspendLayout();
 			this					.SuspendLayout();
 
 			// コントロールを初期化
@@ -164,6 +168,13 @@ namespace OSDeveloper.App
 				_terminal_splitter.Dock = DockStyle.Bottom;
 			}
 
+			{
+				// _children_tab
+				_logger.Info("Creating the MDI children tabs...");
+				_children_tab.Name = nameof(_children_tab);
+				_children_tab.MdiClient = this.MdiClient;
+			}
+
 			// その他
 			_logger.Info("Setting misc properties...");
 			ToolStripManager.Renderer = new ToolStripRendererEx(new ToolStripColorTable());
@@ -171,6 +182,7 @@ namespace OSDeveloper.App
 
 			// コントロールを貼り付け
 			_logger.Info("Adding controls to the form...");
+			this.Controls.Add(_children_tab);
 			this.Controls.Add(_terminal_splitter);
 			this.Controls.Add(_terminal_container);
 			this.Controls.Add(_explorer_splitter);
@@ -189,6 +201,7 @@ namespace OSDeveloper.App
 			_terminal_container		.ResumeLayout(false);	_terminal_container		.PerformLayout();
 			_explorer				.ResumeLayout(false);	_explorer				.PerformLayout();
 			_terminal_empty			.ResumeLayout(false);	_terminal_empty			.PerformLayout();
+			_children_tab			.ResumeLayout(false);	_children_tab			.PerformLayout();
 			this					.ResumeLayout(false);	this					.PerformLayout();
 			_logger.Trace("Finished construction of FormMain");
 		}
