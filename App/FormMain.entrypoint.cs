@@ -152,11 +152,16 @@ namespace OSDeveloper.App
 				_logger.Info("Creating the terminal container...");
 				_terminal_container.Name = nameof(_terminal_container);
 				_terminal_container.Dock = DockStyle.Bottom;
+				_terminal_container.Height += 48;
 
 				_logger.Info("Creating the terminal tabs...");
 				this.BuildTerminal();
 				_terminal_container.TabPages.Add(_terminal_empty);
-				_terminal_container.TabPages.Add(new TabPage());
+				_terminal_container.TabPages.Add(new TabPage("hello"));
+				_terminal_container.TabPages.Add(new TabPage("world"));
+				_terminal_container.TabPages.Add(new TabPage("see"));
+				_terminal_container.TabPages.Add(new TabPage("you"));
+				_terminal_container.TabPages.Add(new TabPage("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
 
 				// _terminal_splitter
 				_logger.Info("Creating the terminal splitter...");

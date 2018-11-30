@@ -198,5 +198,14 @@ namespace OSDeveloper.Assets
 		{
 			return new Font(_pfc.Families[0], 14, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point);
 		}
+
+		/// <summary>
+		///  タブ見出し用のフォントを新しく生成します。
+		/// </summary>
+		/// <returns>生成されたフォントオブジェクトです。</returns>
+		public static Font CreateTabFont()
+		{
+			return new Font(_pfc.Families[2], 12, FontStyle.Regular, GraphicsUnit.Pixel);
+		}
 	}
 }
