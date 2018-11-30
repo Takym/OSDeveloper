@@ -42,5 +42,19 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			public override Color Dark { get { return Color.LightSkyBlue; } }
 			internal readonly static OCT_FRESH_BLUE _inst = new OCT_FRESH_BLUE();
 		}
+
+		/// <summary>
+		///  シアン色のカラーテーマを取得します。
+		///  これは<see cref="OSDeveloper.Core.GraphicalUIs.Controls.MdiChildrenTab.MouseActionButtonColor"/>向けに設計されました。
+		/// </summary>
+		public static OsdevColorTheme Cyan { get { return OCT_CYAN._inst; } }
+		private sealed class OCT_CYAN : OsdevColorTheme
+		{
+			private OCT_CYAN() { }
+			public override Color Normal { get { return Color.Cyan; } }
+			public override Color Light { get { return Color.LightCyan; } }
+			public override Color Dark { get { return Color.DarkCyan; } }
+			internal readonly static OCT_CYAN _inst = new OCT_CYAN();
+		}
 	}
 }

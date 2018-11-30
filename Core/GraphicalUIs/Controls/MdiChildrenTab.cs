@@ -32,14 +32,15 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				if (_mdi_client != null) {
 					_mdi_client.ControlAdded -= this._mdi_client_ControlAdded;
 					_mdi_client.ControlRemoved -= this._mdi_client_ControlRemoved;
-					//_children.Clear();
+					(_mdi_client.Parent as Form).MdiChildActivate -= this._mdi_client_MdiChildActivate;
 				}
 				value.ControlAdded += this._mdi_client_ControlAdded;
 				value.ControlRemoved += this._mdi_client_ControlAdded;
-				//_children.AddRange(value.MdiChildren);
+				(value.Parent as Form).MdiChildActivate += this._mdi_client_MdiChildActivate;
 				_mdi_client = value;
 			}
 		}
+
 		private MdiClient _mdi_client;
 
 		/// <summary>
@@ -48,8 +49,13 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		[Browsable(false)]
 		public OsdevColorTheme ButtonColor { get; set; }
 
+		/// <summary>
+		///  マウスイベントが発生しているタブボタンのカラーテーマを取得または設定します。
+		/// </summary>
+		[Browsable(false)]
+		public OsdevColorTheme MouseActionButtonColor { get; set; }
+
 		private Logger _logger;
-		//private List<Form> _children;
 
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Controls.MdiChildrenTab"/>'の
@@ -58,9 +64,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public MdiChildrenTab()
 		{
 			_logger = Logger.GetSystemLogger(nameof(MdiChildrenTab));
-			//_children = new List<Form>();
 			this.InitializeComponent();
 			this.ResetButtonColor();
+			this.ResetMouseActionButtonColor();
 			this.SetStyle(
 				ControlStyles.UserPaint |
 				ControlStyles.Opaque |
@@ -78,6 +84,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public void ResetButtonColor()
 		{
 			this.ButtonColor = OsdevColorThemes.FreshBlue;
+		}
+
+		/// <summary>
+		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.MdiChildrenTab.MouseActionButtonColor"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public void ResetMouseActionButtonColor()
+		{
+			this.MouseActionButtonColor = OsdevColorThemes.Cyan;
 		}
 
 		/// <summary>
@@ -99,16 +113,24 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			if (children.Length == 0) goto end;
 			int wid = (this.Width - 6) / children.Length;
 			int hei = this.Height - 6;
-			int x = 2, y = 2;
+			int x = 3, y = 3;
 
 			// タブボタン描画
-			using (Brush back = new SolidBrush(this.ButtonColor.Light))
+			using (Brush back_a = new SolidBrush(this.ButtonColor.Normal))
+			using (Brush back_i = new SolidBrush(this.ButtonColor.Light))
 			using (Brush fore = new SolidBrush(this.ForeColor))
 			using (Pen border = new Pen(this.ButtonColor.Dark)) {
 				for (int i = 0; i < children.Length; ++i) {
-					g.FillRectangle(back, x, y, wid, hei);
+					if ((_mdi_client.Parent as Form)?.ActiveMdiChild == children[i]) {
+						// 子フォームがアクティブなら強調表示
+						g.FillRectangle(back_a, x, y, wid, hei);
+					} else {
+						// それ以外は通常表示
+						g.FillRectangle(back_i, x, y, wid, hei);
+					}
 					g.DrawRectangle(border, x, y, wid, hei);
-					g.DrawString(children[i].Text, this.Font, fore, new Rectangle(x + 4, y + 4, wid - 8, hei - 8));
+					g.DrawRectangle(border, x + 1, y + 1, wid - 1, hei - 1);
+					g.DrawString($"{i+1}: {children[i].Text}", this.Font, fore, new Rectangle(x + 4, y + 4, wid - 8, hei - 8));
 					x += wid;
 				}
 			}
@@ -142,6 +164,13 @@ end:
 			}
 
 			_logger.Trace($"completed {nameof(_mdi_client_ControlRemoved)}");
+		}
+
+		private void _mdi_client_MdiChildActivate(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(_mdi_client_MdiChildActivate)}...");
+			this.Invalidate();
+			_logger.Trace($"completed {nameof(_mdi_client_MdiChildActivate)}");
 		}
 	}
 }
