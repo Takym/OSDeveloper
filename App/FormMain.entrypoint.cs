@@ -69,10 +69,22 @@ namespace OSDeveloper.App
 		private MdiChildrenTab _children_tab;
 
 		#region UI/UX生成処理
-		public FormMain()
+		public FormMain() : base()
 		{
 			_logger = Logger.GetSystemLogger(nameof(FormMain));
 			_logger.Trace("The constructor of FormMain was called");
+
+			// このオブジェクトをプロセスのメインウィンドウに設定する
+			Current = this;
+			if (Current != this) {
+				MessageBox.Show(this,
+					DialogMessages.MultipleMainWindows,
+					ASMINFO.Caption,
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error);
+				this.Close();
+				return;
+			}
 
 			// コントロールのインスタンスを生成
 			_logger.Info("Generating the instances pf controls...");

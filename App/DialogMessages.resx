@@ -120,6 +120,9 @@
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>Libosdev_CannotLoad</value>
   </data>
+  <data name="MultipleMainWindows" xml:space="preserve">
+    <value>Multiple Main Windows</value>
+  </data>
   <data name="ThreadException" xml:space="preserve">
     <value>ThreadException occurred:
 {0}</value>

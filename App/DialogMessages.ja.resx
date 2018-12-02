@@ -120,6 +120,9 @@
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>'libosdev.dll'を正しく読み込む事ができませんでした。</value>
   </data>
+  <data name="MultipleMainWindows" xml:space="preserve">
+    <value>複数のメインウィンドウを開く事はできません。</value>
+  </data>
   <data name="ThreadException" xml:space="preserve">
     <value>エラーが発生しました。無視して続行しますか？
 メッセージ：{0}</value>

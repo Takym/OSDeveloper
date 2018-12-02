@@ -15,7 +15,8 @@ namespace OSDeveloper.App
 			base.OnLoad(e);
 
 			// libosdev.dll の動作確認
-			if (!CheckLibosdev()) {
+			if (!this.CheckLibosdev()) {
+				
 				return;
 			}
 

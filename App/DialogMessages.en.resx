@@ -120,6 +120,9 @@
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>Could not be loaded 'libosdev.dll' successfully.</value>
   </data>
+  <data name="MultipleMainWindows" xml:space="preserve">
+    <value>Could not open two or more main windows.</value>
+  </data>
   <data name="ThreadException" xml:space="preserve">
     <value>An error occurred. Do you want to ignore it and continue?
 MESSAGE: {0}</value>

@@ -9,6 +9,32 @@ namespace OSDeveloper.Core.GraphicalUIs
 	public abstract class MainWindowBase : Form
 	{
 		/// <summary>
+		///  プロセスのメインウィンドウを取得します。
+		/// </summary>
+		public static MainWindowBase Current
+		{
+			get
+			{
+				return _current_mwndbase;
+			}
+
+			set
+			{
+				// 拡張機能等によって書き換えられないように
+				if (_current_mwndbase == null) {
+					_current_mwndbase = value;
+				}
+			}
+		}
+		private static MainWindowBase _current_mwndbase;
+
+		/// <summary>
+		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.MainWindowBase"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		protected MainWindowBase() : base() { }
+
+		/// <summary>
 		///  このウィンドウの<see cref="System.Windows.Forms.MdiClient"/>を取得します。
 		/// </summary>
 		/// <returns>取得した<see cref="System.Windows.Forms.MdiClient"/>です。</returns>
