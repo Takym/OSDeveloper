@@ -22,27 +22,6 @@ namespace OSDeveloper.App
 			// FontResources生成
 			FontResources.Init();
 
-#if false//DEBUG
-			// TODO: 以下のコードは必要が無くなったら削除する。
-			for (int i = 0; i < 10; ++i) {
-				var f = new OSDeveloper.Core.Editors.EditorWindow(this);
-				f.Show();
-			}
-
-			Button btn = new Button();
-			btn.Text = "ﾌｧｲﾙｦﾋﾗｸ";
-			btn.Location = new System.Drawing.Point(200, 250);
-			btn.Click += new EventHandler((sender, e2) => {
-				OpenFileDialog ofd = new OpenFileDialog();
-				ofd.Filter = Core.FileManagement.FileTypes.CreateFullSPFs();
-				ofd.ShowDialog(this);
-			});
-			this.Controls.Add(btn);
-
-			var rde = new OSDeveloper.Core.Editors.RegistryDraftEditor(this);
-			rde.Show();
-#endif
-
 			this.SetStatusMessage(MainWindowStatusMessage.Ready());
 			_logger.Trace($"completed {nameof(OnLoad)}");
 		}
