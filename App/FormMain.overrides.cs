@@ -65,7 +65,9 @@ namespace OSDeveloper.App
 		public override void OpenTerminalTab(TabPage tab)
 		{
 			_logger.Trace($"executing {nameof(OpenTerminalTab)}...");
-			_terminal_container.TabPages.Add(tab);
+			if (!_terminal_container.TabPages.Contains(tab)) {
+				_terminal_container.TabPages.Add(tab);
+			}
 			_terminal_container.SelectedTab = tab;
 			tab.Focus();
 			_logger.Trace($"completed {nameof(OpenTerminalTab)}");
