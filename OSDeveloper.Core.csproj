@@ -65,6 +65,7 @@
     <Compile Include="Core\Editors\IClipboardFeature.cs" />
     <Compile Include="Core\Editors\IFileSaveLoadFeature.cs" />
     <Compile Include="Core\Editors\ISelectionFeature.cs" />
+    <Compile Include="Core\Editors\ITextSelectionFeature.cs" />
     <Compile Include="Core\Editors\IUndoRedoFeature.cs" />
     <Compile Include="Core\Editors\RegistryDraftEditor.cs">
       <SubType>Form</SubType>
