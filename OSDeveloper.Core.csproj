@@ -84,6 +84,7 @@
     <Compile Include="Core\Editors\TextEditor.Designer.cs">
       <DependentUpon>TextEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Error\ErrorGen.cs" />
     <Compile Include="Core\Error\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

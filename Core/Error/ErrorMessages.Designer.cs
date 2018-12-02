@@ -61,6 +61,15 @@ namespace OSDeveloper.Core.Error {
         }
         
         /// <summary>
+        ///   ArgOutOfRange, Value: {0}, Range: {1}-{2} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ArgOutOfRange {
+            get {
+                return ResourceManager.GetString("ArgOutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   FileMetadata_FileCannotBeDir に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string FileMetadata_FileCannotBeDir {

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ArgOutOfRange" xml:space="preserve">
+    <value>「{0}」は有効範囲外の値です。「{1}」～「{2}」の範囲で値を指定してください。</value>
+  </data>
   <data name="FileMetadata_FileCannotBeDir" xml:space="preserve">
     <value>フォルダ以外のファイルフォーマットをディレクトリにする事はできません。</value>
   </data>
