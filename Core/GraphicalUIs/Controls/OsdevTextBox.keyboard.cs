@@ -13,6 +13,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </param>
 		protected override void OnKeyPress(KeyPressEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnKeyPress)}...");
 			base.OnKeyPress(e);
 
 			if (e.KeyChar == '\b') {
@@ -27,6 +28,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			vScrollBar.Value = _line;
 			this.Invalidate();
 			e.Handled = true;
+
+			_logger.Trace($"completed {nameof(OnKeyPress)}");
 		}
 	}
 }

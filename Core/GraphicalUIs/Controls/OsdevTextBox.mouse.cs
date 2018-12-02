@@ -14,7 +14,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </param>
 		protected override void OnMouseDown(MouseEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnMouseDown)}...");
+
 			base.OnMouseDown(e);
+
+			_logger.Trace($"completed {nameof(OnMouseDown)}");
 		}
 
 		/// <summary>
@@ -25,7 +29,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </param>
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnMouseMove)}...");
+
 			base.OnMouseMove(e);
+
+			_logger.Trace($"completed {nameof(OnMouseMove)}");
 		}
 
 		/// <summary>
@@ -36,7 +44,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </param>
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnMouseUp)}...");
+
 			base.OnMouseDown(e);
+
+			_logger.Trace($"completed {nameof(OnMouseUp)}");
 		}
 
 		/// <summary>
@@ -47,6 +59,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </param>
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnMouseWheel)}...");
+
 			base.OnMouseWheel(e);
 			int v = vScrollBar.Value - e.Delta / 50;
 			if (v < vScrollBar.Minimum) v = vScrollBar.Minimum;
@@ -54,6 +68,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			vScrollBar.Value = v;
 			_line = v;
 			this.Invalidate();
+
+			_logger.Trace($"completed {nameof(OnMouseWheel)}");
 		}
 	}
 }

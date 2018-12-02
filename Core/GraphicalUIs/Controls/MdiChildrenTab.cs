@@ -74,6 +74,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.OptimizedDoubleBuffer,
 				true);
+			_logger.Trace(nameof(MdiChildrenTab) + " is constructed");
 		}
 
 		/// <summary>

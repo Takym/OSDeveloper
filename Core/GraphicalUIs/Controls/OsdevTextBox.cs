@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using OSDeveloper.Core.Logging;
 
 namespace OSDeveloper.Core.GraphicalUIs.Controls
 {
@@ -12,12 +13,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 	[DefaultEvent(nameof(TextChanged))]
 	public partial class OsdevTextBox : Control
 	{
+		private Logger _logger;
+
 		/// <summary>
 		///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox"/>'の
 		///  新しいインスタンスを生成します。
 		/// </summary>
 		public OsdevTextBox()
 		{
+			_logger = Logger.GetSystemLogger(nameof(OsdevTextBox));
+
 			this.InitializeComponent();
 			this.SetStyle(
 				ControlStyles.UserPaint |
@@ -40,6 +45,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			vScrollBar.Cursor = Cursors.Arrow;
 			this.Controls.Add(hScrollBar);
 			this.Controls.Add(vScrollBar);
+
+			_logger.Trace(nameof(OsdevTextBox) + " is constructed");
 		}
 
 		/// <summary>
@@ -50,19 +57,29 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </param>
 		protected override void OnTextChanged(EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnTextChanged)}...");
+
 			base.OnTextChanged(e);
 			this.Invalidate();
+
+			_logger.Trace($"completed {nameof(OnTextChanged)}");
 		}
 
 		private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(hScrollBar_Scroll)}...");
 
+			_logger.Trace($"completed {nameof(hScrollBar_Scroll)}");
 		}
 
 		private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(vScrollBar_Scroll)}...");
+
 			_line = e.NewValue;
 			this.Invalidate();
+
+			_logger.Trace($"completed {nameof(vScrollBar_Scroll)}");
 		}
 
 #pragma warning disable CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします

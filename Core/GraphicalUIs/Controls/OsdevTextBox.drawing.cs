@@ -14,6 +14,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </param>
 		protected override void OnPaint(PaintEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnPaint)}...");
 			this.SuspendLayout();
 			base.OnPaint(e);
 
@@ -38,6 +39,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			}
 
 			this.ResumeLayout(false);
+			_logger.Trace($"completed {nameof(OnPaint)}");
 		}
 
 		private void DrawGrid(Graphics g, int fh, int fw, Pen a, Pen b, Pen c)

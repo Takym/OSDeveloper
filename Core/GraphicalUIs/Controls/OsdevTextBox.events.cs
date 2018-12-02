@@ -18,12 +18,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </param>
 		protected virtual void OnGridColorChanged(EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(OnGridColorChanged)}...");
+
 			var h = this.GridColorChanged;
 			if (h != null) {
 				h.Invoke(this, e);
 			}
 
 			this.Invalidate();
+
+			_logger.Trace($"completed {nameof(OnGridColorChanged)}");
 		}
 	}
 }
