@@ -236,5 +236,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.GridColor = OsdevColorThemes.Salmon;
 		}
 		#endregion
+
+		#region コマンドタブ
+
+		/// <summary>
+		///  このテキストボックスで利用されているコマンドタブを取得します。
+		/// </summary>
+		public OsdevTextBoxTab CommandTab { get; }
+
+		#endregion
 	}
 }

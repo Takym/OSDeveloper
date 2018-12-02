@@ -124,6 +124,12 @@
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.events.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.keyboard.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.mouse.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBoxTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBoxTab.Designer.cs">
+      <DependentUpon>OsdevTextBoxTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\GraphicalUIs\Explorer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\Controls\OsdevTextBox.resx">
       <DependentUpon>OsdevTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\GraphicalUIs\Controls\OsdevTextBoxTab.resx">
+      <DependentUpon>OsdevTextBoxTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\GraphicalUIs\Explorer.resx">
       <DependentUpon>Explorer.cs</DependentUpon>

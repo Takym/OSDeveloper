@@ -46,6 +46,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.Controls.Add(hScrollBar);
 			this.Controls.Add(vScrollBar);
 
+			// コマンドタブ設定
+			this.CommandTab = new OsdevTextBoxTab(this);
+
 			_logger.Trace(nameof(OsdevTextBox) + " is constructed");
 		}
 
