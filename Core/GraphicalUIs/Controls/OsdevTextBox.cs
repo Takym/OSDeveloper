@@ -85,6 +85,20 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			_logger.Trace($"completed {nameof(vScrollBar_Scroll)}");
 		}
 
+		/// <summary>
+		///  コマンドをこのテキストボックスに対して送信します。
+		/// </summary>
+		/// <param name="cmd">送信するコマンド文字列です。</param>
+		protected internal virtual void SendCommand(string cmd)
+		{
+			_logger.Trace($"executing {nameof(SendCommand)}...");
+			_logger.Info($"Received the command: {cmd}");
+
+			this.CommandTab.Write("Not supported yet.\r\n");
+
+			_logger.Trace($"completed {nameof(SendCommand)}");
+		}
+
 #pragma warning disable CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします
 		/// <summary>
 		///  背景描画イベントを無効化します。
