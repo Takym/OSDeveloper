@@ -19,6 +19,13 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			if (e.KeyCode == Keys.Escape) {
 				e.Handled = true;
 				MainWindowBase.Current.OpenTerminalTab(this.CommandTab);
+			} else if (e.KeyCode == Keys.Tab) {
+				e.Handled = true;
+				this.Text += '\t';
+				_line = _lines.Length - this.Height / _font.Height + 2;
+				if (_line < 0) _line = 0;
+				vScrollBar.Value = _line;
+				this.Invalidate();
 			}
 
 			_logger.Trace($"completed {nameof(OnKeyDown)}");
@@ -39,10 +46,10 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				if (this.Text.Length != 0) {
 					this.Text = this.Text.Substring(0, this.Text.Length - 1);
 				}
-			} else if (e.KeyChar < ' ') {
-				goto end;
-			} else {
+			} else if (e.KeyChar >= ' ' || e.KeyChar == '\n' || e.KeyChar == '\r' || e.KeyChar == '\t') {
 				this.Text += e.KeyChar;
+			} else {
+				goto end;
 			}
 			_line = _lines.Length - this.Height / _font.Height + 2;
 			if (_line < 0) _line = 0;
