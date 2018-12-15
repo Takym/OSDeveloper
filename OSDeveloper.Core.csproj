@@ -114,17 +114,19 @@
     </Compile>
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorTheme.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorThemes.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.6_search.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.7_history.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.Designer.cs">
       <DependentUpon>OsdevTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.drawing.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.events.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.string.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.keyboard.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.mouse.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.5_clipboard.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.3_output.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.1_events.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.2_textmgr.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.4_input.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBoxTab.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -334,7 +336,7 @@
     <Content Include="Core\Toolkits\placeholder.txt" />
     <Content Include="Core\Workspace\Debugging\placeholder.txt" />
     <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.md" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.properties.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.0_properties.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
