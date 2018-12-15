@@ -89,13 +89,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 						g.DrawString(c.ToString(), _font, t, new Point(fw * (x + 6), y));
 						break;
 				}
-				if (0x20 <= c && c <= 0x7F) { // 半角文字
-					if (c == '\t') {
+				if (0x20 <= c && c <= 0x7F) { // ASCII
+					if (c == '\t') {          // タブ
 						x += 4 - (x % 4);
-					} else {
+					} else {                  // 半角文字
 						++x;
 					}
-				} else { // 全角文字 (一部半角文字)
+				} else {                      // Unicode
+					                          // 全角文字 (一部半角文字)
 					x += 2;
 				}
 			}
