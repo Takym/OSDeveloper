@@ -66,7 +66,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			if (v < vScrollBar.Minimum) v = vScrollBar.Minimum;
 			if (v > vScrollBar.Maximum) v = vScrollBar.Maximum;
 			vScrollBar.Value = v;
-			_line = v;
+			_row_sb = v;
 			this.Invalidate();
 
 			_logger.Trace($"completed {nameof(OnMouseWheel)}");

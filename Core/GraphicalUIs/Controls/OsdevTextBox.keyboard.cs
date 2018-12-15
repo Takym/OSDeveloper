@@ -5,6 +5,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 	partial class __ { } // デザイナ避け
 	partial class OsdevTextBox
 	{
+		// TODO: OsdevTextBox.keyboard: 仮コード
+
 		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.OnKeyDown"/>イベントを発生させます。
 		/// </summary>
@@ -22,9 +24,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			} else if (e.KeyCode == Keys.Tab) {
 				e.Handled = true;
 				this.Text += '\t';
-				_line = _lines.Length - this.Height / _font.Height + 2;
-				if (_line < 0) _line = 0;
-				vScrollBar.Value = _line;
+				_row_sb = _lines.Length - this.Height / _font.Height + 2;
+				if (_row_sb < 0) _row_sb = 0;
+				vScrollBar.Value = _row_sb;
 				this.Invalidate();
 			}
 
@@ -51,9 +53,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			} else {
 				goto end;
 			}
-			_line = _lines.Length - this.Height / _font.Height + 2;
-			if (_line < 0) _line = 0;
-			vScrollBar.Value = _line;
+			_row_sb = _lines.Length - this.Height / _font.Height + 2;
+			if (_row_sb < 0) _row_sb = 0;
+			vScrollBar.Value = _row_sb;
 			this.Invalidate();
 
 end:

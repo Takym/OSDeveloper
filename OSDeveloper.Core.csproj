@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.drawing.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.events.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.string.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.keyboard.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.mouse.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBoxTab.cs">

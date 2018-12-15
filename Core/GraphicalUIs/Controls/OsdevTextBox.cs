@@ -41,10 +41,10 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.ResetGridColor();
 
 			// スクロールバー設定
-			hScrollBar.Cursor = Cursors.Arrow;
 			vScrollBar.Cursor = Cursors.Arrow;
-			this.Controls.Add(hScrollBar);
+			hScrollBar.Cursor = Cursors.Arrow;
 			this.Controls.Add(vScrollBar);
+			this.Controls.Add(hScrollBar);
 
 			// コマンドタブ設定
 			this.CommandTab = new OsdevTextBoxTab(this);
@@ -68,21 +68,24 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			_logger.Trace($"completed {nameof(OnTextChanged)}");
 		}
 
-		private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
-		{
-			_logger.Trace($"executing {nameof(hScrollBar_Scroll)}...");
-
-			_logger.Trace($"completed {nameof(hScrollBar_Scroll)}");
-		}
-
 		private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
 		{
 			_logger.Trace($"executing {nameof(vScrollBar_Scroll)}...");
 
-			_line = e.NewValue;
+			_row_sb = e.NewValue;
 			this.Invalidate();
 
 			_logger.Trace($"completed {nameof(vScrollBar_Scroll)}");
+		}
+
+		private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(hScrollBar_Scroll)}...");
+
+			_col_sb = e.NewValue;
+			this.Invalidate();
+
+			_logger.Trace($"completed {nameof(hScrollBar_Scroll)}");
 		}
 
 		/// <summary>

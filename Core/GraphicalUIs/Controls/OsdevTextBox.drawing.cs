@@ -7,6 +7,13 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 	partial class OsdevTextBox
 	{
 		/// <summary>
+		///  スクロールバーの位置を表します。
+		///  <see cref="_row_sb"/>は行(垂直,<see cref="vScrollBar"/>)を表し、
+		///  <see cref="_col_sb"/>は列(水平,<see cref="hScrollBar"/>,未使用)を表します。
+		/// </summary>
+		private int _row_sb, _col_sb;
+
+		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.Paint"/>イベントを発生させます。
 		/// </summary>
 		/// <param name="e">
@@ -30,7 +37,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			using (SolidBrush l = new SolidBrush(_grid_col.Normal))
 			using (SolidBrush t = new SolidBrush(this.ForeColor)) {
 				int y = fh;
-				for (int i = _line; i < _lines.Length; ++i) {
+				for (int i = _row_sb; i < _lines.Length; ++i) {
 					e.Graphics.DrawString($"{i + 1:D5}", _font, l, new Point(0, y));
 					this.DrawTextLine(e.Graphics, fh, fw, i, y, t, l);
 					y += fh;
