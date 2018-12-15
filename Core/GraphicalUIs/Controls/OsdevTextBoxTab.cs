@@ -112,5 +112,27 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			output.ScrollToCaret();
 			_logger.Notice(str);
 		}
+
+		/// <summary>
+		///  出力先のテキストボックスに改行を書き込みます。
+		/// </summary>
+		public void WriteLine()
+		{
+			output.Text += "\r\n";
+			output.SelectionStart = output.Text.Length;
+			output.ScrollToCaret();
+		}
+
+		/// <summary>
+		///  出力先のテキストボックスに指定された文字列を改行付きで書き込みます。
+		/// </summary>
+		/// <param name="str">書き込む文字列です。</param>
+		public void WriteLine(string str)
+		{
+			output.Text += $"{str}\r\n";
+			output.SelectionStart = output.Text.Length;
+			output.ScrollToCaret();
+			_logger.Notice(str);
+		}
 	}
 }

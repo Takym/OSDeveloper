@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.Error;
@@ -12,7 +13,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <summary>
 		///  <see cref="Lines"/>プロパティの実態です。
 		/// </summary>
-		private string[] _lines;
+		private List<string> _lines;
 
 		/// <summary>
 		///  選択範囲を表します。
@@ -27,8 +28,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 		private string CheckPoint(int row, int col)
 		{
-			if (row >= _lines.Length) {
-				throw ErrorGen.ArgOutOfRange(row, 0, _lines.Length - 1);
+			if (row >= _lines.Count) {
+				throw ErrorGen.ArgOutOfRange(row, 0, _lines.Count - 1);
 			}
 			string l = _lines[row];
 			if (col >= l.Length) {
@@ -48,12 +49,54 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public void SetText(string text)
 		{
 			text = text.CRtoLF();
-			_lines = text.Split('\n');
-			base.Text = text;
-			vScrollBar.Maximum = _lines.Length;
+			_lines.Clear();
+			_lines.AddRange(text.Split('\n'));
+			vScrollBar.Maximum = _lines.Count;
 			this.Invalidate();
+			base.Text = text;
 		}
 
+		/// <summary>
+		///  このテキストボックスに表示される文字列を取得します。
+		/// </summary>
+		/// <returns>表示されている文字列です。</returns>
+		public string GetText()
+		{
+			return base.Text = string.Join("\n", _lines.ToArray());
+		}
+
+		/// <summary>
+		///  テキスト行を新たに追加します。
+		/// </summary>
+		/// <param name="row">追加先の行番号です。</param>
+		/// <param name="s">追加する文字列です。</param>
+		/// <exception cref="System.ArgumentOutOfRangeException" />
+		public void AddTextLine(int row, string s)
+		{
+			_lines.Insert(row, s);
+			vScrollBar.Maximum = _lines.Count;
+			this.Invalidate();
+			base.Text = string.Join("\n", _lines.ToArray());
+		}
+
+		/// <summary>
+		///  指定された場所に指定された文字列を挿入します。
+		///  改行は無視されます。
+		/// </summary>
+		/// <param name="row">追加先の行です。</param>
+		/// <param name="col">追加先の列です。</param>
+		/// <param name="s">追加する文字列です。</param>
+		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.ArgumentOutOfRangeException"/>
+		public void InsertString(int row, int col, string s)
+		{
+			s = s.Replace("\n", "").Replace("\r", "");
+			_lines[row] = _lines[row].Insert(col, s);
+			this.Invalidate();
+			base.Text = string.Join("\n", _lines.ToArray());
+		}
+
+		/*
 		/// <summary>
 		///  指定された場所に指定された文字列を追加します。
 		/// </summary>
@@ -112,7 +155,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			this.RemoveStringFrom(pos.X, pos.Y, 1);
 		}
-
+		//*/
 		#endregion
 
 		#region 基本的な文字列の選択処理
@@ -179,7 +222,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			_row_ss = 0;
 			_col_ss = 0;
-			_row_se = _lines.Length - 1;
+			_row_se = _lines.Count - 1;
 			_col_se = _lines[_row_se].Length - 1;
 			this.Invalidate();
 		}

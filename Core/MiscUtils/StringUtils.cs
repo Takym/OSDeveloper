@@ -44,7 +44,8 @@ namespace OSDeveloper.Core.MiscUtils
 				.Replace("\"", "\\q")
 				.Replace("\t", "\\t")
 				.Replace("\n", "\\n")
-				.Replace("\r", "\\r");
+				.Replace("\r", "\\r")
+				.Replace(" ", "\\s");
 		}
 
 		/// <summary>
@@ -60,7 +61,8 @@ namespace OSDeveloper.Core.MiscUtils
 				.Replace("\\q", "\"")
 				.Replace("\\t", "\t")
 				.Replace("\\n", "\n")
-				.Replace("\\r", "\r");
+				.Replace("\\r", "\r")
+				.Replace("\\s", " ");
 		}
 
 		/// <summary>

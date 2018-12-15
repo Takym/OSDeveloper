@@ -114,15 +114,16 @@
     </Compile>
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorTheme.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorThemes.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.6_search.cs" />
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.7_history.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.5_command.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.7_search.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.8_history.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.Designer.cs">
       <DependentUpon>OsdevTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.5_clipboard.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.6_clipboard.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.3_output.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.1_events.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.2_textmgr.cs" />

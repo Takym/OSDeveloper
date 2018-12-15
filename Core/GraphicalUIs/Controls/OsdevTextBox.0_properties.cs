@@ -18,7 +18,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			get
 			{
-				return base.Text;
+				return this.GetText();
 			}
 
 			set
@@ -28,23 +28,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		}
 
 		/// <summary>
-		///  このテキストボックスに格納されているテキスト行を取得または設定します。
-		///  配列の値には改行コード(LFやCR等)を含む場合は無視されます。
+		///  このテキストボックスに格納されているテキスト行を取得します。
 		/// </summary>
 		[Browsable(true)]
 		[Category(nameof(CategoryAttribute.Appearance))]
 		[Description("このテキストボックスに格納されているテキスト行を表します。")]
-		public virtual string[] Lines
+		public string[] Lines
 		{
 			get
 			{
-				return _lines;
-			}
-
-			set
-			{
-				// 改行ごとに分割されていない可能性があるので、\nで結合して再度分割する。
-				this.SetText(string.Join("\n", value));
+				return _lines.ToArray();
 			}
 		}
 		#endregion
