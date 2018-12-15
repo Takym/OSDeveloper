@@ -5,8 +5,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 	partial class __ { } // デザイナ避け
 	partial class OsdevTextBox
 	{
-		// TODO: OsdevTextBox.keyboard: 仮コード
-
+		#region キーボード
 		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.OnKeyDown"/>イベントを発生させます。
 		/// </summary>
@@ -43,7 +42,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 			_logger.Trace($"completed {nameof(OnKeyDown)}");
 		}
+		#endregion
 
+		#region マウス
 		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.MouseWheel"/>イベントを発生させます。
 		/// </summary>
@@ -64,6 +65,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 			_logger.Trace($"completed {nameof(OnMouseWheel)}");
 		}
+		#endregion
 
 		#region 未実装
 		/// <summary>
