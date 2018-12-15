@@ -18,6 +18,33 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			_logger.Trace($"executing {nameof(OnKeyDown)}...");
 			base.OnKeyDown(e);
 
+			switch (e.KeyCode) {
+				case Keys.Escape: { // ESCキー、コマンドタブを開く
+					e.Handled = true;
+					MainWindowBase.Current.OpenTerminalTab(this.CommandTab);
+				}
+				break;
+				case Keys.Tab: {
+
+				}
+				break;
+				default: {
+					e.Handled = true;
+					char k = ((char)(e.KeyCode & Keys.KeyCode));
+					if (k == '\b') {
+						this.RemoveStringFrom(_row_ss, _col_ss, 1);
+					} else {
+						this.AddStringTo(_row_ss, _col_ss, k.ToString());
+					}
+					++_col_ss;
+				}
+				break;
+			}
+
+
+
+			/*
+
 			if (e.KeyCode == Keys.Escape) {
 				e.Handled = true;
 				MainWindowBase.Current.OpenTerminalTab(this.CommandTab);
@@ -30,8 +57,12 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				this.Invalidate();
 			}
 
+			//*/
+
 			_logger.Trace($"completed {nameof(OnKeyDown)}");
 		}
+
+		/*
 
 		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.KeyPress"/>イベントを発生させます。
@@ -62,5 +93,7 @@ end:
 			e.Handled = true;
 			_logger.Trace($"completed {nameof(OnKeyPress)}");
 		}
+
+		//*/
 	}
 }

@@ -89,6 +89,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 						g.DrawString(c.ToString(), _font, t, new Point(fw * (x + 6), y));
 						break;
 				}
+				if (_row_ss == i && _col_ss == j) {
+					g.DrawLine(Pens.White, new Point(fw * (x + 6), y), new Point(fw * (x + 6), y + fh));
+				}
 				if (0x20 <= c && c <= 0x7F) { // ASCII
 					if (c == '\t') {          // タブ
 						x += 4 - (x % 4);

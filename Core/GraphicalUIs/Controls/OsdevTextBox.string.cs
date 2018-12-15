@@ -55,35 +55,33 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		}
 
 		/// <summary>
-		///  指定された場所に指定された字を追加します。
+		///  指定された場所に指定された文字列を追加します。
 		/// </summary>
 		/// <param name="row">追加先の行です。</param>
 		/// <param name="col">追加先の列です。</param>
-		/// <param name="c">追加する字です。</param>
+		/// <param name="s">追加する文字列です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void AddCharTo(int row, int col, char c)
+		public void AddStringTo(int row, int col, string s)
 		{
 			string l = this.CheckPoint(row, col);
-			string start = l.Substring(0, col);
-			string end = l.Substring(col, l.Length - col);
-			l = start + c + end;
-			_lines[row] = l;
+			_lines[row] = l.Insert(col, s);
+			base.Text = string.Join("\n", _lines);
 			this.Invalidate();
-			this.OnTextChanged(new EventArgs());
 		}
 
 		/// <summary>
-		///  指定された場所の字を削除します。
+		///  指定された場所の文字列を指定された回数分だけ削除します。
 		/// </summary>
-		/// <param name="row">削除する字の行です。</param>
-		/// <param name="col">削除する字の列です。</param>
+		/// <param name="row">削除する文字列の行です。</param>
+		/// <param name="col">削除する文字列の列です。</param>
+		/// <param name="count">削除する文字数です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void RemoveCharFrom(int row, int col)
+		public void RemoveStringFrom(int row, int col, int count)
 		{
 			string l = this.CheckPoint(row, col);
-			l.Remove(col);
+			_lines[row] = l.Remove(col, count);
+			base.Text = string.Join("\n", _lines);
 			this.Invalidate();
-			this.OnTextChanged(new EventArgs());
 		}
 
 		/// <summary>
@@ -98,7 +96,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		public void AddCharTo(Point pos, char c)
 		{
-			this.AddCharTo(pos.X, pos.Y, c);
+			this.AddStringTo(pos.X, pos.Y, c.ToString());
 		}
 
 		/// <summary>
@@ -112,7 +110,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		public void RemoveCharFrom(Point pos)
 		{
-			this.RemoveCharFrom(pos.X, pos.Y);
+			this.RemoveStringFrom(pos.X, pos.Y, 1);
 		}
 
 		#endregion
