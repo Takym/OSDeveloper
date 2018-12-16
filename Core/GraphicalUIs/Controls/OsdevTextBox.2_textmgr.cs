@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.Error;
 using OSDeveloper.Core.MiscUtils;
@@ -39,7 +38,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			return l;
 		}
 
-		private void InsertLine(string[] vs, int row)
+		private void InsertLines(string[] vs, int row)
 		{
 			for (int i = vs.Length - 1; i >= 0; ++i) {
 				_lines.Insert(row, vs[i]);
@@ -91,7 +90,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			this.CheckPoint(row, 0);
 			string[] vs = s.CRtoLF().Split('\n');
-			this.InsertLine(vs, row);
+			this.InsertLines(vs, row);
 		}
 
 		/// <summary>
@@ -106,7 +105,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			this.CheckPoint(row, col);
 			string[] vs = _lines[row].Insert(col, s).CRtoLF().Split('\n');
-			this.InsertLine(vs, row);
+			_lines.RemoveAt(row);
+			this.InsertLines(vs, row);
 		}
 
 		/// <summary>
@@ -246,13 +246,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 			set
 			{
-				this.RemoveStringAt(_row_ss, _col_ss, _lines[_row_ss].Length - _col_ss);
-				this.RemoveStringAt(_row_se,       0,                          _col_se);
-				for (int i = _row_ss + 1; i < _row_se; ++i) {
-					this.RemoveTextLine(i);
-				}
-				this.RemoveLineBreakAt(_row_ss);
-				this.InsertString(_row_ss, _col_ss, value);
+				// TODO: 選択範囲の書き換え、中々いいアルゴリズムが思い付かない。
+				throw new NotImplementedException();
 			}
 		}
 
