@@ -14,11 +14,12 @@ namespace OSDeveloper.Core.Error
 		/// <param name="v">指定された値です。</param>
 		/// <param name="min">値の最小値です。</param>
 		/// <param name="max">値の最大値です。</param>
+		/// <param name="paramName">エラーが発生したパラメータの変数名です。</param>
 		/// <typeparam name="T">値の種類です。</typeparam>
 		/// <returns>生成された<see cref="System.ArgumentOutOfRangeException"/>オブジェクトです。</returns>
-		public static ArgumentOutOfRangeException ArgOutOfRange<T>(T v, T min, T max)
+		public static ArgumentOutOfRangeException ArgOutOfRange<T>(T v, T min, T max, string paramName)
 		{
-			return new ArgumentOutOfRangeException(string.Format(
+			return new ArgumentOutOfRangeException(paramName, string.Format(
 				ErrorMessages.ArgOutOfRange, v, min, max));
 		}
 	}

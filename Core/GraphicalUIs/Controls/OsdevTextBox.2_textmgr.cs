@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.Error;
 using OSDeveloper.Core.MiscUtils;
@@ -29,13 +30,28 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		private string CheckPoint(int row, int col)
 		{
 			if (row >= _lines.Count) {
-				throw ErrorGen.ArgOutOfRange(row, 0, _lines.Count - 1);
+				throw ErrorGen.ArgOutOfRange(row, 0, _lines.Count - 1, nameof(row));
 			}
 			string l = _lines[row];
 			if (col >= l.Length) {
-				throw ErrorGen.ArgOutOfRange(col, 0, l.Length - 1);
+				throw ErrorGen.ArgOutOfRange(col, 0, l.Length - 1, nameof(col));
 			}
 			return l;
+		}
+
+		private void InsertLine(string[] vs, int row)
+		{
+			for (int i = vs.Length - 1; i >= 0; ++i) {
+				_lines.Insert(row, vs[i]);
+			}
+			this.UpdateText();
+		}
+
+		private void UpdateText()
+		{
+			vScrollBar.Maximum = _lines.Count;
+			this.Invalidate();
+			base.Text = string.Join("\n", _lines.ToArray());
 		}
 
 		#endregion
@@ -73,15 +89,13 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <exception cref="System.ArgumentOutOfRangeException" />
 		public void AddTextLine(int row, string s)
 		{
-			_lines.Insert(row, s);
-			vScrollBar.Maximum = _lines.Count;
-			this.Invalidate();
-			base.Text = string.Join("\n", _lines.ToArray());
+			this.CheckPoint(row, 0);
+			string[] vs = s.CRtoLF().Split('\n');
+			this.InsertLine(vs, row);
 		}
 
 		/// <summary>
 		///  指定された場所に指定された文字列を挿入します。
-		///  改行は無視されます。
 		/// </summary>
 		/// <param name="row">追加先の行です。</param>
 		/// <param name="col">追加先の列です。</param>
@@ -90,72 +104,51 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <exception cref="System.ArgumentOutOfRangeException"/>
 		public void InsertString(int row, int col, string s)
 		{
-			s = s.Replace("\n", "").Replace("\r", "");
-			_lines[row] = _lines[row].Insert(col, s);
-			this.Invalidate();
-			base.Text = string.Join("\n", _lines.ToArray());
+			this.CheckPoint(row, col);
+			string[] vs = _lines[row].Insert(col, s).CRtoLF().Split('\n');
+			this.InsertLine(vs, row);
 		}
 
-		/*
 		/// <summary>
-		///  指定された場所に指定された文字列を追加します。
+		///  指定されたテキスト行を削除します。
 		/// </summary>
-		/// <param name="row">追加先の行です。</param>
-		/// <param name="col">追加先の列です。</param>
-		/// <param name="s">追加する文字列です。</param>
+		/// <param name="row">削除する行の行番号です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void AddStringTo(int row, int col, string s)
+		public void RemoveTextLine(int row)
 		{
-			string l = this.CheckPoint(row, col);
-			_lines[row] = l.Insert(col, s);
-			base.Text = string.Join("\n", _lines);
-			this.Invalidate();
+			this.CheckPoint(row, 0);
+			_lines.RemoveAt(row);
+			this.UpdateText();
 		}
 
 		/// <summary>
-		///  指定された場所の文字列を指定された回数分だけ削除します。
+		///  指定された場所の文字列を指定数回分だけ削除します。
 		/// </summary>
-		/// <param name="row">削除する文字列の行です。</param>
-		/// <param name="col">削除する文字列の列です。</param>
+		/// <param name="row">削除する文字列の行番号です。</param>
+		/// <param name="col">削除する文字列の列番号です。</param>
 		/// <param name="count">削除する文字数です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void RemoveStringFrom(int row, int col, int count)
+		public void RemoveStringAt(int row, int col, int count)
 		{
-			string l = this.CheckPoint(row, col);
-			_lines[row] = l.Remove(col, count);
-			base.Text = string.Join("\n", _lines);
-			this.Invalidate();
+			this.CheckPoint(row, col);
+			_lines[row] = _lines[row].Remove(col, count);
+			this.UpdateText();
 		}
 
 		/// <summary>
-		///  指定された場所に指定された字を追加します。
+		///  指定された行の改行を削除します。
 		/// </summary>
-		/// <param name="pos">
-		///  字を追加する場所です。
-		///  <see cref="System.Drawing.Point.X"/>が行数で、
-		///  <see cref="System.Drawing.Point.Y"/>が列数です。
-		/// </param>
-		/// <param name="c">追加する字です。</param>
+		/// <param name="row">改行を削除する行の行番号です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void AddCharTo(Point pos, char c)
+		public void RemoveLineBreakAt(int row)
 		{
-			this.AddStringTo(pos.X, pos.Y, c.ToString());
+			this.CheckPoint(row, 0);
+			if (row < _lines.Count - 1) {
+				_lines[row] += _lines[row + 1];
+				_lines.RemoveAt(row + 1);
+			}
+			this.UpdateText();
 		}
-
-		/// <summary>
-		///  指定された場所の字を削除します。
-		/// </summary>
-		/// <param name="pos">
-		///  削除する字の場所です。
-		///  <see cref="System.Drawing.Point.X"/>が行数で、
-		///  <see cref="System.Drawing.Point.Y"/>が列数です。
-		/// </param>
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void RemoveCharFrom(Point pos)
-		{
-			this.RemoveStringFrom(pos.X, pos.Y, 1);
-		}
-		//*/
 		#endregion
 
 		#region 基本的な文字列の選択処理
@@ -239,9 +232,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 		#endregion
 
-		#region 応用的な文字列の選択処理 (後で実装)
-
-		// TODO: SelectionIndex、SelectionLength
+		#region 応用的な文字列の選択処理
 
 		/// <summary>
 		///  このテキストエディタで選択されている文字列を取得または設定します。
@@ -250,23 +241,48 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.Text.Substring(this.SelectionIndex, this.SelectionIndex);
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				this.RemoveStringAt(_row_ss, _col_ss, _lines[_row_ss].Length - _col_ss);
+				this.RemoveStringAt(_row_se,       0,                          _col_se);
+				for (int i = _row_ss + 1; i < _row_se; ++i) {
+					this.RemoveTextLine(i);
+				}
+				this.RemoveLineBreakAt(_row_ss);
+				this.InsertString(_row_ss, _col_ss, value);
 			}
 		}
 
 		/// <summary>
-		///  選択位置を取得または設定します。
+		///  選択範囲の開始位置を取得または設定します。
 		/// </summary>
 		public int SelectionIndex
 		{
 			get
 			{
-				throw new NotImplementedException();
+				int x = 0;
+				for (int i = 0; i < _row_ss; ++i) {
+					x += _lines[i].Length;
+				}
+				return x + _col_ss;
+			}
+		}
+
+		/// <summary>
+		///  選択範囲の終了位置を取得または設定します。
+		/// </summary>
+		public int SelectionLastIndex
+		{
+			get
+			{
+				int x = 0;
+				for (int i = 0; i < _row_se; ++i) {
+					x += _lines[i].Length;
+				}
+				return x + _col_se;
 			}
 		}
 
@@ -277,7 +293,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.SelectionLastIndex - this.SelectionIndex;
 			}
 		}
 

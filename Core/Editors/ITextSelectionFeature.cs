@@ -27,6 +27,12 @@ namespace OSDeveloper.Core.Editors
 		/// </summary>
 		int SelectionIndex { get; }
 
+
+		/// <summary>
+		///  選択されている文字列の全ての文字列中での最終位置を取得します。
+		/// </summary>
+		int SelectionLastIndex { get; }
+
 		/// <summary>
 		///  選択されている文字列の長さを取得または設定します。
 		/// </summary>

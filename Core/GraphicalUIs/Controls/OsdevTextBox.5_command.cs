@@ -77,7 +77,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		protected virtual List<string> ConvertFromVim(List<string> cmd)
 		{
 			// TODO: いつかVIMコマンドから変換できる様にする。
-			return null;
+			return cmd;
 		}
 	}
 }
