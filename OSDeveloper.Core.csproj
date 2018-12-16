@@ -113,6 +113,7 @@
       <DependentUpon>MdiChildrenTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorTheme.cs" />
+    <Compile Include="Core\GraphicalUIs\Controls\OsdevColorThemeConverter.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevColorThemes.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.5_command.cs" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.7_search.cs" />

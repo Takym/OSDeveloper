@@ -37,7 +37,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			using (SolidBrush l = new SolidBrush(_grid_col.Normal))
 			using (SolidBrush t = new SolidBrush(this.ForeColor)) {
 				int y = fh;
-				for (int i = _row_sb; i < _lines.Length; ++i) {
+				for (int i = _row_sb; i < _lines.Count; ++i) {
 					e.Graphics.DrawString($"{i + 1:D5}", _font, l, new Point(0, y));
 					this.DrawTextLine(e.Graphics, fh, fw, i, y, t, l);
 					y += fh;

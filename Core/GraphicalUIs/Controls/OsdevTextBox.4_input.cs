@@ -31,9 +31,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 					e.Handled = true;
 					char k = ((char)(e.KeyCode & Keys.KeyCode));
 					if (k == '\b') {
-						this.RemoveStringFrom(_row_ss, _col_ss, 1);
+						//this.RemoveStringFrom(_row_ss, _col_ss, 1);
 					} else {
-						this.AddStringTo(_row_ss, _col_ss, k.ToString());
+						//this.AddStringTo(_row_ss, _col_ss, k.ToString());
 					}
 					++_col_ss;
 				}

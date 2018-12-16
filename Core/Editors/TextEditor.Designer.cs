@@ -37,14 +37,6 @@
 			this.tbox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tbox.Font = new System.Drawing.Font("ＭＳ ゴシック", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.tbox.ForeColor = System.Drawing.Color.White;
-			this.tbox.Lines = new string[] {
-        "abcd",
-        "Hello, World!!",
-        "The quick brown fox jumped over the lazy dogs.",
-        "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-        "\thoge\tfuga\tpiyo\tfoobar",
-        "テストてすとUnicodeの実験文字文字文字あいうえおｶｷｸｹｺ",
-        ""};
 			this.tbox.Location = new System.Drawing.Point(0, 0);
 			this.tbox.Name = "tbox";
 			this.tbox.RightToLeft = System.Windows.Forms.RightToLeft.No;

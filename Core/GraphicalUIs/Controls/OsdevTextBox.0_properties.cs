@@ -147,7 +147,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <summary>
 		///  画面上に表示されるグリッドの色を取得または設定します。
 		/// </summary>
-		[Browsable(false)]
 		public OsdevColorTheme GridColor
 		{
 			get

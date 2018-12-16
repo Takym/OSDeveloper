@@ -41,13 +41,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <summary>
 		///  タブボタンのカラーテーマを取得または設定します。
 		/// </summary>
-		[Browsable(false)]
 		public OsdevColorTheme ButtonColor { get; set; }
 
 		/// <summary>
 		///  マウスイベントが発生しているタブボタンのカラーテーマを取得または設定します。
 		/// </summary>
-		[Browsable(false)]
 		public OsdevColorTheme MouseActionButtonColor { get; set; }
 
 		private Logger _logger;
