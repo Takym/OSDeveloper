@@ -40,8 +40,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 		private void InsertLines(string[] vs, int row)
 		{
-			for (int i = vs.Length - 1; i >= 0; ++i) {
+			for (int i = vs.Length - 1; i >= 0; --i) {
 				_lines.Insert(row, vs[i]);
+			}
+			this.UpdateText();
+		}
+
+		private void RemoveLines(int row, int count)
+		{
+			for (int i = row; i < count; ++i) {
+				_lines.RemoveAt(i);
 			}
 			this.UpdateText();
 		}
@@ -51,6 +59,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			vScrollBar.Maximum = _lines.Count;
 			this.Invalidate();
 			base.Text = string.Join("\n", _lines.ToArray());
+		}
+
+		private (int row1, int col1, int row2, int col2) ReplaceTextMultiple(int row1, int col1, int row2, int col2, string s)
+		{
+			return (0, 0, 0, 0);
+		}
+
+		private (int row1, int col1, int row2, int col2) ReplaceTextSingle(int row1, int col1, int row2, int col2, string s)
+		{
+			return (0, 0, 0, 0);
 		}
 
 		#endregion
@@ -81,44 +99,30 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		}
 
 		/// <summary>
-		///  テキスト行を新たに追加します。
-		/// </summary>
-		/// <param name="row">追加先の行番号です。</param>
-		/// <param name="s">追加する文字列です。</param>
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void AddTextLine(int row, string s)
-		{
-			this.CheckPoint(row, 0);
-			string[] vs = s.CRtoLF().Split('\n');
-			this.InsertLines(vs, row);
-		}
-
-		/// <summary>
 		///  指定された場所に指定された文字列を挿入します。
 		/// </summary>
 		/// <param name="row">追加先の行です。</param>
 		/// <param name="col">追加先の列です。</param>
 		/// <param name="s">追加する文字列です。</param>
-		/// <exception cref="System.ArgumentNullException"/>
 		/// <exception cref="System.ArgumentOutOfRangeException"/>
 		public void InsertString(int row, int col, string s)
 		{
 			this.CheckPoint(row, col);
+			s = s ?? string.Empty;
 			string[] vs = _lines[row].Insert(col, s).CRtoLF().Split('\n');
 			_lines.RemoveAt(row);
 			this.InsertLines(vs, row);
 		}
 
 		/// <summary>
-		///  指定されたテキスト行を削除します。
+		///  指定された行に文字列を追加します。
 		/// </summary>
-		/// <param name="row">削除する行の行番号です。</param>
-		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void RemoveTextLine(int row)
+		/// <param name="row">追加先の行です。</param>
+		/// <param name="s">追加する文字列です。</param>
+		public void InsertTextLine(int row, string s)
 		{
 			this.CheckPoint(row, 0);
-			_lines.RemoveAt(row);
-			this.UpdateText();
+			this.InsertLines(s.CRtoLF().Split('\n'), row);
 		}
 
 		/// <summary>
@@ -136,11 +140,23 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		}
 
 		/// <summary>
+		///  指定されたテキスト行を削除します。
+		/// </summary>
+		/// <param name="row">削除する行の行番号です。</param>
+		/// <exception cref="System.ArgumentOutOfRangeException" />
+		public void RemoveTextLine(int row)
+		{
+			this.CheckPoint(row, 0);
+			_lines.RemoveAt(row);
+			this.UpdateText();
+		}
+
+		/// <summary>
 		///  指定された行の改行を削除します。
 		/// </summary>
 		/// <param name="row">改行を削除する行の行番号です。</param>
 		/// <exception cref="System.ArgumentOutOfRangeException" />
-		public void RemoveLineBreakAt(int row)
+		public void RemoveLineBreakOf(int row)
 		{
 			this.CheckPoint(row, 0);
 			if (row < _lines.Count - 1) {
@@ -148,6 +164,44 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				_lines.RemoveAt(row + 1);
 			}
 			this.UpdateText();
+		}
+
+		/// <summary>
+		///  指定された範囲の文字列を別の文字列に置換します。
+		/// </summary>
+		/// <param name="row1">置換する文字列の最初の行です。</param>
+		/// <param name="col1">置換する文字列の最初の列です。</param>
+		/// <param name="row2">置換する文字列の最後の行です。</param>
+		/// <param name="col2">置換する文字列の最後の列です。</param>
+		/// <param name="s">置換後の文字列です。</param>
+		/// <returns>置換後の範囲です。</returns>
+		/// <exception cref="System.ArgumentOutOfRangeException" />
+		public (int row1, int col1, int row2, int col2) ReplaceText(int row1, int col1, int row2, int col2, string s)
+		{
+			this.CheckPoint(row1, col1);
+			this.CheckPoint(row2, col2);
+			s = s ?? string.Empty;
+			(int row1, int col1, int row2, int col2) result;
+
+			if (row1 < row2) {             // 行1が行2より前にある場合
+				result = this.ReplaceTextMultiple(row1, col1, row2, col2, s);
+			} else if (row1 == row2) {     // 行1と行2が同じ場合
+				if (col1 < col2) {         // 列1が列2より前にある場合
+					result = this.ReplaceTextSingle(row1, col1, row2, col2, s);
+				} else if (col1 == col2) { // 列1と列2が同じ場合
+					return (row1, col1, row2, col2);
+				} else {                   // 列1が列2より後にある場合
+					var r = this.ReplaceTextSingle(row2, col2, row1, col1, s);
+					result.row1 = r.row2; result.col1 = r.col2;
+					result.row2 = r.row1; result.col2 = r.col1;
+				}
+			} else {                       // 行1が行2より後にある場合
+				var r = this.ReplaceTextMultiple(row2, col2, row1, col1, s);
+				result.row1 = r.row2; result.col1 = r.col2;
+				result.row2 = r.row1; result.col2 = r.col1;
+			}
+
+			return result;
 		}
 		#endregion
 
