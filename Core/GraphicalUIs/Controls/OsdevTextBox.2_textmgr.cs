@@ -63,12 +63,24 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 		private (int row1, int col1, int row2, int col2) ReplaceTextMultiple(int row1, int col1, int row2, int col2, string s)
 		{
-			return (0, 0, 0, 0);
+			string start = _lines[row1].Substring(0, col1);
+			string end = _lines[row2].Substring(col2, _lines[row2].Length - col2);
+			string[] vs = (start + s + end).CRtoLF().Split('\n');
+			for (int i = row1; i <= row2; ++i) {
+				_lines.RemoveAt(i);
+			}
+			this.InsertLines(vs, row1);
+			return (row1, col1, row1 += vs.Length - 1, vs[vs.Length - 1].Length);
 		}
 
-		private (int row1, int col1, int row2, int col2) ReplaceTextSingle(int row1, int col1, int row2, int col2, string s)
+		private (int row1, int col1, int row2, int col2) ReplaceTextSingle(int row, int col1, int col2, string s)
 		{
-			return (0, 0, 0, 0);
+			string start = _lines[row].Substring(0, col1);
+			string end = _lines[row].Substring(col2, _lines[row].Length - col2);
+			string[] vs = (start + s + end).CRtoLF().Split('\n');
+			_lines.RemoveAt(row);
+			this.InsertLines(vs, row);
+			return (row, col1, row += vs.Length - 1, vs[vs.Length - 1].Length);
 		}
 
 		#endregion
@@ -85,8 +97,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			_lines.Clear();
 			_lines.AddRange(text.Split('\n'));
 			vScrollBar.Maximum = _lines.Count;
-			this.Invalidate();
-			base.Text = text;
 		}
 
 		/// <summary>
@@ -95,7 +105,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <returns>表示されている文字列です。</returns>
 		public string GetText()
 		{
-			return base.Text = string.Join("\n", _lines.ToArray());
+			return string.Join("\n", _lines.ToArray());
 		}
 
 		/// <summary>
@@ -187,11 +197,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				result = this.ReplaceTextMultiple(row1, col1, row2, col2, s);
 			} else if (row1 == row2) {     // 行1と行2が同じ場合
 				if (col1 < col2) {         // 列1が列2より前にある場合
-					result = this.ReplaceTextSingle(row1, col1, row2, col2, s);
-				} else if (col1 == col2) { // 列1と列2が同じ場合
-					return (row1, col1, row2, col2);
+					result = this.ReplaceTextSingle(row1, col1, col2, s);
+				} else if (col1 == col2) { // 列1と列2が同じ場合 (同じ場所を指している場合)
+					string[] vs = _lines[row1].Insert(col1, s).CRtoLF().Split('\n');
+					_lines.RemoveAt(row1);
+					this.InsertLines(vs, row1);
+					return (row1, col1, row2 += vs.Length - 1, vs[vs.Length - 1].Length);
 				} else {                   // 列1が列2より後にある場合
-					var r = this.ReplaceTextSingle(row2, col2, row1, col1, s);
+					var r = this.ReplaceTextSingle(row1, col2, col1, s);
 					result.row1 = r.row2; result.col1 = r.col2;
 					result.row2 = r.row1; result.col2 = r.col1;
 				}
@@ -300,8 +313,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 			set
 			{
-				// TODO: 選択範囲の書き換え、中々いいアルゴリズムが思い付かない。
-				throw new NotImplementedException();
+				this.ReplaceText(_row_ss, _col_ss, _row_se, _col_se, value);
 			}
 		}
 
