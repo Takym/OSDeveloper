@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using OSDeveloper.Assets;
 using OSDeveloper.Core.GraphicalUIs;
 using OSDeveloper.Core.GraphicalUIs.Controls;
 using OSDeveloper.Core.GraphicalUIs.ToolStrips;
@@ -26,6 +27,7 @@ namespace OSDeveloper.App
 			ConfigManager.ApplySystemSettings();
 
 			// ロガー初期化
+			Logger.Init();
 			Logger l = Logger.GetSystemLogger("system");
 			l.Trace($"The application is started with command-line: {{{string.Join(", ", args)}}}");
 			l.Trace("System.Windows.Forms.Application was initialized already");
@@ -47,11 +49,18 @@ namespace OSDeveloper.App
 			l.Debug($"{nameof(LogFile)}.{nameof(LogFile.InternalNameKind)} = {LogFile.InternalNameKind}");
 			l.Debug($"{nameof(MenuStripManager)}.{nameof(MenuStripManager.UseEXDialog)} = {MenuStripManager.UseEXDialog}");
 
+			// FontResources生成
+			FontResources.Init();
+
 			// メインウィンドウ表示
 			Application.Run(new FormMain());
 
-			// Runメソッドが終了したタイミングでロガーが破棄される為、
-			// ここでロガーを参照してはいけない
+			// FontResources解放
+			FontResources.Final();
+
+			// ロガー破棄
+			l.Trace("The application is terminating...");
+			Logger.Final();
 
 			return 0;
 		}

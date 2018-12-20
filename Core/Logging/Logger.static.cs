@@ -1,31 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Windows.Forms;
 using OSDeveloper.Core.FileManagement;
 
 namespace OSDeveloper.Core.Logging
 {
 	partial class Logger
 	{
-		private readonly static Dictionary<string, Logger> _loggers = new Dictionary<string, Logger>();
-		private readonly static List<MultipleLogFile> _multiple_logs = new List<MultipleLogFile>();
-		private readonly static LogFile _system_log_file =
-			//new LogFile(SystemPaths.Logs.Bond($"{DateTime.Now:yyyy-MM-dd_HH}.[{Process.GetCurrentProcess().Id}].log"));
-			new ProcessReportRecordFile(SystemPaths.Logs.Bond($"{DateTime.Now:yyyy-MM-dd_HH}.[{Process.GetCurrentProcess().Id}].pr2f"));
+		private static bool _is_initialized;
+		private static Dictionary<string, Logger> _loggers;
+		private static List<LogFile> _log_files;
+		private static LogFile _system_log_file;
 
 		static Logger()
 		{
-			Application.ApplicationExit += Application_ApplicationExit;
+			Init();
+			_system_log_file.Write(new LogData(LogLevel.Trace, GetSystemLogger("system"),
+				"The logging system was initialized"));
 		}
 
-		private static void Application_ApplicationExit(object sender, EventArgs e)
+		/// <summary>
+		///  静的コンストラクタが一度も呼び出されていない場合は、
+		///  初期化を開始し、既に呼び出されている場合は何もしません。
+		/// </summary>
+		public static void Init()
 		{
-			_system_log_file.Write(new LogData(LogLevel.Trace, GetSystemLogger("system"),
-				"The aplication is shutdowning..."));
-			_system_log_file.Dispose();
-			foreach (var item in _multiple_logs) {
-				item.Dispose();
+			if (!_is_initialized) {
+				_loggers = new Dictionary<string, Logger>();
+				_log_files = new List<LogFile>();
+				_system_log_file = new ProcessReportRecordFile(
+					SystemPaths.Logs.Bond($"{DateTime.Now:yyyy-MM-dd_HH}.[{Process.GetCurrentProcess().Id}].pr2f"));
+				_is_initialized = true;
+			}
+		}
+
+		/// <summary>
+		///  この静的クラスで利用されている全てのリソースを破棄します。
+		///  この関数の実行後、再度この静的クラスを利用する場合は、
+		///  <see cref="OSDeveloper.Core.Logging.Logger.Init"/>を呼び出してください。
+		/// </summary>
+		public static void Final()
+		{
+			if (_is_initialized) {
+				// _log_files 破棄
+				foreach (var item in _log_files) {
+					if (item != _system_log_file) {
+						item.Dispose();
+					}
+				}
+				_log_files.Clear();
+				// _system_log_file 破棄
+				_system_log_file.Write(new LogData(LogLevel.Trace, GetSystemLogger("system"),
+					"The all loggers are closed"));
+				_system_log_file.Dispose();
+				// _loggers 破棄
+				_loggers.Clear();
+				// _is_initialized フラグ更新
+				_is_initialized = false;
 			}
 		}
 
@@ -40,12 +71,21 @@ namespace OSDeveloper.Core.Logging
 		/// <returns>生成されたロガーです。</returns>
 		public static Logger GetLogger(string name, LogFile logFile)
 		{
-			if (_loggers.ContainsKey(name)) {
-				return _loggers[name];
-			} else {
-				var result = new Logger(name, logFile);
-				_loggers.Add(name, result);
-				return result;
+			if (_is_initialized) {
+				// ログファイルの保持
+				if (!_log_files.Contains(logFile)) {
+					_log_files.Add(logFile);
+				}
+
+				if (_loggers.ContainsKey(name)) { // 既に同名のロガーがある場合はそれを返す
+					return _loggers[name];
+				} else {                          // 無い場合は新たに生成してそれを返す
+					var result = new Logger(name, logFile);
+					_loggers.Add(name, result);
+					return result;
+				}
+			} else { // 初期化が行われていない場合はダミーのログファイルを返す
+				return new Logger(name, logFile);
 			}
 		}
 
@@ -69,9 +109,7 @@ namespace OSDeveloper.Core.Logging
 		/// <returns>取得または生成されたロガーです。</returns>
 		public static Logger GetSystemLogger(string name, LogFile logFile)
 		{
-			var f = new MultipleLogFile(_system_log_file, logFile);
-			_multiple_logs.Add(f);
-			return GetLogger(name, f);
+			return GetLogger(name, new MultipleLogFile(_system_log_file, logFile));
 		}
 	}
 }

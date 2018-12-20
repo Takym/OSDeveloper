@@ -154,7 +154,11 @@ namespace OSDeveloper.Core.Logging
 		public virtual void Write(LogData log)
 		{
 			_log_datas.Add(log);
-			_tw.Write/*Line*/(log.ToString());
+			try {
+				_tw?.Write(log.ToString());
+			} catch (ObjectDisposedException) {
+				// _twが既に破棄されていても構わない。
+			}
 		}
 
 		#region IDisposable Support

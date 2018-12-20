@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using OSDeveloper.Assets;
 using OSDeveloper.Core.GraphicalUIs;
 
 namespace OSDeveloper.App
@@ -16,12 +15,8 @@ namespace OSDeveloper.App
 
 			// libosdev.dll の動作確認
 			if (!this.CheckLibosdev()) {
-				
 				return;
 			}
-
-			// FontResources生成
-			FontResources.Init();
 
 			this.SetStatusMessage(MainWindowStatusMessage.Ready());
 			_logger.Trace($"completed {nameof(OnLoad)}");
@@ -47,9 +42,6 @@ namespace OSDeveloper.App
 		{
 			_logger.Trace($"executing {nameof(OnClosed)}...");
 			base.OnClosed(e);
-
-			// FontResources解放
-			FontResources.Final();
 
 			_logger.Trace($"completed {nameof(OnClosed)}");
 		}
