@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using OSDeveloper.Core.MiscUtils;
 
@@ -21,11 +22,13 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			// コマンド分割
 			List<string> args = new List<string>();
 			StringBuilder tmp = new StringBuilder();
+			cmd += " ";
 			for (int i = 0; i < cmd.Length; ++i) {
 				if (char.IsWhiteSpace(cmd[i])) {
 					string s = tmp.ToString().Trim();
+					tmp.Clear();
 					if (!string.IsNullOrEmpty(s)) {
-						args.Add(tmp.ToString().Unescape());
+						args.Add(s.Unescape());
 					}
 				} else {
 					tmp.Append(cmd[i]);
@@ -34,7 +37,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 			// 空だったら
 			if (args.Count == 0) {
-				this.CommandTab.WriteLine();
+				goto end;
 			}
 
 			// コマンドモード変更
@@ -54,19 +57,60 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			// VIMモードならコマンド変換
 			if (_is_vim_mode) {
 				args = this.ConvertFromVim(args);
-				StringBuilder sb = new StringBuilder();
-				foreach (var item in args) {
-					sb.Append("\"");
-					sb.Append(item);
-					sb.Append("\", ");
-				}
-				_logger.Info($"Compiled from vim: {{ {sb.ToString()}}}");
 			}
 
-			// 実行
-			this.CommandTab.WriteLine("Not supported yet.");
+			// 入力されたコマンドの内部形式出力
+			StringBuilder sb = new StringBuilder();
+			foreach (var item in args) {
+				sb.Append("\"");
+				sb.Append(item);
+				sb.Append("\", ");
+			}
+			_logger.Info($"the command token: {{ {sb.ToString()}}}");
 
+			// 実行
+			this.RunDebugCommand(args);
+			this.CommandTab.WriteLine();
+end:
 			_logger.Trace($"completed {nameof(SendCommand)}");
+		}
+
+		private void RunDebugCommand(List<string> cmd)
+		{
+			if (cmd.Count == 0) return;
+			switch (cmd[0]) {
+				case "sel":
+					string usage = "usage> sel <int: row start> <int: column start> <int: row end> <int: column end>";
+					if (cmd.Count == 5) {
+						int rs, cs, re, ce;
+						if (int.TryParse(cmd[1], out rs) && int.TryParse(cmd[2], out cs) &&
+							int.TryParse(cmd[3], out re) && int.TryParse(cmd[4], out ce)) {
+							try {
+								this.CheckPoint(rs, cs);
+								this.CheckPoint(re, ce);
+							} catch (ArgumentOutOfRangeException) {
+								this.CommandTab.WriteLine("sel: error: out of range");
+								this.CommandTab.WriteLine(usage);
+								return;
+							}
+							_row_ss = rs;
+							_col_ss = cs;
+							_row_se = re;
+							_col_se = ce;
+							this.Invalidate();
+						} else {
+							this.CommandTab.WriteLine("sel: error: specified numbers are invalid");
+							this.CommandTab.WriteLine(usage);
+						}
+					} else {
+						this.CommandTab.WriteLine("sel: error: number of parameters");
+						this.CommandTab.WriteLine(usage);
+					}
+					break;
+				default:
+					this.CommandTab.WriteLine($"The command not found: {cmd[0]}");
+					break;
+			}
 		}
 
 		/// <summary>
