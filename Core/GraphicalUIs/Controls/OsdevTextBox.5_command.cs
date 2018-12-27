@@ -80,32 +80,12 @@ end:
 			if (cmd.Count == 0) return;
 			switch (cmd[0]) {
 				case "sel":
-					string usage = "usage> sel <int: row start> <int: column start> <int: row end> <int: column end>";
-					if (cmd.Count == 5) {
-						int rs, cs, re, ce;
-						if (int.TryParse(cmd[1], out rs) && int.TryParse(cmd[2], out cs) &&
-							int.TryParse(cmd[3], out re) && int.TryParse(cmd[4], out ce)) {
-							try {
-								this.CheckPoint(rs, cs);
-								this.CheckPoint(re, ce);
-							} catch (ArgumentOutOfRangeException) {
-								this.CommandTab.WriteLine("sel: error: out of range");
-								this.CommandTab.WriteLine(usage);
-								return;
-							}
-							_row_ss = rs;
-							_col_ss = cs;
-							_row_se = re;
-							_col_se = ce;
-							this.Invalidate();
-						} else {
-							this.CommandTab.WriteLine("sel: error: specified numbers are invalid");
-							this.CommandTab.WriteLine(usage);
-						}
-					} else {
-						this.CommandTab.WriteLine("sel: error: number of parameters");
-						this.CommandTab.WriteLine(usage);
-					}
+					this.CommandTab.WriteLine("This command is now developing.");
+					this.CommandTab.WriteLine("usage> sel <int: row start> <int: column start> <int: row end> <int: column end>");
+					this.CommandTab.WriteLine("usage> sel <int: selection start> <int: selection end>");
+					this.CommandTab.WriteLine("sel: error: out of range");
+					this.CommandTab.WriteLine("sel: error: specified numbers are invalid");
+					this.CommandTab.WriteLine("sel: error: number of parameters");
 					break;
 				default:
 					this.CommandTab.WriteLine($"The command not found: {cmd[0]}");

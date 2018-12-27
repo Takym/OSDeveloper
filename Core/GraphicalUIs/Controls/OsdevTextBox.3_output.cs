@@ -75,15 +75,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			int x = 0;
 			for (int j = 0; j < _lines[i].Length; ++j) {
 				char c = _lines[i][j];
-				if (_row_ss == i && _col_ss == j) {
-					g.DrawLine(Pens.White, new Point(fw * (x + 6), y), new Point(fw * (x + 6), y + fh));
-				}
-				((int rs, int cs), (int re, int ce)) = this.MinMax((_row_ss, _col_ss), (_row_se, _col_se));
-				if ((rs < i && i < re) ||
-					(rs != re && ((rs == i && cs <= j) || (re == i && j < ce))) ||
-					(rs == re && ((rs == i && cs <= j)             && j < ce))) {
-					g.FillRectangle(Brushes.DarkGray, fw * (x + 6), y, fw, fh);
-				}
 				switch (c) {
 					case '\t':
 						g.DrawString("→", _font, ws, new Point(fw * (x + 6), y));
@@ -108,15 +99,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 					                          // 全角文字 (一部半角文字)
 					x += 2;
 				}
-			}
-		}
-
-		private ((int, int), (int, int)) MinMax((int x1, int x2) x, (int y1, int y2) y)
-		{
-			if ((x.x1 < y.y1) || (x.x1 == y.y1 && x.x2 <= y.y2)) {
-				return ((x.x1, x.x2), (y.y1, y.y2));
-			} else {
-				return ((y.y1, y.y2), (x.x1, x.x2));
 			}
 		}
 	}

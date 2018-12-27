@@ -16,14 +16,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </summary>
 		public override string Text
 		{
+			// TODO: OsdevTextBox.Text
+
 			get
 			{
-				return this.GetText();
+				return base.Text;
 			}
 
 			set
 			{
-				this.SetText(value);
+				base.Text = value;
 			}
 		}
 
