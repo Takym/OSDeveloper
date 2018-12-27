@@ -13,20 +13,9 @@ namespace OSDeveloper.Core.Editors
 		string SelectedText { get; set; }
 
 		/// <summary>
-		///  選択されている文字列の最初の位置を取得または設定します。
-		/// </summary>
-		Point SelectionStart { get; set; }
-
-		/// <summary>
-		///  選択されている文字列の最後の位置を取得または設定します。
-		/// </summary>
-		Point SelectionEnd { get; set; }
-
-		/// <summary>
 		///  選択されている文字列の全ての文字列中での位置を取得します。
 		/// </summary>
 		int SelectionIndex { get; }
-
 
 		/// <summary>
 		///  選択されている文字列の全ての文字列中での最終位置を取得します。

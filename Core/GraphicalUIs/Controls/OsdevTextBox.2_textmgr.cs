@@ -22,32 +22,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 
 		#region 基本的な文字列の選択処理
 
-		public Point SelectionStart
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public Point SelectionEnd
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
-
 		public bool IsSelected
 		{
 			get
