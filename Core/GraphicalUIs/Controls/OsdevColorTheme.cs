@@ -63,9 +63,66 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public override string ToString()
 		{
 			if (this.KnownName == "Unknown") {
-				return $"N:{this.Normal}, L:{this.Light}, D:{this.Dark}";
+				return $"N:{((uint)(this.Normal.ToArgb())):X4}, "
+					 + $"L:{((uint)(this.Light .ToArgb())):X4}, "
+					 + $"D:{((uint)(this.Dark  .ToArgb())):X4}";
 			} else {
 				return this.KnownName;
+			}
+		}
+
+		/// <summary>
+		///  カスタムカラーテーマを定義します。
+		/// </summary>
+		public class Custom : OsdevColorTheme
+		{
+			private Color _n, _l, _d;
+
+			/// <summary>
+			///  型'<see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevColorTheme.Custom"/>'の
+			///  新しいインスタンスを生成します。
+			/// </summary>
+			/// <param name="n"><see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevColorTheme.Normal"/>を表す色を設定します。</param>
+			/// <param name="l"><see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevColorTheme.Light"/>を表す色を設定します。</param>
+			/// <param name="d"><see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevColorTheme.Dark"/>を表す色を設定します。</param>
+			public Custom(Color n, Color l, Color d)
+			{
+				_n = n;
+				_l = l;
+				_d = d;
+			}
+
+			/// <summary>
+			///  通常の色を取得します。
+			/// </summary>
+			public override Color Normal
+			{
+				get
+				{
+					return _n;
+				}
+			}
+
+			/// <summary>
+			///  通常より明るい(薄い)色を取得します。
+			/// </summary>
+			public override Color Light
+			{
+				get
+				{
+					return _l;
+				}
+			}
+
+			/// <summary>
+			///  通常より暗い(濃い)色を取得します。
+			/// </summary>
+			public override Color Dark
+			{
+				get
+				{
+					return _d;
+				}
 			}
 		}
 	}

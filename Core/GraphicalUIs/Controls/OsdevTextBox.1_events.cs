@@ -12,6 +12,11 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public event EventHandler GridColorChanged;
 
 		/// <summary>
+		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.SelectionColorChanged"/>が変更された時に発生します。
+		/// </summary>
+		public event EventHandler SelectionColorChanged;
+
+		/// <summary>
 		///  <see cref="System.Windows.Forms.Control.TextChanged"/>イベントを発生させます。
 		/// </summary>
 		/// <param name="e">
@@ -45,6 +50,26 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.Invalidate();
 
 			_logger.Trace($"completed {nameof(OnGridColorChanged)}");
+		}
+
+		/// <summary>
+		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.SelectionColorChanged"/>を発生させます。
+		/// </summary>
+		/// <param name="e">
+		///  イベントデータを格納している<see cref="System.EventArgs"/>オブジェクトです。
+		/// </param>
+		protected virtual void OnSelectionColorChanged(EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(OnSelectionColorChanged)}...");
+
+			var h = this.SelectionColorChanged;
+			if (h != null) {
+				h.Invoke(this, e);
+			}
+
+			this.Invalidate();
+
+			_logger.Trace($"completed {nameof(OnSelectionColorChanged)}");
 		}
 
 #pragma warning disable CS0809 // 旧形式のメンバーが、旧形式でないメンバーをオーバーライドします

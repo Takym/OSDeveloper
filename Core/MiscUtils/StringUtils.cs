@@ -214,6 +214,17 @@ namespace OSDeveloper.Core.MiscUtils
 			return '0' <= c && c <= '9';
 		}
 
+		/// <summary>
+		///  指定された文字が16進数数字かどうか判定します。
+		/// </summary>
+		/// <param name="c">判定対象の一文字です。</param>
+		/// <returns>16進数数字の場合は<see langword="true"/>、それ以外は<see langword="false"/>です。</returns>
+		public static bool IsHexadecimal(this char c)
+		{
+			return ('0' <= c && c <= '9')
+				|| ('A' <= c && c <= 'F')
+				|| ('A' <= c && c <= 'f');
+		}
 
 		/// <summary>
 		///  指定された文字が英数字またはアンダースコアかどうか判定します。

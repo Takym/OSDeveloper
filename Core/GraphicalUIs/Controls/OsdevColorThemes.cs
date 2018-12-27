@@ -59,5 +59,20 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			internal override string KnownName { get => nameof(FreshCyan); }
 			internal readonly static OCT_FRESH_CYAN _inst = new OCT_FRESH_CYAN();
 		}
+
+		/// <summary>
+		///  ハイライト色のカラーテーマを取得します。
+		///  これは<see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.SelectionColor"/>向けに設計されました。
+		/// </summary>
+		public static OsdevColorTheme Highlight { get => OCT_HIGHLIGHT._inst; }
+		private sealed class OCT_HIGHLIGHT : OsdevColorTheme
+		{
+			private OCT_HIGHLIGHT() { }
+			public override Color Normal       { get => Color.White; }
+			public override Color Light        { get => Color.SlateBlue; }
+			public override Color Dark         { get => Color.DarkGray; }
+			internal override string KnownName { get => nameof(Highlight); }
+			internal readonly static OCT_HIGHLIGHT _inst = new OCT_HIGHLIGHT();
+		}
 	}
 }

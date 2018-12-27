@@ -169,6 +169,32 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			this.GridColor = OsdevColorThemes.Salmon;
 		}
+
+		/// <summary>
+		///  選択中の文字列やカーソルの色を取得または設定します。
+		/// </summary>
+		public OsdevColorTheme SelectionColor
+		{
+			get
+			{
+				return _sel_col;
+			}
+
+			set
+			{
+				_grid_col = value;
+				this.OnSelectionColorChanged(new EventArgs());
+			}
+		}
+		private OsdevColorTheme _sel_col;
+
+		/// <summary>
+		///  <see cref="OSDeveloper.Core.GraphicalUIs.Controls.OsdevTextBox.SelectionColor"/>プロパティを限定値にリセットします。
+		/// </summary>
+		public virtual void ResetSelectionColor()
+		{
+			this.GridColor = OsdevColorThemes.Highlight;
+		}
 		#endregion
 
 		#region コマンドタブ
