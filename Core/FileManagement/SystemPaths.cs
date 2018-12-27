@@ -86,6 +86,17 @@ namespace OSDeveloper.Core.FileManagement
 		}
 
 		/// <summary>
+		///  一時的なバックアップファイルを格納しているディレクトリのファイルパスを取得します。
+		/// </summary>
+		public static PathString Backups
+		{
+			get
+			{
+				return _cwd.Bond("Temp\\Backups");
+			}
+		}
+
+		/// <summary>
 		///  ログファイルを格納しているディレクトリのファイルパスを取得します。
 		/// </summary>
 		public static PathString Logs
@@ -129,6 +140,7 @@ namespace OSDeveloper.Core.FileManagement
 			Directory.CreateDirectory(Extension);
 			Directory.CreateDirectory(Temporary);
 			Directory.CreateDirectory(Caches);
+			Directory.CreateDirectory(Backups);
 			Directory.CreateDirectory(Logs);
 
 			// 準備が終わったら、ワークスペースを作業ディレクトリに設定

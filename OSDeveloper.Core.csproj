@@ -303,6 +303,9 @@
     <Content Include="Assets\Darkolorfuler.themepack">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\EastAsianWidth.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\IPAexfont00301\IPA_Font_License_Agreement_v1.0.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
