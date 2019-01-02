@@ -15,16 +15,16 @@ namespace OSDeveloper.Core.Editors
 		/// <summary>
 		///  選択されている文字列の全ての文字列中での位置を取得します。
 		/// </summary>
-		int SelectionIndex { get; }
+		int SelectionIndex { get; set; }
 
 		/// <summary>
 		///  選択されている文字列の全ての文字列中での最終位置を取得します。
 		/// </summary>
-		int SelectionLastIndex { get; }
+		int SelectionLastIndex { get; set; }
 
 		/// <summary>
 		///  選択されている文字列の長さを取得または設定します。
 		/// </summary>
-		int SelectionLength { get; }
+		int SelectionLength { get; set; }
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
 using OSDeveloper.Core.Editors;
 using OSDeveloper.Core.Error;
@@ -20,12 +19,50 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		private const uint BitMaskE = 0b000_00000_111111_0000000000;
 		private const uint BitMaskF = 0b000_00000_000000_1111111111;
 		private List<uint> _text;
+		private int _i, _li;
 
 		#region 共通処理
 
+		private List<uint> SetTextPrivate(string s)
+		{
+			List<uint> result = new List<uint>();
+			s = s.CRtoLF();
+			for (int i = 0; i < s.Length; ++i) {
+				uint x = s[i];
+				if ((x & UpperSurrogate) == UpperSurrogate &&
+					(i + 1) < s.Length && (s[i + 1] & LowerSurrogate) == LowerSurrogate) {
+					uint y = s[i + 1]; ++i;
+					uint z = ((x & BitMaskA) + 1) << 16;
+					z |= ((x & BitMaskB) << 10) | (y & BitMaskC);
+					result.Add(z);
+				} else {
+					result.Add(x);
+				}
+			}
+			return result;
+		}
+
+		private string GetTextPrivate(List<uint> vs)
+		{
+			StringBuilder sb = new StringBuilder();
+			foreach (var item in vs) {
+				if (item < 0x10000) {
+					sb.Append((char)(item));
+				} else {
+					uint a = UpperSurrogate;
+					uint b = LowerSurrogate;
+					a |= (((item & BitMaskD) - 1) >> 10)
+					  | ((item & BitMaskE) >> 10);
+					b |= item & BitMaskF;
+					sb.Append((char)(a)).Append((char)(b));
+				}
+			}
+			return sb.ToString();
+		}
+
 		#endregion
 
-		#region 基本的な文字列の設定処理
+		#region 文字列の設定処理
 
 		/// <summary>
 		///  文字列をこのテキストボックスに設定します。
@@ -34,18 +71,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		public void SetText(string s)
 		{
 			_text.Clear();
-			for (int i = 0; i < s.Length; ++i) {
-				uint x = s[i];
-				if ((x & UpperSurrogate) == UpperSurrogate &&
-					(i + 1) < s.Length && (s[i + 1] & LowerSurrogate) == LowerSurrogate) {
-					uint y = s[i + 1]; ++i;
-					uint z = ((x & BitMaskA) + 1) << 16;
-					z |= ((x & BitMaskB) << 10) | (y & BitMaskC);
-					_text.Add(z);
-				} else {
-					_text.Add(x);
-				}
-			}
+			_text.AddRange(this.SetTextPrivate(s));
 			this.OnTextChanged(new EventArgs());
 		}
 
@@ -55,83 +81,118 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// <returns>取得した文字列です。</returns>
 		public string GetText()
 		{
-			StringBuilder sb = new StringBuilder();
-			foreach (var item in _text) {
-				if (item < 0x10000) {
-					sb.Append((char)(item));
-				} else {
-					uint a = UpperSurrogate;
-					uint b = LowerSurrogate;
-					a |= (((item & BitMaskD) - 1) >> 10)
-					  |  ( (item & BitMaskE)      >> 10);
-					b |=   item & BitMaskF;
-					sb.Append((char)(a)).Append((char)(b));
-				}
-			}
-			return sb.ToString();
+			return this.GetTextPrivate(_text);
 		}
 
 		#endregion
 
-		#region 基本的な文字列の選択処理
+		#region 文字列の選択処理
 
-		public bool IsSelected
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		public void SelectAll()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void ClearSelection()
-		{
-			throw new NotImplementedException();
-		}
-
-		#endregion
-
-		#region 応用的な文字列の選択処理
-
+		/// <summary>
+		///  このテキストボックスで選択されている文字列を取得または設定します。
+		/// </summary>
 		public string SelectedText
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return this.GetTextPrivate(_text.GetRange(_i, _li));
 			}
 
 			set
 			{
-				throw new NotImplementedException();
+				var r = this.SetTextPrivate(value);
+				_text.RemoveRange(_i, _li);
+				_text.InsertRange(_i, r);
+				_li = _i + r.Count;
 			}
 		}
 
+		/// <summary>
+		///  このテキストボックスの選択文字列の開始位置を取得または設定します。
+		/// </summary>
 		public int SelectionIndex
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _i;
+			}
+
+			set
+			{
+				if (0 <= value && value < _text.Count) {
+					_i = value;
+				} else {
+					throw ErrorGen.ArgOutOfRange(value, 0, _text.Count - 1, nameof(value));
+				}
 			}
 		}
 
+		/// <summary>
+		///  このテキストボックスの選択文字列の終了位置を取得または設定します。
+		/// </summary>
 		public int SelectionLastIndex
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _li;
+			}
+
+			set
+			{
+				if (0 <= value && value < _text.Count) {
+					_li = value;
+				} else {
+					throw ErrorGen.ArgOutOfRange(value, 0, _text.Count - 1, nameof(value));
+				}
 			}
 		}
 
+		/// <summary>
+		///  このテキストボックスの選択文字列の長さを取得または設定します。
+		/// </summary>
 		public int SelectionLength
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _li - _i;
 			}
+
+			set
+			{
+				if (-_i <= value && value < _text.Count - _i) {
+					_li = value + _i;
+				} else {
+					throw ErrorGen.ArgOutOfRange(value, -_i, _text.Count - (_i + 1), nameof(value));
+				}
+			}
+		}
+
+		/// <summary>
+		///  このテキストボックスで文字列が選択されているかどうかを表す論理値を取得します。
+		/// </summary>
+		public bool IsSelected
+		{
+			get
+			{
+				return _li != _i;
+			}
+		}
+
+		/// <summary>
+		///  このテキストボックスに格納されている文字列を全て選択します。
+		/// </summary>
+		public void SelectAll()
+		{
+			_i = 0;
+			_li = _text.Count;
+		}
+
+		/// <summary>
+		///  文字列の選択を解除します。
+		/// </summary>
+		public void ClearSelection()
+		{
+			_li = _i;
 		}
 
 		#endregion

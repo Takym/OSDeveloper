@@ -16,16 +16,14 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </summary>
 		public override string Text
 		{
-			// TODO: OsdevTextBox.Text
-
 			get
 			{
-				return base.Text;
+				return this.GetText();
 			}
 
 			set
 			{
-				base.Text = value;
+				this.SetText(value);
 			}
 		}
 
@@ -39,7 +37,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		{
 			get
 			{
-				return _lines.ToArray();
+				return this.GetText().Split('\n');
 			}
 		}
 		#endregion
