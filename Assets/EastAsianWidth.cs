@@ -166,7 +166,7 @@ ignore_ws:
 		/// </summary>
 		/// <param name="i">取得する字の<see langword="Unicode"/>値です。</param>
 		/// <returns>型'<see cref="OSDeveloper.Assets.EAWType"/>'の値です。</returns>
-		public EAWType GetValue(int i)
+		public EAWType GetValue(uint i)
 		{
 			EAWType result;
 			if (_offset <= i && i < _eaws.Length) {
