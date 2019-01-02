@@ -37,12 +37,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			using (SolidBrush l = new SolidBrush(_grid_col.Normal))
 			using (SolidBrush t = new SolidBrush(this.ForeColor)) {
 				int y = fh;
-				for (int i = _row_sb; i < _lines.Count; ++i) {
-					e.Graphics.DrawString($"{i + 1:D5}", _font, l, new Point(0, y));
-					this.DrawTextLine(e.Graphics, fh, fw, i, y, t, l);
-					y += fh;
-					if (y >= this.Height) return;
-				}
+				// TODO: 文字列描画
 			}
 
 			this.ResumeLayout(false);
@@ -65,39 +60,6 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 						g.DrawLine(b, i, 0, i, fw);
 						g.DrawLine(p, i, fw + 1, i, this.Height);
 					}
-				}
-			}
-		}
-
-		private void DrawTextLine(Graphics g, int fh, int fw, int i, int y, SolidBrush t, SolidBrush ws)
-		{
-			// 一文字ずつ描画
-			int x = 0;
-			for (int j = 0; j < _lines[i].Length; ++j) {
-				char c = _lines[i][j];
-				switch (c) {
-					case '\t':
-						g.DrawString("→", _font, ws, new Point(fw * (x + 6), y));
-						break;
-					case ' ':
-						g.DrawString("・", _font, ws, new Point(fw * (x + 6) - fw / 2, y));
-						break;
-					case '　':
-						g.DrawString("▪", _font, ws, new Point(fw * (x + 6) + fw / 2, y));
-						break;
-					default:
-						g.DrawString(c.ToString(), _font, t, new Point(fw * (x + 6), y));
-						break;
-				}
-				if (0x20 <= c && c <= 0x7F) { // ASCII
-					if (c == '\t') {          // タブ
-						x += 4 - (x % 4);
-					} else {                  // 半角文字
-						++x;
-					}
-				} else {                      // Unicode
-					                          // 全角文字 (一部半角文字)
-					x += 2;
 				}
 			}
 		}

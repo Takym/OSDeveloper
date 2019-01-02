@@ -104,6 +104,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				_text.RemoveRange(_i, _li);
 				_text.InsertRange(_i, r);
 				_li = _i + r.Count;
+				this.OnTextChanged();
 			}
 		}
 

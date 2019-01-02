@@ -29,6 +29,16 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			base.OnTextChanged(e);
 			this.Invalidate();
 
+			int x = 0;
+			for (int i = 0; i < _text.Count; ++i) {
+				if (_text[i] == 0x0A) ++x;
+			}
+			vScrollBar.Maximum = x;
+			if (x < _row_sb) {
+				_row_sb = x - 1;
+				vScrollBar.Value = x - 1;
+			}
+
 			_logger.Trace($"completed {nameof(OnTextChanged)}");
 		}
 

@@ -51,8 +51,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			// コマンドタブ設定
 			this.CommandTab = new OsdevTextBoxTab(this);
 
-			// 行リスト初期化
-			_lines = new List<string>();
+			// 文字コードリスト初期化
+			_text = new List<uint>();
 
 			_logger.Trace(nameof(OsdevTextBox) + " is constructed");
 		}

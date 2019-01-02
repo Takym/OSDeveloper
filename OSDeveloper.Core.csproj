@@ -344,7 +344,6 @@
     <Content Include="Core\Workspace\Debugging\placeholder.txt" />
     <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.md" />
     <Compile Include="Core\GraphicalUIs\Controls\OsdevTextBox.0_properties.cs" />
-    <None Include="Core\GraphicalUIs\Controls\OsdevTextBox.selection_drawing.docx" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
