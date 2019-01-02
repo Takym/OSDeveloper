@@ -49,6 +49,9 @@ namespace OSDeveloper.App
 			l.Debug($"{nameof(LogFile)}.{nameof(LogFile.InternalNameKind)} = {LogFile.InternalNameKind}");
 			l.Debug($"{nameof(MenuStripManager)}.{nameof(MenuStripManager.UseEXDialog)} = {MenuStripManager.UseEXDialog}");
 
+			// EastAsianWidth生成
+			EastAsianWidth.Init();
+
 			// FontResources生成
 			FontResources.Init();
 
@@ -57,6 +60,9 @@ namespace OSDeveloper.App
 
 			// FontResources解放
 			FontResources.Final();
+
+			// EastAsianWidth解放
+			EastAsianWidth.Final();
 
 			// ロガー破棄
 			l.Trace("The application is terminating...");
