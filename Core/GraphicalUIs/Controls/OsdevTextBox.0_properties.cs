@@ -193,7 +193,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		/// </summary>
 		public virtual void ResetSelectionColor()
 		{
-			this.GridColor = OsdevColorThemes.Highlight;
+			_sel_col = OsdevColorThemes.Highlight;
 		}
 		#endregion
 

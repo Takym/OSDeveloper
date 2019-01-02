@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using OSDeveloper.Assets;
 
 namespace OSDeveloper.Core.GraphicalUIs.Controls
 {
@@ -35,9 +36,15 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			}
 
 			using (SolidBrush l = new SolidBrush(_grid_col.Normal))
+			using (SolidBrush s = new SolidBrush(_sel_col.Normal))
 			using (SolidBrush t = new SolidBrush(this.ForeColor)) {
-				int y = fh;
-				// TODO: 文字列描画
+				int x = 0, y = 1;
+				for (int i = 0; i < _text.Count; ++i) {
+					if (x == 0) {
+						this.DrawLine(e.Graphics, ref x, y, fw, fh, l);
+					}
+					this.DrawChar(e.Graphics, ref x, ref y, fw, fh, s, t, _text[i]);
+				}
 			}
 
 			this.ResumeLayout(false);
@@ -54,12 +61,47 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			using (Pen p = new Pen(Color.FromArgb(48, this.ForeColor))) {
 				for (int i = 0; i < this.Width; i += fw) {
 					if (i % fh == 0) {
-						g.DrawLine(a, i, 0, i, fh);
+						g.DrawLine(a, i,      0, i, fh);
 						g.DrawLine(p, i, fh + 1, i, this.Height);
 					} else {
-						g.DrawLine(b, i, 0, i, fw);
+						g.DrawLine(b, i,      0, i, fw);
 						g.DrawLine(p, i, fw + 1, i, this.Height);
 					}
+				}
+			}
+		}
+
+		private void DrawLine(Graphics g, ref int x, int y, int fw, int fh, Brush a)
+		{
+			g.DrawString($"{y:D5} ", _font, a, x * fw, y * fh);
+			x = 6;
+		}
+
+		private void DrawChar(Graphics g, ref int x, ref int y, int fw, int fh, Brush a, Brush b, uint c)
+		{
+			if (c == 0x000A) {
+				x = 0;
+				++y;
+			} else if (c == 0x0009) {
+				do ++x; while (x % 4 != 0);
+			} else if (c == 0x0020) {
+				++x;
+			} else if (c == 0x3000) {
+				x += 2;
+			} else {
+				g.DrawString(this.GetTextPrivate(c), _font, b, x * fw, y * fh);
+				var t = EastAsianWidth.Current.GetValue(c);
+				switch (t) {
+					case EAWType.Fullwidth:
+					case EAWType.Wide:
+					case EAWType.Ambiguous:
+						x += 2;
+						break;
+					case EAWType.Halfwidth:
+					case EAWType.Narrow:
+					case EAWType.Neutral:
+						++x;
+						break;
 				}
 			}
 		}

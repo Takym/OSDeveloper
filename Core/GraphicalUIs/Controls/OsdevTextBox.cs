@@ -41,6 +41,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			this.ResetCursor();
 			this.ResetRightToLeft();
 			this.ResetGridColor();
+			this.ResetSelectionColor();
 
 			// スクロールバー設定
 			vScrollBar.Cursor = Cursors.Arrow;

@@ -42,20 +42,25 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			return result;
 		}
 
+		private string GetTextPrivate(uint n)
+		{
+			if (n < 0x10000) {
+				return new string((char)(n), 1);
+			} else {
+				uint a = UpperSurrogate;
+				uint b = LowerSurrogate;
+				a |= (((n & BitMaskD) - 1) >> 10)
+				  |  ( (n & BitMaskE)      >> 10);
+				b |= n & BitMaskF;
+				return ((char)(a)).ToString() + ((char)(b));
+			}
+		}
+
 		private string GetTextPrivate(List<uint> vs)
 		{
 			StringBuilder sb = new StringBuilder();
 			foreach (var item in vs) {
-				if (item < 0x10000) {
-					sb.Append((char)(item));
-				} else {
-					uint a = UpperSurrogate;
-					uint b = LowerSurrogate;
-					a |= (((item & BitMaskD) - 1) >> 10)
-					  | ((item & BitMaskE) >> 10);
-					b |= item & BitMaskF;
-					sb.Append((char)(a)).Append((char)(b));
-				}
+				sb.Append(this.GetTextPrivate(item));
 			}
 			return sb.ToString();
 		}
@@ -104,7 +109,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				_text.RemoveRange(_i, _li);
 				_text.InsertRange(_i, r);
 				_li = _i + r.Count;
-				this.OnTextChanged();
+				this.OnTextChanged(new EventArgs());
 			}
 		}
 

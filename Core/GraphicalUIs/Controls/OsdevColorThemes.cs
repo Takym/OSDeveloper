@@ -68,9 +68,9 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 		private sealed class OCT_HIGHLIGHT : OsdevColorTheme
 		{
 			private OCT_HIGHLIGHT() { }
-			public override Color Normal       { get => Color.White; }
+			public override Color Normal       { get => Color.LightCyan; }
 			public override Color Light        { get => Color.SlateBlue; }
-			public override Color Dark         { get => Color.DarkGray; }
+			public override Color Dark         { get => Color.BlueViolet; }
 			internal override string KnownName { get => nameof(Highlight); }
 			internal readonly static OCT_HIGHLIGHT _inst = new OCT_HIGHLIGHT();
 		}
