@@ -47,11 +47,15 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 						_is_vim_mode = true;
 					} else if (args[1] == "off") {
 						_is_vim_mode = false;
+					} else {
+						this.CommandTab.WriteLine($"\'{args[1]}\' is invalid.");
+						this.CommandTab.WriteLine("usage> vim [on|off]");
 					}
 				} else {
 					_is_vim_mode = !_is_vim_mode;
 				}
 				this.CommandTab.WriteLine($"VIM MODE = {_is_vim_mode}");
+				goto end;
 			}
 
 			// VIMモードならコマンド変換
