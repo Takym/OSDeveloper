@@ -96,6 +96,15 @@ namespace OSDeveloper.Core.FileManagement
 					YenconBinaryFile.Extensions));
 
 		/// <summary>
+		///  「EAW 一時ファイル」を表す全ての各証紙を取得します。
+		/// </summary>
+		public static readonly FileType EastAsianWidthTemporaryFile
+			= new FileType(
+				FileFormat.BinaryFile,
+				nameof(FileTypeNames.EastAsianWidthTemporaryFile),
+				"eaw");
+
+		/// <summary>
 		///  「サポートされている全てのファイル」を表す全ての拡張子を取得します。
 		/// </summary>
 		public static readonly FileType AllSupportedFiles
@@ -109,7 +118,8 @@ namespace OSDeveloper.Core.FileManagement
 					ProcessReportRecordFile.Extensions,
 					RegistryDraftFile.Extensions,
 					TextFile.Extensions,
-					YenconFile.Extensions));
+					YenconFile.Extensions,
+					EastAsianWidthTemporaryFile.Extensions));
 
 		/// <summary>
 		///  指定されたファイルの種類名と拡張子の配列のタプルからファイルを検索する
@@ -162,7 +172,8 @@ namespace OSDeveloper.Core.FileManagement
 				+ "|" + TextFile.CreateSPF()
 				+ "|" + YenconFile.CreateSPF()
 				+ "|" + YenconBinaryFile.CreateSPF()
-				+ "|" + YenconTextFile.CreateSPF();
+				+ "|" + YenconTextFile.CreateSPF()
+				+ "|" + EastAsianWidthTemporaryFile.CreateSPF();
 		}
 
 		/// <summary>
@@ -191,6 +202,8 @@ namespace OSDeveloper.Core.FileManagement
 				return YenconBinaryFile;
 			} else if (YenconTextFile.Contains(ext)) {
 				return YenconTextFile;
+			} else if (EastAsianWidthTemporaryFile.Contains(ext)) {
+				return EastAsianWidthTemporaryFile;
 			} else {
 				return null;
 			}

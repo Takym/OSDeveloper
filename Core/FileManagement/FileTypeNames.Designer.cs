@@ -97,6 +97,15 @@ namespace OSDeveloper.Core.FileManagement {
         }
         
         /// <summary>
+        ///   EastAsianWidthTemporaryFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EastAsianWidthTemporaryFile {
+            get {
+                return ResourceManager.GetString("EastAsianWidthTemporaryFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   LogFile に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LogFile {
