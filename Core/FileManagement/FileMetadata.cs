@@ -52,7 +52,7 @@ namespace OSDeveloper.Core.FileManagement
 		public FileMetadata(string filename)
 		{
 			var ftype = FileTypes.CheckFileType(Path.GetExtension(filename).Substring(1));
-			this.FilePath = new PathString(filename);
+			this.FilePath = new PathString(Path.GetFullPath(filename));
 			this.Format = ftype?.Format ?? FileFormat.Unknown;
 		}
 
@@ -69,7 +69,7 @@ namespace OSDeveloper.Core.FileManagement
 				throw new ArgumentException(ErrorMessages.FileMetadata_FileCannotBeDir, nameof(format));
 			}
 
-			this.FilePath = new PathString(filename);
+			this.FilePath = new PathString(Path.GetFullPath(filename));
 			this.Format = format;
 		}
 

@@ -129,6 +129,9 @@
   <data name="Expand" xml:space="preserve">
     <value>Expand</value>
   </data>
+  <data name="Popup_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Popup_OpenEditor" xml:space="preserve">
     <value>OpenEditor</value>
   </data>

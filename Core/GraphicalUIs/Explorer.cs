@@ -59,20 +59,21 @@ namespace OSDeveloper.Core.GraphicalUIs
 		{
 			_logger.Trace($"executing {nameof(Explorer_Load)}...");
 			_logger.Info("Setting the tool strip bar of Explorer...");
-			tolbtnRefresh.Image = Libosdev.GetIcon("Refresh", this, out int vREF).ToBitmap();
-			tolbtnRefresh.Text = ExplorerTexts.Refresh;
-			tolbtnRefresh.ToolTipText = ExplorerTexts.Refresh;
-			tolbtnExpand.Image = Libosdev.GetIcon("Expand", this, out int vEXP).ToBitmap();
-			tolbtnExpand.Text = ExplorerTexts.Expand;
-			tolbtnExpand.ToolTipText = ExplorerTexts.Expand;
-			tolbtnCollapse.Image = Libosdev.GetIcon("Collapse", this, out int vCOL).ToBitmap();
-			tolbtnCollapse.Text = ExplorerTexts.Collapse;
+			tolbtnRefresh.Image        = Libosdev.GetIcon("Refresh",  this, out int vREF).ToBitmap();
+			tolbtnRefresh.Text         = ExplorerTexts.Refresh;
+			tolbtnRefresh.ToolTipText  = ExplorerTexts.Refresh;
+			tolbtnExpand.Image         = Libosdev.GetIcon("Expand",   this, out int vEXP).ToBitmap();
+			tolbtnExpand.Text          = ExplorerTexts.Expand;
+			tolbtnExpand.ToolTipText   = ExplorerTexts.Expand;
+			tolbtnCollapse.Image       = Libosdev.GetIcon("Collapse", this, out int vCOL).ToBitmap();
+			tolbtnCollapse.Text        = ExplorerTexts.Collapse;
 			tolbtnCollapse.ToolTipText = ExplorerTexts.Collapse;
 			_logger.Info($"GetIcon HResults = REF:{vREF}, EXP:{vEXP}, COL:{vCOL}");
 
 			_logger.Info("Setting the popup strip bar of Explorer...");
 			popup_openeditor.Text = ExplorerTexts.Popup_OpenEditor;
-			popup_rename.Text = ExplorerTexts.Popup_Rename;
+			popup_rename.Text     = ExplorerTexts.Popup_Rename;
+			popup_delete.Text     = ExplorerTexts.Popup_Delete;
 
 			_logger.Info("Setting the file icons for Explorer...");
 			imageList.Images.Add(Libosdev.GetIcon("Folder",         this, out int v0));
@@ -243,6 +244,24 @@ namespace OSDeveloper.Core.GraphicalUIs
 
 			_logger.Trace($"completed {nameof(popup_rename_Click)}");
 		}
+
+		private void popup_delete_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(popup_rename_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.ParentDir != null && node.ParentDir.Dir != null) {
+					if (node.IsNotDir()) {
+						node.ParentDir.Dir.RemoveFile(node.File.Name);
+					} else {
+						node.ParentDir.Dir.RemoveDirectory(node.File.Name);
+					}
+					node.Remove();
+				}
+			}
+
+			_logger.Trace($"completed {nameof(popup_rename_Click)}");
+		}
 		#endregion
 
 		#region 便利関数
@@ -331,7 +350,21 @@ namespace OSDeveloper.Core.GraphicalUIs
 
 		private class FileTreeNode : TreeNode
 		{
+			internal FileTreeNode ParentDir
+			{
+				get
+				{
+					return this.Parent as FileTreeNode;
+				}
+			}
 			internal FileMetadata File { get; }
+			internal DirMetadata Dir
+			{
+				get
+				{
+					return this.File as DirMetadata;
+				}
+			}
 
 			internal FileTreeNode(string text, FileMetadata file) : base(text)
 			{

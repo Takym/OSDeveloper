@@ -112,6 +112,8 @@ namespace OSDeveloper.Core.FileManagement
 		/// </summary>
 		/// <param name="name">開くディレクトリのディレクトリ名です。</param>
 		/// <returns>取得したディレクトリのメタ情報です。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.IO.IOException"/>
 		public DirMetadata CreateDirectory(string name)
 		{
 			if (_dirs.ContainsKey(name)) {
@@ -129,6 +131,8 @@ namespace OSDeveloper.Core.FileManagement
 		/// </summary>
 		/// <param name="name">開くファイルのファイル名です。</param>
 		/// <returns>取得したファイルのメタ情報です。</returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.IO.IOException"/>
 		public FileMetadata CreateFile(string name)
 		{
 			if (_files.ContainsKey(name)) {
@@ -138,6 +142,48 @@ namespace OSDeveloper.Core.FileManagement
 				_files.Add(name, result);
 				return result;
 			}
+		}
+
+		/// <summary>
+		///  指定された名前のディレクトリを削除します。
+		/// </summary>
+		/// <param name="name">削除するディレクトリの名前です。</param>
+		/// <returns>
+		///  ディレクトリを正常に削除できた場合は<see langword="true"/>、
+		///  削除できなかった場合は<see langword="false"/>です。
+		/// </returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.IO.IOException"/>
+		public bool RemoveDirectory(string name)
+		{
+			if (_dirs.ContainsKey(name)) {
+				_dirs[name]._dinfo.Delete(true);
+				_dirs.Remove(name);
+				return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		///  指定された名前のファイルを削除します。
+		/// </summary>
+		/// <param name="name">削除するファイルの名前です。</param>
+		/// <returns>
+		///  ファイルを正常に削除できた場合は<see langword="true"/>、
+		///  削除できなかった場合は<see langword="false"/>です。
+		/// </returns>
+		/// <exception cref="System.ArgumentNullException"/>
+		/// <exception cref="System.IO.IOException"/>
+		public bool RemoveFile(string name)
+		{
+			if (_files.ContainsKey(name)) {
+				if (File.Exists(_files[name].FilePath)) {
+					File.Delete(_files[name].FilePath);
+				}
+				_files.Remove(name);
+				return true;
+			}
+			return false;
 		}
 
 		/// <summary>

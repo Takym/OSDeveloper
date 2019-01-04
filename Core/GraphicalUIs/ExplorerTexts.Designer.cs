@@ -97,6 +97,15 @@ namespace OSDeveloper.Core.GraphicalUIs {
         }
         
         /// <summary>
+        ///   Delete に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Popup_Delete {
+            get {
+                return ResourceManager.GetString("Popup_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   OpenEditor に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Popup_OpenEditor {
