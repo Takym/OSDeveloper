@@ -48,7 +48,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 					} else if (args[1] == "off") {
 						_is_vim_mode = false;
 					} else {
-						this.CommandTab.WriteLine($"\'{args[1]}\' is invalid.");
+						this.CommandTab.WriteLine($"\'{args[1]}\' is invalid mode.");
 						this.CommandTab.WriteLine("usage> vim [on|off]");
 					}
 				} else {
