@@ -10,6 +10,7 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 	partial class __ { } // デザイナ避け
 	partial class OsdevTextBox : ITextSelectionFeature
 	{
+		private const uint Mask4Surrogate = 0b111111_0000_000000;
 		private const uint UpperSurrogate = 0b110110_0000_000000;
 		private const uint LowerSurrogate = 0b110111_0000_000000;
 		private const uint BitMaskA       = 0b000000_1111_000000;
@@ -29,8 +30,8 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 			s = s.CRtoLF();
 			for (int i = 0; i < s.Length; ++i) {
 				uint x = s[i];
-				if ((x & UpperSurrogate) == UpperSurrogate &&
-					(i + 1) < s.Length && (s[i + 1] & LowerSurrogate) == LowerSurrogate) {
+				if ((x & Mask4Surrogate) == UpperSurrogate &&
+					(i + 1) < s.Length && (s[i + 1] & Mask4Surrogate) == LowerSurrogate) {
 					uint y = s[i + 1]; ++i;
 					uint z = ((x & BitMaskA) + 1) << 16;
 					z |= ((x & BitMaskB) << 10) | (y & BitMaskC);
