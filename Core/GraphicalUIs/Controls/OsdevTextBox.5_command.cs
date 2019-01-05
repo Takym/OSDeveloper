@@ -84,12 +84,25 @@ end:
 			if (cmd.Count == 0) return;
 			switch (cmd[0]) {
 				case "sel":
-					this.CommandTab.WriteLine("This command is now developing.");
-					this.CommandTab.WriteLine("usage> sel <int: row start> <int: column start> <int: row end> <int: column end>");
-					this.CommandTab.WriteLine("usage> sel <int: selection start> <int: selection end>");
-					this.CommandTab.WriteLine("sel: error: out of range");
-					this.CommandTab.WriteLine("sel: error: specified numbers are invalid");
-					this.CommandTab.WriteLine("sel: error: number of parameters");
+					if (cmd.Count == 2 && cmd[1] == "current") {
+						this.CommandTab.WriteLine($"selection start = {_i}, selection end = {_li}");
+					} else if (cmd.Count == 3) {
+						if (int.TryParse(cmd[1], out var s) &&
+							int.TryParse(cmd[2], out var e)) {
+							if (_i > _text.Count || _li > _text.Count) {
+								this.CommandTab.WriteLine("sel: error: out of range");
+							} else {
+								_i  = s;
+								_li = e;
+							}
+						} else {
+							this.CommandTab.WriteLine("sel: error: specified numbers are invalid");
+						}
+					} else {
+						this.CommandTab.WriteLine("sel: error: number of parameters");
+						this.CommandTab.WriteLine("usage> sel <int: selection start> <int: selection end>");
+						this.CommandTab.WriteLine("usage> sel current");
+					}
 					break;
 				default:
 					this.CommandTab.WriteLine($"The command not found: {cmd[0]}");
