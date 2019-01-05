@@ -94,6 +94,7 @@ end:
 							} else {
 								_i  = s;
 								_li = e;
+								this.Invalidate();
 							}
 						} else {
 							this.CommandTab.WriteLine("sel: error: specified numbers are invalid");

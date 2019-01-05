@@ -35,14 +35,26 @@ namespace OSDeveloper.Core.GraphicalUIs.Controls
 				this.DrawGrid(e.Graphics, fh, fw, a, b, c);
 			}
 
-			using (SolidBrush l = new SolidBrush(_grid_col.Normal))
-			using (SolidBrush s = new SolidBrush(_sel_col.Normal))
-			using (SolidBrush t = new SolidBrush(this.ForeColor)) {
+			using (SolidBrush l  = new SolidBrush(_grid_col.Normal))
+			using (SolidBrush s  = new SolidBrush(_sel_col.Normal))
+			using (SolidBrush t  = new SolidBrush(this.ForeColor))
+			using (SolidBrush sl = new SolidBrush(_sel_col.Light))
+			using (Pen cur = new Pen(_sel_col.Dark)) {
 				int x = 0, y = 1;
 				for (int i = 0; i < _text.Count; ++i) {
+					// 表番号描画
 					if (x == 0) {
 						this.DrawLine(e.Graphics, ref x, y, fw, fh, l);
 					}
+					// 選択範囲ハイライト
+					if ((_i != _li) && ((_i <= i && i < _li) || (_li <= i && i < _i))) {
+						e.Graphics.FillRectangle(sl, x * fw, y * fh, fw, fh);
+					}
+					// カーソル描画
+					if (_i == i) {
+						e.Graphics.DrawLine(cur, x * fw, y * fh, x * fw, (y + 1) * fh);
+					}
+					// 文字描画
 					this.DrawChar(e.Graphics, ref x, ref y, fw, fh, s, t, _text[i]);
 				}
 			}
