@@ -1,5 +1,5 @@
-# <b style="color:#FF0000;">現在、このソフトウェアは作り直し中です。キリが良い所まで完成したらまたコミットします。</b>
-# <b style="color:#FF0000;">Now, I am trying to recreate this software. I will commit when it is enough to publish.</b>
+# 現在、このソフトウェアは作り直し中です。キリが良い所まで完成したらまたコミットします。
+# Now, I am trying to recreate this software. I will commit when it is enough to publish.
 
 # OSDeveloper IDE
 Copyright (C) 2018 Takym.
