@@ -81,8 +81,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AOP\AspectableAttribute.cs" />
+    <Compile Include="AOP\AspectProxy.cs" />
+    <Compile Include="AOP\IAspectBehavior.cs" />
+    <Compile Include="AOP\Logger.cs" />
     <Compile Include="Collections\HybridList.cs" />
+    <Compile Include="ConsoleUtils.cs" />
+    <Compile Include="DisposableBase.cs" />
+    <Compile Include="IRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xorshift.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
