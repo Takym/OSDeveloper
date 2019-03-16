@@ -1,3 +1,5 @@
+# このブランチは最新ではありません。
+# This branch is not latest.
 # OSDeveloper IDE - the "locales" branch
 Copyright (C) 2018 Takym.
 
