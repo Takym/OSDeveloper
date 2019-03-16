@@ -113,5 +113,32 @@ namespace OSDeveloper.Resources {
                 return ResourceManager.GetString("TextFile", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   YenconBinary に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string YenconBinary {
+            get {
+                return ResourceManager.GetString("YenconBinary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   YenconResource に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string YenconResource {
+            get {
+                return ResourceManager.GetString("YenconResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   YenconText に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string YenconText {
+            get {
+                return ResourceManager.GetString("YenconText", resourceCulture);
+            }
+        }
     }
 }

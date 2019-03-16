@@ -55,6 +55,24 @@ namespace OSDeveloper.IO
 				nameof(FileTypeNames.LogFile),
 				false,
 				"log"));
+
+			_types.Add(new SystemFileType(
+				FileFormat.Resource,
+				nameof(FileTypeNames.YenconResource),
+				false,
+				"ycn"));
+
+			_types.Add(new SystemFileType(
+				FileFormat.Resource,
+				nameof(FileTypeNames.YenconText),
+				false,
+				"tycn", "inix"));
+
+			_types.Add(new SystemFileType(
+				FileFormat.Resource,
+				nameof(FileTypeNames.YenconBinary),
+				false,
+				"bycn", "cfg"));
 		}
 
 		public static void Add(FileType fileType)
