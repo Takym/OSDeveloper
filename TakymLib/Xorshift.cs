@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotnetExlib
+namespace TakymLib
 {
 	/// <summary>
 	///  Xorshiftを使用した疑似乱数生成器です。
@@ -16,13 +16,13 @@ namespace DotnetExlib
 		private ulong x, y, z, w;
 
 		/// <summary>
-		///  シード値を以下の様に設定して、新しいインスタンスを生成します。
-		///  <see cref="DotnetExlib.Xorshift.Seed"/> =
-		///  <see cref="System.Environment.TickCount"/> XOR <see cref="System.Random.Sample"/>
+		///  シード値を <code><see cref="System.Environment.TickCount"/> ^
+		///  (<see cref="System.Random.Sample"/> * <see cref="long.MaxValue"/>)</code>
+		///  に設定して、新しいインスタンスを生成します。
 		/// </summary>
 		public Xorshift()
 		{
-			ulong a = ((ulong)(Sample() * long.MaxValue));
+			ulong a = ((ulong)(this.Sample() * long.MaxValue));
 			this.Seed = ((ulong)(Environment.TickCount)) ^ a;
 			this.ResetSeed();
 		}
@@ -71,10 +71,19 @@ namespace DotnetExlib
 		/// <summary>
 		///  0～1の間の乱数を生成します。
 		/// </summary>
-		/// <returns>生成された型'<see cref="System.Double"/>'の値です。</returns>
+		/// <returns>生成された型'<see cref="double"/>'の値です。</returns>
 		public override double NextDouble()
 		{
 			return 1D / NextUInt64();
+		}
+
+		/// <summary>
+		///  0～1の間の乱数を生成します。
+		/// </summary>
+		/// <returns>生成された型'<see cref="float"/>'の値です。</returns>
+		public float NextSingle()
+		{
+			return 1F / NextUInt64();
 		}
 
 		/// <summary>

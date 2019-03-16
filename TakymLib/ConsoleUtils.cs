@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security;
+using TakymLib.Resources;
 
 namespace TakymLib
 {
@@ -14,7 +15,7 @@ namespace TakymLib
 		/// </summary>
 		public static void Pause()
 		{
-			Console.Write("続行するには何かキーを押してください . . . ");
+			Console.Write(ErrorMessages.ConsoleUtils_PressAnyKey);
 			Console.ReadKey(true);
 			Console.WriteLine();
 		}
@@ -27,10 +28,10 @@ namespace TakymLib
 		/// </returns>
 		public static SecureString ReadPassword()
 		{
-			SecureString result = new SecureString();
+			var result = new SecureString();
 
 			while (true) {
-				ConsoleKeyInfo cki = Console.ReadKey(true);
+				var cki = Console.ReadKey(true);
 				if (cki.Key == ConsoleKey.Enter) {
 					break;
 				} else if (cki.Key == ConsoleKey.Backspace) {

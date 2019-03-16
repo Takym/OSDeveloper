@@ -5,47 +5,64 @@ using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Proxies;
 using System.Runtime.Remoting.Services;
 
-namespace DotnetExlib.AOP
+namespace TakymLib.AOP
 {
+	/// <summary>
+	///  分断されたオブジェクトを管理するプロキシです。
+	/// </summary>
 	public class AspectProxy : RealProxy
 	{
-		private MarshalByRefObject _target;
-		private IAspectBehavior _behavior;
+		private readonly MarshalByRefObject _target;
+		private readonly Type               _serverType;
+		private readonly IAspectBehavior    _behavior;
 
-		public AspectProxy(MarshalByRefObject target, Type t, IAspectBehavior behavior) : base(t)
+		/// <summary>
+		///  型'<see cref="TakymLib.AOP.AspectProxy"/>'の
+		///  新しいインスタンスを生成します。
+		/// </summary>
+		/// <param name="target">対象のインスタンスです。</param>
+		/// <param name="serverType">対象の型です。</param>
+		/// <param name="behavior">実行する動作です。</param>
+		public AspectProxy(MarshalByRefObject target, Type serverType, IAspectBehavior behavior) : base(serverType)
 		{
-			_target = target;
-			_behavior = behavior;
+			_target     = target;
+			_serverType = serverType;
+			_behavior   = behavior;
 		}
 
+		/// <summary>
+		///  処理を実行します。
+		/// </summary>
+		/// <param name="msg">呼び出し元を表すメッセージです。</param>
+		/// <returns>戻り値を表すメッセージです。</returns>
 		public override IMessage Invoke(IMessage msg)
 		{
-			IMethodCallMessage call = msg as IMethodCallMessage;
-			IConstructionCallMessage ctor = msg as IConstructionCallMessage;
-			IMethodReturnMessage result = null;
+			IMessage result = null;
 
-			if (ctor != null) { // 呼び出し関数がコンストラクタの場合
+			if (msg is IConstructionCallMessage ctor) { // コンストラクタの場合
+				// 特殊な処理
+				_behavior.PreInitializer(_serverType, ctor);
 
-				_behavior.PreInitializer(ctor);
-
-				RealProxy rp = RemotingServices.GetRealProxy(_target);
+				// コンストラクタ呼び出し
+				var rp = RemotingServices.GetRealProxy(_target);
 				rp.InitializeServerObject(ctor);
-				MarshalByRefObject tp = this.GetTransparentProxy() as MarshalByRefObject;
+				var tp = this.GetTransparentProxy() as MarshalByRefObject;
 				result = EnterpriseServicesHelper.CreateConstructionReturnMessage(ctor, tp);
 
-				_behavior.PostInitializer(ctor);
+				// 特殊な処理
+				_behavior.PostInitializer(_serverType, ctor);
+			} else if (msg is IMethodCallMessage func) { // 通常関数の場合
+				// 特殊な処理
+				_behavior.PreCallMethod(_serverType, func);
 
-			} else if (call != null) { // 通常関数の場合
+				// 通常関数呼び出し
+				result = RemotingServices.ExecuteMessage(_target, func);
 
-				_behavior.PreCallMethod(call);
-
-				result = RemotingServices.ExecuteMessage(this._target, call);
-
-				_behavior.PostCallMethod(call);
-
+				// 特殊な処理
+				_behavior.PostCallMethod(_serverType, func);
 			} else {
-				Console.WriteLine($"メソッドの実行に失敗しました：{msg}");
-				//throw new Exception($"メソッドの実行に失敗しました：{msg}");
+				// 呼び出しが不正
+				result = _behavior.HandleInvalidCall(_serverType, msg);
 			}
 
 			return result;

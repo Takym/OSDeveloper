@@ -19,7 +19,7 @@ namespace TakymLib
 		public DisposableBase() : base() { }
 
 		/// <summary>
-		///  このオブジェクトのデストラクタです。
+		///  このクラスのデストラクタです。
 		/// </summary>
 		~DisposableBase()
 		{
@@ -43,11 +43,11 @@ namespace TakymLib
 		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
-			if (!IsDisposed) {
+			if (!this.IsDisposed) {
 				if (disposing) {
 					GC.Collect();
 				}
-				IsDisposed = true;
+				this.IsDisposed = true;
 			}
 		}
 
@@ -61,9 +61,9 @@ namespace TakymLib
 		[Obsolete("この関数を利用して削除したオブジェクトは利用しないでください。")]
 		public static void DisposeObject(object obj)
 		{
-			Type t = obj.GetType();
-			if (typeof(IDisposable).IsAssignableFrom(obj.GetType())) {
-				((IDisposable)(obj)).Dispose();
+			var t = obj.GetType();
+			if (obj is IDisposable disp) {
+				disp.Dispose();
 			} else {
 				var mi = obj.GetType().GetMethod(
 					"Finalize",
