@@ -46,6 +46,7 @@ namespace YenconCommandLineTool
 						case "ver":
 							Manual.Version(Assembly.GetExecutingAssembly());
 							Manual.Version(Assembly.GetAssembly(typeof(YNode)));
+							Manual.Version(Assembly.GetAssembly(typeof(StringUtils)));
 							break;
 						// ファイルアクセス系
 						case "loadt":
