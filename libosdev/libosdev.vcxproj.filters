@@ -132,5 +132,11 @@
     <Image Include="icons\1199.Item_CannotAccess.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="icons\1048.Logo_Zerolib.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1049.Logo_ZerolibEx.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

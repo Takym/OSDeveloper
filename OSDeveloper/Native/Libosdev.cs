@@ -56,6 +56,8 @@ namespace OSDeveloper.Native
 			LogoFormMain     = ICON1001_LOGO_FORMMAIN,
 			LogoJapanese     = ICON1002_LOGO_JAPANESE,
 			LogoEnglish      = ICON1003_LOGO_ENGLISH,
+			LogoZerolib      = ICON1048_LOGO_ZEROLIB,
+			LogoZerolibEx    = ICON1049_LOGO_ZEROLIBEX,
 			FormEditorWindow = ICON1050_FORM_EDITORWINDOW,
 			FormSettings     = ICON1051_FORM_SETTINGS,
 			File             = ICON1100_FILE,

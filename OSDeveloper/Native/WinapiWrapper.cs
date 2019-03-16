@@ -77,6 +77,8 @@ namespace OSDeveloper.Native
 			public const int ICON1001_LOGO_FORMMAIN      = 1001;
 			public const int ICON1002_LOGO_JAPANESE      = 1002;
 			public const int ICON1003_LOGO_ENGLISH       = 1003;
+			public const int ICON1048_LOGO_ZEROLIB       = 1048;
+			public const int ICON1049_LOGO_ZEROLIBEX     = 1049;
 			public const int ICON1050_FORM_EDITORWINDOW  = 1050;
 			public const int ICON1051_FORM_SETTINGS      = 1051;
 			public const int ICON1100_FILE               = 1100;
