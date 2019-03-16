@@ -60,17 +60,6 @@ namespace OSDeveloper
 				goto end;
 			}
 
-#if DEBUG
-			// ちょっと実験 (AOP)
-			using (Class1 class1 = new Class1("xyz")) {
-				MessageBox.Show(class1.ABC(123).ToString());
-				class1.MojiretsuField = "qwerty";
-				MessageBox.Show(class1.MojiretsuProperty);
-				class1.MojiretsuProperty = "kezboard";
-				MessageBox.Show(class1.MojiretsuProperty);
-			}
-#endif
-
 			// メインウィンドウ表示
 			Application.Run(new FormMain(args));
 
