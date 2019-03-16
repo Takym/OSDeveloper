@@ -294,6 +294,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TakymLib\TakymLib.csproj">
+      <Project>{640ff830-49c6-4e5d-b9c4-18e5b63398cb}</Project>
+      <Name>TakymLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Yencon\Yencon.csproj">
       <Project>{88b6fda5-047f-478d-b9b6-8b82177d5a0d}</Project>
       <Name>Yencon</Name>

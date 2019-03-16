@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		remove_binobj.bat = remove_binobj.bat
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakymLib", "TakymLib\TakymLib.csproj", "{640FF830-49C6-4E5D-B9C4-18E5B63398CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Default = Debug|Default
@@ -59,6 +61,14 @@ Global
 		{A39C90FA-D22F-49FC-8F29-1534FAD0FAEA}.Release|Default.Build.0 = Release|Any CPU
 		{A39C90FA-D22F-49FC-8F29-1534FAD0FAEA}.Release|Distrib64.ActiveCfg = Release|x64
 		{A39C90FA-D22F-49FC-8F29-1534FAD0FAEA}.Release|Distrib64.Build.0 = Release|x64
+		{640FF830-49C6-4E5D-B9C4-18E5B63398CB}.Debug|Default.ActiveCfg = Debug|Any CPU
+		{640FF830-49C6-4E5D-B9C4-18E5B63398CB}.Debug|Default.Build.0 = Debug|Any CPU
+		{640FF830-49C6-4E5D-B9C4-18E5B63398CB}.Debug|Distrib64.ActiveCfg = Debug|x64
+		{640FF830-49C6-4E5D-B9C4-18E5B63398CB}.Debug|Distrib64.Build.0 = Debug|x64
+		{640FF830-49C6-4E5D-B9C4-18E5B63398CB}.Release|Default.ActiveCfg = Release|Any CPU
+		{640FF830-49C6-4E5D-B9C4-18E5B63398CB}.Release|Default.Build.0 = Release|Any CPU
+		{640FF830-49C6-4E5D-B9C4-18E5B63398CB}.Release|Distrib64.ActiveCfg = Release|x64
+		{640FF830-49C6-4E5D-B9C4-18E5B63398CB}.Release|Distrib64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
