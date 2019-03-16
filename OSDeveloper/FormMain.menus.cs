@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using OSDeveloper.GraphicalUIs.ToolStrips;
-using OSDeveloper.MiscUtils;
 using OSDeveloper.Resources;
+using TakymLib;
 
 namespace OSDeveloper
 {

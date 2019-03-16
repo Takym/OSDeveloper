@@ -68,5 +68,14 @@ namespace TakymLib.Resources {
                 return ResourceManager.GetString("ConsoleUtils_PressAnyKey", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   StringUtils_ConvertToBoolean {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string StringUtils_ConvertToBoolean {
+            get {
+                return ResourceManager.GetString("StringUtils_ConvertToBoolean", resourceCulture);
+            }
+        }
     }
 }

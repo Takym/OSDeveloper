@@ -120,4 +120,7 @@
   <data name="ConsoleUtils_PressAnyKey" xml:space="preserve">
     <value>続行するには何かキーを押してください . . .</value>
   </data>
+  <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
+    <value>「{0}」は有効な論理値ではありません。</value>
+  </data>
 </root>

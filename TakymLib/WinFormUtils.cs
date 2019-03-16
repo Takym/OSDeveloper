@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace OSDeveloper.MiscUtils
+namespace TakymLib
 {
 	/// <summary>
 	///  Windows Forms コントロールに関する拡張メソッドと便利関数を提供します。
@@ -25,7 +25,7 @@ namespace OSDeveloper.MiscUtils
 
 		/// <summary>
 		///  コントロールがデザインモードであるかどうか判定します。
-		///  <see cref="OSDeveloper.MiscUtils.WinFormUtils.DesignMode"/>よりも強力です。
+		///  <see cref="TakymLib.WinFormUtils.DesignMode"/>よりも強力です。
 		/// </summary>
 		/// <param name="control">判定対象のコントロールです。</param>
 		/// <returns>

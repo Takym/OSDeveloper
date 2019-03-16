@@ -1,4 +1,4 @@
-﻿using OSDeveloper.MiscUtils;
+﻿using TakymLib;
 using TakymLib.AOP;
 
 namespace OSDeveloper.IO.Logging

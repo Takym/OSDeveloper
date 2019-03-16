@@ -132,7 +132,4 @@
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>「libosdev.dll」を読み込む事ができませんでした。</value>
   </data>
-  <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
-    <value>「{0}」は有効な論理値ではありません。</value>
-  </data>
 </root>

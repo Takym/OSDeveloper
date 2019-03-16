@@ -1,7 +1,7 @@
 ﻿using System;
-using OSDeveloper.Resources;
+using TakymLib.Resources;
 
-namespace OSDeveloper.MiscUtils
+namespace TakymLib
 {
 	/// <summary>
 	///  <see cref="string"/>クラスと<see cref="char"/>構造体の拡張メソッドと便利関数を提供します。
@@ -70,7 +70,9 @@ namespace OSDeveloper.MiscUtils
 		/// </summary>
 		/// <param name="s">変換対象の文字列です。</param>
 		/// <returns>変換結果のブール値です。</returns>
-		/// <exception cref="System.ArgumentException"/>
+		/// <exception cref="System.ArgumentException">
+		///  正常に文字列を論理値に変換できなかった場合に発生します。
+		/// </exception>
 		public static bool ToBoolean(this string s)
 		{
 			if (s.TryToBoolean(out var result)) {

@@ -120,4 +120,7 @@
   <data name="ConsoleUtils_PressAnyKey" xml:space="preserve">
     <value>Press any key to continue...</value>
   </data>
+  <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
+    <value>"{0}" is not a valid boolean value.</value>
+  </data>
 </root>

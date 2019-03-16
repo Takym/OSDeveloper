@@ -172,9 +172,6 @@
     <Compile Include="IO\PathString.cs" />
     <Compile Include="IO\SystemPaths.cs" />
     <Compile Include="Native\Kernel32.cs" />
-    <Compile Include="MiscUtils\ArrayUtils.cs" />
-    <Compile Include="MiscUtils\StringUtils.cs" />
-    <Compile Include="MiscUtils\WinFormUtils.cs" />
     <Compile Include="Native\Libosdev.cs" />
     <Compile Include="Native\User32.cs" />
     <Compile Include="Program.cs" />

@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
-using OSDeveloper.MiscUtils;
+using TakymLib;
 
 namespace OSDeveloper.GraphicalUIs.Design
 {
@@ -62,7 +62,7 @@ namespace OSDeveloper.GraphicalUIs.Design
 					return _known_values[s];
 				} else {
 					// UnknownCodeの場合は解析してOsdevColorTheme.Customを返す。
-					StringBuilder sb = new StringBuilder();
+					var sb = new StringBuilder();
 					(var n, var l, var d) = (Color.Empty, Color.Empty, Color.Empty);
 					for (int i = 0; i < s.Length;) {
 						char t = s[i];

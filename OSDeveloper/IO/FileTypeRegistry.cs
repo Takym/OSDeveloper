@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using OSDeveloper.MiscUtils;
 using OSDeveloper.Resources;
+using TakymLib;
 
 namespace OSDeveloper.IO
 {
@@ -148,7 +148,7 @@ namespace OSDeveloper.IO
 		{
 			List<FileType> result = new List<FileType>();
 			for (int i = 0; i < _types.Count; ++i) {
-				if (_types[i].Extensions.Contains(ext)) {
+				if (_types[i].Extensions.ContainsValue(ext)) {
 					// ext を含む全ての FileType を返還する。
 					result.Add(_types[i]);
 				}

@@ -132,7 +132,4 @@
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>"libosdev.dll" could not be loaded on the application.</value>
   </data>
-  <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
-    <value>"{0}" is not a valid boolean value.</value>
-  </data>
 </root>
