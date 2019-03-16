@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Resources;
@@ -33,19 +33,21 @@ namespace OSDeveloper
 			// アスペクト処理にロガーを設定
 			LoggingAspectBehavior.Logger = Logger.Get("aop");
 
-			// TODO: 設定で変更可能にする項目 Application.VisualStyleState
-			Application.VisualStyleState = VisualStyleState.ClientAndNonClientAreasEnabled;
-
-			// TODO: 設定で変更可能にする項目 CultureInfo
-			CultureInfo.DefaultThreadCurrentCulture   = CultureInfo.InstalledUICulture;
-			CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InstalledUICulture;
+			// 設定読み込み
+			SettingManager.Init();
+			Application.VisualStyleState = SettingManager.System.VisualStyle;
+			var lang = SettingManager.System.Language;
 
 			// システム設定をログに書き込み
-			string culture = CultureInfo.DefaultThreadCurrentCulture.Name
-				+ "; EN: " + CultureInfo.DefaultThreadCurrentCulture.EnglishName
-				+ "; ::: " + CultureInfo.DefaultThreadCurrentCulture.NativeName;
+			CultureInfo.DefaultThreadCurrentCulture   = CultureInfo.GetCultureInfo("ja");
+			CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("ja");
+			string culture = lang.Name + "; EN: " + lang.EnglishName + "; 日: " + lang.DisplayName + "; ::: " + lang.NativeName;
 			Logger.Debug($"{nameof(Application)}.{nameof(Application.VisualStyleState)} = {Application.VisualStyleState}");
 			Logger.Debug($"{nameof(CultureInfo)}.{nameof(CultureInfo.DefaultThreadCurrentCulture)} = {culture}");
+
+			// 言語設定
+			CultureInfo.DefaultThreadCurrentCulture   = lang;
+			CultureInfo.DefaultThreadCurrentUICulture = lang;
 
 			// ネイティブライブラリ読み込み
 			var s = Libosdev.CheckStatus();
@@ -64,6 +66,9 @@ namespace OSDeveloper
 			Application.Run(new FormMain(args));
 
 end:
+			// 設定書き込み
+			SettingManager.Final();
+
 			// ログファイル破棄
 			Logger.Info("The application is terminating...");
 			Logger.Final();

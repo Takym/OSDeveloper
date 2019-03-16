@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using OSDeveloper.IO.Logging;
@@ -8,7 +9,7 @@ namespace OSDeveloper.GraphicalUIs.Controls
 	public partial class ClosableTabControl : TabControl
 	{
 		private readonly Logger _logger;
-		private int _closebtn_clicked;
+		private int _closebtn_clicked, _closebtn_over, _mouse_over;
 
 		public ClosableTabControl()
 		{
@@ -30,6 +31,8 @@ namespace OSDeveloper.GraphicalUIs.Controls
 			this.ItemSize     = new Size(120, 20);
 			this.Multiline    = false;
 			_closebtn_clicked = -1;
+			_closebtn_over    = -1;
+			_mouse_over       = -1;
 
 			_logger.Trace($"constructed {nameof(MdiChildrenTab)}");
 		}
@@ -49,12 +52,15 @@ namespace OSDeveloper.GraphicalUIs.Controls
 			// タブページの枠描画
 			if (this.SelectedIndex < 0) goto skip;
 			var page = this.TabPages[this.SelectedIndex];
-			Rectangle pageRect = new Rectangle(
-			page.Bounds.X      - 2,
-			page.Bounds.Y      - 2,
-			page.Bounds.Width  + 5,
-			page.Bounds.Height + 5);
-			TabRenderer.DrawTabPage(e.Graphics, pageRect);
+			if (Application.VisualStyleState == VisualStyleState.ClientAreaEnabled ||
+				Application.VisualStyleState == VisualStyleState.ClientAndNonClientAreasEnabled) {
+				var pageRect = new Rectangle(
+					page.Bounds.X      - 2,
+					page.Bounds.Y      - 2,
+					page.Bounds.Width  + 5,
+					page.Bounds.Height + 5);
+				TabRenderer.DrawTabPage(e.Graphics, pageRect);
+			}
 skip:
 
 			//タブの描画
@@ -68,6 +74,8 @@ skip:
 					state = TabItemState.Disabled;
 				} else if (this.SelectedIndex == i) {
 					state = TabItemState.Selected;
+				} else if (_mouse_over == i) {
+					state = TabItemState.Hot;
 				} else {
 					state = TabItemState.Normal;
 				}
@@ -78,13 +86,41 @@ skip:
 				}
 
 				// タブ描画
-				TabRenderer.DrawTabItem(e.Graphics,
-					new Rectangle(tabRect.X, tabRect.Y, tabRect.Width, tabRect.Height + 1),
-					page.Text,
-					page.Font,
-					TextFormatFlags.EndEllipsis,
-					false,
-					state);
+				if (Application.VisualStyleState == VisualStyleState.ClientAreaEnabled ||
+					Application.VisualStyleState == VisualStyleState.ClientAndNonClientAreasEnabled) {
+					TabRenderer.DrawTabItem(e.Graphics,
+						new Rectangle(tabRect.X, tabRect.Y, tabRect.Width, tabRect.Height + 1),
+						page.Text,
+						page.Font,
+						TextFormatFlags.EndEllipsis,
+						state == TabItemState.Hot,
+						state);
+				} else {
+					var rect = new Rectangle(tabRect.X, tabRect.Y, tabRect.Width, tabRect.Height + 1);
+					switch (state) {
+						case TabItemState.Selected:
+							e.Graphics.FillRectangle(SystemBrushes.ControlLightLight, rect);
+							e.Graphics.DrawRectangle(SystemPens.ControlDarkDark,      rect);
+							break;
+						case TabItemState.Disabled:
+							e.Graphics.FillRectangle(SystemBrushes.ControlDark,  rect);
+							e.Graphics.DrawRectangle(SystemPens.ControlDarkDark, rect);
+							break;
+						case TabItemState.Hot:
+							e.Graphics.FillRectangle(SystemBrushes.ControlLight, rect);
+							e.Graphics.DrawRectangle(SystemPens.ControlDarkDark, rect);
+							break;
+						default: //case TabItemState.Normal:
+							e.Graphics.FillRectangle(SystemBrushes.Control,      rect);
+							e.Graphics.DrawRectangle(SystemPens.ControlDarkDark, rect);
+							break;
+					}
+					e.Graphics.DrawString(
+						page.Text,
+						page.Font,
+						Brushes.Black,
+						new RectangleF(tabRect.X + 2, tabRect.Y + 2, tabRect.Width - 2, tabRect.Height - 1));
+				}
 
 				// 閉じるボタン描画
 				int x1 = tabRect.X + tabRect.Width - 17;
@@ -93,6 +129,10 @@ skip:
 				int y2 = tabRect.Y + 16;
 				if (_closebtn_clicked == i) { // 左クリック中
 					e.Graphics.FillRectangle(SystemBrushes.ControlDark, x1, y1, 16, 16);
+				} else if (_closebtn_over == i) { // カーソルが重なった
+					e.Graphics.FillRectangle(SystemBrushes.MenuHighlight, x1, y1, 16, 16);
+				} else { // 通常状態
+					e.Graphics.FillRectangle(SystemBrushes.Control, x1, y1, 16, 16);
 				}
 				e.Graphics.DrawLine(SystemPens.ControlDarkDark, x1, y1, x2, y2);
 				e.Graphics.DrawLine(SystemPens.ControlDarkDark, x1, y2, x2, y1);
@@ -102,6 +142,47 @@ skip:
 end:
 			this.ResumeLayout();
 			_logger.Trace($"completed {nameof(OnPaint)}");
+		}
+
+		protected override void OnMouseMove(MouseEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(OnMouseMove)}...");
+			base.OnMouseMove(e);
+
+			_closebtn_over = -1;
+			_mouse_over    = -1;
+			if (this.TabPages.Count == 0) goto end;
+			for (int i = 0; i < this.TabPages.Count; ++i) {
+				var rect = this.GetTabRect(i);
+				int x1 = rect.X;
+				int y1 = rect.Y;
+				int x2 = rect.X + rect.Width;
+				int y2 = rect.Y + rect.Height;
+				if (x1 <= e.X && e.X < x2 && y1 <= e.Y && e.Y < y2) {
+					_mouse_over = i;
+					x1 += rect.Width  - 17;
+					x2 -= 1;
+					y2 -= rect.Height - 16;
+					if (x1 <= e.X && e.X < x2 && y1 <= e.Y && e.Y < y2) {
+						_closebtn_over = i;
+					}
+					goto end;
+				}
+			}
+
+end:
+			this.Invalidate();
+			_logger.Trace($"completed {nameof(OnMouseMove)}");
+		}
+
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(OnMouseLeave)}...");
+			base.OnMouseLeave(e);
+			_closebtn_over = -1;
+			_mouse_over    = -1;
+			this.Invalidate();
+			_logger.Trace($"completed {nameof(OnMouseLeave)}");
 		}
 
 		protected override void OnMouseDown(MouseEventArgs e)

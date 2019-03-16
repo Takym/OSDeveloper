@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using OSDeveloper.GraphicalUIs.Controls;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Resources;
@@ -25,9 +26,12 @@ namespace OSDeveloper.GraphicalUIs.Terminal
 			base.OnPaint(e);
 
 			if (this.TabPages.Count == 0) {
-				var rect = new Rectangle(e.ClipRectangle.Location, e.ClipRectangle.Size);
-				rect.Inflate(-2, -2);
-				TabRenderer.DrawTabPage(e.Graphics, rect);
+				if (Application.VisualStyleState == VisualStyleState.ClientAreaEnabled ||
+					Application.VisualStyleState == VisualStyleState.ClientAndNonClientAreasEnabled) {
+					var rect = new Rectangle(e.ClipRectangle.Location, e.ClipRectangle.Size);
+					rect.Inflate(-2, -2);
+					TabRenderer.DrawTabPage(e.Graphics, rect);
+				}
 				e.Graphics.DrawString(TerminalTexts.TabControlEx_NoPage, this.Font, Brushes.Cyan,  10,  8);
 				e.Graphics.DrawString(TerminalTexts.TabControlEx_NoPage, this.Font, Brushes.Cyan,  11,  8);
 				e.Graphics.DrawString(TerminalTexts.TabControlEx_NoPage, this.Font, Brushes.Cyan,  12,  8);

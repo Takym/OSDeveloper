@@ -69,19 +69,19 @@ namespace Yencon
 		///  既に同じキー名のキーを保持している場合は置き換えます。
 		/// </summary>
 		/// <param name="key">追加するキーです。</param>
-		/// <returns>キーを正常に追加した場合は<see langword="true"/>、失敗した場合は<see langword="false"/>です。</returns>
-		public bool Add(YNode key)
+		/// <returns>追加したキーがそのまま返されます。</returns>
+		public YNode Add(YNode key)
 		{
 			var n = this.GetNode(key.Name);
 			if (n != null) {
 				_keys[_keys.IndexOf(n)] = key;
 				n  .Parent = null;
 				key.Parent = this;
-				return true;
+				return key;
 			} else {
 				_keys.Add(key);
 				key.Parent = this;
-				return true;
+				return key;
 			}
 		}
 

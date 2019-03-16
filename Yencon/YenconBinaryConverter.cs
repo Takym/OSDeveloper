@@ -202,7 +202,7 @@ namespace Yencon
 		{
 			obj = obj ?? throw new ArgumentNullException(nameof(obj));
 			byte[] head = Header.ToBinary();
-			byte[] data = obj.ToBinary();
+			byte[] data = obj.ToBinary(Header);
 			byte[] result = new byte[head.Length + data.Length];
 			head.CopyTo(result, 0);
 			data.CopyTo(result, head.Length);

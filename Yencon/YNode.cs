@@ -22,6 +22,7 @@ namespace Yencon
 
 			set
 			{
+				if (value.Length <= 0) throw new InvalidKeyNameException(value);
 				for (int i = 0; i < value.Length; ++i) {
 					if (YenconStringTokenizer.IsInvalidLetter(value[i])) {
 						throw new InvalidKeyNameException(value);

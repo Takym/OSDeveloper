@@ -157,6 +157,8 @@
     <Compile Include="GraphicalUIs\ToolStrips\ScreenMainMenuItem.cs" />
     <Compile Include="GraphicalUIs\ToolStrips\ToolMainMenuItem.cs" />
     <Compile Include="GraphicalUIs\ToolStrips\WindowMainMenuItem.cs" />
+    <Compile Include="IO\Configuration\SettingManager.cs" />
+    <Compile Include="IO\Configuration\System.cs" />
     <Compile Include="IO\FileFormat.cs" />
     <Compile Include="IO\FileType.cs" />
     <Compile Include="IO\FileTypeRegistry.cs" />
@@ -302,5 +304,6 @@
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
