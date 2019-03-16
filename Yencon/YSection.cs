@@ -28,7 +28,7 @@ namespace Yencon
 		///  ルートセクションの場合は<see langword="true"/>、
 		///  それ以外は<see langword="false"/>です。
 		/// </summary>
-		public bool IsRoot { get => this.Parent is null; } // == null だと、正しく動作しない可能性がある
+		public bool IsRoot { get => this.Parent == null; }
 
 		/// <summary>
 		///  型'<see cref="Yencon.YSection"/>'の新しいインスタンスを生成します。
@@ -126,8 +126,7 @@ namespace Yencon
 		public bool Remove(string name)
 		{
 			var key = this.GetNode(name);
-			// == null だと、正しく動作しない可能性がある
-			if (key is null) return false;
+			if (key == null) return false;
 			return this.Remove(key);
 		}
 
@@ -148,8 +147,7 @@ namespace Yencon
 		/// <returns>存在している場合は<see langword="true"/>、存在しない場合は<see langword="false"/>です。</returns>
 		public bool Contains(string name)
 		{
-			// != null だと、正しく動作しない可能性がある
-			return !(this.GetNode(name) is null);
+			return this.GetNode(name) != null;
 		}
 
 		/// <summary>

@@ -21,8 +21,7 @@ namespace OSDeveloper.GraphicalUIs.Controls
 			}
 			set
 			{
-				// != null だと、正しく動作しない可能性がある
-				if (!(_mdi_client is null)) {
+				if (_mdi_client != null) {
 					_mdi_client.ControlAdded -= this._mdi_client_ControlAdded;
 					_mdi_client.ControlRemoved -= this._mdi_client_ControlRemoved;
 					(_mdi_client.Parent as Form).MdiChildActivate -= this._mdi_client_MdiChildActivate;
@@ -106,8 +105,7 @@ namespace OSDeveloper.GraphicalUIs.Controls
 			g.Clear(this.BackColor);
 
 			// もし、MDI子ウィンドウが無かったら
-			// == null だと、正しく動作しない可能性がある
-			if (children is null || children.Length == 0) {
+			if (children == null || children.Length == 0) {
 				_logger.Warn("there is no MDI children");
 				using (Brush col = new SolidBrush(this.ButtonColor.Dark)) {
 					g.FillRectangle(col, 4, 4, this.Width - 8, this.Height - 8);
@@ -174,8 +172,7 @@ end:
 
 			// 処理に必要な変数を初期化
 			var children = _mdi_client?.MdiChildren;
-			// == null だと、正しく動作しない可能性がある
-			if (children is null || children.Length == 0) goto end;
+			if (children == null || children.Length == 0) goto end;
 			int wid = (this.Width - 6) / children.Length;
 			int hei = this.Height - 6;
 			int x = 3, y = 3;
@@ -226,8 +223,7 @@ end:
 			if (e.Button.HasFlag(MouseButtons.Left)) {
 				// 処理に必要な変数を初期化
 				var children = _mdi_client?.MdiChildren;
-				// == null だと、正しく動作しない可能性がある
-				if (children is null || children.Length == 0) goto end;
+				if (children == null || children.Length == 0) goto end;
 				int wid = (this.Width - 6) / children.Length;
 				int hei = this.Height - 6;
 				int x = 3, y = 3;
@@ -262,8 +258,7 @@ end:
 			if (e.Button.HasFlag(MouseButtons.Left)) {
 				// 処理に必要な変数を初期化
 				var children = _mdi_client?.MdiChildren;
-				// == null だと、正しく動作しない可能性がある
-				if (children is null || children.Length == 0) goto end;
+				if (children == null || children.Length == 0) goto end;
 				int wid = (this.Width - 6) / children.Length;
 				int hei = this.Height - 6;
 				int x = 3, y = 3;

@@ -38,8 +38,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 		private void _mwnd_MdiChildActivate(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(_mwnd_MdiChildActivate)}...");
-			// != null だと、正しく動作しない可能性がある
-			_active.Enabled = !(_mwnd.ActiveMdiChild is null);
+			_active.Enabled = _mwnd.ActiveMdiChild != null;
 			_logger.Trace($"completed {nameof(_mwnd_MdiChildActivate)}");
 		}
 
@@ -57,8 +56,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 		{
 			_logger.Trace($"executing {nameof(_active_Click)}...");
 
-			// == null だと、正しく動作しない可能性がある
-			if (_mwnd.ActiveMdiChild is null) {
+			if (_mwnd.ActiveMdiChild == null) {
 				_logger.Warn("there is no active MDI child window, cannot capture");
 				_logger.Warn("this error should not happen");
 			} else {

@@ -85,7 +85,7 @@ namespace OSDeveloper
 			_logger.Trace($"executing {nameof(OnMdiChildActivate)}...");
 
 			base.OnMdiChildActivate(e);
-			if (this.ActiveMdiChild is null) { // == null だと、正しく動作しない可能性がある
+			if (this.ActiveMdiChild == null) {
 				this.StatusMessageLeft = FormMainRes.Status_Ready;
 			} else {
 				_logger.Debug($"the active MDI child form was changed to:\'{this.ActiveMdiChild.Name}/{this.ActiveMdiChild.Text}\'");

@@ -107,13 +107,11 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 
 		private TreeNode CreateTreeNode(ItemMetadata item)
 		{
-			// == null だと、正しく動作しない可能性がある
-			if (item is null) return DummyTreeNode.Instance;
+			if (item == null) return DummyTreeNode.Instance;
 
 			var result = new FileTreeNode(item);
 			result.ContextMenuStrip = popupMenu;
-			// != null だと、正しく動作しない可能性がある
-			if (!(result.Folder is null) && result.Folder.CanAccess && !result.Folder.IsEmpty()) {
+			if (result.Folder != null && result.Folder.CanAccess && !result.Folder.IsEmpty()) {
 				var fo = result.Folder.GetFolders();
 				for (int i = 0; i < fo.Length; ++i) {
 					if (!fo[i].IsRemoved) result.Nodes.Add(this.CreateTreeNode(fo[i]));
@@ -132,8 +130,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		private void SetStyleToTreeNode(FileTreeNode node)
 		{
 			if (node.Metadata.CanAccess) {
-				// != null だと、正しく動作しない可能性がある
-				if (!(node.File is null)) {
+				if (node.File != null) {
 					switch (node.File.Format) {
 						case FileFormat.Binary:
 							node.ImageIndex         = IconList.BinaryFile;
@@ -164,7 +161,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 							node.SelectedImageIndex = IconList.File;
 							break;
 					}
-				} else if (!(node.Folder is null)) { // != null だと、正しく動作しない可能性がある
+				} else if (node.Folder != null) {
 					switch (node.Folder.Format) {
 						case FolderFormat.Directory:
 							if (node.Folder.IsEmpty()) {
@@ -412,8 +409,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
 
 			if (treeView.SelectedNode is FileTreeNode node) {
-				// == null だと、正しく動作しない可能性がある
-				if (node.Property is null || node.Property.IsDisposed) {
+				if (node.Property == null || node.Property.IsDisposed) {
 					node.Property = new ItemProperty(node.Metadata);
 				}
 				_mwnd.OpenTab(node.Property);

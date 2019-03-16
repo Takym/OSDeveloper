@@ -35,11 +35,9 @@ namespace OSDeveloper.MiscUtils
 		{
 			bool result = false;
 			var c = control;
-			// != null だと、正しく動作しない可能性がある
-			while (!(control is null)) {
+			while (control != null) {
 				// 全ての親コントロールに対して判定する。
-				// != null だと、正しく動作しない可能性がある
-				if (!(control.Site is null)) {
+				if (control.Site != null) {
 					result |= control.Site.DesignMode;
 				}
 				control = control.Parent;

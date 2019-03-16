@@ -18,8 +18,7 @@ namespace OSDeveloper.IO.ItemManagement
 		{
 			get
 			{
-				// == null だと、正しく動作しない可能性がある
-				if (_parent is null) {
+				if (_parent == null) {
 					_parent = new FolderMetadata(_path.GetDirectory());
 				}
 				return _parent;
@@ -37,8 +36,7 @@ namespace OSDeveloper.IO.ItemManagement
 		{
 			_path   = path;
 			_parent = parent;
-			// != null だと、正しく動作しない可能性がある
-			if (!(parent is null) && _path.GetDirectory() != parent._path) {
+			if (parent != null && _path.GetDirectory() != parent._path) {
 				throw new ArgumentException(ErrorMessages.ItemMetadata_Argument);
 			}
 		}

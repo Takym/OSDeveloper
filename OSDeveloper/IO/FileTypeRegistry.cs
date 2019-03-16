@@ -83,8 +83,7 @@ namespace OSDeveloper.IO
 
 		public static string[] GetAllExtensions()
 		{
-			// == null だと、正しく動作しない可能性がある
-			if (_all_exts is null) {
+			if (_all_exts == null) {
 				List<string> result = new List<string>();
 				for (int i = 0; i < _types.Count; ++i) {
 					for (int j = 0; j < _types[i].Extensions.Length; ++j) {

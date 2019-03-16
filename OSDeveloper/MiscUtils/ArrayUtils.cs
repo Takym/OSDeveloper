@@ -18,21 +18,18 @@ namespace OSDeveloper.MiscUtils
 		/// <exception cref="System.ArgumentNullException" />
 		public static T[] Join<T>(params T[][] arrays)
 		{
-			// == null だと、正しく動作しない可能性がある
-			if (arrays is null) {
+			if (arrays == null) {
 				throw new ArgumentNullException(nameof(arrays));
 			}
 			int size = 0, index = 0;
 			for (int i = 0; i < arrays.Length; ++i) {
-				// != null だと、正しく動作しない可能性がある
-				if (!(arrays[i] is null)) {
+				if (arrays[i] != null) {
 					size += arrays[i].Length;
 				}
 			}
 			T[] result = new T[size];
 			for (int i = 0; i < arrays.Length; ++i) {
-				// != null だと、正しく動作しない可能性がある
-				if (!(arrays[i] is null)) {
+				if (arrays[i] != null) {
 					arrays[i].CopyTo(result, index);
 					index += arrays[i].Length;
 				}

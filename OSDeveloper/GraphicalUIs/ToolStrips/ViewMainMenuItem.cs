@@ -29,8 +29,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 		{
 			_logger.Trace($"executing {nameof(_log_output_Click)}...");
 
-			// == null だと、正しく動作しない可能性がある
-			if (_mwnd.LogOutput is null) {
+			if (_mwnd.LogOutput == null) {
 				MessageBox.Show(_mwnd,
 					MenuTexts.View_LogOutput_CannotShow,
 					_mwnd.Text,

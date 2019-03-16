@@ -169,9 +169,6 @@ namespace Yencon
 		/// </exception>
 		public YSection ToYencon(byte[] obj)
 		{
-			//// == null だと、正しく動作しない可能性がある
-			//if (obj is null) throw new ArgumentNullException(nameof(obj));
-			// byte[] は == の偽装 null の可能性はない、 is null ではなく == null を使う
 			if (obj == null) throw new ArgumentNullException(nameof(obj));
 
 			YSection result;

@@ -17,8 +17,7 @@ namespace OSDeveloper.GraphicalUIs.Design
 		{
 			get
 			{
-				// == null だと、正しく動作しない可能性がある
-				if (_inst is null) {
+				if (_inst == null) {
 					_inst = new ColorTheme();
 				}
 				return _inst;

@@ -17,8 +17,7 @@ namespace OSDeveloper.IO.Logging
 		/// <param name="isFatal">指定された例外が致命的かどうかを表します。</param>
 		public void Exception(Exception e, bool isFatal = false)
 		{
-			// == null だと、正しく動作しない可能性がある
-			if (e is null) {
+			if (e == null) {
 				// ログの書き込み時点で例外を発生させると、
 				// ハンドルされなくなる恐れがあるので、"ぬるぽ"は全て無視。
 				this.Warn("The exception was null.");
@@ -46,8 +45,7 @@ namespace OSDeveloper.IO.Logging
 			this.Info("HResult Msg: " + Kernel32.GetErrorMessage(e.HResult));
 
 			// スタックトレースを書き込み
-			// != null だと、正しく動作しない可能性がある
-			if (!(e.StackTrace is null)) {
+			if (e.StackTrace != null) {
 				string[] st = e.StackTrace.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
 				for (int i = 0; i < st.Length; ++i) {
 					this.Info("StackTrace : " + st[i]);
@@ -57,8 +55,7 @@ namespace OSDeveloper.IO.Logging
 			}
 
 			// 追加情報を書き込み
-			// == null だと、正しく動作しない可能性がある
-			if (e.Data is null) {
+			if (e.Data == null) {
 				this.Info("Data       : <null>");
 			} else if (e.Data.Count == 0) {
 				this.Info("Data       : <empty>");
@@ -121,8 +118,7 @@ namespace OSDeveloper.IO.Logging
 			}
 
 			// 内部例外を書き込み
-			// != null だと、正しく動作しない可能性がある
-			if (!(e.InnerException is null)) {
+			if (e.InnerException != null) {
 				this.Notice("This exception has inner exceptions.");
 				this.Exception(e.InnerException, isFatal);
 			} else {

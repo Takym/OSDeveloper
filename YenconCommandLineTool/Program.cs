@@ -74,7 +74,7 @@ namespace YenconCommandLineTool
 						case "into":
 							if (cmd.Length > 1) {
 								var s = _current.GetNode(cmd[1]) as YSection;
-								if (s is null) {
+								if (s == null) {
 									Console.WriteLine(Messages.SectionNotFound);
 								} else {
 									_current = s;

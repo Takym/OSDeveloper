@@ -24,7 +24,7 @@ namespace OSDeveloper.IO.ItemManagement
 				_dinfo = new DirectoryInfo(path);
 				if (_dinfo.Attributes.HasFlag(FileAttributes.ReparsePoint)) {
 					this.Format = FolderFormat.Junction;
-				} else if (path.GetDirectoryName() is null) { // == null だと、正しく動作しない可能性がある
+				} else if (path.GetDirectoryName() == null) {
 					this.Drive = new DriveInfo(path);
 					switch (this.Drive.DriveType) {
 						case DriveType.Removable:
@@ -67,8 +67,7 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public FolderMetadata[] GetFolders()
 		{
-			// == null だと、正しく動作しない可能性がある
-			if (_folders is null) {
+			if (_folders == null) {
 				var dirs = _dinfo.GetDirectories();
 				_folders = new FolderMetadata[dirs.Length];
 				for (int i = 0; i < dirs.Length; ++i) {
@@ -80,8 +79,7 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public FileMetadata[] GetFiles()
 		{
-			// == null だと、正しく動作しない可能性がある
-			if (_files is null) {
+			if (_files == null) {
 				var files = _dinfo.GetFiles();
 				_files = new FileMetadata[files.Length];
 				for (int i = 0; i < files.Length; ++i) {

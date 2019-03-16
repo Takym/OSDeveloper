@@ -105,8 +105,7 @@ namespace OSDeveloper.Native
 			if (Enum.TryParse(name, out Icons i)) {
 				result = GetIcon(i, out uint v);
 			}
-			// == null だと、正しく動作しない可能性がある
-			if (result is null) {
+			if (result == null) {
 				_logger.Warn($"the specified icon (\"{name}\") is not found.");
 			}
 			return result ?? GetIcon(Icons.MiscUnknown, out uint w);

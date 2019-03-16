@@ -11,11 +11,9 @@ namespace OSDeveloper.GraphicalUIs
 		internal static ResourceManager GetResourceManager(string resmgr)
 		{
 			var t = Type.GetType($"{nameof(OSDeveloper)}.{nameof(Resources)}.{resmgr}", false, false);
-			// != null だと、正しく動作しない可能性がある
-			if (!(t is null)) {
+			if (t != null) {
 				var p = t.GetProperty(nameof(ResourceManager), BindingFlags.Static);
-				// != null だと、正しく動作しない可能性がある
-				if (!(p is null)) {
+				if (p != null)) {
 					return ((ResourceManager)(p.GetValue(null)));
 				}
 			}
@@ -26,11 +24,9 @@ namespace OSDeveloper.GraphicalUIs
 		internal static string GetResourceString(string resmgr, string id)
 		{
 			var t = Type.GetType($"{nameof(OSDeveloper)}.{nameof(Resources)}.{resmgr}", false, false);
-			// != null だと、正しく動作しない可能性がある
-			if (!(t is null)) {
+			if (t != null) {
 				var p = t.GetProperty(id, BindingFlags.Static | BindingFlags.NonPublic);
-				// != null だと、正しく動作しない可能性がある
-				if (!(p is null)) {
+				if (p != null) {
 					return p.GetValue(null)?.ToString();
 				}
 			}
