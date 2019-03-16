@@ -11,10 +11,16 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright (C) 2019 Takym.")]
 
 // 構成によって変わる項目
-#if DEBUG
+#if DEBUG && AnyCPU
 [assembly: AssemblyConfiguration("Debug - Any CPU")]
-#else
+#elif DEBUG && x64
+[assembly: AssemblyConfiguration("Debug - x64")]
+#elif RELEASE && AnyCPU
+[assembly: AssemblyConfiguration("Release - Any CPU")]
+#elif RELEASE && x64
 [assembly: AssemblyConfiguration("Release - x64")]
+#else
+[assembly: AssemblyConfiguration("Unknown")]
 #endif
 
 // COM

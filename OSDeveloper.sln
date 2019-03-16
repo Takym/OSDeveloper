@@ -39,8 +39,8 @@ Global
 		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Debug|Default.Build.0 = Debug|Win32
 		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Debug|Distrib64.ActiveCfg = Debug|x64
 		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Debug|Distrib64.Build.0 = Debug|x64
-		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Release|Default.ActiveCfg = Release|x64
-		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Release|Default.Build.0 = Release|x64
+		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Release|Default.ActiveCfg = Release|Win32
+		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Release|Default.Build.0 = Release|Win32
 		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Release|Distrib64.ActiveCfg = Release|x64
 		{3B8952BF-B70D-4468-9CC7-6B91BFF2C9C2}.Release|Distrib64.Build.0 = Release|x64
 		{88B6FDA5-047F-478D-B9B6-8B82177D5A0D}.Debug|Default.ActiveCfg = Debug|Any CPU
@@ -65,5 +65,11 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4934EB84-762F-4137-969A-11274A80CAF5}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Debug|Distrib64 = Debug|Distrib64
+		Release|Default = Release|Default
+		Release|Distrib64 = Release|Distrib64
 	EndGlobalSection
 EndGlobal
