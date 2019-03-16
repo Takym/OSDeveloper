@@ -1,5 +1,6 @@
 ﻿// System.Linq にこのクラスで定義されている関数と似た様な物がある。
 using System;
+using System.Collections.Generic;
 
 namespace TakymLib
 {
@@ -71,6 +72,20 @@ namespace TakymLib
 				}
 			}
 			return false;
+		}
+
+		/// <summary>
+		///  <see cref="System.Collections.Generic.KeyValuePair{TKey, TValue}"/>クラスをキーと値に分解します。
+		/// </summary>
+		/// <typeparam name="TKey">キーの型です。</typeparam>
+		/// <typeparam name="TValue">値の型です。</typeparam>
+		/// <param name="kvp">分解前のオブジェクトです。</param>
+		/// <param name="key">分解後のキーです。</param>
+		/// <param name="value">分解後の値です。</param>
+		public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> kvp, out TKey key, out TValue value)
+		{
+			key   = kvp.Key;
+			value = kvp.Value;
 		}
 	}
 }
