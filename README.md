@@ -1,3 +1,5 @@
+# 参考用に作り直し前のバージョンをこのブランチで残しておきます。
+
 # 現在、このソフトウェアは作り直し中です。キリが良い所まで完成したらまたコミットします。
 # Now, I am trying to recreate this software. I will commit when it is enough to publish.
 
