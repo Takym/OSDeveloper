@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YenconCommandLineTool", "Ye
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84EA8AFE-55D1-49F8-9F45-8D46BC0D21CB}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
 		remove_binobj.bat = remove_binobj.bat
 	EndProjectSection
 EndProject
