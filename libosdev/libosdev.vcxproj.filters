@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="assets.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="libosdev.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.c">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="assets.c">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.c">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="sendkey.c">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="assets.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icons\1903.Misc_Collapse.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1001.Logo_FormMain.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1002.Logo_Japanese.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1003.Logo_English.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1100.File.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1101.File_Binary.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1102.File_Text.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1103.File_Program.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1104.File_SourceCode.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1105.File_Resource.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1106.File_Document.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1150.Folder.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1151.Folder_Closed.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1152.Folder_Opened.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1901.Misc_Refresh.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1902.Misc_Expand.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1051.Form_Settings.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1900.Misc_Unknown.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1050.Form_EditorWindow.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1153.Folder_Directory.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1154.Folder_DirClosed.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1155.Folder_DirOpened.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1157.Folder_HDD.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1158.Folder_ODD.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1156.Folder_FDD.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1160.Folder_JunClosed.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1159.Folder_Junction.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1161.Folder_JunOpened.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1199.Item_CannotAccess.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

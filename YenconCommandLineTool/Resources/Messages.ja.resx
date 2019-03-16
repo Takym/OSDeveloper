@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CommandNotFound" xml:space="preserve">
+    <value>指定されたコマンド「{0}」は存在しないか、引数が正しくありません。</value>
+  </data>
+  <data name="ManualTitle" xml:space="preserve">
+    <value>ヱンコン コマンドライン マニュアル</value>
+  </data>
+  <data name="Man_Exit" xml:space="preserve">
+    <value>このコマンドラインツールを終了します。</value>
+  </data>
+  <data name="Man_Help" xml:space="preserve">
+    <value>この説明書きを表示します。</value>
+  </data>
+  <data name="Man_Quit" xml:space="preserve">
+    <value>「exit」コマンドの別名です。</value>
+  </data>
+  <data name="Ver_Copyright" xml:space="preserve">
+    <value>著作権</value>
+  </data>
+  <data name="Ver_Description" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="Ver_Version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="Man_About" xml:space="preserve">
+    <value>このコマンドラインツールの著作権情報とバージョン情報を表示します。</value>
+  </data>
+  <data name="Man_Ver" xml:space="preserve">
+    <value>「about」コマンドの別名です。</value>
+  </data>
+  <data name="FileNotOpened" xml:space="preserve">
+    <value>まだファイルは開かれていません。「help」コマンドで全てのコマンドを確認できます。</value>
+  </data>
+  <data name="ManualNotFound" xml:space="preserve">
+    <value>「{0}」には特別な情報はありません。</value>
+  </data>
+  <data name="Man_Help_Full" xml:space="preserve">
+    <value>この説明書きを表示します。引数にコマンド名を入れると、それに関する追加情報が表示されます。</value>
+  </data>
+  <data name="Man_Loadb" xml:space="preserve">
+    <value>引数に指定されたバイナリファイルを読み込みます。</value>
+  </data>
+  <data name="Man_Loadb_Full" xml:space="preserve">
+    <value>引数に指定されたバイナリファイルを読み込みます。ファイル名はヱンコンの文字列と同じフォーマットでエスケープする必要があります。既にファイルが開かれていて、保存されていない場合、変更は破棄されます。ファイル名が指定されていない場合、現在のファイルを再読み込みします。</value>
+  </data>
+  <data name="Man_Saveb" xml:space="preserve">
+    <value>現在の変更を引数に指定されたバイナリファイルに書き込みます。</value>
+  </data>
+  <data name="Man_Saveb_Full" xml:space="preserve">
+    <value>現在の変更を引数に指定されたバイナリファイルに書き込みます。ファイル名はヱンコンの文字列と同じフォーマットでエスケープする必要があります。既にファイルが存在する場合は上書きされます。ファイル名が指定されていない場合、読み込んだファイルと同名で保存します。</value>
+  </data>
+  <data name="Fname_Untitled" xml:space="preserve">
+    <value>無題.ycn</value>
+  </data>
+  <data name="ToolTitle" xml:space="preserve">
+    <value>ヱンコン コマンドライン ツール</value>
+  </data>
+  <data name="Man_Binhdr" xml:space="preserve">
+    <value>バイナリ形式で保存した時のヘッダー情報を表示します。</value>
+  </data>
+  <data name="SectionNotFound" xml:space="preserve">
+    <value>指定された名前のセクションは存在しません。</value>
+  </data>
+  <data name="Man_Goroot" xml:space="preserve">
+    <value>ルートセクションに制御対象を戻します。</value>
+  </data>
+  <data name="Man_Into" xml:space="preserve">
+    <value>引数に指定された名前のセクションを開きます。</value>
+  </data>
+  <data name="Man_List" xml:space="preserve">
+    <value>現在のセクション内の全ての子キーを表示します。</value>
+  </data>
+  <data name="ShowBinHeader_Compatibility" xml:space="preserve">
+    <value>互換性</value>
+  </data>
+  <data name="ShowBinHeader_Implementation" xml:space="preserve">
+    <value>実装</value>
+  </data>
+  <data name="ShowBinHeader_KeyNameSize" xml:space="preserve">
+    <value>キー名の大きさ</value>
+  </data>
+  <data name="ShowBinHeader_KeyNameType" xml:space="preserve">
+    <value>キー名の種類</value>
+  </data>
+  <data name="ShowBinHeader_Revision" xml:space="preserve">
+    <value>改版</value>
+  </data>
+  <data name="ShowBinHeader_Version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="Man_Loadt" xml:space="preserve">
+    <value>引数に指定されたテキストファイルを読み込みます。</value>
+  </data>
+  <data name="Man_Loadt_Full" xml:space="preserve">
+    <value>引数に指定されたテキストファイルを読み込みます。ファイル名はヱンコンの文字列と同じフォーマットでエスケープする必要があります。既にファイルが開かれていて、保存されていない場合、変更は破棄されます。ファイル名が指定されていない場合、現在のファイルを再読み込みします。</value>
+  </data>
+  <data name="Man_Savet" xml:space="preserve">
+    <value>現在の変更を引数に指定されたテキストファイルに書き込みます。</value>
+  </data>
+  <data name="Man_Savet_Full" xml:space="preserve">
+    <value>現在の変更を引数に指定されたテキストファイルに書き込みます。ファイル名はヱンコンの文字列と同じフォーマットでエスケープする必要があります。既にファイルが存在する場合は上書きされます。ファイル名が指定されていない場合、読み込んだファイルと同名で保存します。</value>
+  </data>
+  <data name="Man_Adds" xml:space="preserve">
+    <value>新しいセクションを指定された名前で追加します。</value>
+  </data>
+  <data name="Man_Set" xml:space="preserve">
+    <value>指定された名前のキーに値を設定します。まだ存在しない場合は新しく追加されます。</value>
+  </data>
+  <data name="Man_Set_Full" xml:space="preserve">
+    <value>指定された名前のキーに値を設定します。まだ存在しない場合は新しく追加されます。
+引数は「set」「型」「名前」「値」の順番で書かれます。
+「型」は「str」の場合は文字列、「num」の場合は数値、「flg」の場合は論理値、「nul」の場合は空値です。</value>
+  </data>
+</root>
