@@ -1,11 +1,12 @@
 ﻿using OSDeveloper.MiscUtils;
+using TakymLib.AOP;
 
 namespace OSDeveloper.IO.Logging
 {
 	/// <summary>
 	///  ログを書き込みます。
 	/// </summary>
-	public partial class Logger
+	public partial class Logger : ILogger
 	{
 		private string _name;
 

@@ -88,6 +88,8 @@
     <Compile Include="AOP\AspectProxy.cs" />
     <Compile Include="AOP\EmptyAspectBehavior.cs" />
     <Compile Include="AOP\IAspectBehavior.cs" />
+    <Compile Include="AOP\ILogger.cs" />
+    <Compile Include="AOP\LoggingAspectBehavior.cs" />
     <Compile Include="Collections\HybridList.cs" />
     <Compile Include="ConsoleUtils.cs" />
     <Compile Include="DisposableBase.cs" />

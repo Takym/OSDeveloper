@@ -6,6 +6,7 @@ using System.Windows.Forms.VisualStyles;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Resources;
+using TakymLib.AOP;
 
 namespace OSDeveloper
 {
@@ -29,6 +30,8 @@ namespace OSDeveloper
 			Logger.Init();
 			Logger = Logger.Get("system");
 			Logger.Info($"The application is started with command-line: {{{string.Join(", ", args)}}}");
+			// アスペクト処理にロガーを設定
+			LoggingAspectBehavior.Logger = Logger.Get("aop");
 
 			// TODO: 設定で変更可能にする項目 Application.VisualStyleState
 			Application.VisualStyleState = VisualStyleState.ClientAndNonClientAreasEnabled;
@@ -56,6 +59,17 @@ namespace OSDeveloper
 					MessageBoxIcon.Error);
 				goto end;
 			}
+
+#if DEBUG
+			// ちょっと実験 (AOP)
+			using (Class1 class1 = new Class1("xyz")) {
+				MessageBox.Show(class1.ABC(123).ToString());
+				class1.MojiretsuField = "qwerty";
+				MessageBox.Show(class1.MojiretsuProperty);
+				class1.MojiretsuProperty = "kezboard";
+				MessageBox.Show(class1.MojiretsuProperty);
+			}
+#endif
 
 			// メインウィンドウ表示
 			Application.Run(new FormMain(args));

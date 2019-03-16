@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Reflection;
+using TakymLib.AOP;
 
 namespace TakymLib
 {
 	/// <summary>
 	///  <see cref="System.IDisposable"/>クラスの基本メソッドを実装した、抽象クラスです。
 	/// </summary>
+	[Aspectable(typeof(LoggingAspectBehavior))]
 	public abstract class DisposableBase : ContextBoundObject, IDisposable
 	{
 		/// <summary>

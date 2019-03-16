@@ -107,6 +107,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="FormMain.constructor.cs" />
     <Compile Include="FormMain.events.cs" />
     <Compile Include="FormMain.menus.cs" />
