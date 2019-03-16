@@ -67,8 +67,8 @@ namespace OSDeveloper.IO
 
 		public string GetExtension()
 		{
-			// Remove(0)で最初のピリオドを除外する。
-			return Path.GetExtension(_path).Remove(0);
+			// Remove(0, 1)で最初のピリオドを除外する。
+			return Path.GetExtension(_path).Remove(0, 1);
 		}
 
 		public string GetFileNameWithoutExtension()

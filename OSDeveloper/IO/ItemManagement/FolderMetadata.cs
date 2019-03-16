@@ -79,21 +79,32 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public FileMetadata[] GetFiles()
 		{
+			// キャッシュが null なら
 			if (_files == null) {
+				// ディレクトリ情報からファイル一覧を取得
 				var files = _dinfo.GetFiles();
+				// ファイル数に合わせて配列を生成
 				_files = new FileMetadata[files.Length];
+				// ファイルのメタ情報をファイルの数だけ生成
 				for (int i = 0; i < files.Length; ++i) {
-					var fmt = FileFormat.Unknown;
+					// ファイルの拡張を取得
 					var ext = files[i].Extension;
-					// TODO: 今後、FileTypeRegistry.GetByExtension(ext.Remove(0, 1))[0].CreateMetadata(); を使うようにする
+					// 拡張子が空かどうか判定
 					if (!string.IsNullOrEmpty(ext)) {
+						// 拡張子から FileType を取得
 						var ft = FileTypeRegistry.GetByExtension(ext.Remove(0, 1));
+						// FileType が一つ以上あれば、FileType からメタ情報を生成
 						if (ft.Length != 0) {
-							fmt = ft[0].Format;
+							_files[i] = ft[0].CreateMetadata(((PathString)(files[i].FullName)), this)
+								as FileMetadata;
+						} else { // なければ、通常の FileMetadata を生成
+							_files[i] = new FileMetadata(
+								((PathString)(files[i].FullName)), this, FileFormat.Unknown);
 						}
+					} else { // 拡張子が無い場合は、通常の FileMetadata を生成
+						_files[i] = new FileMetadata(
+							((PathString)(files[i].FullName)), this, FileFormat.Unknown);
 					}
-					_files[i] = new FileMetadata(
-						((PathString)(files[i].FullName)), this, fmt);
 				}
 			}
 			return _files;

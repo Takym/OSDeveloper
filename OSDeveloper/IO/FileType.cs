@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.Resources;
+using TakymLib;
 
 namespace OSDeveloper.IO
 {
@@ -19,7 +20,7 @@ namespace OSDeveloper.IO
 			this.Format     = format;
 			this.Name       = name;
 			this.Extensions = extensions;
-			this.ItemType   = typeof(ItemMetadata);
+			this.ItemType   = typeof(FileMetadata);
 		}
 
 		/// <exception cref="System.InvalidCastException"/>
@@ -59,12 +60,12 @@ namespace OSDeveloper.IO
 		}
 
 		/// <exception cref="System.ArgumentException"/>
-		public ItemMetadata CreateMetadata(PathString filename)
+		public ItemMetadata CreateMetadata(PathString filename, FolderMetadata parent)
 		{
-			if (this.Extensions.Contains(filename.GetExtension())) {
+			if (this.Extensions.ContainsValue(filename.GetExtension())) {
 				try {
 					var c = this.ItemType.GetConstructor(new Type[] { typeof(PathString) });
-					var o = c?.Invoke(new object[] { filename });
+					var o = c?.Invoke(new object[] { filename, parent, this.Format });
 					return o as ItemMetadata;
 				} catch (Exception e) {
 					Program.Logger.Notice($"The exception occurred in {nameof(FileType)}");
