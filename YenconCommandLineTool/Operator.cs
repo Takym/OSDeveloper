@@ -1,4 +1,5 @@
 ﻿using System;
+using TakymLib;
 using Yencon;
 
 namespace YenconCommandLineTool
@@ -39,7 +40,7 @@ namespace YenconCommandLineTool
 					case "flg":
 						var flg = new YBoolean();
 						flg.Name = name;
-						if (bool.TryParse(value, out var val2)) {
+						if (value.TryToBoolean(out var val2)) {
 							flg.Flag = val2;
 						}
 						section.Add(flg);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using TakymLib;
 using Yencon;
 using YenconCommandLineTool.Resources;
 
@@ -110,6 +111,8 @@ namespace YenconCommandLineTool
 			}
 
 end:
+			Console.WriteLine();
+			ConsoleUtils.Pause();
 			return 0;
 		}
 
