@@ -79,11 +79,11 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
-        ///   FileType_InvalidCast {0} に類似しているローカライズされた文字列を検索します。
+        ///   InvalidCast {0} {1} に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string FileType_InvalidCast {
+        internal static string InvalidCast {
             get {
-                return ResourceManager.GetString("FileType_InvalidCast", resourceCulture);
+                return ResourceManager.GetString("InvalidCast", resourceCulture);
             }
         }
         

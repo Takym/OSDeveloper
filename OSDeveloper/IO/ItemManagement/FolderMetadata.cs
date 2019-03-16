@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace OSDeveloper.IO.ItemManagement
 {
-	public class FolderMetadata : ItemMetadata
+	public sealed class FolderMetadata : ItemMetadata
 	{
 		private          FolderMetadata [] _folders;
 		private          FileMetadata   [] _files;
@@ -47,7 +47,7 @@ namespace OSDeveloper.IO.ItemManagement
 				Directory.EnumerateFileSystemEntries(this.Path); // アクセス可能か確認
 				this.CanAccess = true;
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				this.CanAccess = false;
 			}
@@ -95,8 +95,7 @@ namespace OSDeveloper.IO.ItemManagement
 						var ft = FileTypeRegistry.GetByExtension(ext.Remove(0, 1));
 						// FileType が一つ以上あれば、FileType からメタ情報を生成
 						if (ft.Length != 0) {
-							_files[i] = ft[0].CreateMetadata(((PathString)(files[i].FullName)), this)
-								as FileMetadata;
+							_files[i] = ft[0].CreateMetadata(((PathString)(files[i].FullName)), this);
 						} else { // なければ、通常の FileMetadata を生成
 							_files[i] = new FileMetadata(
 								((PathString)(files[i].FullName)), this, FileFormat.Unknown);
@@ -116,7 +115,7 @@ namespace OSDeveloper.IO.ItemManagement
 				Directory.Move(this.Path, this.Path.ChangeFileName(newName));
 				return base.Rename(newName);
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return false;
 			}
@@ -136,7 +135,7 @@ namespace OSDeveloper.IO.ItemManagement
 				}
 				return new FolderMetadata(path);
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return null;
 			}
@@ -148,7 +147,7 @@ namespace OSDeveloper.IO.ItemManagement
 				_dinfo.Delete(true);
 				return base.Delete();
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return false;
 			}

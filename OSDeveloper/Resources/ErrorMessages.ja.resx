@@ -123,8 +123,8 @@
   <data name="FileType_CreateMetadata_ExtensionInvalid" xml:space="preserve">
     <value>指定されたファイル名「{0}」は利用できません。拡張子が{1}である必要があります。</value>
   </data>
-  <data name="FileType_InvalidCast" xml:space="preserve">
-    <value>型「{0}」は「ItemMetadata」に変換する事はできません。</value>
+  <data name="InvalidCast" xml:space="preserve">
+    <value>型「{0}」は型「{1}」に変換する事はできません。</value>
   </data>
   <data name="ItemMetadata_Argument" xml:space="preserve">
     <value>親フォルダのパスと渡されたファイルのパスが一致しません。</value>

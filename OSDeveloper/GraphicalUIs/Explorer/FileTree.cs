@@ -114,11 +114,11 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			if (result.Folder != null && result.Folder.CanAccess && !result.Folder.IsEmpty()) {
 				var fo = result.Folder.GetFolders();
 				for (int i = 0; i < fo.Length; ++i) {
-					if (!fo[i].IsRemoved) result.Nodes.Add(this.CreateTreeNode(fo[i]));
+					if (fo[i] != null && !fo[i].IsRemoved) result.Nodes.Add(this.CreateTreeNode(fo[i]));
 				}
 				var fi = result.Folder.GetFiles();
 				for (int i = 0; i < fi.Length; ++i) {
-					if (!fi[i].IsRemoved) result.Nodes.Add(this.CreateTreeNode(fi[i]));
+					if (fi[i] != null && !fi[i].IsRemoved) result.Nodes.Add(this.CreateTreeNode(fi[i]));
 				}
 			}
 			this.SetStyleToTreeNode(result);
@@ -410,7 +410,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 
 			if (treeView.SelectedNode is FileTreeNode node) {
 				if (node.Property == null || node.Property.IsDisposed) {
-					node.Property = new ItemProperty(node.Metadata);
+					node.Property = node.Metadata.ExtendedDetail.CreatePropTab();
 				}
 				_mwnd.OpenTab(node.Property);
 			}

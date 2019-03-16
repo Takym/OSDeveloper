@@ -6,13 +6,15 @@ namespace OSDeveloper.IO.ItemManagement
 {
 	public abstract class ItemMetadata
 	{
-		private          PathString     _path;
-		public           PathString     Path         { get => _path; }
-		public           string         Name         { get => _path.GetFileName(); }
-		public  abstract FileSystemInfo Info         { get; }
-		public  virtual  FileAttributes Attributes   { get => this.Info.Attributes; }
-		public  virtual  bool           CanAccess    { get => true; }
-		public           bool           IsRemoved    { get; private set; }
+		private          PathString         _path;
+		public           PathString         Path           { get => _path; }
+		public           string             Name           { get => _path.GetFileName(); }
+		public  abstract FileSystemInfo     Info           { get; }
+		public  virtual  FileAttributes     Attributes     { get => this.Info.Attributes; }
+		public  virtual  bool               CanAccess      { get => true; }
+		public           bool               IsRemoved      { get; private set; }
+		private          ItemExtendedDetail _ied;
+		public           ItemExtendedDetail ExtendedDetail { get => _ied; set { _ied = value ?? _ied; _ied.Metadata = this; } }
 
 		public virtual FolderMetadata Parent
 		{
@@ -26,19 +28,29 @@ namespace OSDeveloper.IO.ItemManagement
 		}
 		private FolderMetadata _parent;
 
-		protected ItemMetadata(PathString path)
+		internal ItemMetadata(PathString path)
 		{
 			_path = path;
+
+			this.InitIED();
 		}
 
 		/// <exception cref="System.ArgumentException"/>
-		protected ItemMetadata(PathString path, FolderMetadata parent)
+		internal ItemMetadata(PathString path, FolderMetadata parent)
 		{
 			_path   = path;
 			_parent = parent;
 			if (parent != null && _path.GetDirectory() != parent._path) {
 				throw new ArgumentException(ErrorMessages.ItemMetadata_Argument);
 			}
+
+			this.InitIED();
+		}
+
+		private void InitIED()
+		{
+			_ied = new DefaultItemExtendedDetail();
+			_ied.Metadata = this;
 		}
 
 		public virtual bool Rename(string newName)
@@ -57,10 +69,5 @@ namespace OSDeveloper.IO.ItemManagement
 			this.IsRemoved = true;
 			return true;
 		}
-
-		/*
-		public abstract EditorWindow CreateEditor();
-		public abstract PropertyTab  CreatePropTab();
-		*/
 	}
 }

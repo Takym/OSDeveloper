@@ -163,6 +163,7 @@
     <Compile Include="IO\FolderFormat.cs" />
     <Compile Include="IO\ItemManagement\FileMetadata.cs" />
     <Compile Include="IO\ItemManagement\FolderMetadata.cs" />
+    <Compile Include="IO\ItemManagement\ItemExtendedDetail.cs" />
     <Compile Include="IO\ItemManagement\ItemMetadata.cs" />
     <Compile Include="IO\Logging\LogData.cs" />
     <Compile Include="IO\Logging\LogFile.cs" />

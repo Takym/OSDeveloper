@@ -123,8 +123,8 @@
   <data name="FileType_CreateMetadata_ExtensionInvalid" xml:space="preserve">
     <value>FileType_CreateMetadata_ExtensionInvalid {0} {1}</value>
   </data>
-  <data name="FileType_InvalidCast" xml:space="preserve">
-    <value>FileType_InvalidCast {0}</value>
+  <data name="InvalidCast" xml:space="preserve">
+    <value>InvalidCast {0} {1}</value>
   </data>
   <data name="ItemMetadata_Argument" xml:space="preserve">
     <value>ItemMetadata_Argument</value>

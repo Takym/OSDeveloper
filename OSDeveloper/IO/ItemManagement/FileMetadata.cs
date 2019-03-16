@@ -3,7 +3,7 @@ using System.IO;
 
 namespace OSDeveloper.IO.ItemManagement
 {
-	public class FileMetadata : ItemMetadata
+	public sealed class FileMetadata : ItemMetadata
 	{
 		private readonly FileInfo       _finfo;
 		public  override FileSystemInfo Info      { get => _finfo; }
@@ -21,7 +21,7 @@ namespace OSDeveloper.IO.ItemManagement
 				this.Format = format;
 				this.CanAccess = true;
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				this.CanAccess = false;
 			}
@@ -33,7 +33,7 @@ namespace OSDeveloper.IO.ItemManagement
 				_finfo.MoveTo(this.Path.ChangeFileName(newName));
 				return base.Rename(newName);
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return false;
 			}
@@ -45,7 +45,7 @@ namespace OSDeveloper.IO.ItemManagement
 				_finfo.CopyTo(path, true);
 				return new FileMetadata(path, this.Format);
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return null;
 			}

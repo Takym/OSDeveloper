@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.Resources;
@@ -30,13 +29,14 @@ namespace OSDeveloper.IO
 			this.Name = name;
 			this.Extensions = extensions;
 
-			if (typeof(ItemMetadata).IsAssignableFrom(item)) {
+			if (typeof(ItemExtendedDetail).IsAssignableFrom(item)) {
 				this.ItemType = item;
 			} else {
 				var e = new InvalidCastException(
 						string.Format(
-							ErrorMessages.FileType_InvalidCast,
-							item.FullName));
+							ErrorMessages.InvalidCast,
+							item.FullName,
+							typeof(ItemExtendedDetail).FullName));
 				throw new ArgumentException(
 					ErrorMessages.FileType_Argument,
 					nameof(item), e);
@@ -60,18 +60,17 @@ namespace OSDeveloper.IO
 		}
 
 		/// <exception cref="System.ArgumentException"/>
-		public ItemMetadata CreateMetadata(PathString filename, FolderMetadata parent)
+		public FileMetadata CreateMetadata(PathString filename, FolderMetadata parent = null)
 		{
 			if (this.Extensions.ContainsValue(filename.GetExtension())) {
+				var result = new FileMetadata(filename, parent, this.Format);
 				try {
-					var c = this.ItemType.GetConstructor(new Type[] { typeof(PathString) });
-					var o = c?.Invoke(new object[] { filename, parent, this.Format });
-					return o as ItemMetadata;
+					result.ExtendedDetail = Activator.CreateInstance(this.ItemType) as ItemExtendedDetail;
 				} catch (Exception e) {
-					Program.Logger.Notice($"The exception occurred in {nameof(FileType)}");
+					Program.Logger.Notice($"The exception occurred in {nameof(FileType)}, filename:{filename}");
 					Program.Logger.Exception(e);
-					return null;
 				}
+				return result;
 			} else {
 				throw new ArgumentException(string.Format(
 					ErrorMessages.FileType_CreateMetadata_ExtensionInvalid,

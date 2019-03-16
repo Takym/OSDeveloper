@@ -123,8 +123,8 @@
   <data name="FileType_CreateMetadata_ExtensionInvalid" xml:space="preserve">
     <value>The specified file "{0}" cannot open because the extension must be {1}.</value>
   </data>
-  <data name="FileType_InvalidCast" xml:space="preserve">
-    <value>The type "{0}" cannot be converted to "ItemMetadata".</value>
+  <data name="InvalidCast" xml:space="preserve">
+    <value>The type "{0}" cannot be converted to the type "{1}".</value>
   </data>
   <data name="ItemMetadata_Argument" xml:space="preserve">
     <value>The parent folder path and the specified file path do not match.</value>
