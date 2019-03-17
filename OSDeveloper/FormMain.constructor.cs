@@ -5,6 +5,7 @@ using OSDeveloper.GraphicalUIs.Controls;
 using OSDeveloper.GraphicalUIs.Explorer;
 using OSDeveloper.GraphicalUIs.Terminal;
 using OSDeveloper.GraphicalUIs.ToolStrips;
+using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Resources;
@@ -108,9 +109,14 @@ namespace OSDeveloper
 				this.Name        = nameof(FormMain);
 				this.Text        = $"{ASMINFO.Caption} {ASMINFO.Edition}";
 				this.Icon        = Libosdev.GetIcon(FormMainRes.Icon);
-				this.ClientSize  = new Size(1000, 750);
-				this.MinimumSize = new Size(600,  450);
-				// TODO: 設定で変更できる項目 //this.Location //this.StartPosition
+				this.MinimumSize = new Size(600, 450);
+				this.ClientSize  = SettingManager.System.MainWindowPosition.Size;
+
+				if (SettingManager.System.MainWindowPosition.X > -1 &&
+					SettingManager.System.MainWindowPosition.Y > -1) {
+					this.StartPosition = FormStartPosition.Manual;
+					this.Location      = SettingManager.System.MainWindowPosition.Location;
+				}
 			}
 
 			// ToolStrip系コントロールに関する設定

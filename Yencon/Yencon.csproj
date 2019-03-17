@@ -71,6 +71,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,6 +84,7 @@
     <Compile Include="Exceptions\InvalidKeyNameException.cs" />
     <Compile Include="Exceptions\InvalidSyntaxException.cs" />
     <Compile Include="Exceptions\YenconException.cs" />
+    <Compile Include="Extension\MiscUtils.cs" />
     <Compile Include="IYenconConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ErrorMessages.Designer.cs">

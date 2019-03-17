@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms.VisualStyles;
 using Yencon;
+using Yencon.Extension;
 
 namespace OSDeveloper.IO.Configuration
 {
@@ -54,6 +56,21 @@ namespace OSDeveloper.IO.Configuration
 				}
 			}
 			public readonly static CultureInfo DefaultLanguage = CultureInfo.InstalledUICulture;
+
+			public static Rectangle MainWindowPosition
+			{
+				get
+				{
+					var node = GetKey("mwndpos", DefaultMainWindowPosition.ToYSection());
+					return node?.ToRectangle() ?? DefaultMainWindowPosition;
+				}
+
+				set
+				{
+					_y_system_inix.Add(value.ToYSection("mwndpos"));
+				}
+			}
+			public readonly static Rectangle DefaultMainWindowPosition = new Rectangle(-1, -1, 1000, 750);
 		}
 	}
 }

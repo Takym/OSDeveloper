@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using OSDeveloper.IO;
+using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.Resources;
 
@@ -56,11 +58,22 @@ namespace OSDeveloper
 		protected override void OnShown(EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(OnShown)}...");
-
 			base.OnShown(e);
+
 			this.StatusMessageLeft = FormMainRes.Status_Ready;
 
 			_logger.Trace($"completed {nameof(OnShown)}...");
+		}
+
+		protected override void OnFormClosing(FormClosingEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(OnFormClosing)}...");
+			base.OnFormClosing(e);
+
+			this.WindowState = FormWindowState.Normal;
+			SettingManager.System.MainWindowPosition = new Rectangle(this.Location, this.ClientSize);
+
+			_logger.Trace($"completed {nameof(OnFormClosing)}...");
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
