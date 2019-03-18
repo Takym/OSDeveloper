@@ -122,12 +122,6 @@
     <Compile Include="GraphicalUIs\Controls\MdiChildrenTab.Designer.cs">
       <DependentUpon>MdiChildrenTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="GraphicalUIs\Controls\TabPageInfo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GraphicalUIs\Controls\TabPageInfo.Designer.cs">
-      <DependentUpon>TabPageInfo.cs</DependentUpon>
-    </Compile>
     <Compile Include="GraphicalUIs\Design\ColorTheme.cs" />
     <Compile Include="GraphicalUIs\Design\ColorThemeConverter.cs" />
     <Compile Include="GraphicalUIs\Design\ColorThemes.cs" />
@@ -139,12 +133,6 @@
     </Compile>
     <Compile Include="GraphicalUIs\Explorer\IconList.cs" />
     <Compile Include="GraphicalUIs\propgridattrs.cs" />
-    <Compile Include="GraphicalUIs\Terminal\AllTabPagesList.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GraphicalUIs\Terminal\AllTabPagesList.Designer.cs">
-      <DependentUpon>AllTabPagesList.cs</DependentUpon>
-    </Compile>
     <Compile Include="GraphicalUIs\Terminal\ItemProperty.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -228,14 +216,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TerminalTexts.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GraphicalUIs\Controls\TabPageInfo.resx">
-      <DependentUpon>TabPageInfo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GraphicalUIs\Explorer\FileTree.resx">
       <DependentUpon>FileTree.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GraphicalUIs\Terminal\AllTabPagesList.resx">
-      <DependentUpon>AllTabPagesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GraphicalUIs\Terminal\ItemProperty.resx">
       <DependentUpon>ItemProperty.cs</DependentUpon>

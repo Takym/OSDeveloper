@@ -61,15 +61,6 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
-        ///   AllTabPagesList_Title に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string AllTabPagesList_Title {
-            get {
-                return ResourceManager.GetString("AllTabPagesList_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   ItemProperty_Attribute に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ItemProperty_Attribute {
@@ -291,15 +282,6 @@ namespace OSDeveloper.Resources {
         internal static string TabControlEx_NoPage {
             get {
                 return ResourceManager.GetString("TabControlEx_NoPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   TabPageInfo_btnDispose に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string TabPageInfo_btnDispose {
-            get {
-                return ResourceManager.GetString("TabPageInfo_btnDispose", resourceCulture);
             }
         }
     }

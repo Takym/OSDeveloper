@@ -127,23 +127,21 @@ skip:
 						new RectangleF(tabRect.X + 2, tabRect.Y + 2, tabRect.Width - 2, tabRect.Height - 1));
 				}
 
-				if (!(page is AllTabPagesList)) {
-					// 閉じるボタン描画
-					int x1 = tabRect.X + tabRect.Width - 17;
-					int y1 = tabRect.Y;
-					int x2 = tabRect.X + tabRect.Width - 1;
-					int y2 = tabRect.Y + 16;
-					if (_closebtn_clicked == i) { // 左クリック中
-						e.Graphics.FillRectangle(SystemBrushes.ControlDark, x1, y1, 16, 16);
-					} else if (_closebtn_over == i) { // カーソルが重なった
-						e.Graphics.FillRectangle(SystemBrushes.MenuHighlight, x1, y1, 16, 16);
-					} else { // 通常状態
-						e.Graphics.FillRectangle(SystemBrushes.Control, x1, y1, 16, 16);
-					}
-					e.Graphics.DrawLine(SystemPens.ControlDarkDark, x1, y1, x2, y2);
-					e.Graphics.DrawLine(SystemPens.ControlDarkDark, x1, y2, x2, y1);
-					e.Graphics.DrawRectangle(SystemPens.ControlDarkDark, x1, y1, 16, 16);
+				// 閉じるボタン描画
+				int x1 = tabRect.X + tabRect.Width - 17;
+				int y1 = tabRect.Y;
+				int x2 = tabRect.X + tabRect.Width - 1;
+				int y2 = tabRect.Y + 16;
+				if (_closebtn_clicked == i) { // 左クリック中
+					e.Graphics.FillRectangle(SystemBrushes.ControlDark, x1, y1, 16, 16);
+				} else if (_closebtn_over == i) { // カーソルが重なった
+					e.Graphics.FillRectangle(SystemBrushes.MenuHighlight, x1, y1, 16, 16);
+				} else { // 通常状態
+					e.Graphics.FillRectangle(SystemBrushes.Control, x1, y1, 16, 16);
 				}
+				e.Graphics.DrawLine(SystemPens.ControlDarkDark, x1, y1, x2, y2);
+				e.Graphics.DrawLine(SystemPens.ControlDarkDark, x1, y2, x2, y1);
+				e.Graphics.DrawRectangle(SystemPens.ControlDarkDark, x1, y1, 16, 16);
 			}
 
 end:
@@ -200,16 +198,14 @@ end:
 			if (this.TabPages.Count == 0) goto end;
 			if (e.Button.HasFlag(MouseButtons.Left)) {
 				for (int i = 0; i < this.TabPages.Count; ++i) {
-					if (!(this.TabPages[i] is AllTabPagesList)) {
-						var rect = this.GetTabRect(i);
-						int x1 = rect.X + rect.Width - 17;
-						int y1 = rect.Y;
-						int x2 = rect.X + rect.Width - 1;
-						int y2 = rect.Y + 16;
-						if (x1 <= e.X && e.X < x2 && y1 <= e.Y && e.Y < y2) {
-							_closebtn_clicked = i; // クリックされていてもまだ閉じない
-							goto end;
-						}
+					var rect = this.GetTabRect(i);
+					int x1 = rect.X + rect.Width - 17;
+					int y1 = rect.Y;
+					int x2 = rect.X + rect.Width - 1;
+					int y2 = rect.Y + 16;
+					if (x1 <= e.X && e.X < x2 && y1 <= e.Y && e.Y < y2) {
+						_closebtn_clicked = i; // クリックされていてもまだ閉じない
+						goto end;
 					}
 				}
 			}
@@ -227,17 +223,15 @@ end:
 			if (this.TabPages.Count == 0) goto end;
 			if (e.Button.HasFlag(MouseButtons.Left)) {
 				for (int i = 0; i < this.TabPages.Count; ++i) {
-					if (!(this.TabPages[i] is AllTabPagesList)) {
-						var rect = this.GetTabRect(i);
-						int x1 = rect.X + rect.Width - 17;
-						int y1 = rect.Y;
-						int x2 = rect.X + rect.Width - 1;
-						int y2 = rect.Y + 16;
-						if (x1 <= e.X && e.X < x2 && y1 <= e.Y && e.Y < y2 &&
-							_closebtn_clicked == i) {
-							this.TabPages.RemoveAt(i); // タブをコントロールから削除する。Dispose はしない
-							goto end;
-						}
+					var rect = this.GetTabRect(i);
+					int x1 = rect.X + rect.Width - 17;
+					int y1 = rect.Y;
+					int x2 = rect.X + rect.Width - 1;
+					int y2 = rect.Y + 16;
+					if (x1 <= e.X && e.X < x2 && y1 <= e.Y && e.Y < y2 &&
+						_closebtn_clicked == i) {
+						this.TabPages.RemoveAt(i); // タブをコントロールから削除する。Dispose はしない
+						goto end;
 					}
 				}
 			}
@@ -254,9 +248,7 @@ end:
 			base.OnControlAdded(e);
 
 			if (e.Control is TabPage page && !this.AllTabPages.Contains(page)) {
-				if (!(page is AllTabPagesList tablist)) {
-					this.AllTabPages.Add(page);
-				}
+				this.AllTabPages.Add(page);
 			}
 
 			_logger.Trace($"completed {nameof(OnControlAdded)}");
