@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using OSDeveloper.GraphicalUIs.Terminal;
 using OSDeveloper.IO.Logging;
 
 namespace OSDeveloper.GraphicalUIs.Controls
