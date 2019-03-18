@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Resources;
@@ -35,6 +37,7 @@ namespace OSDeveloper.GraphicalUIs.Terminal
 		public class ItemMetadataWrapper
 		{
 			private readonly ItemMetadata _meta;
+			private          string       _filetype;
 
 			public ItemMetadataWrapper(ItemMetadata meta)
 			{
@@ -60,6 +63,26 @@ namespace OSDeveloper.GraphicalUIs.Terminal
 				get
 				{
 					return _meta.Path;
+				}
+			}
+
+			[OsdevCategory(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Name))]
+			[OsdevDisplayName(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Name_FileType))]
+			[OsdevDescription(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Name_FileType_Description))]
+			public string FileType
+			{
+				get
+				{
+					if (_filetype == null) {
+						var ft = FileTypeRegistry.GetByExtension(_meta.Path.GetExtension());
+						var sb = new StringBuilder();
+						for (int i = 0; i < ft.Length; ++i) {
+							if (i != 0) sb.Append(" | ");
+							sb.Append(ft[i].GetLocalizedDisplayName());
+						}
+						_filetype = sb.ToString();
+					}
+					return _filetype;
 				}
 			}
 

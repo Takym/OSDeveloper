@@ -19,7 +19,7 @@ namespace OSDeveloper.IO
 			this.Format     = format;
 			this.Name       = name;
 			this.Extensions = extensions;
-			this.ItemType   = typeof(FileMetadata);
+			this.ItemType   = null;//typeof(DefaultItemExtendedDetail);
 		}
 
 		/// <exception cref="System.InvalidCastException"/>
@@ -64,11 +64,13 @@ namespace OSDeveloper.IO
 		{
 			if (this.Extensions.ContainsValue(filename.GetExtension())) {
 				var result = new FileMetadata(filename, parent, this.Format);
-				try {
-					result.ExtendedDetail = Activator.CreateInstance(this.ItemType) as ItemExtendedDetail;
-				} catch (Exception e) {
-					Program.Logger.Notice($"The exception occurred in {nameof(FileType)}, filename:{filename}");
-					Program.Logger.Exception(e);
+				if (this.ItemType != null) {
+					try {
+						result.ExtendedDetail = Activator.CreateInstance(this.ItemType) as ItemExtendedDetail;
+					} catch (Exception e) {
+						Program.Logger.Notice($"The exception occurred in {nameof(FileType)}, filename:{filename}");
+						Program.Logger.Exception(e);
+					}
 				}
 				return result;
 			} else {

@@ -117,85 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllTabPagesList_Title" xml:space="preserve">
-    <value>All tab pages</value>
-  </data>
-  <data name="ItemProperty_Attribute" xml:space="preserve">
-    <value>Attribute</value>
-  </data>
-  <data name="ItemProperty_Attribute_Attributes" xml:space="preserve">
-    <value>Attributes</value>
-  </data>
-  <data name="ItemProperty_Attribute_Attributes_Description" xml:space="preserve">
-    <value>This represents attributes of this file or directory.</value>
-  </data>
-  <data name="ItemProperty_Attribute_CanAccess" xml:space="preserve">
-    <value>Can access</value>
-  </data>
-  <data name="ItemProperty_Attribute_CanAccess_Description" xml:space="preserve">
-    <value>This represents a boolean value that can this file or directory access.</value>
-  </data>
-  <data name="ItemProperty_Attribute_IsRemoved" xml:space="preserve">
-    <value>Is removed</value>
-  </data>
-  <data name="ItemProperty_Attribute_IsRemoved_Description" xml:space="preserve">
-    <value>This represents a boolean value that is this file or directory removed.</value>
-  </data>
-  <data name="ItemProperty_DateTime" xml:space="preserve">
-    <value>Date/Time</value>
-  </data>
-  <data name="ItemProperty_DateTime_CreationDate" xml:space="preserve">
-    <value>Creation date</value>
-  </data>
-  <data name="ItemProperty_DateTime_CreationDate_Description" xml:space="preserve">
-    <value>This represents a date/time that this file or directory created.</value>
-  </data>
-  <data name="ItemProperty_DateTime_LastAccessTime" xml:space="preserve">
-    <value>Last access</value>
-  </data>
-  <data name="ItemProperty_DateTime_LastAccessTime_Description" xml:space="preserve">
-    <value>This represents a date/time that this file or directory accessed lately.</value>
-  </data>
-  <data name="ItemProperty_DateTime_LastWriteTime" xml:space="preserve">
-    <value>Last write</value>
-  </data>
-  <data name="ItemProperty_DateTime_LastWriteTime_Description" xml:space="preserve">
-    <value>This represents a date/time that this file or directory wrote or modified lately.</value>
-  </data>
-  <data name="ItemProperty_Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="ItemProperty_Name_FileName" xml:space="preserve">
-    <value>File name</value>
-  </data>
-  <data name="ItemProperty_Name_FileName_Description" xml:space="preserve">
-    <value>This represents the name of a file or directory. This does not contain its full path.</value>
-  </data>
-  <data name="ItemProperty_Name_FileType" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="ItemProperty_Name_FileType_Description" xml:space="preserve">
-    <value>Describes the type of the file.</value>
-  </data>
-  <data name="ItemProperty_Name_FullPath" xml:space="preserve">
-    <value>Absolute path</value>
-  </data>
-  <data name="ItemProperty_Name_FullPath_Description" xml:space="preserve">
-    <value>This represents the absolute path of a file or directory.</value>
-  </data>
-  <data name="ItemProperty_Size" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="ItemProperty_Size_Size" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="ItemProperty_Size_Size_Description" xml:space="preserve">
-    <value>If a file, this represents the length (bytes) of the file. If a folder, this represents the count of files in the directory.</value>
-  </data>
-  <data name="TabControlEx_NoPage" xml:space="preserve">
-    <value>There are no opened terminal pages.</value>
-  </data>
-  <data name="TabPageInfo_btnDispose" xml:space="preserve">
-    <value>&amp;Close</value>
-  </data>
+  <metadata name="panel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

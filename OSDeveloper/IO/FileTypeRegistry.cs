@@ -63,13 +63,13 @@ namespace OSDeveloper.IO
 				"ycn"));
 
 			_types.Add(new SystemFileType(
-				FileFormat.Resource,
+				FileFormat.Text,
 				nameof(FileTypeNames.YenconText),
 				false,
 				"tycn", "inix"));
 
 			_types.Add(new SystemFileType(
-				FileFormat.Resource,
+				FileFormat.Binary,
 				nameof(FileTypeNames.YenconBinary),
 				false,
 				"bycn", "cfg"));

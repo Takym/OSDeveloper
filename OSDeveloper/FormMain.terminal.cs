@@ -19,11 +19,15 @@ namespace OSDeveloper
 
 		#region ログ出力
 		private LogOutput _output;
-		public  LogOutput LogOutput { get => _output; }
-
-		private void BuildLogOutput()
+		public  LogOutput LogOutput
 		{
-			_output = new LogOutput();
+			get
+			{
+				if (_output == null || _output.IsDisposed) {
+					_output = new LogOutput();
+				}
+				return _output;
+			}
 		}
 
 		#endregion

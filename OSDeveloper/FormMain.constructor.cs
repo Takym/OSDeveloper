@@ -85,11 +85,9 @@ namespace OSDeveloper
 
 			{ // _terminal
 				_logger.Trace($"setting {nameof(_terminal)}...");
-				_terminal.Name        = nameof(_terminal);
-				_terminal.Dock        = DockStyle.Bottom;
-				_terminal.Size        = new Size(200, 200);
-
-				this.BuildLogOutput();
+				_terminal.Name = nameof(_terminal);
+				_terminal.Dock = DockStyle.Bottom;
+				_terminal.Size = new Size(200, 200);
 			}
 
 			{ // _splitter_vert

@@ -10,12 +10,15 @@ namespace OSDeveloper.GraphicalUIs.Terminal
 	public partial class TabControlEx : ClosableTabControl
 	{
 		private readonly Logger _logger;
+		private readonly AllTabPagesList _tab_list;
 
 		public TabControlEx() : base()
 		{
 			_logger = Logger.Get(nameof(TabControlEx));
 
 			this.InitializeComponent();
+			_tab_list = new AllTabPagesList(this, this.AllTabPages);
+			this.TabPages.Add(_tab_list);
 
 			_logger.Trace($"constructed {nameof(TabControlEx)}");
 		}
