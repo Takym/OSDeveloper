@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -12,6 +13,13 @@ namespace TakymLib.Collections
 			throw new NotImplementedException();
 		}
 
+		int IList.Add(object value)
+		{
+			int c = this.Count;
+			this.Add((T)(value));
+			return c;
+		}
+
 		public void AddRange(IEnumerable<T> items)
 		{
 			throw new NotImplementedException();
@@ -20,6 +28,11 @@ namespace TakymLib.Collections
 		public void Insert(int index, T item)
 		{
 			throw new NotImplementedException();
+		}
+
+		void IList.Insert(int index, object value)
+		{
+			this.Insert(index, ((T)(value)));
 		}
 
 		public void InsertRange(int index, IEnumerable<T> items)
@@ -32,6 +45,11 @@ namespace TakymLib.Collections
 		public bool Remove(T item)
 		{
 			throw new NotImplementedException();
+		}
+
+		void IList.Remove(object value)
+		{
+			this.Remove((T)(value));
 		}
 
 		public void RemoveAt(int index)
@@ -51,9 +69,19 @@ namespace TakymLib.Collections
 			throw new NotImplementedException();
 		}
 
+		bool IList.Contains(object value)
+		{
+			return this.Contains((T)(value));
+		}
+
 		public int IndexOf(T item)
 		{
 			throw new NotImplementedException();
+		}
+
+		int IList.IndexOf(object value)
+		{
+			return this.IndexOf((T)(value));
 		}
 
 		public int LastIndexOf(T item)
@@ -66,6 +94,11 @@ namespace TakymLib.Collections
 		public void CopyTo(T[] array, int arrayIndex)
 		{
 			throw new NotImplementedException();
+		}
+
+		void ICollection.CopyTo(Array array, int index)
+		{
+			this.CopyTo(((T[])(array)), index);
 		}
 
 		public T[] ToArray()

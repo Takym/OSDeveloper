@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace TakymLib.Collections
 {
@@ -17,6 +18,19 @@ namespace TakymLib.Collections
 			}
 		}
 
+		object IList.this[int index]
+		{
+			get
+			{
+				return this[index];
+			}
+
+			set
+			{
+				this[index] = ((T)(value));
+			}
+		}
+
 		/// <summary>
 		///  このリストに追加されている項目数を取得します。
 		/// </summary>
@@ -25,6 +39,17 @@ namespace TakymLib.Collections
 			get
 			{
 				return _count;
+			}
+		}
+
+		/// <summary>
+		///  現在のリストの状態を取得します。
+		/// </summary>
+		public HybridListMode Mode
+		{
+			get
+			{
+				return _mode;
 			}
 		}
 
@@ -51,13 +76,35 @@ namespace TakymLib.Collections
 		}
 
 		/// <summary>
-		///  現在のリストの状態を取得します。
+		///  このリストが固定長かどうかを表す論理値を取得します。
 		/// </summary>
-		public HybridListMode Mode
+		public bool IsFixedSize
 		{
 			get
 			{
-				return _mode;
+				return false;
+			}
+		}
+
+		/// <summary>
+		///  スレッドセーフかどうかを表す論理値を取得します。
+		/// </summary>
+		public bool IsSynchronized
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		///  このリストはスレッドセーフではない為、常に<see langword="null"/>を返します。
+		/// </summary>
+		public object SyncRoot
+		{
+			get
+			{
+				return null;
 			}
 		}
 	}
