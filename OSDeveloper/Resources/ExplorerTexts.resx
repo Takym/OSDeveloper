@@ -129,8 +129,17 @@
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>Msgbox_CannotChangeName</value>
   </data>
+  <data name="Msgbox_CannotCreate" xml:space="preserve">
+    <value>Msgbox_CannotCreate</value>
+  </data>
   <data name="Msgbox_CannotDelete" xml:space="preserve">
     <value>Msgbox_CannotDelete</value>
+  </data>
+  <data name="Msgbox_CannotOpenIn_DefaultApp" xml:space="preserve">
+    <value>Msgbox_CannotOpenIn_DefaultApp {0}</value>
+  </data>
+  <data name="PopupMenu_Additem" xml:space="preserve">
+    <value>additem</value>
   </data>
   <data name="PopupMenu_Bash" xml:space="preserve">
     <value>bash</value>
@@ -138,11 +147,14 @@
   <data name="PopupMenu_Cmd" xml:space="preserve">
     <value>cmd</value>
   </data>
+  <data name="PopupMenu_CreateDir" xml:space="preserve">
+    <value>createDir</value>
+  </data>
+  <data name="PopupMenu_CreateFile" xml:space="preserve">
+    <value>createFile</value>
+  </data>
   <data name="PopupMenu_DefaultApp" xml:space="preserve">
     <value>defaultApp</value>
-  </data>
-  <data name="PopupMenu_DefaultApp_CannotOpen" xml:space="preserve">
-    <value>PopupMenu_DefaultApp_CannotOpen {0}</value>
   </data>
   <data name="PopupMenu_Delete" xml:space="preserve">
     <value>delete</value>

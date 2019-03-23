@@ -97,11 +97,38 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Msgbox_CannotCreate に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Msgbox_CannotCreate {
+            get {
+                return ResourceManager.GetString("Msgbox_CannotCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Msgbox_CannotDelete に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Msgbox_CannotDelete {
             get {
                 return ResourceManager.GetString("Msgbox_CannotDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Msgbox_CannotOpenIn_DefaultApp {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Msgbox_CannotOpenIn_DefaultApp {
+            get {
+                return ResourceManager.GetString("Msgbox_CannotOpenIn_DefaultApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   additem に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Additem {
+            get {
+                return ResourceManager.GetString("PopupMenu_Additem", resourceCulture);
             }
         }
         
@@ -124,20 +151,29 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   createDir に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_CreateDir {
+            get {
+                return ResourceManager.GetString("PopupMenu_CreateDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   createFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_CreateFile {
+            get {
+                return ResourceManager.GetString("PopupMenu_CreateFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   defaultApp に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_DefaultApp {
             get {
                 return ResourceManager.GetString("PopupMenu_DefaultApp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   PopupMenu_DefaultApp_CannotOpen {0} に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string PopupMenu_DefaultApp_CannotOpen {
-            get {
-                return ResourceManager.GetString("PopupMenu_DefaultApp_CannotOpen", resourceCulture);
             }
         }
         

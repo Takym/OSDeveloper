@@ -43,6 +43,10 @@
 			this.powershellMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.bashMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+			this.createFileMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.createDirMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.additemMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
 			this.renameMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.propertyMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,11 +127,15 @@
 			this.popupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openInMenu,
             this.toolStripMenuItem1,
+            this.createFileMenu,
+            this.createDirMenu,
+            this.additemMenu,
+            this.toolStripMenuItem2,
             this.renameMenu,
             this.deleteMenu,
             this.propertyMenu});
 			this.popupMenu.Name = "fileMenu";
-			this.popupMenu.Size = new System.Drawing.Size(120, 98);
+			this.popupMenu.Size = new System.Drawing.Size(125, 170);
 			// 
 			// openInMenu
 			// 
@@ -138,27 +146,27 @@
             this.powershellMenu,
             this.bashMenu});
 			this.openInMenu.Name = "openInMenu";
-			this.openInMenu.Size = new System.Drawing.Size(119, 22);
+			this.openInMenu.Size = new System.Drawing.Size(124, 22);
 			this.openInMenu.Text = "openIn";
 			// 
 			// defaultAppMenu
 			// 
 			this.defaultAppMenu.Name = "defaultAppMenu";
-			this.defaultAppMenu.Size = new System.Drawing.Size(180, 22);
+			this.defaultAppMenu.Size = new System.Drawing.Size(133, 22);
 			this.defaultAppMenu.Text = "defaultApp";
 			this.defaultAppMenu.Click += new System.EventHandler(this.defaultAppMenu_Click);
 			// 
 			// explorerMenu
 			// 
 			this.explorerMenu.Name = "explorerMenu";
-			this.explorerMenu.Size = new System.Drawing.Size(180, 22);
+			this.explorerMenu.Size = new System.Drawing.Size(133, 22);
 			this.explorerMenu.Text = "explorer";
 			this.explorerMenu.Click += new System.EventHandler(this.explorerMenu_Click);
 			// 
 			// cmdMenu
 			// 
 			this.cmdMenu.Name = "cmdMenu";
-			this.cmdMenu.Size = new System.Drawing.Size(180, 22);
+			this.cmdMenu.Size = new System.Drawing.Size(133, 22);
 			this.cmdMenu.Text = "cmd";
 			this.cmdMenu.Click += new System.EventHandler(this.cmdMenu_Click);
 			// 
@@ -166,7 +174,7 @@
 			// 
 			this.powershellMenu.Enabled = false;
 			this.powershellMenu.Name = "powershellMenu";
-			this.powershellMenu.Size = new System.Drawing.Size(180, 22);
+			this.powershellMenu.Size = new System.Drawing.Size(133, 22);
 			this.powershellMenu.Text = "powershell";
 			this.powershellMenu.Visible = false;
 			this.powershellMenu.Click += new System.EventHandler(this.powershellMenu_Click);
@@ -175,7 +183,7 @@
 			// 
 			this.bashMenu.Enabled = false;
 			this.bashMenu.Name = "bashMenu";
-			this.bashMenu.Size = new System.Drawing.Size(180, 22);
+			this.bashMenu.Size = new System.Drawing.Size(133, 22);
 			this.bashMenu.Text = "bash";
 			this.bashMenu.Visible = false;
 			this.bashMenu.Click += new System.EventHandler(this.bashMenu_Click);
@@ -183,26 +191,53 @@
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(116, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(121, 6);
+			// 
+			// createFileMenu
+			// 
+			this.createFileMenu.Name = "createFileMenu";
+			this.createFileMenu.Size = new System.Drawing.Size(124, 22);
+			this.createFileMenu.Text = "createFile";
+			this.createFileMenu.Click += new System.EventHandler(this.createMenu_Click);
+			// 
+			// createDirMenu
+			// 
+			this.createDirMenu.Name = "createDirMenu";
+			this.createDirMenu.Size = new System.Drawing.Size(124, 22);
+			this.createDirMenu.Text = "createDir";
+			this.createDirMenu.Click += new System.EventHandler(this.createMenu_Click);
+			// 
+			// additemMenu
+			// 
+			this.additemMenu.Enabled = false;
+			this.additemMenu.Name = "additemMenu";
+			this.additemMenu.Size = new System.Drawing.Size(124, 22);
+			this.additemMenu.Text = "additem";
+			this.additemMenu.Visible = false;
+			// 
+			// toolStripMenuItem2
+			// 
+			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(121, 6);
 			// 
 			// renameMenu
 			// 
 			this.renameMenu.Name = "renameMenu";
-			this.renameMenu.Size = new System.Drawing.Size(119, 22);
+			this.renameMenu.Size = new System.Drawing.Size(124, 22);
 			this.renameMenu.Text = "rename";
 			this.renameMenu.Click += new System.EventHandler(this.renameMenu_Click);
 			// 
 			// deleteMenu
 			// 
 			this.deleteMenu.Name = "deleteMenu";
-			this.deleteMenu.Size = new System.Drawing.Size(119, 22);
+			this.deleteMenu.Size = new System.Drawing.Size(124, 22);
 			this.deleteMenu.Text = "delete";
 			this.deleteMenu.Click += new System.EventHandler(this.deleteMenu_Click);
 			// 
 			// propertyMenu
 			// 
 			this.propertyMenu.Name = "propertyMenu";
-			this.propertyMenu.Size = new System.Drawing.Size(119, 22);
+			this.propertyMenu.Size = new System.Drawing.Size(124, 22);
 			this.propertyMenu.Text = "property";
 			this.propertyMenu.Click += new System.EventHandler(this.propertyMenu_Click);
 			// 
@@ -242,5 +277,9 @@
 		private System.Windows.Forms.ToolStripMenuItem cmdMenu;
 		private System.Windows.Forms.ToolStripMenuItem powershellMenu;
 		private System.Windows.Forms.ToolStripMenuItem bashMenu;
+		private System.Windows.Forms.ToolStripMenuItem createFileMenu;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+		private System.Windows.Forms.ToolStripMenuItem createDirMenu;
+		private System.Windows.Forms.ToolStripMenuItem additemMenu;
 	}
 }

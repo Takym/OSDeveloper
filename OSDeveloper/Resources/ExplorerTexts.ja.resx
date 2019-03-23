@@ -129,8 +129,17 @@
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>ファイル名を変更する事ができませんでした。</value>
   </data>
+  <data name="Msgbox_CannotCreate" xml:space="preserve">
+    <value>項目を追加する事ができませんでした。</value>
+  </data>
   <data name="Msgbox_CannotDelete" xml:space="preserve">
     <value>ファイルまたはディレクトリを削除する事ができませんでした。</value>
+  </data>
+  <data name="Msgbox_CannotOpenIn_DefaultApp" xml:space="preserve">
+    <value>指定されたファイル「{0}」はどのプログラムにも関連付けられていません。</value>
+  </data>
+  <data name="PopupMenu_Additem" xml:space="preserve">
+    <value>その他の種類の項目を追加(&amp;A)...</value>
   </data>
   <data name="PopupMenu_Bash" xml:space="preserve">
     <value>WSLで開く(&amp;B)...</value>
@@ -138,11 +147,14 @@
   <data name="PopupMenu_Cmd" xml:space="preserve">
     <value>コマンドプロンプトで開く(&amp;C)...</value>
   </data>
+  <data name="PopupMenu_CreateDir" xml:space="preserve">
+    <value>フォルダを新規作成(&amp;D)</value>
+  </data>
+  <data name="PopupMenu_CreateFile" xml:space="preserve">
+    <value>ファイルを新規作成(&amp;F)</value>
+  </data>
   <data name="PopupMenu_DefaultApp" xml:space="preserve">
     <value>既定のアプリで開く(&amp;D)...</value>
-  </data>
-  <data name="PopupMenu_DefaultApp_CannotOpen" xml:space="preserve">
-    <value>指定されたファイル「{0}」はどのプログラムにも関連付けられていません。</value>
   </data>
   <data name="PopupMenu_Delete" xml:space="preserve">
     <value>削除(&amp;D)</value>

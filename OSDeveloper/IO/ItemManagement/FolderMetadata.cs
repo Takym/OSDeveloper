@@ -87,23 +87,7 @@ namespace OSDeveloper.IO.ItemManagement
 				_files = new FileMetadata[files.Length];
 				// ファイルのメタ情報をファイルの数だけ生成
 				for (int i = 0; i < files.Length; ++i) {
-					// ファイルの拡張を取得
-					var ext = files[i].Extension;
-					// 拡張子が空かどうか判定
-					if (!string.IsNullOrEmpty(ext)) {
-						// 拡張子から FileType を取得
-						var ft = FileTypeRegistry.GetByExtension(ext.Remove(0, 1));
-						// FileType が一つ以上あれば、FileType からメタ情報を生成
-						if (ft.Length != 0) {
-							_files[i] = ft[0].CreateMetadata(((PathString)(files[i].FullName)), this);
-						} else { // なければ、通常の FileMetadata を生成
-							_files[i] = new FileMetadata(
-								((PathString)(files[i].FullName)), this, FileFormat.Unknown);
-						}
-					} else { // 拡張子が無い場合は、通常の FileMetadata を生成
-						_files[i] = new FileMetadata(
-							((PathString)(files[i].FullName)), this, FileFormat.Unknown);
-					}
+					_files[i] = this.OpenFile(files[i]);
 				}
 			}
 			return _files;
@@ -150,6 +134,88 @@ namespace OSDeveloper.IO.ItemManagement
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return false;
+			}
+		}
+
+		public FileMetadata CreateFile(string filename)
+		{
+			try {
+				// ファイル名が空なら、untitledとする。
+				if (string.IsNullOrWhiteSpace(filename)) {
+					filename = "untitled";
+				}
+				// ファイル名をパス文字列に変換する。
+				var fpath = this.Path.Bond(filename);
+				// 既にファイルが存在する場合は数字を付け足す。
+				fpath = fpath.EnsureName();
+				// _files を読み込めている状態にする。
+				this.GetFiles();
+				// 新しいファイルを格納する為の場所を確保する。
+				var files = new FileMetadata[_files.Length + 1];
+				// ファイルを作成する。
+				var fi = new FileInfo(fpath);
+				fi.Create().Close();
+				// ファイルのメタ情報を生成する。
+				var result = files[_files.Length] = this.OpenFile(fi);
+				// 新しいファイル一覧をフィールド変数へ代入する。
+				_files = files;
+				// 生成したメタ情報を呼び出し元へ返す。
+				return result;
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+				return null;
+			}
+		}
+
+		public FolderMetadata CreateDir(string dirname)
+		{
+			try {
+				// ディレクトリ名が空なら、untitledとする。
+				if (string.IsNullOrWhiteSpace(dirname)) {
+					dirname = "untitled";
+				}
+				// ディレクトリ名をパス文字列に変換する。
+				var dpath = this.Path.Bond(dirname);
+				// 既にディレクトリが存在する場合は数字を付け足す。
+				dpath = dpath.EnsureName();
+				// _folders を読み込めている状態にする。
+				this.GetFolders();
+				// 新しいファイルを格納する為の場所を確保する。
+				var dirs = new FolderMetadata[_folders.Length + 1];
+				// ディレクトリを作成する。
+				Directory.CreateDirectory(dpath);
+				// ディレクトリのメタ情報を生成する。
+				var result = dirs[_folders.Length] = new FolderMetadata(dpath);
+				// 新しいファイル一覧をフィールド変数へ代入する。
+				_folders = dirs;
+				// 生成したメタ情報を呼び出し元へ返す。
+				return result;
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+				return null;
+			}
+		}
+
+		private FileMetadata OpenFile(FileInfo info)
+		{
+			// ファイルの拡張を取得
+			var ext = info.Extension;
+			// 拡張子が空かどうか判定
+			if (!string.IsNullOrEmpty(ext)) {
+				// 拡張子から FileType を取得
+				var ft = FileTypeRegistry.GetByExtension(ext.Remove(0, 1));
+				// FileType が一つ以上あれば、FileType からメタ情報を生成
+				if (ft.Length != 0) {
+					return ft[0].CreateMetadata(((PathString)(info.FullName)), this);
+				} else { // なければ、通常の FileMetadata を生成
+					return new FileMetadata(
+						((PathString)(info.FullName)), this, FileFormat.Unknown);
+				}
+			} else { // 拡張子が無い場合は、通常の FileMetadata を生成
+				return new FileMetadata(
+					((PathString)(info.FullName)), this, FileFormat.Unknown);
 			}
 		}
 	}

@@ -14,7 +14,7 @@ namespace OSDeveloper.IO.ItemManagement
 		public  virtual  bool               CanAccess      { get => true; }
 		public           bool               IsRemoved      { get; private set; }
 		private          ItemExtendedDetail _ied;
-		public           ItemExtendedDetail ExtendedDetail { get => _ied; set { _ied = value ?? _ied; _ied.Metadata = this; } }
+		public           ItemExtendedDetail ExtendedDetail { get => _ied; internal set { _ied = value ?? _ied; _ied.Metadata = this; } }
 
 		public virtual FolderMetadata Parent
 		{

@@ -129,8 +129,17 @@
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>The file name could not be changed.</value>
   </data>
+  <data name="Msgbox_CannotCreate" xml:space="preserve">
+    <value>The item could not be created.</value>
+  </data>
   <data name="Msgbox_CannotDelete" xml:space="preserve">
     <value>The file or directory could not be removed.</value>
+  </data>
+  <data name="Msgbox_CannotOpenIn_DefaultApp" xml:space="preserve">
+    <value>The specified file "{0}" does not associate with any programs.</value>
+  </data>
+  <data name="PopupMenu_Additem" xml:space="preserve">
+    <value>&amp;Add other type of item...</value>
   </data>
   <data name="PopupMenu_Bash" xml:space="preserve">
     <value>Open in &amp;bash shell...</value>
@@ -138,11 +147,14 @@
   <data name="PopupMenu_Cmd" xml:space="preserve">
     <value>Open in &amp;cmd.exe...</value>
   </data>
+  <data name="PopupMenu_CreateDir" xml:space="preserve">
+    <value>Create new &amp;directory</value>
+  </data>
+  <data name="PopupMenu_CreateFile" xml:space="preserve">
+    <value>Create new &amp;file</value>
+  </data>
   <data name="PopupMenu_DefaultApp" xml:space="preserve">
     <value>Open in &amp;default app...</value>
-  </data>
-  <data name="PopupMenu_DefaultApp_CannotOpen" xml:space="preserve">
-    <value>The specified file "{0}" does not associate with any programs.</value>
   </data>
   <data name="PopupMenu_Delete" xml:space="preserve">
     <value>&amp;Delete</value>

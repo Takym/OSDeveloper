@@ -2,6 +2,8 @@
 
 namespace OSDeveloper.IO
 {
+	// TODO: TakymLibに移動？
+
 	public sealed class PathString
 	{
 		private readonly string _path, _value;
@@ -51,6 +53,16 @@ namespace OSDeveloper.IO
 		public PathString GetDirectory()
 		{
 			return new PathString(Path.GetDirectoryName(_path));
+		}
+
+		public PathString EnsureName()
+		{
+			int i = 0;
+			var path = this;
+			while (path.Exists()) {
+				path = this.ChangeExtension(++i + "." + this.GetExtension());
+			}
+			return path;
 		}
 		#endregion
 
