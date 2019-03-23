@@ -132,8 +132,29 @@
   <data name="Msgbox_CannotDelete" xml:space="preserve">
     <value>Msgbox_CannotDelete</value>
   </data>
+  <data name="PopupMenu_Bash" xml:space="preserve">
+    <value>bash</value>
+  </data>
+  <data name="PopupMenu_Cmd" xml:space="preserve">
+    <value>cmd</value>
+  </data>
+  <data name="PopupMenu_DefaultApp" xml:space="preserve">
+    <value>defaultApp</value>
+  </data>
+  <data name="PopupMenu_DefaultApp_CannotOpen" xml:space="preserve">
+    <value>PopupMenu_DefaultApp_CannotOpen {0}</value>
+  </data>
   <data name="PopupMenu_Delete" xml:space="preserve">
     <value>delete</value>
+  </data>
+  <data name="PopupMenu_Explorer" xml:space="preserve">
+    <value>explorer</value>
+  </data>
+  <data name="PopupMenu_OpenIn" xml:space="preserve">
+    <value>openIn</value>
+  </data>
+  <data name="PopupMenu_PowerShell" xml:space="preserve">
+    <value>powershell</value>
   </data>
   <data name="PopupMenu_Property" xml:space="preserve">
     <value>property</value>

@@ -106,11 +106,74 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   bash に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Bash {
+            get {
+                return ResourceManager.GetString("PopupMenu_Bash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   cmd に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Cmd {
+            get {
+                return ResourceManager.GetString("PopupMenu_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   defaultApp に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_DefaultApp {
+            get {
+                return ResourceManager.GetString("PopupMenu_DefaultApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PopupMenu_DefaultApp_CannotOpen {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_DefaultApp_CannotOpen {
+            get {
+                return ResourceManager.GetString("PopupMenu_DefaultApp_CannotOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   delete に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_Delete {
             get {
                 return ResourceManager.GetString("PopupMenu_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   explorer に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Explorer {
+            get {
+                return ResourceManager.GetString("PopupMenu_Explorer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   openIn に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_OpenIn {
+            get {
+                return ResourceManager.GetString("PopupMenu_OpenIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   powershell に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_PowerShell {
+            get {
+                return ResourceManager.GetString("PopupMenu_PowerShell", resourceCulture);
             }
         }
         

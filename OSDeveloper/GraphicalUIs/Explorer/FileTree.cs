@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
@@ -12,8 +14,6 @@ using OSDeveloper.Resources;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
-	// TODO: エクスプローラで開く、限定の外部アプリで開く メニューを実装する
-
 	public partial class FileTree : UserControl
 	{
 		#region プロパティ
@@ -48,16 +48,22 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_mwnd   = mwnd;
 			this.InitializeComponent();
 
-			btnRefresh.Image  = Libosdev.GetIcon(Libosdev.Icons.MiscRefresh,  out uint vRef).ToBitmap();
-			btnRefresh.Text   = ExplorerTexts.BtnRefresh;
-			btnExpand.Image   = Libosdev.GetIcon(Libosdev.Icons.MiscExpand,   out uint vExp).ToBitmap();
-			btnExpand.Text    = ExplorerTexts.BtnExpand;
-			btnCollapse.Image = Libosdev.GetIcon(Libosdev.Icons.MiscCollapse, out uint vCol).ToBitmap();
-			btnCollapse.Text  = ExplorerTexts.BtnCollapse;
+			btnRefresh.Image    = Libosdev.GetIcon(Libosdev.Icons.MiscRefresh,  out uint vRef).ToBitmap();
+			btnRefresh.Text     = ExplorerTexts.BtnRefresh;
+			btnExpand.Image     = Libosdev.GetIcon(Libosdev.Icons.MiscExpand,   out uint vExp).ToBitmap();
+			btnExpand.Text      = ExplorerTexts.BtnExpand;
+			btnCollapse.Image   = Libosdev.GetIcon(Libosdev.Icons.MiscCollapse, out uint vCol).ToBitmap();
+			btnCollapse.Text    = ExplorerTexts.BtnCollapse;
 
-			renameMenu.Text   = ExplorerTexts.PopupMenu_Rename;
-			deleteMenu.Text   = ExplorerTexts.PopupMenu_Delete;
-			propertyMenu.Text = ExplorerTexts.PopupMenu_Property;
+			openInMenu.Text     = ExplorerTexts.PopupMenu_OpenIn;
+			defaultAppMenu.Text = ExplorerTexts.PopupMenu_DefaultApp;
+			explorerMenu.Text   = ExplorerTexts.PopupMenu_Explorer;
+			cmdMenu.Text        = ExplorerTexts.PopupMenu_Cmd;
+			powershellMenu.Text = ExplorerTexts.PopupMenu_PowerShell;
+			bashMenu.Text       = ExplorerTexts.PopupMenu_Bash;
+			renameMenu.Text     = ExplorerTexts.PopupMenu_Rename;
+			deleteMenu.Text     = ExplorerTexts.PopupMenu_Delete;
+			propertyMenu.Text   = ExplorerTexts.PopupMenu_Property;
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
 
@@ -416,6 +422,70 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			}
 
 			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
+		}
+
+		private void defaultAppMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(defaultAppMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				try {
+					Process.Start(node.Metadata.Path);
+				} catch (Win32Exception error) when (error.ErrorCode == unchecked((int)(0x80004005))) {
+					_logger.Exception(error);
+					MessageBox.Show(_mwnd,
+						string.Format(ExplorerTexts.PopupMenu_DefaultApp_CannotOpen, node.Metadata.Path),
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Warning);
+				}
+			}
+
+			_logger.Trace($"completed {nameof(defaultAppMenu_Click)}");
+		}
+
+		private void explorerMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(explorerMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{node.Metadata.Path}\"");
+			}
+
+			_logger.Trace($"completed {nameof(explorerMenu_Click)}");
+		}
+
+		private void cmdMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(cmdMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.Folder != null) {
+					Process.Start("C:\\WINDOWS\\System32\\cmd.exe", $"/K cd \"{node.Folder.Path}\"");
+				} else {
+					Process.Start("C:\\WINDOWS\\System32\\cmd.exe", $"/C call start \"{node.Metadata.Path}\"");
+				}
+			}
+
+			_logger.Trace($"completed {nameof(cmdMenu_Click)}");
+		}
+
+		private void powershellMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(powershellMenu_Click)}...");
+
+			MessageBox.Show("not supported yet");
+
+			_logger.Trace($"completed {nameof(powershellMenu_Click)}");
+		}
+
+		private void bashMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(bashMenu_Click)}...");
+
+			MessageBox.Show("not supported yet");
+
+			_logger.Trace($"completed {nameof(bashMenu_Click)}");
 		}
 
 		#endregion
