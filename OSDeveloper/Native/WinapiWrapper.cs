@@ -56,6 +56,29 @@ namespace OSDeveloper.Native
 
 			[DllImport(Path)]
 			public static extern bool PrintWindow(IntPtr hwnd, IntPtr hdcBlt, uint nFlags);
+
+			[DllImport(Path)]
+			public static extern bool DestroyIcon(IntPtr hIcon);
+		}
+
+		/// <summary>
+		///  <see langword="SHELL32.DLL"/>内のAPIを呼び出します。
+		/// </summary>
+		public static class Shell32
+		{
+			/// <summary>
+			///  このクラスで読み込むライブラリのファイルパスを取得します。
+			/// </summary>
+			public const string Path = "C:\\WINDOWS\\System32\\shell32.dll";
+
+			[DllImport(Path)]
+			public static extern uint ExtractIconExW(
+				[MarshalAs(UnmanagedType.LPWStr)]
+				string lpszFile,
+				int nIconIndex,
+				out IntPtr phiconLarge,
+				out IntPtr phiconSmall,
+				uint nIcons);
 		}
 
 		/// <summary>

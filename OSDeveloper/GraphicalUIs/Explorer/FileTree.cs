@@ -55,15 +55,18 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			btnCollapse.Image   = Libosdev.GetIcon(Libosdev.Icons.MiscCollapse, out uint vCol).ToBitmap();
 			btnCollapse.Text    = ExplorerTexts.BtnCollapse;
 
-			openInMenu.Text     = ExplorerTexts.PopupMenu_OpenIn;
-			defaultAppMenu.Text = ExplorerTexts.PopupMenu_DefaultApp;
-			explorerMenu.Text   = ExplorerTexts.PopupMenu_Explorer;
-			cmdMenu.Text        = ExplorerTexts.PopupMenu_Cmd;
-			powershellMenu.Text = ExplorerTexts.PopupMenu_PowerShell;
-			bashMenu.Text       = ExplorerTexts.PopupMenu_Bash;
-			renameMenu.Text     = ExplorerTexts.PopupMenu_Rename;
-			deleteMenu.Text     = ExplorerTexts.PopupMenu_Delete;
-			propertyMenu.Text   = ExplorerTexts.PopupMenu_Property;
+			openInMenu.Text      = ExplorerTexts.PopupMenu_OpenIn;
+			defaultAppMenu.Text  = ExplorerTexts.PopupMenu_DefaultApp;
+			defaultAppMenu.Image = Shell32.GetSmallImageAt(11, true);
+			explorerMenu.Text    = ExplorerTexts.PopupMenu_Explorer;
+			explorerMenu.Image   = Shell32.GetIconFrom("%SystemRoot%\\explorer.exe",      0, false).ToBitmap();
+			cmdMenu.Text         = ExplorerTexts.PopupMenu_Cmd;
+			cmdMenu.Image        = Shell32.GetIconFrom("%SystemRoot%\\System32\\cmd.exe", 0, false).ToBitmap();
+			powershellMenu.Text  = ExplorerTexts.PopupMenu_PowerShell;
+			bashMenu.Text        = ExplorerTexts.PopupMenu_Bash;
+			renameMenu.Text      = ExplorerTexts.PopupMenu_Rename;
+			deleteMenu.Text      = ExplorerTexts.PopupMenu_Delete;
+			propertyMenu.Text    = ExplorerTexts.PopupMenu_Property;
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
 
