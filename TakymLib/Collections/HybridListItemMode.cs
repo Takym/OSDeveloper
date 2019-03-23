@@ -3,8 +3,9 @@
 	partial class HybridList<T>
 	{
 		private HybridListMode _mode;
-		private HybridListItem _item_linked;
-		private T[]            _item_array;
+		private HybridListItem _item_first;
+		private HybridListItem _item_last;
+		private T[]            _items;
 		private int            _count;
 
 		internal class HybridListItem
