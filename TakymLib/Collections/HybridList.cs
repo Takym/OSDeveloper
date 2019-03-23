@@ -1,12 +1,17 @@
-﻿using System.Collections;
+﻿#warning HybridList はまだ未完成
+using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace TakymLib.Collections
 {
+	// TODO: このクラスを完成させる。
+
 	/// <summary>
 	///  接続リストと配列リストの両方のアルゴリズムを利用したリストです。
 	/// </summary>
 	/// <typeparam name="T">リストで利用する型の種類です。</typeparam>
+	[Obsolete()]
 	public partial class HybridList<T> : IList<T>, IList, IReadOnlyList<T>
 	{
 		/// <summary>
