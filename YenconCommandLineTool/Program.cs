@@ -49,6 +49,13 @@ namespace YenconCommandLineTool
 							Manual.Version(Assembly.GetAssembly(typeof(StringUtils)));
 							break;
 						// ファイルアクセス系
+						case "load":
+							string fnr = cmd.Length > 1 ? cmd[1] : _fname;
+							var objr = FileAccessor.Load(fnr);
+							if (objr != null) {
+								_root = _current = objr; _fname = fnr; _ypath = "/";
+							}
+							break;
 						case "loadt":
 							string fnt = cmd.Length > 1 ? cmd[1] : _fname;
 							var objt = FileAccessor.LoadTxt(fnt);
@@ -62,6 +69,9 @@ namespace YenconCommandLineTool
 							if (objb != null) {
 								_root = _current = objb; _fname = fnb; _ypath = "/";
 							}
+							break;
+						case "save":
+							FileAccessor.Save   (_fname = cmd.Length > 1 ? cmd[1] : _fname, _root);
 							break;
 						case "savet":
 							FileAccessor.SaveTxt(_fname = cmd.Length > 1 ? cmd[1] : _fname, _root);

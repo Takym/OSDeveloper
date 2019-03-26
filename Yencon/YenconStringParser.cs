@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Yencon.Exceptions;
-using Yencon.Resources;
 using Yencon.Text;
 
 namespace Yencon

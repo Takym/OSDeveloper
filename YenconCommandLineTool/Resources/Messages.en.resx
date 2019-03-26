@@ -230,4 +230,16 @@
 Arguments are written ordered "set", "type", "name", and "value".
 Types: "str" is a string, "num" is an integer, "flg" is a boolean, and "nul" is a null-value.</value>
   </data>
+  <data name="Man_Load" xml:space="preserve">
+    <value>Reads a file with the specified name in an argument.</value>
+  </data>
+  <data name="Man_Load_Full" xml:space="preserve">
+    <value>Reads a file with the specified name in an argument. The file name needs a Yencon-format escaped string. If the file already loaded, then all changes will discard. When you did not specify the file name, the tool will reload the currently loaded file.</value>
+  </data>
+  <data name="Man_Save" xml:space="preserve">
+    <value>Writes changes into a file with the specified name in an argument.</value>
+  </data>
+  <data name="Man_Save_Full" xml:space="preserve">
+    <value>Writes changes into a file with the specified name in an argument. The file name needs a Yencon-format escaped string. If the file already exists, then it will be overwritten. When you did not specify the file name, changes will save into the currently loaded file.</value>
+  </data>
 </root>

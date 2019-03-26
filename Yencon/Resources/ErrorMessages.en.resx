@@ -135,4 +135,7 @@
   <data name="InvalidSyntaxException_UnexpectedToken" xml:space="preserve">
     <value>The token '{0}' is not expected.</value>
   </data>
+  <data name="YenconFormatRecognition_IOException" xml:space="preserve">
+    <value>The specified file "{0}" could not be open.</value>
+  </data>
 </root>

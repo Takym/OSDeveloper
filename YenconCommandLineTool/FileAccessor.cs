@@ -8,11 +8,54 @@ namespace YenconCommandLineTool
 	{
 		static readonly YenconStringConverter _txt_cnvtr;
 		static readonly YenconBinaryConverter _bin_cnvtr;
+		static YenconType _last_type;
 
 		static FileAccessor()
 		{
 			_txt_cnvtr = new YenconStringConverter();
 			_bin_cnvtr = new YenconBinaryConverter();
+			_last_type = YenconType.Resource;
+		}
+
+		public static YSection Load(string filename)
+		{
+#if RELEASE
+			try {
+#endif
+				_last_type = YenconFormatRecognition.GetYenconType(filename);
+				if (_last_type == YenconType.Text) {
+					return _txt_cnvtr.Load(filename);
+				} else if (_last_type == YenconType.Binary) {
+					return _bin_cnvtr.Load(filename);
+				} else {
+					return null;
+				}
+#if RELEASE
+			} catch (Exception e) {
+				Program.ShowError(e);
+				return null;
+			}
+#endif
+		}
+
+		public static void Save(string filename, YSection root)
+		{
+#if RELEASE
+			try {
+#endif
+				if (_last_type == YenconType.Text) {
+					_txt_cnvtr.Save(filename, root);
+				} else if (_last_type == YenconType.Binary) {
+					_bin_cnvtr.Save(filename, root);
+				} else {
+					_last_type = YenconType.Text;
+					_txt_cnvtr.Save(filename, root);
+				}
+#if RELEASE
+			} catch (Exception e) {
+				Program.ShowError(e);
+			}
+#endif
 		}
 
 		public static YSection LoadTxt(string filename)
@@ -20,6 +63,7 @@ namespace YenconCommandLineTool
 #if RELEASE
 			try {
 #endif
+				_last_type = YenconType.Text;
 				return _txt_cnvtr.Load(filename);
 #if RELEASE
 			} catch (Exception e) {
@@ -34,6 +78,7 @@ namespace YenconCommandLineTool
 #if RELEASE
 			try {
 #endif
+				_last_type = YenconType.Text;
 				_txt_cnvtr.Save(filename, root);
 #if RELEASE
 			} catch (Exception e) {
@@ -47,6 +92,7 @@ namespace YenconCommandLineTool
 #if RELEASE
 			try {
 #endif
+				_last_type = YenconType.Binary;
 				return _bin_cnvtr.Load(filename);
 #if RELEASE
 			} catch (Exception e) {
@@ -61,6 +107,7 @@ namespace YenconCommandLineTool
 #if RELEASE
 			try {
 #endif
+				_last_type = YenconType.Binary;
 				_bin_cnvtr.Save(filename, root);
 #if RELEASE
 			} catch (Exception e) {

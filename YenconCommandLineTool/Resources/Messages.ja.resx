@@ -230,4 +230,16 @@
 引数は「set」「型」「名前」「値」の順番で書かれます。
 「型」は「str」の場合は文字列、「num」の場合は数値、「flg」の場合は論理値、「nul」の場合は空値です。</value>
   </data>
+  <data name="Man_Load" xml:space="preserve">
+    <value>引数に指定されたファイルを読み込みます。</value>
+  </data>
+  <data name="Man_Load_Full" xml:space="preserve">
+    <value>引数に指定されたファイルを読み込みます。ファイル名はヱンコンの文字列と同じフォーマットでエスケープする必要があります。既にファイルが開かれていて、保存されていない場合、変更は破棄されます。ファイル名が指定されていない場合、現在のファイルを再読み込みします。</value>
+  </data>
+  <data name="Man_Save" xml:space="preserve">
+    <value>現在の変更を引数に指定されたファイルに書き込みます。</value>
+  </data>
+  <data name="Man_Save_Full" xml:space="preserve">
+    <value>現在の変更を引数に指定されたファイルに書き込みます。ファイル名はヱンコンの文字列と同じフォーマットでエスケープする必要があります。既にファイルが存在する場合は上書きされます。ファイル名が指定されていない場合、読み込んだファイルと同名で保存します。</value>
+  </data>
 </root>

@@ -95,6 +95,7 @@
     <Compile Include="YBoolean.cs" />
     <Compile Include="YenconBinaryConverter.cs" />
     <Compile Include="YenconBinaryHeader.cs" />
+    <Compile Include="YenconFormatRecognition.cs" />
     <Compile Include="YenconStringConverter.cs" />
     <Compile Include="YenconStringParser.cs" />
     <Compile Include="YenconStringTokenizer.cs" />

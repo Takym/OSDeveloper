@@ -169,6 +169,24 @@ namespace YenconCommandLineTool.Resources {
         }
         
         /// <summary>
+        ///   Man_Load に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Man_Load {
+            get {
+                return ResourceManager.GetString("Man_Load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Man_Load_Full に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Man_Load_Full {
+            get {
+                return ResourceManager.GetString("Man_Load_Full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Man_Loadb に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Man_Loadb {
@@ -210,6 +228,24 @@ namespace YenconCommandLineTool.Resources {
         internal static string Man_Quit {
             get {
                 return ResourceManager.GetString("Man_Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Man_Save に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Man_Save {
+            get {
+                return ResourceManager.GetString("Man_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Man_Save_Full に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Man_Save_Full {
+            get {
+                return ResourceManager.GetString("Man_Save_Full", resourceCulture);
             }
         }
         

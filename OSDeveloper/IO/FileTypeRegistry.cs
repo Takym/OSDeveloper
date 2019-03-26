@@ -60,7 +60,7 @@ namespace OSDeveloper.IO
 				FileFormat.Resource,
 				nameof(FileTypeNames.YenconResource),
 				false,
-				"ycn"));
+				"ycn", "rycn"));
 
 			_types.Add(new SystemFileType(
 				FileFormat.Text,

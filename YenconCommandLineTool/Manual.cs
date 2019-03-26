@@ -17,9 +17,11 @@ namespace YenconCommandLineTool
 			Console.WriteLine($"help      {Messages.Man_Help}");
 			Console.WriteLine($"into      {Messages.Man_Into}");
 			Console.WriteLine($"list      {Messages.Man_List}");
+			Console.WriteLine($"load      {Messages.Man_Load}");
 			Console.WriteLine($"loadb     {Messages.Man_Loadb}");
 			Console.WriteLine($"loadt     {Messages.Man_Loadt}");
 			Console.WriteLine($"quit      {Messages.Man_Quit}");
+			Console.WriteLine($"save      {Messages.Man_Save}");
 			Console.WriteLine($"saveb     {Messages.Man_Saveb}");
 			Console.WriteLine($"savet     {Messages.Man_Savet}");
 			Console.WriteLine($"set       {Messages.Man_Set}");
@@ -43,6 +45,12 @@ namespace YenconCommandLineTool
 					break;
 				case "savet":
 					Console.WriteLine(Messages.Man_Savet_Full);
+					break;
+				case "load":
+					Console.WriteLine(Messages.Man_Load_Full);
+					break;
+				case "save":
+					Console.WriteLine(Messages.Man_Save_Full);
 					break;
 				case "set":
 					Console.WriteLine(Messages.Man_Set_Full);

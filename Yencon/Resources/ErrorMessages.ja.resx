@@ -135,4 +135,7 @@
   <data name="InvalidSyntaxException_UnexpectedToken" xml:space="preserve">
     <value>字句「{0}」は予期されていません。</value>
   </data>
+  <data name="YenconFormatRecognition_IOException" xml:space="preserve">
+    <value>指定されたファイル「{0}」の入力に失敗しました。</value>
+  </data>
 </root>

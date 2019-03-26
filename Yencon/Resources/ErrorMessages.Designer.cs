@@ -113,5 +113,14 @@ namespace Yencon.Resources {
                 return ResourceManager.GetString("InvalidSyntaxException_UnexpectedToken", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   YenconFormatRecognition_IOException {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string YenconFormatRecognition_IOException {
+            get {
+                return ResourceManager.GetString("YenconFormatRecognition_IOException", resourceCulture);
+            }
+        }
     }
 }

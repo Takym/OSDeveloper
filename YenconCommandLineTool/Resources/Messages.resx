@@ -228,4 +228,16 @@
   <data name="Man_Set_Full" xml:space="preserve">
     <value>Man_Set_Full</value>
   </data>
+  <data name="Man_Load" xml:space="preserve">
+    <value>Man_Load</value>
+  </data>
+  <data name="Man_Load_Full" xml:space="preserve">
+    <value>Man_Load_Full</value>
+  </data>
+  <data name="Man_Save" xml:space="preserve">
+    <value>Man_Save</value>
+  </data>
+  <data name="Man_Save_Full" xml:space="preserve">
+    <value>Man_Save_Full</value>
+  </data>
 </root>
