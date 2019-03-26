@@ -14,6 +14,8 @@ using OSDeveloper.Resources;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
+	// TODO: 複製、コピー、切り取り、貼り付けメニューの実装
+
 	public partial class FileTree : UserControl
 	{
 		#region プロパティ
@@ -64,6 +66,9 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			cmdMenu.Image        = Shell32.GetIconFrom("%SystemRoot%\\System32\\cmd.exe", 0, false).ToBitmap();
 			powershellMenu.Text  = ExplorerTexts.PopupMenu_PowerShell;
 			bashMenu.Text        = ExplorerTexts.PopupMenu_Bash;
+			createFileMenu.Text  = ExplorerTexts.PopupMenu_CreateFile;
+			createDirMenu.Text   = ExplorerTexts.PopupMenu_CreateDir;
+			additemMenu.Text     = ExplorerTexts.PopupMenu_Additem;
 			renameMenu.Text      = ExplorerTexts.PopupMenu_Rename;
 			deleteMenu.Text      = ExplorerTexts.PopupMenu_Delete;
 			propertyMenu.Text    = ExplorerTexts.PopupMenu_Property;
@@ -385,48 +390,6 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 
 		#region ContextMenuStrip イベント
 
-		private void renameMenu_Click(object sender, EventArgs e)
-		{
-			_logger.Trace($"executing {nameof(renameMenu_Click)}...");
-
-			treeView.SelectedNode.BeginEdit();
-
-			_logger.Trace($"completed {nameof(renameMenu_Click)}");
-		}
-
-		private void deleteMenu_Click(object sender, EventArgs e)
-		{
-			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
-
-			if (treeView.SelectedNode is FileTreeNode node) {
-				if (node.Metadata.Delete()) {
-					node.Remove();
-				} else {
-					MessageBox.Show(this,
-						ExplorerTexts.Msgbox_CannotDelete,
-						ASMINFO.Caption,
-						MessageBoxButtons.OK,
-						MessageBoxIcon.Warning);
-				}
-			}
-
-			_logger.Trace($"completed {nameof(deleteMenu_Click)}");
-		}
-
-		private void propertyMenu_Click(object sender, EventArgs e)
-		{
-			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
-
-			if (treeView.SelectedNode is FileTreeNode node) {
-				if (node.Property == null || node.Property.IsDisposed) {
-					node.Property = node.Metadata.ExtendedDetail.CreatePropTab();
-				}
-				_mwnd.OpenTab(node.Property);
-			}
-
-			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
-		}
-
 		private void defaultAppMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(defaultAppMenu_Click)}...");
@@ -437,7 +400,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 				} catch (Win32Exception error) when (error.ErrorCode == unchecked((int)(0x80004005))) {
 					_logger.Exception(error);
 					MessageBox.Show(_mwnd,
-						string.Format(ExplorerTexts.PopupMenu_DefaultApp_CannotOpen, node.Metadata.Path),
+						string.Format(ExplorerTexts.Msgbox_CannotOpenIn_DefaultApp, node.Metadata.Path),
 						_mwnd.Text,
 						MessageBoxButtons.OK,
 						MessageBoxIcon.Warning);
@@ -452,7 +415,11 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"executing {nameof(explorerMenu_Click)}...");
 
 			if (treeView.SelectedNode is FileTreeNode node) {
-				Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{node.Metadata.Path}\"");
+				if (node.File != null) {
+					Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{node.File.Parent.Path}\"");
+				} else {
+					Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{node.Metadata.Path}\"");
+				}
 			}
 
 			_logger.Trace($"completed {nameof(explorerMenu_Click)}");
@@ -489,6 +456,89 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			MessageBox.Show("not supported yet");
 
 			_logger.Trace($"completed {nameof(bashMenu_Click)}");
+		}
+
+		private void createMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(createMenu_Click)}...");
+
+			string causedBy = (sender as ToolStripMenuItem)?.Name?.Trim();
+			if (!string.IsNullOrEmpty(causedBy)) {
+				_logger.Debug("caused by:" + (sender as ToolStripMenuItem)?.Name);
+				if (treeView.SelectedNode is FileTreeNode node) {
+					FolderMetadata dir;
+					bool selectedFile;
+					if (node.Folder == null) {
+						dir = node.File.Parent;
+						selectedFile = true;
+					} else {
+						dir = node.Folder;
+						selectedFile = false;
+					}
+					var meta = causedBy == "createFileMenu" ? (ItemMetadata)
+						dir.CreateFile("New File.txt")      :
+						dir.CreateDir ("New Folder");
+					if (meta == null) {
+						MessageBox.Show(_mwnd,
+							ExplorerTexts.Msgbox_CannotCreate,
+							_mwnd.Text,
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Warning);
+					} else {
+						var newnode = this.CreateTreeNode(meta);
+						if (selectedFile) {
+							node.Parent.Nodes.Add(newnode);
+						} else {
+							node.Nodes.Add(newnode);
+						}
+						treeView.Invalidate();
+					}
+				}
+			}
+
+			_logger.Trace($"completed {nameof(createMenu_Click)}");
+		}
+
+		private void renameMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(renameMenu_Click)}...");
+
+			treeView.SelectedNode.BeginEdit();
+
+			_logger.Trace($"completed {nameof(renameMenu_Click)}");
+		}
+
+		private void deleteMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.Metadata.Delete()) {
+					node.Remove();
+				} else {
+					MessageBox.Show(_mwnd,
+						ExplorerTexts.Msgbox_CannotDelete,
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Warning);
+				}
+			}
+
+			_logger.Trace($"completed {nameof(deleteMenu_Click)}");
+		}
+
+		private void propertyMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.Property == null || node.Property.IsDisposed) {
+					node.Property = node.Metadata.ExtendedDetail.CreatePropTab();
+				}
+				_mwnd.OpenTab(node.Property);
+			}
+
+			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
 		}
 
 		#endregion
