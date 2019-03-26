@@ -148,6 +148,27 @@ namespace TakymLib.IO
 			return new PathString(Path.GetDirectoryName(_path));
 		}
 
+		/// <summary>
+		///  現在のパス文字列がファイルシステム上に存在せず、
+		///  新しいファイルまたはディレクトリが生成可能なパス文字列を生成します。
+		/// </summary>
+		/// <returns>新たな新規作成可能なパス文字列です。</returns>
+		/// <exception cref="System.ArgumentException">
+		///  内部的な不具合により発生する可能性があります。通常は発生しません。
+		/// </exception>
+		/// <exception cref="System.ArgumentOutOfRangeException">
+		///  内部的な不具合により発生する可能性があります。通常は発生しません。
+		/// </exception>
+		public PathString EnsureName()
+		{
+			int i = 0;
+			var path = this;
+			while (path.Exists()) {
+				path = this.ChangeExtension(++i + "." + this.GetExtension());
+			}
+			return path;
+		}
+
 		#endregion
 
 		#region パスに関する情報取得

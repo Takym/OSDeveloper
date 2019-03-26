@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using OSDeveloper.IO;
 using OSDeveloper.Resources;
+using TakymLib.IO;
 
 namespace OSDeveloper.GraphicalUIs.ToolStrips
 {

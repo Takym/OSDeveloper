@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using OSDeveloper.IO.Logging;
+using TakymLib.IO;
 using Yencon;
 
 namespace OSDeveloper.IO.Configuration
