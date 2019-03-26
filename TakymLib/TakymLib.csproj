@@ -99,6 +99,7 @@
     <Compile Include="Collections\HybridListItemMode.cs" />
     <Compile Include="ConsoleUtils.cs" />
     <Compile Include="DisposableBase.cs" />
+    <Compile Include="IO\PathString.cs" />
     <Compile Include="IRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ErrorMessages.Designer.cs">
@@ -121,5 +122,6 @@
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

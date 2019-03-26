@@ -120,7 +120,10 @@
   <data name="ConsoleUtils_PressAnyKey" xml:space="preserve">
     <value>Press any key to continue...</value>
   </data>
+  <data name="PathString_InvalidFormat" xml:space="preserve">
+    <value>The specified string "{0}" is not a valid path string. Please see the inner exception for more information.</value>
+  </data>
   <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
-    <value>"{0}" is not a valid boolean value.</value>
+    <value>The specified string "{0}" is not a valid boolean value.</value>
   </data>
 </root>

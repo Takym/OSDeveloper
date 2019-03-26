@@ -70,6 +70,15 @@ namespace TakymLib.Resources {
         }
         
         /// <summary>
+        ///   PathString_InvalidFormat {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PathString_InvalidFormat {
+            get {
+                return ResourceManager.GetString("PathString_InvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   StringUtils_ConvertToBoolean {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string StringUtils_ConvertToBoolean {

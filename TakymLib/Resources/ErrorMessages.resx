@@ -120,6 +120,9 @@
   <data name="ConsoleUtils_PressAnyKey" xml:space="preserve">
     <value>ConsoleUtils_PressAnyKey</value>
   </data>
+  <data name="PathString_InvalidFormat" xml:space="preserve">
+    <value>PathString_InvalidFormat {0}</value>
+  </data>
   <data name="StringUtils_ConvertToBoolean" xml:space="preserve">
     <value>StringUtils_ConvertToBoolean {0}</value>
   </data>

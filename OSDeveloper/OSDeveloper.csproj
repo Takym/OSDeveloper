@@ -172,7 +172,6 @@
     <Compile Include="IO\Logging\Logger.cs" />
     <Compile Include="IO\Logging\Logger.exceptions.cs" />
     <Compile Include="IO\Logging\LogLevel.cs" />
-    <Compile Include="IO\PathString.cs" />
     <Compile Include="IO\SystemPaths.cs" />
     <Compile Include="Native\Kernel32.cs" />
     <Compile Include="Native\Libosdev.cs" />
