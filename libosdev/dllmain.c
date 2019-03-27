@@ -11,8 +11,9 @@ BOOL   APIENTRY DllMain(_In_ HINSTANCE hInstance, _In_ DWORD  ul_reason_for_call
 {
 	switch (ul_reason_for_call) {
 		case DLL_PROCESS_ATTACH:
-			hMod    = ((HMODULE)(hInstance));
-			nStatus = LIB_STATE_LOADED;
+			hMod         = ((HMODULE)(hInstance));
+			nStatus      = LIB_STATE_LOADED;
+			nSendKeyMode = SENDKEY_MODE_INPUT;
 			break;
 		case DLL_PROCESS_DETACH:
 			nStatus = LIB_STATE_DISPOSED;

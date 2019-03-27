@@ -32,17 +32,28 @@ LIBOSDEV_API(int) osdev_checkStatus(void);
 
 /* assets.c */
 LIBOSDEV_API(HICON) osdev_loadIcon(
-	_In_  DWORD  dwIconID,
-	_In_  int    nSize,
-	_In_  HWND   hWnd,
-	_Out_ PDWORD pdwHResult
+	_In_  const DWORD  dwIconID,
+	_In_  const int    nSize,
+	_In_        HWND   hWnd,
+	_Out_       PDWORD pdwHResult
 );
 
 /* sendkey.c */
+#define SENDKEY_MODE_MSG   0
+#define SENDKEY_MODE_EVENT 1
+#define SENDKEY_MODE_INPUT 2
+extern int nSendKeyMode;
+
 LIBOSDEV_API(void) osdev_sendKey(
-	_In_ HWND hCtrl,
-	_In_ BYTE nKeyCode,
-	_In_ BYTE nModifier
+	_In_ const HWND hCtrl,
+	_In_ const BYTE nKeyCode,
+	_In_ const BYTE nModifier
+);
+
+LIBOSDEV_API(int) osdev_sendKey_getMode(void);
+
+LIBOSDEV_API(BOOL) osdev_sendKey_setMode(
+	_In_ const int nMode
 );
 
 #ifdef __cplusplus

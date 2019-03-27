@@ -55,9 +55,11 @@ namespace OSDeveloper.Native
 			public const uint PW_RENDERFULLCONTENT = 0x00000002;
 
 			[DllImport(Path)]
+			[return: MarshalAs(UnmanagedType.Bool)]
 			public static extern bool PrintWindow(IntPtr hwnd, IntPtr hdcBlt, uint nFlags);
 
 			[DllImport(Path)]
+			[return: MarshalAs(UnmanagedType.Bool)]
 			public static extern bool DestroyIcon(IntPtr hIcon);
 		}
 
@@ -129,6 +131,10 @@ namespace OSDeveloper.Native
 			public const int ICON1902_MISC_EXPAND        = 1902;
 			public const int ICON1903_MISC_COLLAPSE      = 1903;
 
+			public const int SENDKEY_MODE_MSG   = 0;
+			public const int SENDKEY_MODE_EVENT = 1;
+			public const int SENDKEY_MODE_INPUT = 2;
+
 			[DllImport(Path)]
 			public static extern int osdev_checkStatus();
 
@@ -137,6 +143,13 @@ namespace OSDeveloper.Native
 
 			[DllImport(Path)]
 			public static extern void osdev_sendKey(IntPtr hCtrl, uint nKeyCode, uint nModifier);
+
+			[DllImport(Path)]
+			public static extern int osdev_sendKey_getMode();
+
+			[DllImport(Path)]
+			[return: MarshalAs(UnmanagedType.Bool)]
+			public static extern bool osdev_sendKey_setMode(int nMode);
 		}
 	}
 }

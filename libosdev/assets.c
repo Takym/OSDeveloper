@@ -1,7 +1,8 @@
 // リソース関連
 #include "stdafx.h"
 
-LIBOSDEV_API(HICON) osdev_loadIcon(_In_ DWORD dwIconID, _In_ int nSize, _In_ HWND hWnd, _Out_ PDWORD pdwHResult)
+LIBOSDEV_API(HICON) osdev_loadIcon
+(_In_ const DWORD dwIconID, _In_ const int nSize, _In_ HWND hWnd, _Out_ PDWORD pdwHResult)
 {
 	//HICON r = LoadIcon(hMod, MAKEINTRESOURCE(dwIconID));
 	//HICON r = ((HICON)(LoadImage(hMod, MAKEINTRESOURCE(dwIconID), IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR)));

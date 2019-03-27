@@ -16,6 +16,9 @@
 #define WIN32_LEAN_AND_MEAN
 #include <SDKDDKVer.h>
 #include <windows.h>
+#ifndef KEYEVENTF_KEYDOWN
+#define KEYEVENTF_KEYDOWN 0x0000
+#endif//KEYEVENTF_KEYDOWN
 
 // 自作ヘッダファイル
 #include "libosdev.h"
