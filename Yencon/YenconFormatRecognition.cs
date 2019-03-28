@@ -27,6 +27,7 @@ namespace Yencon
 						hdr.FromBinary(br.ReadBytes(12));
 						result = hdr.CheckVersion() ? YenconType.Binary : YenconType.Unknown;
 					} catch (InvalidHeaderException) {
+						fs.Position = 0;
 						var tknzr = new YenconStringTokenizer(sr.ReadToEnd());
 						try {
 							tknzr.Scan();
