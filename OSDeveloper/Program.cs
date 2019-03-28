@@ -19,7 +19,6 @@ namespace OSDeveloper
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-
 #if RELEASE
 			Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 			Application.ThreadException += Application_ThreadException;
@@ -78,7 +77,7 @@ end:
 		private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
 		{
 			Logger.Trace($"executing {nameof(Application_ThreadException)}...");
-			Logger.Exception(e.Exception);
+			Logger.Exception(e.Exception, true);
 
 			var dr = MessageBox.Show(
 				e.Exception.Message,
@@ -95,7 +94,7 @@ end:
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 				// 取り敢えず再スロー
-				throw e.Exception;
+				throw new Exception(e.Exception.Message, e.Exception);
 			}
 
 			Logger.Trace($"completed {nameof(Application_ThreadException)}...");
