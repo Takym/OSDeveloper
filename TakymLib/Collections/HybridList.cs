@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TakymLib.Resources;
 
 namespace TakymLib.Collections
 {
@@ -91,6 +92,15 @@ namespace TakymLib.Collections
 				}
 			}
 			_items = newAry;
+		}
+
+		private void CheckIndex(int index)
+		{
+			if (index < 0 || _count <= index) {
+				throw new ArgumentOutOfRangeException(
+					nameof(index), index,
+					ErrorMessages.HybridList_OutOfRange);
+			}
 		}
 	}
 }

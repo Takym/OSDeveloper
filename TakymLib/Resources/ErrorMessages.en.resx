@@ -120,6 +120,9 @@
   <data name="ConsoleUtils_PressAnyKey" xml:space="preserve">
     <value>Press any key to continue...</value>
   </data>
+  <data name="HybridList_OutOfRange" xml:space="preserve">
+    <value>The specified index is out of range. An index should be greater than or equal zero and less than the count.</value>
+  </data>
   <data name="PathString_InvalidFormat" xml:space="preserve">
     <value>The specified string "{0}" is not a valid path string. Please see the inner exception for more information.</value>
   </data>

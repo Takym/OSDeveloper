@@ -120,6 +120,9 @@
   <data name="ConsoleUtils_PressAnyKey" xml:space="preserve">
     <value>続行するには何かキーを押してください . . .</value>
   </data>
+  <data name="HybridList_OutOfRange" xml:space="preserve">
+    <value>指定された数値は範囲外です。0以上個数未満の数値である必要があります。</value>
+  </data>
   <data name="PathString_InvalidFormat" xml:space="preserve">
     <value>指定された文字列「{0}」は有効なパス文字列ではありません。詳しくは内部例外を参照してください。</value>
   </data>
