@@ -7,7 +7,8 @@ namespace TakymLib.Collections
 {
 	partial class HybridList<T>
 	{
-		#region　追加系
+		#region 追加系
+
 		/// <summary>
 		///  指定されたオブジェクトをこのリストに追加します。
 		/// </summary>
@@ -58,14 +59,48 @@ namespace TakymLib.Collections
 		/// <param name="items">追加するオブジェクト配列です。</param>
 		public void AddRange(params T[] items)
 		{
+			this.EnsureCapacity(_count + items.Length + 2);
 			for (int i = 0; i < items.Length; ++i) {
 				this.Add(items[i]);
 			}
 		}
 
+		/// <summary>
+		///  指定されたオブジェクトをこのリストに挿入します。
+		/// </summary>
+		/// <param name="index">挿入先のインデックス番号です。</param>
+		/// <param name="item">挿入するオブジェクトです。</param>
 		public void Insert(int index, T item)
 		{
-			throw new NotImplementedException();
+			this.CheckIndex(index);
+			if (_mode == HybridListMode.Linked) {
+				HybridListItem obj;
+				if (index < _count / 2) {
+					obj = _item_first;
+					for (int i = 0; i < index; ++i) {
+						obj = obj.next;
+					}
+				} else {
+					obj = _item_last;
+					for (int i = _count - 1; i > index; --i) {
+						obj = obj.prev;
+					}
+				}
+				var obj2 = new HybridListItem();
+				obj2.value = item;
+				obj2.prev = obj.prev;
+				obj2.next = obj;
+				if (obj.prev != null) obj.prev.next = obj2;
+				obj.prev = obj2;
+				++_count;
+			} else { // if (_mode == HybridListMode.Array)
+				this.EnsureCapacity(_count + 2);
+				for (int i = _count; i > index; --i) {
+					_items[i] = _items[i - 1];
+				}
+				_items[index] = item;
+				++_count;
+			}
 		}
 
 		void IList.Insert(int index, object value)
@@ -73,10 +108,32 @@ namespace TakymLib.Collections
 			this.Insert(index, ((T)(value)));
 		}
 
+		/// <summary>
+		///  指定された複数のオブジェクトをこのリストに挿入します。
+		/// </summary>
+		/// <param name="index">挿入先のインデックス番号です。</param>
+		/// <param name="items">挿入する複数のオブジェクトです。</param>
 		public void InsertRange(int index, IEnumerable<T> items)
 		{
-			throw new NotImplementedException();
+			foreach (var item in items) {
+				this.Insert(index, item);
+				++index;
+			}
 		}
+
+		/// <summary>
+		///  指定されたオブジェクト配列をこのリストに挿入します。
+		/// </summary>
+		/// <param name="index">挿入先のインデックス番号です。</param>
+		/// <param name="items">挿入するオブジェクト配列です。</param>
+		public void InsertRange(int index, params T[] items)
+		{
+			this.EnsureCapacity(_count + items.Length + 2);
+			for (int i = 0; i < items.Length; ++i) {
+				this.Insert(index + i, items[i]);
+			}
+		}
+
 		#endregion
 
 		#region 削除系

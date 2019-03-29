@@ -19,7 +19,7 @@ namespace TakymLib.Collections
 				this.CheckIndex(index);
 				if (_mode == HybridListMode.Array) {
 					return _items[index];
-				} else {
+				} else { // if (_mode == HybridListMode.Linked)
 					if (index < _count / 2) {
 						var item = _item_first;
 						for (int i = 0; i < index; ++i) {
