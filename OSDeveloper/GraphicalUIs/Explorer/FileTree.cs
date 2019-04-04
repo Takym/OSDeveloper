@@ -57,15 +57,19 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			btnCollapse.Image   = Libosdev.GetIcon(Libosdev.Icons.MiscCollapse, out uint vCol).ToBitmap();
 			btnCollapse.Text    = ExplorerTexts.BtnCollapse;
 
+			string psver = "WindowsPowerShell\\v1.0";
+
 			openInMenu.Text      = ExplorerTexts.PopupMenu_OpenIn;
 			defaultAppMenu.Text  = ExplorerTexts.PopupMenu_DefaultApp;
 			defaultAppMenu.Image = Shell32.GetSmallImageAt(11, true);
 			explorerMenu.Text    = ExplorerTexts.PopupMenu_Explorer;
-			explorerMenu.Image   = Shell32.GetIconFrom("%SystemRoot%\\explorer.exe",      0, false).ToBitmap();
+			explorerMenu.Image   = Shell32.GetIconFrom("%SystemRoot%\\explorer.exe",                       0, false).ToBitmap();
 			cmdMenu.Text         = ExplorerTexts.PopupMenu_Cmd;
-			cmdMenu.Image        = Shell32.GetIconFrom("%SystemRoot%\\System32\\cmd.exe", 0, false).ToBitmap();
+			cmdMenu.Image        = Shell32.GetIconFrom("%SystemRoot%\\System32\\cmd.exe",                  0, false).ToBitmap();
 			powershellMenu.Text  = ExplorerTexts.PopupMenu_PowerShell;
+			powershellMenu.Image = Shell32.GetIconFrom($"%SystemRoot%\\System32\\{psver}\\powershell.exe", 0, false).ToBitmap();
 			bashMenu.Text        = ExplorerTexts.PopupMenu_Bash;
+			bashMenu.Image       = Shell32.GetSmallImageAt(2, false);
 			createFileMenu.Text  = ExplorerTexts.PopupMenu_CreateFile;
 			createDirMenu.Text   = ExplorerTexts.PopupMenu_CreateDir;
 			additemMenu.Text     = ExplorerTexts.PopupMenu_Additem;
@@ -415,10 +419,10 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"executing {nameof(explorerMenu_Click)}...");
 
 			if (treeView.SelectedNode is FileTreeNode node) {
-				if (node.File != null) {
-					Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{node.File.Parent.Path}\"");
-				} else {
+				if (node.File == null) { // ファイルでないなら (フォルダなら)
 					Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{node.Metadata.Path}\"");
+				} else { // ファイルなら (フォルダでないなら)
+					Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{node.File.Parent.Path}\"");
 				}
 			}
 
@@ -430,10 +434,11 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"executing {nameof(cmdMenu_Click)}...");
 
 			if (treeView.SelectedNode is FileTreeNode node) {
-				if (node.Folder != null) {
-					Process.Start("C:\\WINDOWS\\System32\\cmd.exe", $"/K cd \"{node.Folder.Path}\"");
-				} else {
-					Process.Start("C:\\WINDOWS\\System32\\cmd.exe", $"/C call start \"{node.Metadata.Path}\"");
+				if (node.File == null) { // ファイルでないなら (フォルダなら)
+					Process.Start("C:\\WINDOWS\\System32\\cmd.exe", $"/K cd \"{node.Metadata.Path}\"");
+				} else { // ファイルなら (フォルダでないなら)
+					Process.Start(
+						"C:\\WINDOWS\\System32\\cmd.exe", $"/K cd \"{node.File.Parent.Path}\"");
 				}
 			}
 

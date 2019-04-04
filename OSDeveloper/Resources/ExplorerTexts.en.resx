@@ -142,7 +142,7 @@
     <value>&amp;Add other type of item...</value>
   </data>
   <data name="PopupMenu_Bash" xml:space="preserve">
-    <value>Open in &amp;bash shell...</value>
+    <value>Open in WSL (&amp;bash shell)...</value>
   </data>
   <data name="PopupMenu_Cmd" xml:space="preserve">
     <value>Open in &amp;cmd.exe...</value>

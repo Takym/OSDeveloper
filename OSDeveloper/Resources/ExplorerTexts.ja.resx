@@ -142,7 +142,7 @@
     <value>その他の種類の項目を追加(&amp;A)...</value>
   </data>
   <data name="PopupMenu_Bash" xml:space="preserve">
-    <value>WSLで開く(&amp;B)...</value>
+    <value>WSL(bash)で開く(&amp;B)...</value>
   </data>
   <data name="PopupMenu_Cmd" xml:space="preserve">
     <value>コマンドプロンプトで開く(&amp;C)...</value>
