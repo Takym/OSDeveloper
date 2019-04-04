@@ -144,14 +144,23 @@
   <data name="PopupMenu_Bash" xml:space="preserve">
     <value>Open in WSL (&amp;bash shell)...</value>
   </data>
+  <data name="PopupMenu_Clone" xml:space="preserve">
+    <value>Dup&amp;licate</value>
+  </data>
   <data name="PopupMenu_Cmd" xml:space="preserve">
     <value>Open in &amp;cmd.exe...</value>
   </data>
+  <data name="PopupMenu_Copy" xml:space="preserve">
+    <value>&amp;Copy</value>
+  </data>
   <data name="PopupMenu_CreateDir" xml:space="preserve">
-    <value>Create new &amp;directory</value>
+    <value>Create new d&amp;irectory</value>
   </data>
   <data name="PopupMenu_CreateFile" xml:space="preserve">
     <value>Create new &amp;file</value>
+  </data>
+  <data name="PopupMenu_Cut" xml:space="preserve">
+    <value>C&amp;ut</value>
   </data>
   <data name="PopupMenu_DefaultApp" xml:space="preserve">
     <value>Open in &amp;default app...</value>
@@ -163,7 +172,10 @@
     <value>Open in &amp;Explorer...</value>
   </data>
   <data name="PopupMenu_OpenIn" xml:space="preserve">
-    <value>Open in external &amp;program...</value>
+    <value>Open in e&amp;xternal program...</value>
+  </data>
+  <data name="PopupMenu_Paste" xml:space="preserve">
+    <value>&amp;Paste</value>
   </data>
   <data name="PopupMenu_PowerShell" xml:space="preserve">
     <value>Open in &amp;PowerShell...</value>

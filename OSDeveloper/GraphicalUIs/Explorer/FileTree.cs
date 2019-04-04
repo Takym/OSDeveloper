@@ -14,7 +14,7 @@ using OSDeveloper.Resources;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
-	// TODO: 複製、コピー、切り取り、貼り付けメニューの実装
+	// TODO: 複製、コピー、切り取り、貼り付けメニューの処理の実装
 
 	public partial class FileTree : UserControl
 	{
@@ -73,8 +73,12 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			createFileMenu.Text  = ExplorerTexts.PopupMenu_CreateFile;
 			createDirMenu.Text   = ExplorerTexts.PopupMenu_CreateDir;
 			additemMenu.Text     = ExplorerTexts.PopupMenu_Additem;
-			renameMenu.Text      = ExplorerTexts.PopupMenu_Rename;
+			cloneMenu.Text       = ExplorerTexts.PopupMenu_Clone;
+			copyMenu.Text        = ExplorerTexts.PopupMenu_Copy;
+			cutMenu.Text         = ExplorerTexts.PopupMenu_Cut;
+			pasteMenu.Text       = ExplorerTexts.PopupMenu_Paste;
 			deleteMenu.Text      = ExplorerTexts.PopupMenu_Delete;
+			renameMenu.Text      = ExplorerTexts.PopupMenu_Rename;
 			propertyMenu.Text    = ExplorerTexts.PopupMenu_Property;
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
@@ -504,15 +508,6 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"completed {nameof(createMenu_Click)}");
 		}
 
-		private void renameMenu_Click(object sender, EventArgs e)
-		{
-			_logger.Trace($"executing {nameof(renameMenu_Click)}...");
-
-			treeView.SelectedNode.BeginEdit();
-
-			_logger.Trace($"completed {nameof(renameMenu_Click)}");
-		}
-
 		private void deleteMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
@@ -530,6 +525,15 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			}
 
 			_logger.Trace($"completed {nameof(deleteMenu_Click)}");
+		}
+
+		private void renameMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(renameMenu_Click)}...");
+
+			treeView.SelectedNode.BeginEdit();
+
+			_logger.Trace($"completed {nameof(renameMenu_Click)}");
 		}
 
 		private void propertyMenu_Click(object sender, EventArgs e)

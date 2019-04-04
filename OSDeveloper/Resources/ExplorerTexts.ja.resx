@@ -144,14 +144,23 @@
   <data name="PopupMenu_Bash" xml:space="preserve">
     <value>WSL(bash)で開く(&amp;B)...</value>
   </data>
+  <data name="PopupMenu_Clone" xml:space="preserve">
+    <value>複製(&amp;L)</value>
+  </data>
   <data name="PopupMenu_Cmd" xml:space="preserve">
     <value>コマンドプロンプトで開く(&amp;C)...</value>
   </data>
+  <data name="PopupMenu_Copy" xml:space="preserve">
+    <value>コピー(&amp;C)</value>
+  </data>
   <data name="PopupMenu_CreateDir" xml:space="preserve">
-    <value>フォルダを新規作成(&amp;D)</value>
+    <value>フォルダを新規作成(&amp;I)</value>
   </data>
   <data name="PopupMenu_CreateFile" xml:space="preserve">
     <value>ファイルを新規作成(&amp;F)</value>
+  </data>
+  <data name="PopupMenu_Cut" xml:space="preserve">
+    <value>切り取り(&amp;U)</value>
   </data>
   <data name="PopupMenu_DefaultApp" xml:space="preserve">
     <value>既定のアプリで開く(&amp;D)...</value>
@@ -163,7 +172,10 @@
     <value>エクスプローラで開く(&amp;E)...</value>
   </data>
   <data name="PopupMenu_OpenIn" xml:space="preserve">
-    <value>外部プログラムで開く(&amp;P)...</value>
+    <value>外部プログラムで開く(&amp;X)...</value>
+  </data>
+  <data name="PopupMenu_Paste" xml:space="preserve">
+    <value>貼り付け(&amp;P)</value>
   </data>
   <data name="PopupMenu_PowerShell" xml:space="preserve">
     <value>PowerShellで開く(&amp;P)...</value>

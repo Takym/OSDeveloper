@@ -144,14 +144,23 @@
   <data name="PopupMenu_Bash" xml:space="preserve">
     <value>bash</value>
   </data>
+  <data name="PopupMenu_Clone" xml:space="preserve">
+    <value>clone</value>
+  </data>
   <data name="PopupMenu_Cmd" xml:space="preserve">
     <value>cmd</value>
+  </data>
+  <data name="PopupMenu_Copy" xml:space="preserve">
+    <value>copy</value>
   </data>
   <data name="PopupMenu_CreateDir" xml:space="preserve">
     <value>createDir</value>
   </data>
   <data name="PopupMenu_CreateFile" xml:space="preserve">
     <value>createFile</value>
+  </data>
+  <data name="PopupMenu_Cut" xml:space="preserve">
+    <value>cut</value>
   </data>
   <data name="PopupMenu_DefaultApp" xml:space="preserve">
     <value>defaultApp</value>
@@ -164,6 +173,9 @@
   </data>
   <data name="PopupMenu_OpenIn" xml:space="preserve">
     <value>openIn</value>
+  </data>
+  <data name="PopupMenu_Paste" xml:space="preserve">
+    <value>paste</value>
   </data>
   <data name="PopupMenu_PowerShell" xml:space="preserve">
     <value>powershell</value>

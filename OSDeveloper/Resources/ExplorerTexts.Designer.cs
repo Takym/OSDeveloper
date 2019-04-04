@@ -142,11 +142,29 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   clone に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Clone {
+            get {
+                return ResourceManager.GetString("PopupMenu_Clone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   cmd に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_Cmd {
             get {
                 return ResourceManager.GetString("PopupMenu_Cmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   copy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Copy {
+            get {
+                return ResourceManager.GetString("PopupMenu_Copy", resourceCulture);
             }
         }
         
@@ -165,6 +183,15 @@ namespace OSDeveloper.Resources {
         internal static string PopupMenu_CreateFile {
             get {
                 return ResourceManager.GetString("PopupMenu_CreateFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   cut に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Cut {
+            get {
+                return ResourceManager.GetString("PopupMenu_Cut", resourceCulture);
             }
         }
         
@@ -201,6 +228,15 @@ namespace OSDeveloper.Resources {
         internal static string PopupMenu_OpenIn {
             get {
                 return ResourceManager.GetString("PopupMenu_OpenIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   paste に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Paste {
+            get {
+                return ResourceManager.GetString("PopupMenu_Paste", resourceCulture);
             }
         }
         
