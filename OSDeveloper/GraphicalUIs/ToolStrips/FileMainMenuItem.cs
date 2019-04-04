@@ -20,6 +20,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			_exit.Click        += this._exit_Click;
 			_exit.ShortcutKeys  = Keys.Alt | Keys.F4;
 
+			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_exit);
 
 			_logger.Trace($"constructed {nameof(FileMainMenuItem)}");
