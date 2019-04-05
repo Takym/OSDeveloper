@@ -20,34 +20,15 @@ namespace OSDeveloper
 
 #if DEBUG
 			// TODO: デバッグコード、後で削除
-
-			_terminal.TabPages.Add("Empty 1");
-			_terminal.TabPages.Add("Empty 2");
-			_terminal.TabPages.Add("Empty 3");
-
-			for (int i = 1; i <= 10; ++i) {
-				Form f = new Form();
-				f.Name = $"Form_{i}";
-				f.Text = $"Window {i}";
-				f.MdiParent = this;
-				f.Show();
-			}
-
 			Button btn = new Button();
-			btn.Text = "H:\\ﾄﾞﾗｲﾌﾞ";
-			btn.Location = new System.Drawing.Point(200, 200);
-			btn.Click += new EventHandler((a, b) => _explorer.Directory = new FolderMetadata(new PathString("H:\\")));
-			this.Controls.Add(btn);
-
-			Button btn2 = new Button();
-			btn2.Text = "ﾌｧｲﾙｦﾋﾗｸ";
-			btn2.Location = new System.Drawing.Point(200, 150);
-			btn2.Click += new EventHandler((a, b) => {
+			btn.Text = "ﾌｧｲﾙｦﾋﾗｸ";
+			btn.Location = new System.Drawing.Point(200, 150);
+			btn.Click += new EventHandler((a, b) => {
 				OpenFileDialog ofd = new OpenFileDialog();
 				ofd.Filter = FileTypeRegistry.CreateFullSPFs();
 				ofd.ShowDialog();
 			});
-			this.Controls.Add(btn2);
+			this.Controls.Add(btn);
 #endif
 
 			// このタイミングでディレクトリ設定
