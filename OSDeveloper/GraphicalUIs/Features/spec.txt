@@ -1,0 +1,7 @@
+﻿IFileSaveLoadFeature
+IPrintingFeature
+IUndoRedoFeature
+ISelectionFeature
+ITextSelectionFeature
+IClipboardFeature
+ISearchReplaceFeature

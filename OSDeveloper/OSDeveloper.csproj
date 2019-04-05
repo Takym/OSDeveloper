@@ -274,6 +274,7 @@
     <Compile Include="FormMain.terminal.cs" />
     <Compile Include="IO\Logging\Logger.static.cs" />
     <None Include="Properties\app.manifest" />
+    <Content Include="GraphicalUIs\Features\spec.txt" />
     <Content Include="Resources\DesktopThemepacks\Darkolorfuler.themepack">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
