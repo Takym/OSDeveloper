@@ -47,14 +47,14 @@
 			this.createDirMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.additemMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-			this.renameMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.deleteMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.propertyMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
 			this.cloneMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.copyMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.cutMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.pasteMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.deleteMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.renameMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+			this.propertyMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip.SuspendLayout();
 			this.popupMenu.SuspendLayout();
 			this.SuspendLayout();
@@ -228,12 +228,33 @@
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
 			this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
 			// 
-			// renameMenu
+			// cloneMenu
 			// 
-			this.renameMenu.Name = "renameMenu";
-			this.renameMenu.Size = new System.Drawing.Size(180, 22);
-			this.renameMenu.Text = "rename";
-			this.renameMenu.Click += new System.EventHandler(this.renameMenu_Click);
+			this.cloneMenu.Name = "cloneMenu";
+			this.cloneMenu.Size = new System.Drawing.Size(180, 22);
+			this.cloneMenu.Text = "clone";
+			this.cloneMenu.Click += new System.EventHandler(this.cloneMenu_Click);
+			// 
+			// copyMenu
+			// 
+			this.copyMenu.Name = "copyMenu";
+			this.copyMenu.Size = new System.Drawing.Size(180, 22);
+			this.copyMenu.Text = "copy";
+			this.copyMenu.Click += new System.EventHandler(this.copyMenu_Click);
+			// 
+			// cutMenu
+			// 
+			this.cutMenu.Name = "cutMenu";
+			this.cutMenu.Size = new System.Drawing.Size(180, 22);
+			this.cutMenu.Text = "cut";
+			this.cutMenu.Click += new System.EventHandler(this.cutMenu_Click);
+			// 
+			// pasteMenu
+			// 
+			this.pasteMenu.Name = "pasteMenu";
+			this.pasteMenu.Size = new System.Drawing.Size(180, 22);
+			this.pasteMenu.Text = "paste";
+			this.pasteMenu.Click += new System.EventHandler(this.pasteMenu_Click);
 			// 
 			// deleteMenu
 			// 
@@ -242,41 +263,24 @@
 			this.deleteMenu.Text = "delete";
 			this.deleteMenu.Click += new System.EventHandler(this.deleteMenu_Click);
 			// 
-			// propertyMenu
+			// renameMenu
 			// 
-			this.propertyMenu.Name = "propertyMenu";
-			this.propertyMenu.Size = new System.Drawing.Size(180, 22);
-			this.propertyMenu.Text = "property";
-			this.propertyMenu.Click += new System.EventHandler(this.propertyMenu_Click);
+			this.renameMenu.Name = "renameMenu";
+			this.renameMenu.Size = new System.Drawing.Size(180, 22);
+			this.renameMenu.Text = "rename";
+			this.renameMenu.Click += new System.EventHandler(this.renameMenu_Click);
 			// 
 			// toolStripMenuItem3
 			// 
 			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
 			this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
 			// 
-			// cloneMenu
+			// propertyMenu
 			// 
-			this.cloneMenu.Name = "cloneMenu";
-			this.cloneMenu.Size = new System.Drawing.Size(180, 22);
-			this.cloneMenu.Text = "clone";
-			// 
-			// copyMenu
-			// 
-			this.copyMenu.Name = "copyMenu";
-			this.copyMenu.Size = new System.Drawing.Size(180, 22);
-			this.copyMenu.Text = "copy";
-			// 
-			// cutMenu
-			// 
-			this.cutMenu.Name = "cutMenu";
-			this.cutMenu.Size = new System.Drawing.Size(180, 22);
-			this.cutMenu.Text = "cut";
-			// 
-			// pasteMenu
-			// 
-			this.pasteMenu.Name = "pasteMenu";
-			this.pasteMenu.Size = new System.Drawing.Size(180, 22);
-			this.pasteMenu.Text = "paste";
+			this.propertyMenu.Name = "propertyMenu";
+			this.propertyMenu.Size = new System.Drawing.Size(180, 22);
+			this.propertyMenu.Text = "property";
+			this.propertyMenu.Click += new System.EventHandler(this.propertyMenu_Click);
 			// 
 			// FileTree
 			// 

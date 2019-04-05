@@ -79,6 +79,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   FolderMetadata_AddItem_DirName {0} {1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FolderMetadata_AddItem_DirName {
+            get {
+                return ResourceManager.GetString("FolderMetadata_AddItem_DirName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   InvalidCast {0} {1} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string InvalidCast {

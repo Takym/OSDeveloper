@@ -123,6 +123,9 @@
   <data name="FileType_CreateMetadata_ExtensionInvalid" xml:space="preserve">
     <value>指定されたファイル名「{0}」は利用できません。拡張子が{1}である必要があります。</value>
   </data>
+  <data name="FolderMetadata_AddItem_DirName" xml:space="preserve">
+    <value>指定されたアイテム「{0}」の親ディレクトリは「{1}」に一致している必要があります。</value>
+  </data>
   <data name="InvalidCast" xml:space="preserve">
     <value>型「{0}」は型「{1}」に変換する事はできません。</value>
   </data>

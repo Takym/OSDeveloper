@@ -129,6 +129,9 @@
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>The file name could not be changed.</value>
   </data>
+  <data name="Msgbox_CannotClone" xml:space="preserve">
+    <value>The file or directory could not be duplicated.</value>
+  </data>
   <data name="Msgbox_CannotCreate" xml:space="preserve">
     <value>The item could not be created.</value>
   </data>
@@ -141,14 +144,8 @@
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>&amp;Add other type of item...</value>
   </data>
-  <data name="PopupMenu_Bash" xml:space="preserve">
-    <value>Open in WSL (&amp;bash shell)...</value>
-  </data>
   <data name="PopupMenu_Clone" xml:space="preserve">
     <value>Dup&amp;licate</value>
-  </data>
-  <data name="PopupMenu_Cmd" xml:space="preserve">
-    <value>Open in &amp;cmd.exe...</value>
   </data>
   <data name="PopupMenu_Copy" xml:space="preserve">
     <value>&amp;Copy</value>
@@ -162,23 +159,29 @@
   <data name="PopupMenu_Cut" xml:space="preserve">
     <value>C&amp;ut</value>
   </data>
-  <data name="PopupMenu_DefaultApp" xml:space="preserve">
-    <value>Open in &amp;default app...</value>
-  </data>
   <data name="PopupMenu_Delete" xml:space="preserve">
     <value>&amp;Delete</value>
-  </data>
-  <data name="PopupMenu_Explorer" xml:space="preserve">
-    <value>Open in &amp;Explorer...</value>
   </data>
   <data name="PopupMenu_OpenIn" xml:space="preserve">
     <value>Open in e&amp;xternal program...</value>
   </data>
+  <data name="PopupMenu_OpenIn_Bash" xml:space="preserve">
+    <value>Open in &amp;bash shell (WSL)...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_Cmd" xml:space="preserve">
+    <value>Open in &amp;cmd.exe...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_DefaultApp" xml:space="preserve">
+    <value>Open in &amp;default app...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_Explorer" xml:space="preserve">
+    <value>Open in &amp;Explorer...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_PowerShell" xml:space="preserve">
+    <value>Open in &amp;PowerShell...</value>
+  </data>
   <data name="PopupMenu_Paste" xml:space="preserve">
     <value>&amp;Paste</value>
-  </data>
-  <data name="PopupMenu_PowerShell" xml:space="preserve">
-    <value>Open in &amp;PowerShell...</value>
   </data>
   <data name="PopupMenu_Property" xml:space="preserve">
     <value>P&amp;roperty</value>

@@ -123,6 +123,9 @@
   <data name="FileType_CreateMetadata_ExtensionInvalid" xml:space="preserve">
     <value>FileType_CreateMetadata_ExtensionInvalid {0} {1}</value>
   </data>
+  <data name="FolderMetadata_AddItem_DirName" xml:space="preserve">
+    <value>FolderMetadata_AddItem_DirName {0} {1}</value>
+  </data>
   <data name="InvalidCast" xml:space="preserve">
     <value>InvalidCast {0} {1}</value>
   </data>

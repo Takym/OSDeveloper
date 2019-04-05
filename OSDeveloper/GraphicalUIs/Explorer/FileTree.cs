@@ -14,7 +14,7 @@ using OSDeveloper.Resources;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
-	// TODO: 複製、コピー、切り取り、貼り付けメニューの処理の実装
+	// TODO: コピー、切り取り、貼り付けメニューの処理の実装
 
 	public partial class FileTree : UserControl
 	{
@@ -50,36 +50,37 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_mwnd   = mwnd;
 			this.InitializeComponent();
 
-			btnRefresh.Image    = Libosdev.GetIcon(Libosdev.Icons.MiscRefresh,  out uint vRef).ToBitmap();
-			btnRefresh.Text     = ExplorerTexts.BtnRefresh;
-			btnExpand.Image     = Libosdev.GetIcon(Libosdev.Icons.MiscExpand,   out uint vExp).ToBitmap();
-			btnExpand.Text      = ExplorerTexts.BtnExpand;
-			btnCollapse.Image   = Libosdev.GetIcon(Libosdev.Icons.MiscCollapse, out uint vCol).ToBitmap();
-			btnCollapse.Text    = ExplorerTexts.BtnCollapse;
+			btnRefresh.Image  = Libosdev.GetIcon(Libosdev.Icons.MiscRefresh,  out uint vRef).ToBitmap();
+			btnRefresh.Text   = ExplorerTexts.BtnRefresh;
+			btnExpand.Image   = Libosdev.GetIcon(Libosdev.Icons.MiscExpand,   out uint vExp).ToBitmap();
+			btnExpand.Text    = ExplorerTexts.BtnExpand;
+			btnCollapse.Image = Libosdev.GetIcon(Libosdev.Icons.MiscCollapse, out uint vCol).ToBitmap();
+			btnCollapse.Text  = ExplorerTexts.BtnCollapse;
 
-			string psver = "WindowsPowerShell\\v1.0";
-
-			openInMenu.Text      = ExplorerTexts.PopupMenu_OpenIn;
-			defaultAppMenu.Text  = ExplorerTexts.PopupMenu_DefaultApp;
-			defaultAppMenu.Image = Shell32.GetSmallImageAt(11, true);
-			explorerMenu.Text    = ExplorerTexts.PopupMenu_Explorer;
-			explorerMenu.Image   = Shell32.GetIconFrom("%SystemRoot%\\explorer.exe",                       0, false).ToBitmap();
-			cmdMenu.Text         = ExplorerTexts.PopupMenu_Cmd;
-			cmdMenu.Image        = Shell32.GetIconFrom("%SystemRoot%\\System32\\cmd.exe",                  0, false).ToBitmap();
-			powershellMenu.Text  = ExplorerTexts.PopupMenu_PowerShell;
-			powershellMenu.Image = Shell32.GetIconFrom($"%SystemRoot%\\System32\\{psver}\\powershell.exe", 0, false).ToBitmap();
-			bashMenu.Text        = ExplorerTexts.PopupMenu_Bash;
-			bashMenu.Image       = Shell32.GetSmallImageAt(2, false);
-			createFileMenu.Text  = ExplorerTexts.PopupMenu_CreateFile;
-			createDirMenu.Text   = ExplorerTexts.PopupMenu_CreateDir;
-			additemMenu.Text     = ExplorerTexts.PopupMenu_Additem;
-			cloneMenu.Text       = ExplorerTexts.PopupMenu_Clone;
-			copyMenu.Text        = ExplorerTexts.PopupMenu_Copy;
-			cutMenu.Text         = ExplorerTexts.PopupMenu_Cut;
-			pasteMenu.Text       = ExplorerTexts.PopupMenu_Paste;
-			deleteMenu.Text      = ExplorerTexts.PopupMenu_Delete;
-			renameMenu.Text      = ExplorerTexts.PopupMenu_Rename;
-			propertyMenu.Text    = ExplorerTexts.PopupMenu_Property;
+			const string psver       = "WindowsPowerShell\\v1.0";
+			openInMenu.Text          = ExplorerTexts.PopupMenu_OpenIn;
+			{
+				defaultAppMenu.Text  = ExplorerTexts.PopupMenu_OpenIn_DefaultApp;
+				defaultAppMenu.Image = Shell32.GetSmallImageAt(11, true);
+				explorerMenu.Text    = ExplorerTexts.PopupMenu_OpenIn_Explorer;
+				explorerMenu.Image   = Shell32.GetIconFrom("%SystemRoot%\\explorer.exe", 0, false).ToBitmap();
+				cmdMenu.Text         = ExplorerTexts.PopupMenu_OpenIn_Cmd;
+				cmdMenu.Image        = Shell32.GetIconFrom("%SystemRoot%\\System32\\cmd.exe", 0, false).ToBitmap();
+				powershellMenu.Text  = ExplorerTexts.PopupMenu_OpenIn_PowerShell;
+				powershellMenu.Image = Shell32.GetIconFrom($"%SystemRoot%\\System32\\{psver}\\powershell.exe", 0, false).ToBitmap();
+				bashMenu.Text        = ExplorerTexts.PopupMenu_OpenIn_Bash;
+				bashMenu.Image       = Shell32.GetSmallImageAt(2, false);
+			}
+			createFileMenu.Text      = ExplorerTexts.PopupMenu_CreateFile;
+			createDirMenu.Text       = ExplorerTexts.PopupMenu_CreateDir;
+			additemMenu.Text         = ExplorerTexts.PopupMenu_Additem;
+			cloneMenu.Text           = ExplorerTexts.PopupMenu_Clone;
+			copyMenu.Text            = ExplorerTexts.PopupMenu_Copy;
+			cutMenu.Text             = ExplorerTexts.PopupMenu_Cut;
+			pasteMenu.Text           = ExplorerTexts.PopupMenu_Paste;
+			deleteMenu.Text          = ExplorerTexts.PopupMenu_Delete;
+			renameMenu.Text          = ExplorerTexts.PopupMenu_Rename;
+			propertyMenu.Text        = ExplorerTexts.PopupMenu_Property;
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
 
@@ -497,15 +498,59 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 						var newnode = this.CreateTreeNode(meta);
 						if (selectedFile) {
 							node.Parent.Nodes.Add(newnode);
+							node.Parent.Expand();
 						} else {
 							node.Nodes.Add(newnode);
+							node.Expand();
 						}
 						treeView.Invalidate();
+						newnode.BeginEdit();
 					}
 				}
 			}
 
 			_logger.Trace($"completed {nameof(createMenu_Click)}");
+		}
+
+		private void cloneMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(cloneMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				var newitem = node.Metadata.Copy(node.Metadata.Path.EnsureName());
+				if (newitem != null && node.Metadata.Parent.AddItem(newitem)) {
+					var newnode = this.CreateTreeNode(newitem);
+					node.Parent.Nodes.Add(newnode);
+					node.Parent.Expand();
+					newnode.BeginEdit();
+				} else {
+					MessageBox.Show(_mwnd,
+						ExplorerTexts.Msgbox_CannotClone,
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Warning);
+				}
+			}
+
+			_logger.Trace($"completed {nameof(cloneMenu_Click)}");
+		}
+
+		private void copyMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(copyMenu_Click)}...");
+			_logger.Trace($"completed {nameof(copyMenu_Click)}");
+		}
+
+		private void cutMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(cutMenu_Click)}...");
+			_logger.Trace($"completed {nameof(cutMenu_Click)}");
+		}
+
+		private void pasteMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(pasteMenu_Click)}...");
+			_logger.Trace($"completed {nameof(pasteMenu_Click)}");
 		}
 
 		private void deleteMenu_Click(object sender, EventArgs e)

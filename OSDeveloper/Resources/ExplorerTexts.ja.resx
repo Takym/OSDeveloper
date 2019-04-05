@@ -129,6 +129,9 @@
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>ファイル名を変更する事ができませんでした。</value>
   </data>
+  <data name="Msgbox_CannotClone" xml:space="preserve">
+    <value>ファイルまたはディレクトリを複製する事ができませんでした。</value>
+  </data>
   <data name="Msgbox_CannotCreate" xml:space="preserve">
     <value>項目を追加する事ができませんでした。</value>
   </data>
@@ -141,14 +144,8 @@
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>その他の種類の項目を追加(&amp;A)...</value>
   </data>
-  <data name="PopupMenu_Bash" xml:space="preserve">
-    <value>WSL(bash)で開く(&amp;B)...</value>
-  </data>
   <data name="PopupMenu_Clone" xml:space="preserve">
     <value>複製(&amp;L)</value>
-  </data>
-  <data name="PopupMenu_Cmd" xml:space="preserve">
-    <value>コマンドプロンプトで開く(&amp;C)...</value>
   </data>
   <data name="PopupMenu_Copy" xml:space="preserve">
     <value>コピー(&amp;C)</value>
@@ -162,23 +159,29 @@
   <data name="PopupMenu_Cut" xml:space="preserve">
     <value>切り取り(&amp;U)</value>
   </data>
-  <data name="PopupMenu_DefaultApp" xml:space="preserve">
-    <value>既定のアプリで開く(&amp;D)...</value>
-  </data>
   <data name="PopupMenu_Delete" xml:space="preserve">
     <value>削除(&amp;D)</value>
-  </data>
-  <data name="PopupMenu_Explorer" xml:space="preserve">
-    <value>エクスプローラで開く(&amp;E)...</value>
   </data>
   <data name="PopupMenu_OpenIn" xml:space="preserve">
     <value>外部プログラムで開く(&amp;X)...</value>
   </data>
+  <data name="PopupMenu_OpenIn_Bash" xml:space="preserve">
+    <value>bash(WSL)で開く(&amp;B)...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_Cmd" xml:space="preserve">
+    <value>コマンドプロンプトで開く(&amp;C)...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_DefaultApp" xml:space="preserve">
+    <value>既定のアプリで開く(&amp;D)...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_Explorer" xml:space="preserve">
+    <value>エクスプローラで開く(&amp;E)...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_PowerShell" xml:space="preserve">
+    <value>PowerShellで開く(&amp;P)...</value>
+  </data>
   <data name="PopupMenu_Paste" xml:space="preserve">
     <value>貼り付け(&amp;P)</value>
-  </data>
-  <data name="PopupMenu_PowerShell" xml:space="preserve">
-    <value>PowerShellで開く(&amp;P)...</value>
   </data>
   <data name="PopupMenu_Property" xml:space="preserve">
     <value>プロパティ(&amp;R)</value>

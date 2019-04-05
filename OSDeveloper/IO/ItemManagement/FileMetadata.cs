@@ -31,6 +31,7 @@ namespace OSDeveloper.IO.ItemManagement
 		public override bool Rename(string newName)
 		{
 			try {
+				if (string.IsNullOrEmpty(newName) || newName == this.Path.GetFileName()) return true;
 				_finfo.MoveTo(this.Path.ChangeFileName(newName));
 				return base.Rename(newName);
 			} catch (Exception e) {

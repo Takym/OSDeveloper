@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using OSDeveloper.Resources;
 using TakymLib.IO;
 
 namespace OSDeveloper.IO.ItemManagement
@@ -97,6 +98,7 @@ namespace OSDeveloper.IO.ItemManagement
 		public override bool Rename(string newName)
 		{
 			try {
+				if (string.IsNullOrEmpty(newName) || newName == this.Path.GetFileName()) return true;
 				Directory.Move(this.Path, this.Path.ChangeFileName(newName));
 				return base.Rename(newName);
 			} catch (Exception e) {
@@ -153,6 +155,7 @@ namespace OSDeveloper.IO.ItemManagement
 				this.GetFiles();
 				// 新しいファイルを格納する為の場所を確保する。
 				var files = new FileMetadata[_files.Length + 1];
+				_files.CopyTo(files, 0);
 				// ファイルを作成する。
 				var fi = new FileInfo(fpath);
 				fi.Create().Close();
@@ -184,11 +187,12 @@ namespace OSDeveloper.IO.ItemManagement
 				this.GetFolders();
 				// 新しいファイルを格納する為の場所を確保する。
 				var dirs = new FolderMetadata[_folders.Length + 1];
+				_folders.CopyTo(dirs, 0);
 				// ディレクトリを作成する。
 				Directory.CreateDirectory(dpath);
 				// ディレクトリのメタ情報を生成する。
 				var result = dirs[_folders.Length] = new FolderMetadata(dpath);
-				// 新しいファイル一覧をフィールド変数へ代入する。
+				// 新しいディレクトリ一覧をフィールド変数へ代入する。
 				_folders = dirs;
 				// 生成したメタ情報を呼び出し元へ返す。
 				return result;
@@ -196,6 +200,55 @@ namespace OSDeveloper.IO.ItemManagement
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return null;
+			}
+		}
+
+		public bool AddItem(ItemMetadata item)
+		{
+			try {
+				// ディレクトリ名が違う場合は、例外を発生させる。
+				// catchで例外が捕捉されてログが出力される。
+				if (!item.Parent.Path.Equals(this.Path)) {
+					throw new ArgumentException(
+						string.Format(
+							ErrorMessages.FolderMetadata_AddItem_DirName,
+							item.Path.ToString(), this.Path.ToString()),
+						nameof(item));
+				}
+				if (item is FileMetadata file) { // itemがファイルなら
+					// _files を読み込めている状態にする。
+					this.GetFiles();
+					// 新しいファイルを格納する為の場所を確保する。
+					var files = new FileMetadata[_files.Length + 1];
+					_files.CopyTo(files, 0);
+					// 指定されたファイルを代入する。
+					files[_files.Length] = file;
+					// 新しいファイル一覧をフィールド変数へ代入する。
+					_files = files;
+				} else if (item is FolderMetadata dir) { // itemがディレクトリなら
+					// _folders を読み込めている状態にする。
+					this.GetFolders();
+					// 新しいディレクトリを格納する為の場所を確保する。
+					var dirs = new FolderMetadata[_folders.Length + 1];
+					_folders.CopyTo(dirs, 0);
+					// 指定されたディレクトリを代入する。
+					dirs[_folders.Length] = dir;
+					// 新しいディレクトリ一覧をフィールド変数へ代入する。
+					_folders = dirs;
+				} else {
+					// ファイルでもフォルダでもアイテムには対応していない。
+					throw new InvalidCastException(
+						string.Format(
+							ErrorMessages.InvalidCast,
+							item.GetType().FullName,
+							$"{typeof(FileMetadata).FullName}, {typeof(FolderMetadata).FullName}"));
+				}
+				// 成功したので、trueを返す。
+				return true;
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+				return false;
 			}
 		}
 
