@@ -244,9 +244,11 @@
 			// 
 			// cutMenu
 			// 
+			this.cutMenu.Enabled = false;
 			this.cutMenu.Name = "cutMenu";
 			this.cutMenu.Size = new System.Drawing.Size(180, 22);
 			this.cutMenu.Text = "cut";
+			this.cutMenu.Visible = false;
 			this.cutMenu.Click += new System.EventHandler(this.cutMenu_Click);
 			// 
 			// pasteMenu
