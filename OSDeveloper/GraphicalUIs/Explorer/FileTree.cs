@@ -11,6 +11,8 @@ using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Resources;
+using TakymLib.IO;
+using Folder = System.IO.Directory;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
@@ -538,6 +540,11 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		private void copyMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(copyMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				Clipboard.SetText(node.Metadata.Path);
+			}
+
 			_logger.Trace($"completed {nameof(copyMenu_Click)}");
 		}
 
@@ -550,6 +557,50 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		private void pasteMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(pasteMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node && Clipboard.ContainsText()) {
+				try {
+					FolderMetadata dstdir;
+					ItemMetadata meta = null;
+					bool selectedFile;
+					if (node.Folder == null) {
+						dstdir = node.File.Parent;
+						selectedFile = true;
+					} else {
+						dstdir = node.Folder;
+						selectedFile = false;
+					}
+					var src = new PathString(Clipboard.GetText());
+					var dst = dstdir.Path.Bond(src.GetFileName()).EnsureName();
+					if (Folder.Exists(src)) {
+						var srcdir = new FolderMetadata(src);
+						meta = srcdir.Copy(dst);
+					} else if (File.Exists(src)) {
+						var srcfile = new FileMetadata(src, FileFormat.Unknown);
+						meta = srcfile.Copy(dst);
+					}
+					meta = meta ?? throw new FileNotFoundException(ExplorerTexts.Msgbox_CannotPaste_DoesNotExist, src);
+					var newnode = this.CreateTreeNode(meta);
+					if (selectedFile) {
+						node.Parent.Nodes.Add(newnode);
+						node.Parent.Expand();
+					} else {
+						node.Nodes.Add(newnode);
+						node.Expand();
+					}
+					treeView.Invalidate();
+					newnode.BeginEdit();
+				} catch (Exception error) {
+					_logger.Exception(error);
+					MessageBox.Show(_mwnd,
+						ExplorerTexts.Msgbox_CannotPaste +
+						$"\r\n{error.Message}",
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Warning);
+				}
+			}
+
 			_logger.Trace($"completed {nameof(pasteMenu_Click)}");
 		}
 

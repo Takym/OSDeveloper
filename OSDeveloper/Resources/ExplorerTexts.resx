@@ -141,6 +141,12 @@
   <data name="Msgbox_CannotOpenIn_DefaultApp" xml:space="preserve">
     <value>Msgbox_CannotOpenIn_DefaultApp {0}</value>
   </data>
+  <data name="Msgbox_CannotPaste" xml:space="preserve">
+    <value>Msgbox_CannotPaste</value>
+  </data>
+  <data name="Msgbox_CannotPaste_DoesNotExist" xml:space="preserve">
+    <value>Msgbox_CannotPaste_DoesNotExist</value>
+  </data>
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>additem</value>
   </data>

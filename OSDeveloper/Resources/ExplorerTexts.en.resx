@@ -141,6 +141,12 @@
   <data name="Msgbox_CannotOpenIn_DefaultApp" xml:space="preserve">
     <value>The specified file "{0}" does not associate with any programs.</value>
   </data>
+  <data name="Msgbox_CannotPaste" xml:space="preserve">
+    <value>The file or directory could not be pasted.</value>
+  </data>
+  <data name="Msgbox_CannotPaste_DoesNotExist" xml:space="preserve">
+    <value>The source file does not exist.</value>
+  </data>
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>&amp;Add other type of item...</value>
   </data>

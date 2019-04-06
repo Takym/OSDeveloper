@@ -141,6 +141,12 @@
   <data name="Msgbox_CannotOpenIn_DefaultApp" xml:space="preserve">
     <value>指定されたファイル「{0}」はどのプログラムにも関連付けられていません。</value>
   </data>
+  <data name="Msgbox_CannotPaste" xml:space="preserve">
+    <value>ファイルまたはディレクトリを貼り付ける事ができませんでした。</value>
+  </data>
+  <data name="Msgbox_CannotPaste_DoesNotExist" xml:space="preserve">
+    <value>貼り付け元のファイルが存在しません。</value>
+  </data>
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>その他の種類の項目を追加(&amp;A)...</value>
   </data>

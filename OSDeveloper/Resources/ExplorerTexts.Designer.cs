@@ -133,6 +133,24 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Msgbox_CannotPaste に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Msgbox_CannotPaste {
+            get {
+                return ResourceManager.GetString("Msgbox_CannotPaste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Msgbox_CannotPaste_DoesNotExist に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Msgbox_CannotPaste_DoesNotExist {
+            get {
+                return ResourceManager.GetString("Msgbox_CannotPaste_DoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   additem に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_Additem {
