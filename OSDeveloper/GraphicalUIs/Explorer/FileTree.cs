@@ -16,7 +16,7 @@ using Folder = System.IO.Directory;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
-	// TODO: コピー、切り取り、貼り付けメニューの処理の実装
+	// TODO: 切り取りメニューの処理の実装
 
 	public partial class FileTree : UserControl
 	{
@@ -262,6 +262,31 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Info($"icon id:{node.ImageIndex}, color:{node.ForeColor}");
 		}
 
+		private FolderMetadata GetFolderFromNode(FileTreeNode node, out bool selectedFile)
+		{
+			if (node.Folder == null) {
+				selectedFile = true;
+				return node.File.Parent;
+			} else {
+				selectedFile = false;
+				return node.Folder;
+			}
+		}
+
+		private void AddItemAsTreeNode(ItemMetadata meta, FileTreeNode node, bool selectedFile)
+		{
+			var newnode = this.CreateTreeNode(meta);
+			if (selectedFile) {
+				node.Parent.Nodes.Add(newnode);
+				node.Parent.Expand();
+			} else {
+				node.Nodes.Add(newnode);
+				node.Expand();
+			}
+			treeView.Invalidate();
+			newnode.BeginEdit();
+		}
+
 		#endregion
 
 		#region Button イベント
@@ -478,15 +503,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			if (!string.IsNullOrEmpty(causedBy)) {
 				_logger.Debug("caused by:" + (sender as ToolStripMenuItem)?.Name);
 				if (treeView.SelectedNode is FileTreeNode node) {
-					FolderMetadata dir;
-					bool selectedFile;
-					if (node.Folder == null) {
-						dir = node.File.Parent;
-						selectedFile = true;
-					} else {
-						dir = node.Folder;
-						selectedFile = false;
-					}
+					var dir = this.GetFolderFromNode(node, out bool selectedFile);
 					var meta = causedBy == "createFileMenu" ? (ItemMetadata)
 						dir.CreateFile("New File.txt")      :
 						dir.CreateDir ("New Folder");
@@ -497,16 +514,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 							MessageBoxButtons.OK,
 							MessageBoxIcon.Warning);
 					} else {
-						var newnode = this.CreateTreeNode(meta);
-						if (selectedFile) {
-							node.Parent.Nodes.Add(newnode);
-							node.Parent.Expand();
-						} else {
-							node.Nodes.Add(newnode);
-							node.Expand();
-						}
-						treeView.Invalidate();
-						newnode.BeginEdit();
+						this.AddItemAsTreeNode(meta, node, selectedFile);
 					}
 				}
 			}
@@ -560,16 +568,8 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 
 			if (treeView.SelectedNode is FileTreeNode node && Clipboard.ContainsText()) {
 				try {
-					FolderMetadata dstdir;
 					ItemMetadata meta = null;
-					bool selectedFile;
-					if (node.Folder == null) {
-						dstdir = node.File.Parent;
-						selectedFile = true;
-					} else {
-						dstdir = node.Folder;
-						selectedFile = false;
-					}
+					var dstdir = this.GetFolderFromNode(node, out bool selectedFile);
 					var src = new PathString(Clipboard.GetText());
 					var dst = dstdir.Path.Bond(src.GetFileName()).EnsureName();
 					if (Folder.Exists(src)) {
@@ -580,16 +580,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 						meta = srcfile.Copy(dst);
 					}
 					meta = meta ?? throw new FileNotFoundException(ExplorerTexts.Msgbox_CannotPaste_DoesNotExist, src);
-					var newnode = this.CreateTreeNode(meta);
-					if (selectedFile) {
-						node.Parent.Nodes.Add(newnode);
-						node.Parent.Expand();
-					} else {
-						node.Nodes.Add(newnode);
-						node.Expand();
-					}
-					treeView.Invalidate();
-					newnode.BeginEdit();
+					this.AddItemAsTreeNode(meta, node, selectedFile);
 				} catch (Exception error) {
 					_logger.Exception(error);
 					MessageBox.Show(_mwnd,
