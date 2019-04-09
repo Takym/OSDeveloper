@@ -168,21 +168,23 @@ namespace Yencon
 					sb.Append(_keys[i].Name);
 					sb.Append('=');
 					if (_keys[i] is YSection s) { // セクションの場合
-						sb.Append("{\n");
+						sb.Append("{\r\n");
 						// 行ごとに分割する
-						var vs = s.ToString().Split('\n');
+						var vs = s.ToString().Replace("\r\n", "\n").Split('\n');
 						// 先頭にタブを追加して結合する
 						for (int j = 0; j < vs.Length; ++j) {
-							sb.Append('\t');
-							sb.Append(vs[j]);
-							sb.Append('\n');
+							if (!string.IsNullOrWhiteSpace(vs[j])) {
+								sb.Append('\t');
+								sb.Append(vs[j]);
+								sb.Append("\r\n");
+							}
 						}
 						sb.Append('}');
 					} else { // その他のキー
 						sb.Append(_keys[i].ToString());
 					}
 				}
-				sb.Append('\n'); // sb.AppendLine(); // 必ず LF にしたいから
+				sb.Append("\r\n"); //sb.AppendLine(); // 必ず CRLF にしたいから
 			}
 			return sb.ToString();
 		}
