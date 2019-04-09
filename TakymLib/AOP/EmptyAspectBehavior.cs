@@ -4,7 +4,7 @@ using System.Runtime.Remoting.Messaging;
 
 namespace TakymLib.AOP
 {
-	internal class EmptyAspectBehavior : IAspectBehavior
+	internal sealed class EmptyAspectBehavior : IAspectBehavior
 	{
 		public void PreInitializer(Type serverType, IConstructionCallMessage constructionCallMessage)
 		{

@@ -91,6 +91,7 @@
     <Compile Include="AOP\IAspectBehavior.cs" />
     <Compile Include="AOP\ILogger.cs" />
     <Compile Include="AOP\LoggingAspectBehavior.cs" />
+    <Compile Include="AOP\MultipleLogger.cs" />
     <Compile Include="ArrayUtils.cs" />
     <Compile Include="Collections\HybridEnumerator.cs" />
     <Compile Include="Collections\HybridList_func.cs" />

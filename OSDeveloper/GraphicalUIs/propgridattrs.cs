@@ -7,19 +7,17 @@ namespace OSDeveloper.GraphicalUIs
 {
 	internal static class propgridattrs
 	{
-#if false
 		internal static ResourceManager GetResourceManager(string resmgr)
 		{
 			var t = Type.GetType($"{nameof(OSDeveloper)}.{nameof(Resources)}.{resmgr}", false, false);
 			if (t != null) {
 				var p = t.GetProperty(nameof(ResourceManager), BindingFlags.Static);
-				if (p != null)) {
+				if (p != null) {
 					return ((ResourceManager)(p.GetValue(null)));
 				}
 			}
 			return null;
 		}
-#endif
 
 		internal static string GetResourceString(string resmgr, string id)
 		{

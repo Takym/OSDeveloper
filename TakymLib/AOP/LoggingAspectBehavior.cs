@@ -13,14 +13,29 @@ namespace TakymLib.AOP
 		/// <summary>
 		///  ログの出力先を取得または設定します。
 		/// </summary>
-		public static ILogger Logger { get; set; }
+		public static ILogger Logger
+		{
+			get
+			{
+				return _loggers;
+			}
+
+			set
+			{
+				if (_loggers == null) {
+					_loggers = new MultipleLogger();
+				}
+				_loggers.Add(value);
+			}
+		}
+		private static MultipleLogger _loggers;
 
 		/// <summary>
 		///  コンストラクタが呼び出される前に実行されます。
 		/// </summary>
 		/// <param name="serverType">ターゲットの型です。</param>
 		/// <param name="constructionCallMessage">コンストラクタの呼び出しメッセージです。</param>
-		public void PreInitializer(Type serverType, IConstructionCallMessage constructionCallMessage)
+		public virtual void PreInitializer(Type serverType, IConstructionCallMessage constructionCallMessage)
 		{
 			Logger?.Trace($"pre-initializer: {serverType.FullName}::{constructionCallMessage.MethodName}");
 		}
@@ -30,7 +45,7 @@ namespace TakymLib.AOP
 		/// </summary>
 		/// <param name="serverType">ターゲットの型です。</param>
 		/// <param name="constructionCallMessage">コンストラクタの呼び出しメッセージです。</param>
-		public void PostInitializer(Type serverType, IConstructionCallMessage constructionCallMessage)
+		public virtual void PostInitializer(Type serverType, IConstructionCallMessage constructionCallMessage)
 		{
 			Logger?.Trace($"post-initializer: {serverType.FullName}::{constructionCallMessage.MethodName}");
 		}
@@ -40,7 +55,7 @@ namespace TakymLib.AOP
 		/// </summary>
 		/// <param name="serverType">ターゲットの型です。</param>
 		/// <param name="methodCallMessage">関数の呼び出しメッセージです。</param>
-		public void PreCallMethod(Type serverType, IMethodCallMessage methodCallMessage)
+		public virtual void PreCallMethod(Type serverType, IMethodCallMessage methodCallMessage)
 		{
 			Logger?.Trace($"pre-function: {serverType.FullName}::{methodCallMessage.MethodName}");
 		}
@@ -50,7 +65,7 @@ namespace TakymLib.AOP
 		/// </summary>
 		/// <param name="serverType">ターゲットの型です。</param>
 		/// <param name="methodCallMessage">関数の呼び出しメッセージです。</param>
-		public void PostCallMethod(Type serverType, IMethodCallMessage methodCallMessage)
+		public virtual void PostCallMethod(Type serverType, IMethodCallMessage methodCallMessage)
 		{
 			Logger?.Trace($"post-function: {serverType.FullName}::{methodCallMessage.MethodName}");
 		}
@@ -61,7 +76,7 @@ namespace TakymLib.AOP
 		/// <param name="serverType">ターゲットの型です。</param>
 		/// <param name="callMessage">呼び出しメッセージです。</param>
 		/// <returns>戻り値メッセージです。</returns>
-		public IMessage HandleInvalidCall(Type serverType, IMessage callMessage)
+		public virtual IMessage HandleInvalidCall(Type serverType, IMessage callMessage)
 		{
 			Logger?.Warn($"invalid call detected in: {serverType.FullName}");
 			foreach (KeyValuePair<object, object> item in callMessage.Properties) {
