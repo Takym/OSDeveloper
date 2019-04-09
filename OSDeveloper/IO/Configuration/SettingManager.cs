@@ -8,7 +8,7 @@ namespace OSDeveloper.IO.Configuration
 {
 	public static partial class SettingManager
 	{
-		private static bool _is_initialized;
+		private static bool                  _is_initialized;
 		private static Logger                _logger;
 		private static YenconStringConverter _txt_cnvtr;
 		private static YenconBinaryConverter _bin_cnvtr;
@@ -58,6 +58,7 @@ namespace OSDeveloper.IO.Configuration
 				_p_system_cfg  = SystemPaths.DefaultSettings.Bond("system.cfg");
 				_y_system_inix = File.Exists(_p_system_inix) ? _txt_cnvtr.Load(_p_system_inix) : new YSection();
 				_y_system_cfg  = File.Exists(_p_system_cfg ) ? _bin_cnvtr.Load(_p_system_cfg ) : new YSection();
+				System.EnsureAvailable();
 				_logger.Info("loaded the configuration data of \'system\'");
 			} // system
 		}
@@ -72,5 +73,13 @@ namespace OSDeveloper.IO.Configuration
 			} // system
 		}
 		#endregion
+
+		private static T GetKey<T>(YSection inix, YSection cfg, string keyName, T defaultValue) where T : YNode
+		{
+			defaultValue.Name = keyName;
+			return inix.GetNode(keyName)  as T
+				?? cfg .GetNode(keyName)  as T
+				?? cfg .Add(defaultValue) as T;
+		}
 	}
 }
