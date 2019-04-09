@@ -120,6 +120,7 @@ namespace OSDeveloper.IO
 			Directory.CreateDirectory(Backups);
 			Directory.CreateDirectory(Logs);
 			Environment.CurrentDirectory = _cwd;
+			new DirectoryInfo(WorkspaceConfig).Attributes |= FileAttributes.Hidden;
 		}
 	}
 }

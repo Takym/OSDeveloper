@@ -48,7 +48,13 @@ namespace OSDeveloper.IO
 				FileFormat.Document,
 				nameof(FileTypeNames.Document),
 				false,
-				"doc", "docx", "docm", "xls", "xlsx", "xlsm", "ppt", "pptx", "pptm", "rtf", "pdf"));
+				"doc", "docx", "docm", "xls", "xlsx", "xlsm", "ppt", "pptx", "pptm"));
+
+			_types.Add(new SystemFileType(
+				FileFormat.Document,
+				nameof(FileTypeNames.Document2),
+				false,
+				"pdf", "rtf", "csv", "tsv"));
 
 			_types.Add(new SystemFileType(
 				FileFormat.Text,

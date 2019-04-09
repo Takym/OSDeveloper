@@ -97,6 +97,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Document2 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Document2 {
+            get {
+                return ResourceManager.GetString("Document2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   LogFile に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LogFile {
