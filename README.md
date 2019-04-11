@@ -1,2 +1,6 @@
-# OSDeveloper
-To develop operating systems, kernels, bootstrap loaders, and applications on your OS!
+# OSDeveloper IDE
+Copyright (C) 2019 Takym.
+
+## 概要
+自作OS、カーネル、ブートローダー、自作OS上で動くアプリを開発できる様になる予定です。
+現在はまだ開発中です。最初のバージョンすら出来ていません。
