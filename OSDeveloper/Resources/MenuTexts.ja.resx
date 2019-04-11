@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Edit" xml:space="preserve">
+    <value>編集(&amp;E)</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>ファイル(&amp;F)</value>
   </data>
   <data name="File_Exit" xml:space="preserve">
     <value>終了(&amp;X)</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>ヘルプ(&amp;H)</value>
   </data>
   <data name="Screen" xml:space="preserve">
     <value>画面(&amp;S)</value>

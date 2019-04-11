@@ -36,9 +36,11 @@ namespace OSDeveloper
 
 		#region メインメニュー
 		private MainMenuItem _menu_file;
+		private MainMenuItem _menu_edit;
 		private MainMenuItem _menu_view;
 		private MainMenuItem _menu_tool;
-		private MainMenuItem _menu_window;
+		private MainMenuItem _menu_wind;
+		private MainMenuItem _menu_help;
 
 		private void BuildMainMenuItems()
 		{
@@ -47,6 +49,9 @@ namespace OSDeveloper
 			// _menu_file
 			_menu_file = new FileMainMenuItem(this);
 
+			// _menu_edit
+			_menu_edit = new EditMainMenuItem(this);
+
 			// _menu_view
 			_menu_view = new ViewMainMenuItem(this);
 
@@ -54,13 +59,18 @@ namespace OSDeveloper
 			_menu_tool = new ToolMainMenuItem(this);
 
 			// _menu_window
-			_menu_window = new WindowMainMenuItem(this);
+			_menu_wind = new WindowMainMenuItem(this);
+
+			// _menu_help
+			_menu_help = new HelpMainMenuItem(this);
 
 			_main_menu.Items.Add(_menu_file);
+			_main_menu.Items.Add(_menu_edit);
 			_main_menu.Items.Add(_menu_view);
 			_main_menu.Items.Add(_menu_tool);
-			_main_menu.Items.Add(_menu_window);
-			_main_menu.MdiWindowListItem = _menu_window;
+			_main_menu.Items.Add(_menu_wind);
+			_main_menu.Items.Add(_menu_help);
+			_main_menu.MdiWindowListItem = _menu_wind;
 		}
 
 		#endregion

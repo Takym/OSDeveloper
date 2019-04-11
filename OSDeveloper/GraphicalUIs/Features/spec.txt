@@ -2,6 +2,6 @@
 IPrintingFeature
 IUndoRedoFeature
 ISelectionFeature
-ITextSelectionFeature
-IClipboardFeature
-ISearchReplaceFeature
+	ITextSelectionFeature
+	IClipboardFeature
+	ISearchReplaceFeature

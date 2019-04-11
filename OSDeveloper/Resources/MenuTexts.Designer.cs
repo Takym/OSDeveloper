@@ -61,6 +61,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   EDIT に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   FILE に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string File {
@@ -75,6 +84,15 @@ namespace OSDeveloper.Resources {
         internal static string File_Exit {
             get {
                 return ResourceManager.GetString("File_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   HELP に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
             }
         }
         

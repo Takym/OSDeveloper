@@ -151,6 +151,8 @@
     <Compile Include="GraphicalUIs\Terminal\TabControlEx.Designer.cs">
       <DependentUpon>TabControlEx.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraphicalUIs\ToolStrips\HelpMainMenuItem.cs" />
+    <Compile Include="GraphicalUIs\ToolStrips\EditMainMenuItem.cs" />
     <Compile Include="GraphicalUIs\ToolStrips\MainMenuItem.cs" />
     <Compile Include="GraphicalUIs\ToolStrips\FileMainMenuItem.cs" />
     <Compile Include="GraphicalUIs\ToolStrips\ViewMainMenuItem.cs" />
