@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Microsoft.VisualBasic.FileIO;
 using TakymLib.IO;
 
 namespace OSDeveloper.IO.ItemManagement
@@ -35,7 +36,7 @@ namespace OSDeveloper.IO.ItemManagement
 				_finfo.MoveTo(this.Path.ChangeFileName(newName));
 				return base.Rename(newName);
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}, newname:{newName}");
 				Program.Logger.Exception(e);
 				return false;
 			}
@@ -47,7 +48,7 @@ namespace OSDeveloper.IO.ItemManagement
 				_finfo.CopyTo(path, true);
 				return new FileMetadata(path, this.Format);
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}, path:{path}");
 				Program.Logger.Exception(e);
 				return null;
 			}
@@ -59,7 +60,19 @@ namespace OSDeveloper.IO.ItemManagement
 				_finfo.Delete();
 				return base.Delete();
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+				return false;
+			}
+		}
+
+		public override bool TrashItem()
+		{
+			try {
+				FileSystem.DeleteFile(this.Path, UIOption.AllDialogs, RecycleOption.SendToRecycleBin);
+				return base.TrashItem();
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return false;
 			}

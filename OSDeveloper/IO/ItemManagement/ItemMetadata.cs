@@ -70,5 +70,11 @@ namespace OSDeveloper.IO.ItemManagement
 			this.IsRemoved = true;
 			return true;
 		}
+
+		public virtual bool TrashItem()
+		{
+			this.IsRemoved = true;
+			return true;
+		}
 	}
 }

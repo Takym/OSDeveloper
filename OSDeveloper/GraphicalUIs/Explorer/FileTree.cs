@@ -16,7 +16,7 @@ using Folder = System.IO.Directory;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
-	// TODO: 切り取りメニューの処理の実装
+	// TODO: 切り取りメニュー、PoweShellメニュー、Bashメニューの処理の実装
 
 	public partial class FileTree : UserControl
 	{
@@ -80,6 +80,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			copyMenu.Text            = ExplorerTexts.PopupMenu_Copy;
 			cutMenu.Text             = ExplorerTexts.PopupMenu_Cut;
 			pasteMenu.Text           = ExplorerTexts.PopupMenu_Paste;
+			removeMenu.Text          = ExplorerTexts.PopupMenu_Remove;
 			deleteMenu.Text          = ExplorerTexts.PopupMenu_Delete;
 			renameMenu.Text          = ExplorerTexts.PopupMenu_Rename;
 			propertyMenu.Text        = ExplorerTexts.PopupMenu_Property;
@@ -595,12 +596,12 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"completed {nameof(pasteMenu_Click)}");
 		}
 
-		private void deleteMenu_Click(object sender, EventArgs e)
+		private void removeMenu_Click(object sender, EventArgs e)
 		{
-			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
+			_logger.Trace($"executing {nameof(removeMenu_Click)}...");
 
 			if (treeView.SelectedNode is FileTreeNode node) {
-				if (node.Metadata.Delete()) {
+				if (node.Metadata.TrashItem()) {
 					node.Remove();
 				} else {
 					MessageBox.Show(_mwnd,
@@ -608,6 +609,32 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 						_mwnd.Text,
 						MessageBoxButtons.OK,
 						MessageBoxIcon.Warning);
+				}
+			}
+
+			_logger.Trace($"completed {nameof(removeMenu_Click)}");
+		}
+
+		private void deleteMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				var dr = MessageBox.Show(_mwnd,
+					string.Format(ExplorerTexts.Msgbox_ConfirmDelete, node.Metadata.Path),
+					_mwnd.Text,
+					MessageBoxButtons.YesNo,
+					MessageBoxIcon.Question);
+				if (dr == DialogResult.Yes) {
+					if (node.Metadata.Delete()) {
+						node.Remove();
+					} else {
+						MessageBox.Show(_mwnd,
+							ExplorerTexts.Msgbox_CannotDelete,
+							_mwnd.Text,
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Warning);
+					}
 				}
 			}
 

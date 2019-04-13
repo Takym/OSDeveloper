@@ -147,6 +147,9 @@
   <data name="Msgbox_CannotPaste_DoesNotExist" xml:space="preserve">
     <value>Msgbox_CannotPaste_DoesNotExist</value>
   </data>
+  <data name="Msgbox_ConfirmDelete" xml:space="preserve">
+    <value>Msgbox_ConfirmDelete {0}</value>
+  </data>
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>additem</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="PopupMenu_Property" xml:space="preserve">
     <value>property</value>
+  </data>
+  <data name="PopupMenu_Remove" xml:space="preserve">
+    <value>remove</value>
   </data>
   <data name="PopupMenu_Rename" xml:space="preserve">
     <value>rename</value>

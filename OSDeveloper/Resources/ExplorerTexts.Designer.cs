@@ -151,6 +151,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Msgbox_ConfirmDelete {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Msgbox_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("Msgbox_ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   additem に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_Additem {
@@ -282,6 +291,15 @@ namespace OSDeveloper.Resources {
         internal static string PopupMenu_Property {
             get {
                 return ResourceManager.GetString("PopupMenu_Property", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   remove に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Remove {
+            get {
+                return ResourceManager.GetString("PopupMenu_Remove", resourceCulture);
             }
         }
         

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Microsoft.VisualBasic.FileIO;
 using OSDeveloper.Resources;
 using TakymLib.IO;
 
@@ -102,7 +103,7 @@ namespace OSDeveloper.IO.ItemManagement
 				Directory.Move(this.Path, this.Path.ChangeFileName(newName));
 				return base.Rename(newName);
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}, newname:{newName}");
 				Program.Logger.Exception(e);
 				return false;
 			}
@@ -122,7 +123,7 @@ namespace OSDeveloper.IO.ItemManagement
 				}
 				return new FolderMetadata(path);
 			} catch (Exception e) {
-				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}, path:{path}");
 				Program.Logger.Exception(e);
 				return null;
 			}
@@ -133,6 +134,18 @@ namespace OSDeveloper.IO.ItemManagement
 			try {
 				_dinfo.Delete(true);
 				return base.Delete();
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+				return false;
+			}
+		}
+
+		public override bool TrashItem()
+		{
+			try {
+				FileSystem.DeleteDirectory(this.Path, UIOption.AllDialogs, RecycleOption.SendToRecycleBin);
+				return base.TrashItem();
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
