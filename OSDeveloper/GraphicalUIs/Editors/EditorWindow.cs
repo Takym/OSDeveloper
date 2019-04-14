@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
+using OSDeveloper.Native;
 
 namespace OSDeveloper.GraphicalUIs.Editors
 {
@@ -11,10 +12,22 @@ namespace OSDeveloper.GraphicalUIs.Editors
 		protected FormMain MainWindow { get; }
 		protected Logger Logger { get; }
 
+		public EditorWindow()
+		{
+			this.Logger = Logger.Get(nameof(EditorWindow));
+			this.InitializeComponent();
+			this.Icon = Libosdev.GetIcon(Libosdev.Icons.FormEditorWindow, out uint v);
+			this.Logger.Notice("required information is insufficient");
+			this.Logger.Warn($"{nameof(this.MainWindow)} is null");
+			this.Logger.Warn($"{nameof(this.Item)} is null");
+			this.Logger.Trace($"constructed {nameof(EditorWindow)}");
+		}
+
 		public EditorWindow(FormMain mwnd, ItemMetadata metadata)
 		{
 			this.Logger = Logger.Get(nameof(EditorWindow));
 			this.InitializeComponent();
+			this.Icon = Libosdev.GetIcon(Libosdev.Icons.FormEditorWindow, out uint v);
 			this.MainWindow = mwnd;
 			this.MdiParent = mwnd;
 			this.Item = metadata;

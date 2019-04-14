@@ -132,6 +132,7 @@
     <Compile Include="GraphicalUIs\Editors\EditorWindow.Designer.cs">
       <DependentUpon>EditorWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraphicalUIs\Editors\SimpleTextEditor.cs" />
     <Compile Include="GraphicalUIs\Explorer\FileTree.cs">
       <SubType>UserControl</SubType>
     </Compile>

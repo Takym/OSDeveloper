@@ -24,13 +24,16 @@ namespace OSDeveloper.IO.ItemManagement
 		}
 	}
 
-	public class FolderExtendedDetail : ItemExtendedDetail
+	public class TextFileExtendedDetail : DefaultItemExtendedDetail
 	{
-		public override ItemProperty CreatePropTab()
+		public override EditorWindow CreateEditor(FormMain mwnd)
 		{
-			return new ItemProperty(this.Metadata);
+			return new SimpleTextEditor(mwnd, this.Metadata);
 		}
+	}
 
+	public class FolderExtendedDetail : DefaultItemExtendedDetail
+	{
 		public override EditorWindow CreateEditor(FormMain mwnd)
 		{
 			return null;

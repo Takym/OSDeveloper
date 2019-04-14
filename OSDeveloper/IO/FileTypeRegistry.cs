@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.Resources;
 using TakymLib;
 
@@ -23,6 +24,7 @@ namespace OSDeveloper.IO
 			_types.Add(new SystemFileType(
 				FileFormat.Text,
 				nameof(FileTypeNames.TextFile),
+				typeof(TextFileExtendedDetail),
 				false,
 				"txt", "text"));
 
@@ -59,6 +61,7 @@ namespace OSDeveloper.IO
 			_types.Add(new SystemFileType(
 				FileFormat.Text,
 				nameof(FileTypeNames.LogFile),
+				typeof(TextFileExtendedDetail),
 				false,
 				"log"));
 

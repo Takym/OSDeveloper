@@ -38,32 +38,65 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public byte[] ReadAllBytes()
 		{
-			return File.ReadAllBytes(this.Path);
+			try {
+				return File.ReadAllBytes(this.Path);
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+				return null;
+			}
 		}
 
 		public string[] ReadAllLines()
 		{
-			return File.ReadAllLines(this.Path);
+			try {
+				return File.ReadAllLines(this.Path);
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+				return null;
+			}
 		}
 
 		public string ReadAllText()
 		{
-			return File.ReadAllText(this.Path);
+			try {
+				return File.ReadAllText(this.Path);
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+				return null;
+			}
 		}
 
 		public void WriteAllBytes(byte[] data)
 		{
-			File.WriteAllBytes(this.Path, data);
+			try {
+				File.WriteAllBytes(this.Path, data);
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+			}
 		}
 
 		public void ReadAllLines(string[] data)
 		{
-			File.WriteAllLines(this.Path, data);
+			try {
+				File.WriteAllLines(this.Path, data);
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+			}
 		}
 
 		public void ReadAllText(string data)
 		{
-			File.WriteAllText(this.Path, data);
+			try {
+				File.WriteAllText(this.Path, data);
+			} catch (Exception e) {
+				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
+				Program.Logger.Exception(e);
+			}
 		}
 
 		#endregion

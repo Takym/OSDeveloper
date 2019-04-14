@@ -93,6 +93,11 @@ namespace OSDeveloper.IO
 		{
 			this.Removable = removable;
 		}
+		internal SystemFileType(FileFormat format, string name, Type item, bool removable = false, params string[] extensions)
+			: base(format, name, item, extensions)
+		{
+			this.Removable = removable;
+		}
 	}
 
 	internal sealed class AllSupportedFileTypes : SystemFileType
