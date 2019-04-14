@@ -29,6 +29,45 @@ namespace OSDeveloper.IO.ItemManagement
 			}
 		}
 
+		public FileStream OpenStream()
+		{
+			return new FileStream(this.Path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
+		}
+
+		#region Fileクラスを使った読み書き
+
+		public byte[] ReadAllBytes()
+		{
+			return File.ReadAllBytes(this.Path);
+		}
+
+		public string[] ReadAllLines()
+		{
+			return File.ReadAllLines(this.Path);
+		}
+
+		public string ReadAllText()
+		{
+			return File.ReadAllText(this.Path);
+		}
+
+		public void WriteAllBytes(byte[] data)
+		{
+			File.WriteAllBytes(this.Path, data);
+		}
+
+		public void ReadAllLines(string[] data)
+		{
+			File.WriteAllLines(this.Path, data);
+		}
+
+		public void ReadAllText(string data)
+		{
+			File.WriteAllText(this.Path, data);
+		}
+
+		#endregion
+
 		public override bool Rename(string newName)
 		{
 			try {
