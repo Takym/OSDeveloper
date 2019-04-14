@@ -140,12 +140,6 @@
     </Compile>
     <Compile Include="GraphicalUIs\Explorer\IconList.cs" />
     <Compile Include="GraphicalUIs\propgridattrs.cs" />
-    <Compile Include="GraphicalUIs\Terminal\EditorProperty.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GraphicalUIs\Terminal\EditorProperty.Designer.cs">
-      <DependentUpon>EditorProperty.cs</DependentUpon>
-    </Compile>
     <Compile Include="GraphicalUIs\Terminal\ItemProperty.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -236,9 +230,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GraphicalUIs\Explorer\FileTree.resx">
       <DependentUpon>FileTree.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GraphicalUIs\Terminal\EditorProperty.resx">
-      <DependentUpon>EditorProperty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GraphicalUIs\Terminal\ItemProperty.resx">
       <DependentUpon>ItemProperty.cs</DependentUpon>

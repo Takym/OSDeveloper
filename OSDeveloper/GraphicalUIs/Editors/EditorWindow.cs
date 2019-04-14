@@ -11,7 +11,6 @@ namespace OSDeveloper.GraphicalUIs.Editors
 	{
 		public ItemMetadata Item { get; }
 		protected FormMain MainWindow { get; }
-		protected EditorProperty Property { get; private set; }
 		protected Logger Logger { get; }
 
 		public EditorWindow(FormMain mwnd, ItemMetadata metadata)
@@ -32,20 +31,6 @@ namespace OSDeveloper.GraphicalUIs.Editors
 			base.OnLoad(e);
 
 			this.Logger.Trace($"completed {nameof(OnLoad)}");
-		}
-
-		protected override void OnHelpButtonClicked(CancelEventArgs e)
-		{
-			this.Logger.Trace($"executing {nameof(OnHelpButtonClicked)}...");
-			base.OnHelpButtonClicked(e);
-
-			e.Cancel = true;
-			if (this.Property == null || this.Property.IsDisposed) {
-				this.Property = new EditorProperty(this.Item, this);
-			}
-			this.MainWindow.OpenTab(this.Property);
-
-			this.Logger.Trace($"completed {nameof(OnHelpButtonClicked)}");
 		}
 	}
 }

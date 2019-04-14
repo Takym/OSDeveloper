@@ -34,9 +34,6 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(256, 256);
-			this.HelpButton = true;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
 			this.Name = "EditorWindow";
 			this.Text = "EditorWindow";
 			this.ResumeLayout(false);
