@@ -17,19 +17,6 @@ namespace OSDeveloper
 			_logger.Trace($"executing {nameof(OnLoad)}...");
 			base.OnLoad(e);
 
-#if DEBUG
-			// TODO: デバッグコード、後で削除
-			Button btn = new Button();
-			btn.Text = "ﾌｧｲﾙｦﾋﾗｸ";
-			btn.Location = new System.Drawing.Point(200, 150);
-			btn.Click += new EventHandler((a, b) => {
-				OpenFileDialog ofd = new OpenFileDialog();
-				ofd.Filter = FileTypeRegistry.CreateFullSPFs();
-				ofd.ShowDialog();
-			});
-			this.Controls.Add(btn);
-#endif
-
 			// このタイミングでディレクトリ設定
 			_explorer.Directory = new FolderMetadata(SystemPaths.Workspace);
 
