@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Forms;
-using OSDeveloper.GraphicalUIs.Terminal;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 

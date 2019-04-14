@@ -293,6 +293,20 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 
 		#endregion
 
+		#region 共通機能
+
+		public void OpenEditor()
+		{
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.Editor == null || node.Editor.IsDisposed) {
+					node.Editor = node.Metadata.ExtendedDetail.CreateEditor(_mwnd);
+				}
+				node.Editor.Show();
+			}
+		}
+
+		#endregion
+
 		#region Button イベント
 		private void btnRefresh_Click(object sender, EventArgs e)
 		{
@@ -321,6 +335,15 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		#endregion
 
 		#region TreeView イベント
+
+		private void treeView_DoubleClick(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_DoubleClick)}...");
+
+			this.OpenEditor();
+
+			_logger.Trace($"completed {nameof(treeView_DoubleClick)}");
+		}
 
 		/* ---- Select ---- */
 
@@ -434,12 +457,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		{
 			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
 
-			if (treeView.SelectedNode is FileTreeNode node) {
-				if (node.Editor == null || node.Editor.IsDisposed) {
-					node.Editor = node.Metadata.ExtendedDetail.CreateEditor(_mwnd);
-				}
-				node.Editor.Show();
-			}
+			this.OpenEditor();
 
 			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
 		}
