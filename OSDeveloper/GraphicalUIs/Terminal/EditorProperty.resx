@@ -117,94 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnCollapse" xml:space="preserve">
-    <value>BtnCollapse</value>
-  </data>
-  <data name="BtnExpand" xml:space="preserve">
-    <value>BtnExpand</value>
-  </data>
-  <data name="BtnRefresh" xml:space="preserve">
-    <value>BtnRefresh</value>
-  </data>
-  <data name="Msgbox_CannotChangeName" xml:space="preserve">
-    <value>Msgbox_CannotChangeName</value>
-  </data>
-  <data name="Msgbox_CannotClone" xml:space="preserve">
-    <value>Msgbox_CannotClone</value>
-  </data>
-  <data name="Msgbox_CannotCreate" xml:space="preserve">
-    <value>Msgbox_CannotCreate</value>
-  </data>
-  <data name="Msgbox_CannotDelete" xml:space="preserve">
-    <value>Msgbox_CannotDelete</value>
-  </data>
-  <data name="Msgbox_CannotOpenIn_DefaultApp" xml:space="preserve">
-    <value>Msgbox_CannotOpenIn_DefaultApp {0}</value>
-  </data>
-  <data name="Msgbox_CannotPaste" xml:space="preserve">
-    <value>Msgbox_CannotPaste</value>
-  </data>
-  <data name="Msgbox_CannotPaste_DoesNotExist" xml:space="preserve">
-    <value>Msgbox_CannotPaste_DoesNotExist</value>
-  </data>
-  <data name="Msgbox_ConfirmDelete" xml:space="preserve">
-    <value>Msgbox_ConfirmDelete {0}</value>
-  </data>
-  <data name="PopupMenu_Additem" xml:space="preserve">
-    <value>additem</value>
-  </data>
-  <data name="PopupMenu_Clone" xml:space="preserve">
-    <value>clone</value>
-  </data>
-  <data name="PopupMenu_Copy" xml:space="preserve">
-    <value>copy</value>
-  </data>
-  <data name="PopupMenu_CreateDir" xml:space="preserve">
-    <value>createDir</value>
-  </data>
-  <data name="PopupMenu_CreateFile" xml:space="preserve">
-    <value>createFile</value>
-  </data>
-  <data name="PopupMenu_Cut" xml:space="preserve">
-    <value>cut</value>
-  </data>
-  <data name="PopupMenu_Delete" xml:space="preserve">
-    <value>delete</value>
-  </data>
-  <data name="PopupMenu_Open" xml:space="preserve">
-    <value>open</value>
-  </data>
-  <data name="PopupMenu_OpenIn" xml:space="preserve">
-    <value>openIn</value>
-  </data>
-  <data name="PopupMenu_OpenIn_Bash" xml:space="preserve">
-    <value>bash</value>
-  </data>
-  <data name="PopupMenu_OpenIn_Cmd" xml:space="preserve">
-    <value>cmd</value>
-  </data>
-  <data name="PopupMenu_OpenIn_DefaultApp" xml:space="preserve">
-    <value>defaultApp</value>
-  </data>
-  <data name="PopupMenu_OpenIn_Explorer" xml:space="preserve">
-    <value>explorer</value>
-  </data>
-  <data name="PopupMenu_OpenIn_PowerShell" xml:space="preserve">
-    <value>powershell</value>
-  </data>
-  <data name="PopupMenu_Paste" xml:space="preserve">
-    <value>paste</value>
-  </data>
-  <data name="PopupMenu_Property" xml:space="preserve">
-    <value>property</value>
-  </data>
-  <data name="PopupMenu_Remove" xml:space="preserve">
-    <value>remove</value>
-  </data>
-  <data name="PopupMenu_Rename" xml:space="preserve">
-    <value>rename</value>
-  </data>
-  <data name="RemovedTreeNode" xml:space="preserve">
-    <value>RemovedTreeNode</value>
-  </data>
+  <metadata name="propertyGrid.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

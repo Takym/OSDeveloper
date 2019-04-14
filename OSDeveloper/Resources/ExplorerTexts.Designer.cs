@@ -223,6 +223,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   open に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Open {
+            get {
+                return ResourceManager.GetString("PopupMenu_Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   openIn に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_OpenIn {

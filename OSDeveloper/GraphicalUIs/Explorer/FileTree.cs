@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OSDeveloper.GraphicalUIs.Editors;
 using OSDeveloper.GraphicalUIs.Terminal;
 using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
@@ -60,6 +61,8 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			btnCollapse.Text  = ExplorerTexts.BtnCollapse;
 
 			const string psver       = "WindowsPowerShell\\v1.0";
+			openMenu.Text            = ExplorerTexts.PopupMenu_Open;
+			openMenu.Font            = new Font(openMenu.Font, FontStyle.Bold);
 			openInMenu.Text          = ExplorerTexts.PopupMenu_OpenIn;
 			{
 				defaultAppMenu.Text  = ExplorerTexts.PopupMenu_OpenIn_DefaultApp;
@@ -427,6 +430,20 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 
 		#region ContextMenuStrip イベント
 
+		private void openMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.Editor == null || node.Editor.IsDisposed) {
+					node.Editor = node.Metadata.ExtendedDetail.CreateEditor(_mwnd);
+				}
+				node.Editor.Show();
+			}
+
+			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
+		}
+
 		private void defaultAppMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(defaultAppMenu_Click)}...");
@@ -672,6 +689,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		{
 			public ItemMetadata Metadata { get; }
 			public ItemProperty Property { get; set; }
+			public EditorWindow Editor   { get; set; }
 
 			public FolderMetadata Folder
 			{

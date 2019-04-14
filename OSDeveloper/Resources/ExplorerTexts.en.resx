@@ -171,6 +171,9 @@
   <data name="PopupMenu_Delete" xml:space="preserve">
     <value>Delete completely</value>
   </data>
+  <data name="PopupMenu_Open" xml:space="preserve">
+    <value>&amp;Open</value>
+  </data>
   <data name="PopupMenu_OpenIn" xml:space="preserve">
     <value>Open in e&amp;xternal program...</value>
   </data>
