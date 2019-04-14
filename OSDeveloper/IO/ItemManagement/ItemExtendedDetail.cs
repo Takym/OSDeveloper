@@ -23,4 +23,17 @@ namespace OSDeveloper.IO.ItemManagement
 			return new EditorWindow(mwnd, this.Metadata);
 		}
 	}
+
+	public class FolderExtendedDetail : ItemExtendedDetail
+	{
+		public override ItemProperty CreatePropTab()
+		{
+			return new ItemProperty(this.Metadata);
+		}
+
+		public override EditorWindow CreateEditor(FormMain mwnd)
+		{
+			return null;
+		}
+	}
 }

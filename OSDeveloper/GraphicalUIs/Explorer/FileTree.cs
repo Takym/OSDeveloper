@@ -301,7 +301,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 				if (node.Editor == null || node.Editor.IsDisposed) {
 					node.Editor = node.Metadata.ExtendedDetail.CreateEditor(_mwnd);
 				}
-				node.Editor.Show();
+				node.Editor?.Show();
 			}
 		}
 

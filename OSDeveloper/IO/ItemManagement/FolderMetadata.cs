@@ -48,6 +48,7 @@ namespace OSDeveloper.IO.ItemManagement
 					this.Format = FolderFormat.Directory;
 				}
 				Directory.EnumerateFileSystemEntries(this.Path); // アクセス可能か確認
+				this.ExtendedDetail = new FolderExtendedDetail();
 				this.CanAccess = true;
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
