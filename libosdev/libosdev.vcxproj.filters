@@ -138,5 +138,17 @@
     <Image Include="icons\1049.Logo_ZerolibEx.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="icons\1200.MenuFile_Save.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1201.MenuFile_SaveAs.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1202.MenuFile_SaveAll.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1203.MenuFile_SaveAllAs.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

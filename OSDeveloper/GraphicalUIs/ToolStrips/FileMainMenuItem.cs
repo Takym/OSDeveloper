@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using OSDeveloper.GraphicalUIs.Editors;
 using OSDeveloper.GraphicalUIs.Features;
 using OSDeveloper.IO;
+using OSDeveloper.Native;
 using OSDeveloper.Resources;
 using TakymLib.IO;
 
@@ -30,21 +31,25 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			_save.Text               = MenuTexts.File_Save;
 			_save.Click             += this._save_Click;
 			_save.ShortcutKeys       = Keys.Control | Keys.S;
+			_save.Image              = Libosdev.GetIcon(Libosdev.Icons.MenuFileSave, out uint v0).ToBitmap();
 			
 			_saveAs.Name             = nameof(_saveAs);
 			_saveAs.Text             = MenuTexts.File_SaveAs;
 			_saveAs.Click           += this._saveAs_Click;
 			_saveAs.ShortcutKeys     = Keys.Control | Keys.Shift | Keys.S;
-			
+			_saveAs.Image            = Libosdev.GetIcon(Libosdev.Icons.MenuFileSaveAs, out uint v1).ToBitmap();
+
 			_saveAll.Name            = nameof(_saveAll);
 			_saveAll.Text            = MenuTexts.File_SaveAll;
 			_saveAll.Click          += this._saveAll_Click;
 			_saveAll.ShortcutKeys    = Keys.Control | Keys.Alt | Keys.S;
+			_saveAll.Image           = Libosdev.GetIcon(Libosdev.Icons.MenuFileSaveAll, out uint v2).ToBitmap();
 
 			_saveAllAs.Name          = nameof(_saveAllAs);
 			_saveAllAs.Text          = MenuTexts.File_SaveAllAs;
 			_saveAllAs.Click        += this._saveAllAs_Click;
 			_saveAllAs.ShortcutKeys  = Keys.Control | Keys.Shift | Keys.Alt | Keys.S;
+			_saveAllAs.Image         = Libosdev.GetIcon(Libosdev.Icons.MenuFileSaveAllAs, out uint v3).ToBitmap();
 
 			_exit.Name               = nameof(_exit);
 			_exit.Text               = MenuTexts.File_Exit;

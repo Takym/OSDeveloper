@@ -224,6 +224,10 @@
     <Image Include="icons\1160.Folder_JunClosed.ico" />
     <Image Include="icons\1161.Folder_JunOpened.ico" />
     <Image Include="icons\1199.Item_CannotAccess.ico" />
+    <Image Include="icons\1200.MenuFile_Save.ico" />
+    <Image Include="icons\1201.MenuFile_SaveAs.ico" />
+    <Image Include="icons\1202.MenuFile_SaveAll.ico" />
+    <Image Include="icons\1203.MenuFile_SaveAllAs.ico" />
     <Image Include="icons\1900.Misc_Unknown.ico" />
     <Image Include="icons\1901.Misc_Refresh.ico" />
     <Image Include="icons\1902.Misc_Expand.ico" />
