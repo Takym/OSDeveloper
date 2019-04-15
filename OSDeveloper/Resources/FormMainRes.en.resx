@@ -123,6 +123,12 @@
   <data name="Icon" xml:space="preserve">
     <value>LogoEnglish</value>
   </data>
+  <data name="Status_CapturedActive" xml:space="preserve">
+    <value>Captured the active screen "{0}" to the clipboard.</value>
+  </data>
+  <data name="Status_CapturedEntire" xml:space="preserve">
+    <value>Captured the entire screen to the clipboard.</value>
+  </data>
   <data name="Status_NotSupported" xml:space="preserve">
     <value>"{0}" cannot execute in the specified window.</value>
   </data>

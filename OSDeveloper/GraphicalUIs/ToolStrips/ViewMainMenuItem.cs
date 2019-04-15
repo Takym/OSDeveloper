@@ -38,6 +38,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			} else {
 				_mwnd.OpenTab(_mwnd.LogOutput);
 			}
+			_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
 
 			_logger.Trace($"completed {nameof(_log_output_Click)}");
 		}

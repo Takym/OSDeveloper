@@ -79,6 +79,24 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   CapturedActive {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Status_CapturedActive {
+            get {
+                return ResourceManager.GetString("Status_CapturedActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   CapturedEntire に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Status_CapturedEntire {
+            get {
+                return ResourceManager.GetString("Status_CapturedEntire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Status_NotSupported {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Status_NotSupported {

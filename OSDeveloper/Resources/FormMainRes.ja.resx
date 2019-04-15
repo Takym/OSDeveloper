@@ -123,6 +123,12 @@
   <data name="Icon" xml:space="preserve">
     <value>LogoJapanese</value>
   </data>
+  <data name="Status_CapturedActive" xml:space="preserve">
+    <value>クリップボードにアクティブウィンドウ「{0}」をキャプチャしました。</value>
+  </data>
+  <data name="Status_CapturedEntire" xml:space="preserve">
+    <value>クリップボードに画面全体をキャプチャしました。</value>
+  </data>
   <data name="Status_NotSupported" xml:space="preserve">
     <value>「{0}」は指定されたウィンドウでは実行できません。</value>
   </data>

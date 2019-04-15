@@ -82,6 +82,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 					goto end;
 				}
 			}
+			_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
 
 end:
 			_logger.Trace($"completed {nameof(_switch_wnd_Click)}");
@@ -104,6 +105,7 @@ end:
 			foreach (var f in _mwnd.MdiChildren) {
 				f.Close();
 			}
+			_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
 
 			_logger.Trace($"completed {nameof(_close_all_wnds_Click)}");
 		}
@@ -129,6 +131,7 @@ end:
 
 				base.OnClick(e);
 				_target.LayoutMdi(_layout);
+				_target.StatusMessageLeft = FormMainRes.Status_Ready;
 
 				_logger.Trace($"completed {nameof(OnClick)}");
 			}

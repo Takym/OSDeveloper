@@ -28,6 +28,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			_active.Text          = MenuTexts.Screen_CaptureActive;
 			_active.Click        += this._active_Click;
 			_active.ShortcutKeys  = Keys.Control | Keys.Shift | Keys.F12;
+			_active.Enabled       = _mwnd.ActiveMdiChild != null;
 
 			this.DropDownItems.Add(_entire);
 			this.DropDownItems.Add(_active);
@@ -48,6 +49,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 
 			var img = User32.CaptureControl(_mwnd);
 			Clipboard.SetImage(img);
+			_mwnd.StatusMessageLeft = FormMainRes.Status_CapturedEntire;
 
 			_logger.Trace($"completed {nameof(_entire_Click)}");
 		}
@@ -59,9 +61,11 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			if (_mwnd.ActiveMdiChild == null) {
 				_logger.Warn("there is no active MDI child window, cannot capture");
 				_logger.Warn("this error should not happen");
+				_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
 			} else {
 				var img = User32.CaptureControl(_mwnd.ActiveMdiChild);
 				Clipboard.SetImage(img);
+				_mwnd.StatusMessageLeft = string.Format(FormMainRes.Status_CapturedActive, _mwnd.ActiveMdiChild.Text);
 			}
 
 			_logger.Trace($"completed {nameof(_active_Click)}");

@@ -123,6 +123,12 @@
   <data name="Icon" xml:space="preserve">
     <value>LogoFormMain</value>
   </data>
+  <data name="Status_CapturedActive" xml:space="preserve">
+    <value>CapturedActive {0}</value>
+  </data>
+  <data name="Status_CapturedEntire" xml:space="preserve">
+    <value>CapturedEntire</value>
+  </data>
   <data name="Status_NotSupported" xml:space="preserve">
     <value>Status_NotSupported {0}</value>
   </data>

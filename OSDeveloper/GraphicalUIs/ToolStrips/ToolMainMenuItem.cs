@@ -46,6 +46,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 					if (dr == DialogResult.Yes) {
 						Process.Start(pack);
 					}
+					_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
 					_logger.Trace($"completed {tsmi.Name}");
 				};
 				_desktop_themepacks.DropDownItems.Add(tsmi);
