@@ -70,6 +70,60 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Clear に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Clear {
+            get {
+                return ResourceManager.GetString("Edit_Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Copy に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Copy {
+            get {
+                return ResourceManager.GetString("Edit_Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cut に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Cut {
+            get {
+                return ResourceManager.GetString("Edit_Cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Delete に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Delete {
+            get {
+                return ResourceManager.GetString("Edit_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Paste に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Paste {
+            get {
+                return ResourceManager.GetString("Edit_Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SelectAll に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_SelectAll {
+            get {
+                return ResourceManager.GetString("Edit_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   FILE に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string File {

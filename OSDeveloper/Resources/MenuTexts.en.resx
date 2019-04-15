@@ -120,6 +120,24 @@
   <data name="Edit" xml:space="preserve">
     <value>&amp;Edit</value>
   </data>
+  <data name="Edit_Clear" xml:space="preserve">
+    <value>Clear &amp;selection</value>
+  </data>
+  <data name="Edit_Copy" xml:space="preserve">
+    <value>&amp;Copy</value>
+  </data>
+  <data name="Edit_Cut" xml:space="preserve">
+    <value>C&amp;ut</value>
+  </data>
+  <data name="Edit_Delete" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="Edit_Paste" xml:space="preserve">
+    <value>&amp;Paste</value>
+  </data>
+  <data name="Edit_SelectAll" xml:space="preserve">
+    <value>Select &amp;all</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>&amp;File</value>
   </data>

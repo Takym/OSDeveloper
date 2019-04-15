@@ -8,7 +8,7 @@ using TakymLib.IO;
 namespace OSDeveloper.GraphicalUIs.Editors
 {
 	[DesignerCategory("")] // デザイナ避け
-	public partial class SimpleTextEditor : EditorWindow, IFileSaveLoadFeature
+	public partial class SimpleTextEditor : EditorWindow, IFileSaveLoadFeature, IClipboardFeature
 	{
 		private TextBox _textBox;
 
@@ -37,6 +37,36 @@ namespace OSDeveloper.GraphicalUIs.Editors
 			using (var sw = new StreamWriter(filename)) {
 				sw.Write(_textBox.Text);
 			}
+		}
+
+		public void Cut()
+		{
+			_textBox.Cut();
+		}
+
+		public void Copy()
+		{
+			_textBox.Copy();
+		}
+
+		public void Paste()
+		{
+			_textBox.Paste();
+		}
+
+		public void SelectAll()
+		{
+			_textBox.SelectAll();
+		}
+
+		public void ClearSelection()
+		{
+			_textBox.SelectionLength = 0;
+		}
+
+		public void DeleteSelection()
+		{
+			_textBox.SelectedText = string.Empty;
 		}
 	}
 }

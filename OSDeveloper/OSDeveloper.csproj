@@ -140,9 +140,11 @@
       <DependentUpon>FileTree.cs</DependentUpon>
     </Compile>
     <Compile Include="GraphicalUIs\Explorer\IconList.cs" />
+    <Compile Include="GraphicalUIs\Features\IClipboardFeature.cs" />
     <Compile Include="GraphicalUIs\Features\IFileSaveLoadFeature.cs" />
     <Compile Include="GraphicalUIs\Features\IFileLoadFeature.cs" />
     <Compile Include="GraphicalUIs\Features\IFileSaveFeature.cs" />
+    <Compile Include="GraphicalUIs\Features\ISelectionFeature.cs" />
     <Compile Include="GraphicalUIs\propgridattrs.cs" />
     <Compile Include="GraphicalUIs\Terminal\ItemProperty.cs">
       <SubType>Component</SubType>

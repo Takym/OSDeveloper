@@ -120,6 +120,24 @@
   <data name="Edit" xml:space="preserve">
     <value>編集(&amp;E)</value>
   </data>
+  <data name="Edit_Clear" xml:space="preserve">
+    <value>選択を解除(&amp;S)</value>
+  </data>
+  <data name="Edit_Copy" xml:space="preserve">
+    <value>コピー(&amp;C)</value>
+  </data>
+  <data name="Edit_Cut" xml:space="preserve">
+    <value>切り取り(&amp;U)</value>
+  </data>
+  <data name="Edit_Delete" xml:space="preserve">
+    <value>削除(&amp;D)</value>
+  </data>
+  <data name="Edit_Paste" xml:space="preserve">
+    <value>貼り付け(&amp;P)</value>
+  </data>
+  <data name="Edit_SelectAll" xml:space="preserve">
+    <value>全て選択(&amp;A)</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>ファイル(&amp;F)</value>
   </data>

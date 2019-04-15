@@ -83,7 +83,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 				flf.Reload();
 				_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
 			} else {
-				_mwnd.StatusMessageLeft = string.Format(FormMainRes.Status_NotSupported, _save.Text);
+				_mwnd.StatusMessageLeft = string.Format(FormMainRes.Status_NotSupported, _reload.Text);
 			}
 
 			_logger.Trace($"completed {nameof(_reload_Click)}");
