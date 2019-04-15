@@ -79,6 +79,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Status_NotSupported {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Status_NotSupported {
+            get {
+                return ResourceManager.GetString("Status_NotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Preparing に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Status_Preparing {

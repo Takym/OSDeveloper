@@ -136,6 +136,17 @@ namespace OSDeveloper.IO
 			return sb.ToString();
 		}
 
+		public static string CreateSPFs(this FileType[] fileTypes)
+		{
+			// SPF = Search Pattern Filter
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < fileTypes.Length; ++i) {
+				sb.Append(fileTypes[i].CreateSPF()).Append('|');
+			}
+			sb.Remove(sb.Length - 1, 1);
+			return sb.ToString();
+		}
+
 		public static FileType[] GetAll()
 		{
 			return _types.ToArray();

@@ -79,7 +79,7 @@ namespace OSDeveloper.IO.ItemManagement
 			}
 		}
 
-		public void ReadAllLines(string[] data)
+		public void WriteAllLines(string[] data)
 		{
 			try {
 				File.WriteAllLines(this.Path, data);
@@ -89,7 +89,7 @@ namespace OSDeveloper.IO.ItemManagement
 			}
 		}
 
-		public void ReadAllText(string data)
+		public void WriteAllText(string data)
 		{
 			try {
 				File.WriteAllText(this.Path, data);

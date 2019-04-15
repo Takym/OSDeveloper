@@ -126,6 +126,18 @@
   <data name="File_Exit" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
+  <data name="File_Save" xml:space="preserve">
+    <value>Overwrite &amp;save</value>
+  </data>
+  <data name="File_SaveAll" xml:space="preserve">
+    <value>Overwrite save a&amp;ll</value>
+  </data>
+  <data name="File_SaveAllAs" xml:space="preserve">
+    <value>Save all as...</value>
+  </data>
+  <data name="File_SaveAs" xml:space="preserve">
+    <value>Save &amp;as...</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>&amp;Help</value>
   </data>

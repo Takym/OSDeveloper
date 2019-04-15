@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel;
+using System.IO;
 using System.Windows.Forms;
+using OSDeveloper.GraphicalUIs.Features;
 using OSDeveloper.IO.ItemManagement;
+using TakymLib.IO;
 
 namespace OSDeveloper.GraphicalUIs.Editors
 {
 	[DesignerCategory("")] // デザイナ避け
-	public partial class SimpleTextEditor : EditorWindow
+	public partial class SimpleTextEditor : EditorWindow, IFileSaveFeature
 	{
 		private TextBox _textBox;
 
@@ -17,6 +20,18 @@ namespace OSDeveloper.GraphicalUIs.Editors
 			_textBox.Dock = DockStyle.Fill;
 			_textBox.Text = (metadata as FileMetadata)?.ReadAllText();
 			this.Controls.Add(_textBox);
+		}
+
+		public void Save()
+		{
+			(this.Item as FileMetadata)?.WriteAllText(_textBox.Text);
+		}
+
+		public void SaveAs(PathString filename)
+		{
+			using (var sw = new StreamWriter(filename)) {
+				sw.Write(_textBox.Text);
+			}
 		}
 	}
 }

@@ -123,6 +123,9 @@
   <data name="Icon" xml:space="preserve">
     <value>LogoEnglish</value>
   </data>
+  <data name="Status_NotSupported" xml:space="preserve">
+    <value>"{0}" cannot execute in the specified window.</value>
+  </data>
   <data name="Status_Preparing" xml:space="preserve">
     <value>Now preparing...</value>
   </data>

@@ -88,6 +88,42 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Save に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Save {
+            get {
+                return ResourceManager.GetString("File_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SaveAll に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_SaveAll {
+            get {
+                return ResourceManager.GetString("File_SaveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SaveAllAs に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_SaveAllAs {
+            get {
+                return ResourceManager.GetString("File_SaveAllAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SaveAs に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_SaveAs {
+            get {
+                return ResourceManager.GetString("File_SaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   HELP に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Help {
