@@ -8,7 +8,7 @@ using TakymLib.IO;
 namespace OSDeveloper.GraphicalUIs.Editors
 {
 	[DesignerCategory("")] // デザイナ避け
-	public partial class SimpleTextEditor : EditorWindow, IFileSaveFeature
+	public partial class SimpleTextEditor : EditorWindow, IFileSaveLoadFeature
 	{
 		private TextBox _textBox;
 
@@ -20,6 +20,11 @@ namespace OSDeveloper.GraphicalUIs.Editors
 			_textBox.Dock = DockStyle.Fill;
 			_textBox.Text = (metadata as FileMetadata)?.ReadAllText();
 			this.Controls.Add(_textBox);
+		}
+
+		public void Reload()
+		{
+			_textBox.Text = (this.Item as FileMetadata)?.ReadAllText();
 		}
 
 		public void Save()

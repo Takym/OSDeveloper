@@ -88,6 +88,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Reload に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Reload {
+            get {
+                return ResourceManager.GetString("File_Reload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Save に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string File_Save {

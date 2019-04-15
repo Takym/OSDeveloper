@@ -126,6 +126,9 @@
   <data name="File_Exit" xml:space="preserve">
     <value>終了(&amp;X)</value>
   </data>
+  <data name="File_Reload" xml:space="preserve">
+    <value>再読み込み(&amp;R)</value>
+  </data>
   <data name="File_Save" xml:space="preserve">
     <value>上書き保存(&amp;S)</value>
   </data>

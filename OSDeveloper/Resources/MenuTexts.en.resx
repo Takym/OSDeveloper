@@ -126,6 +126,9 @@
   <data name="File_Exit" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
+  <data name="File_Reload" xml:space="preserve">
+    <value>&amp;Reload</value>
+  </data>
   <data name="File_Save" xml:space="preserve">
     <value>Overwrite &amp;save</value>
   </data>

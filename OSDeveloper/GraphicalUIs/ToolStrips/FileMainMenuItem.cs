@@ -12,6 +12,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 	public partial class FileMainMenuItem : MainMenuItem
 	{
 		private readonly SaveFileDialog _sfd;
+		private readonly ToolStripMenuItem _reload;
 		private readonly ToolStripMenuItem _save, _saveAs, _saveAll, _saveAllAs;
 		private readonly ToolStripMenuItem _exit;
 
@@ -21,11 +22,17 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			this.Text = MenuTexts.File;
 
 			_sfd       = new SaveFileDialog();
+			_reload    = new ToolStripMenuItem();
 			_save      = new ToolStripMenuItem();
 			_saveAs    = new ToolStripMenuItem();
 			_saveAll   = new ToolStripMenuItem();
 			_saveAllAs = new ToolStripMenuItem();
 			_exit      = new ToolStripMenuItem();
+
+			_reload.Name             = nameof(_reload);
+			_reload.Text             = MenuTexts.File_Reload;
+			_reload.Click           += this._reload_Click;
+			_reload.ShortcutKeys     = Keys.F5;
 
 			_save.Name               = nameof(_save);
 			_save.Text               = MenuTexts.File_Save;
@@ -56,6 +63,8 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			_exit.Click             += this._exit_Click;
 			_exit.ShortcutKeys       = Keys.Alt | Keys.F4;
 
+			this.DropDownItems.Add(_reload);
+			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_save);
 			this.DropDownItems.Add(_saveAs);
 			this.DropDownItems.Add(_saveAll);
@@ -64,6 +73,20 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(_exit);
 
 			_logger.Trace($"constructed {nameof(FileMainMenuItem)}");
+		}
+
+		private void _reload_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(_reload_Click)}...");
+
+			if (_mwnd.ActiveMdiChild is EditorWindow editor && editor is IFileLoadFeature flf) {
+				flf.Reload();
+				_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
+			} else {
+				_mwnd.StatusMessageLeft = string.Format(FormMainRes.Status_NotSupported, _save.Text);
+			}
+
+			_logger.Trace($"completed {nameof(_reload_Click)}");
 		}
 
 		private void _save_Click(object sender, EventArgs e)
