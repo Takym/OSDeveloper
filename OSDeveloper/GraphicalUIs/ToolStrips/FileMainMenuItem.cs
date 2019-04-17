@@ -16,6 +16,11 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 		private readonly ToolStripMenuItem _save, _saveAs, _saveAll, _saveAllAs;
 		private readonly ToolStripMenuItem _exit;
 
+		public ToolStripMenuItem SaveMenu      => _save;
+		public ToolStripMenuItem SaveAsMenu    => _saveAs;
+		public ToolStripMenuItem SaveAllMenu   => _saveAll;
+		public ToolStripMenuItem SaveAllAsMenu => _saveAllAs;
+
 		public FileMainMenuItem(FormMain mwnd) : base(mwnd)
 		{
 			this.Name = "FILE";

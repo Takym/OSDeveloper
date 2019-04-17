@@ -1,7 +1,6 @@
 ﻿using System.Windows.Forms;
 using OSDeveloper.GraphicalUIs.ToolStrips;
 using OSDeveloper.Resources;
-using TakymLib;
 
 namespace OSDeveloper
 {
@@ -35,12 +34,12 @@ namespace OSDeveloper
 		}
 
 		#region メインメニュー
-		private MainMenuItem _menu_file;
-		private MainMenuItem _menu_edit;
-		private MainMenuItem _menu_view;
-		private MainMenuItem _menu_tool;
-		private MainMenuItem _menu_wind;
-		private MainMenuItem _menu_help;
+		private FileMainMenuItem _menu_file;
+		private EditMainMenuItem _menu_edit;
+		private ViewMainMenuItem _menu_view;
+		private ToolMainMenuItem _menu_tool;
+		private WindowMainMenuItem _menu_wind;
+		private HelpMainMenuItem _menu_help;
 
 		private void BuildMainMenuItems()
 		{
@@ -76,27 +75,40 @@ namespace OSDeveloper
 		#endregion
 
 		#region ツールメニュー
-#if DEBUG
-		private ToolStripButton _toolbtn_for_test;
-#endif
+		private ToolStripButton _toolbtn_save, _toolbtn_saveAs, _toolbtn_saveAll, _toolbtn_saveAllAs;
 
 		private void BuildToolMenuItems()
 		{
 			_logger.Trace($"building menu items for {nameof(_tool_menu)}...");
 
-#if DEBUG
-			// _toolbtn_for_test
-			// TODO: デバッグ用のツールバーボタン
-			_toolbtn_for_test = new ToolStripButton("TEST");
-			_toolbtn_for_test.Click += (sender, e) => {
-				Form f = new Form();
-				f.MdiParent = this;
-				f.Text = StringUtils.GetRandomText();
-				f.Show();
+			_toolbtn_save = new ToolStripButton(_menu_file.SaveMenu.Text, _menu_file.SaveMenu.Image);
+			_toolbtn_save.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_save.Click        += (sender, e) => {
+				_menu_file.SaveMenu.PerformClick();
 			};
 
-			_tool_menu.Items.Add(_toolbtn_for_test);
-#endif
+			_toolbtn_saveAs = new ToolStripButton(_menu_file.SaveAsMenu.Text, _menu_file.SaveAsMenu.Image);
+			_toolbtn_saveAs.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_saveAs.Click        += (sender, e) => {
+				_menu_file.SaveAsMenu.PerformClick();
+			};
+
+			_toolbtn_saveAll = new ToolStripButton(_menu_file.SaveAllMenu.Text, _menu_file.SaveAllMenu.Image);
+			_toolbtn_saveAll.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_saveAll.Click        += (sender, e) => {
+				_menu_file.SaveAllMenu.PerformClick();
+			};
+
+			_toolbtn_saveAllAs = new ToolStripButton(_menu_file.SaveAllAsMenu.Text, _menu_file.SaveAllAsMenu.Image);
+			_toolbtn_saveAllAs.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_saveAllAs.Click        += (sender, e) => {
+				_menu_file.SaveAllAsMenu.PerformClick();
+			};
+
+			_tool_menu.Items.Add(_toolbtn_save);
+			_tool_menu.Items.Add(_toolbtn_saveAs);
+			_tool_menu.Items.Add(_toolbtn_saveAll);
+			_tool_menu.Items.Add(_toolbtn_saveAllAs);
 		}
 
 		#endregion
