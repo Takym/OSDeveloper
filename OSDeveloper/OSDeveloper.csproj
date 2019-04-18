@@ -146,6 +146,7 @@
     <Compile Include="GraphicalUIs\Features\IFileSaveFeature.cs" />
     <Compile Include="GraphicalUIs\Features\IPrintingFeature.cs" />
     <Compile Include="GraphicalUIs\Features\ISelectionFeature.cs" />
+    <Compile Include="GraphicalUIs\Features\IUndoRedoFeature.cs" />
     <Compile Include="GraphicalUIs\propgridattrs.cs" />
     <Compile Include="GraphicalUIs\Terminal\ItemProperty.cs">
       <SubType>Component</SubType>

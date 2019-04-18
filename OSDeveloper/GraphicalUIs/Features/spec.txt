@@ -1,5 +1,5 @@
 ﻿IFileSaveLoadFeature [finished]
-IPrintingFeature
+IPrintingFeature [finished]
 IUndoRedoFeature
 ISelectionFeature [finished]
 	ITextSelectionFeature
