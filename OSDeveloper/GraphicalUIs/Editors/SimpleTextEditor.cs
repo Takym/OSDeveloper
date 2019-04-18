@@ -31,12 +31,13 @@ namespace OSDeveloper.GraphicalUIs.Editors
 		{
 			this.SuspendLayout();
 
-			_textBox            = new TextBox();
-			_textBox.Multiline  = true;
-			_textBox.ScrollBars = ScrollBars.Both;
-			_textBox.Dock       = DockStyle.Fill;
-			_textBox.Text       = (metadata as FileMetadata)?.ReadAllText();
-			_textBox.Font       = new Font(_textBox.Font.FontFamily, 12.5F);
+			_textBox              = new TextBox();
+			_textBox.Multiline    = true;
+			_textBox.ScrollBars   = ScrollBars.Both;
+			_textBox.Dock         = DockStyle.Fill;
+			_textBox.Font         = new Font(_textBox.Font.FontFamily, 12.5F);
+			_textBox.Text         = (metadata as FileMetadata)?.ReadAllText();
+			_textBox.TextChanged += this._textBox_TextChanged;
 
 			_pdoc               = new PrintDocument();
 			_pdoc.DocumentName  = metadata.Name;
@@ -50,11 +51,13 @@ namespace OSDeveloper.GraphicalUIs.Editors
 		public void Reload()
 		{
 			_textBox.Text = (this.Item as FileMetadata)?.ReadAllText();
+			this.Text = this.Item.Name;
 		}
 
 		public void Save()
 		{
 			(this.Item as FileMetadata)?.WriteAllText(_textBox.Text);
+			this.Text = this.Item.Name;
 		}
 
 		public void SaveAs(PathString filename)
@@ -107,6 +110,13 @@ namespace OSDeveloper.GraphicalUIs.Editors
 		public void ShowPageSetupDialog(bool useExDialog)
 		{
 			throw new NotImplementedException();
+		}
+
+		private void _textBox_TextChanged(object sender, EventArgs e)
+		{
+			this.Logger.Trace($"executing {nameof(_textBox_TextChanged)}...");
+			this.Text = this.Item.Name + '*';
+			this.Logger.Trace($"completed {nameof(_textBox_TextChanged)}");
 		}
 
 		private bool   _is_printing;
