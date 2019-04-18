@@ -115,11 +115,29 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Redo に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Redo {
+            get {
+                return ResourceManager.GetString("Edit_Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   SelectAll に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Edit_SelectAll {
             get {
                 return ResourceManager.GetString("Edit_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Undo に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Edit_Undo {
+            get {
+                return ResourceManager.GetString("Edit_Undo", resourceCulture);
             }
         }
         

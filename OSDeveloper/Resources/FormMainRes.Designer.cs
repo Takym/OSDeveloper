@@ -79,6 +79,24 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   CannotRedo に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Status_CannotRedo {
+            get {
+                return ResourceManager.GetString("Status_CannotRedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   CannotUndo に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Status_CannotUndo {
+            get {
+                return ResourceManager.GetString("Status_CannotUndo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   CapturedActive {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Status_CapturedActive {

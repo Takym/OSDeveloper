@@ -123,6 +123,12 @@
   <data name="Icon" xml:space="preserve">
     <value>LogoEnglish</value>
   </data>
+  <data name="Status_CannotRedo" xml:space="preserve">
+    <value>The process cannot redo anymore.</value>
+  </data>
+  <data name="Status_CannotUndo" xml:space="preserve">
+    <value>The process cannot undo anymore.</value>
+  </data>
   <data name="Status_CapturedActive" xml:space="preserve">
     <value>Captured the active screen "{0}" to the clipboard.</value>
   </data>

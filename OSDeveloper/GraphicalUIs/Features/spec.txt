@@ -1,7 +1,8 @@
 ﻿IFileSaveLoadFeature [finished]
 IPrintingFeature [finished]
-IUndoRedoFeature
+IUndoRedoFeature [finished]
+ITransportationFeature
 ISelectionFeature [finished]
-	ITextSelectionFeature
-	IClipboardFeature [finished]
-	ISearchReplaceFeature
+ITextSelectionFeature
+IClipboardFeature [finished]
+ISearchReplaceFeature

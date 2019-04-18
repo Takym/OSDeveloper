@@ -7,6 +7,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 {
 	public partial class EditMainMenuItem : MainMenuItem
 	{
+		private readonly ToolStripMenuItem _undo, _redo;
 		private readonly ToolStripMenuItem _cut, _copy, _paste, _delete;
 		private readonly ToolStripMenuItem _selectAll, _clear;
 
@@ -15,12 +16,24 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			this.Name = "EDIT";
 			this.Text = MenuTexts.Edit;
 
+			_undo      = new ToolStripMenuItem();
+			_redo      = new ToolStripMenuItem();
 			_cut       = new ToolStripMenuItem();
 			_copy      = new ToolStripMenuItem();
 			_paste     = new ToolStripMenuItem();
 			_delete    = new ToolStripMenuItem();
 			_selectAll = new ToolStripMenuItem();
 			_clear     = new ToolStripMenuItem();
+
+			_undo.Name              = nameof(_undo);
+			_undo.Text              = MenuTexts.Edit_Undo;
+			_undo.Click            += this._undo_Click;
+			_undo.ShortcutKeys      = Keys.Control | Keys.Z;
+
+			_redo.Name               = nameof(_redo);
+			_redo.Text               = MenuTexts.Edit_Redo;
+			_redo.Click             += this._redo_Click;
+			_redo.ShortcutKeys       = Keys.Control | Keys.Y;
 
 			_cut.Name                = nameof(_cut);
 			_cut.Text                = MenuTexts.Edit_Cut;
@@ -52,6 +65,9 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			_clear.Click            += this._clear_Click;
 			_clear.ShortcutKeys      = Keys.Control | Keys.Shift | Keys.A;
 
+			this.DropDownItems.Add(_undo);
+			this.DropDownItems.Add(_redo);
+			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_cut);
 			this.DropDownItems.Add(_copy);
 			this.DropDownItems.Add(_paste);
@@ -61,6 +77,42 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(_clear);
 
 			_logger.Trace($"constructed {nameof(EditMainMenuItem)}");
+		}
+
+		private void _undo_Click(object sender, System.EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(_undo_Click)}...");
+
+			if (_mwnd.ActiveMdiChild is EditorWindow editor && editor is IUndoRedoFeature urf) {
+				if (urf.CanUndo) {
+					urf.Undo();
+					_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
+				} else {
+					_mwnd.StatusMessageLeft = FormMainRes.Status_CannotUndo;
+				}
+			} else {
+				_mwnd.StatusMessageLeft = string.Format(FormMainRes.Status_NotSupported, _undo.Text);
+			}
+
+			_logger.Trace($"completed {nameof(_undo_Click)}");
+		}
+
+		private void _redo_Click(object sender, System.EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(_redo_Click)}...");
+
+			if (_mwnd.ActiveMdiChild is EditorWindow editor && editor is IUndoRedoFeature urf) {
+				if (urf.CanRedo) {
+					urf.Redo();
+					_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
+				} else {
+					_mwnd.StatusMessageLeft = FormMainRes.Status_CannotRedo;
+				}
+			} else {
+				_mwnd.StatusMessageLeft = string.Format(FormMainRes.Status_NotSupported, _redo.Text);
+			}
+
+			_logger.Trace($"completed {nameof(_redo_Click)}");
 		}
 
 		private void _cut_Click(object sender, System.EventArgs e)

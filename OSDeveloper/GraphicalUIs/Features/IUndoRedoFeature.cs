@@ -4,7 +4,7 @@
 	{
 		bool CanUndo { get; }
 		bool CanRedo { get; }
-		void Undo(int count = 1);
-		void Redo(int count = 1);
+		void Undo(int steps = 1);
+		void Redo(int steps = 1);
 	}
 }

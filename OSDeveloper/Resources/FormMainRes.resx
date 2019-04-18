@@ -123,6 +123,12 @@
   <data name="Icon" xml:space="preserve">
     <value>LogoFormMain</value>
   </data>
+  <data name="Status_CannotRedo" xml:space="preserve">
+    <value>CannotRedo</value>
+  </data>
+  <data name="Status_CannotUndo" xml:space="preserve">
+    <value>CannotUndo</value>
+  </data>
   <data name="Status_CapturedActive" xml:space="preserve">
     <value>CapturedActive {0}</value>
   </data>

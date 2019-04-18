@@ -12,7 +12,8 @@ using TakymLib.IO;
 namespace OSDeveloper.GraphicalUIs.Editors
 {
 	[DesignerCategory("")] // デザイナ避け
-	public partial class SimpleTextEditor : EditorWindow, IFileSaveLoadFeature, IPrintingFeature, IClipboardFeature
+	public partial class SimpleTextEditor : EditorWindow,
+		IFileSaveLoadFeature, IPrintingFeature, IClipboardFeature, IUndoRedoFeature
 	{
 		private TextBox       _textBox;
 		private PrintDocument _pdoc;
@@ -26,6 +27,8 @@ namespace OSDeveloper.GraphicalUIs.Editors
 		}
 
 		public bool UseCustomDialogs => false;
+		public bool CanUndo          => _textBox.CanUndo;
+		public bool CanRedo          => false;
 
 		public SimpleTextEditor(FormMain mwnd, ItemMetadata metadata) : base(mwnd, metadata)
 		{
@@ -65,6 +68,16 @@ namespace OSDeveloper.GraphicalUIs.Editors
 			using (var sw = new StreamWriter(filename)) {
 				sw.Write(_textBox.Text);
 			}
+		}
+
+		public void Undo(int steps = 1)
+		{
+			_textBox.Undo();
+		}
+
+		public void Redo(int steps = 1)
+		{
+			throw new NotImplementedException();
 		}
 
 		public void Cut()

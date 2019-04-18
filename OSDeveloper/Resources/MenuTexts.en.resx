@@ -135,8 +135,14 @@
   <data name="Edit_Paste" xml:space="preserve">
     <value>&amp;Paste</value>
   </data>
+  <data name="Edit_Redo" xml:space="preserve">
+    <value>&amp;Redo</value>
+  </data>
   <data name="Edit_SelectAll" xml:space="preserve">
     <value>Select &amp;all</value>
+  </data>
+  <data name="Edit_Undo" xml:space="preserve">
+    <value>&amp;Undo</value>
   </data>
   <data name="File" xml:space="preserve">
     <value>&amp;File</value>

@@ -123,6 +123,12 @@
   <data name="Icon" xml:space="preserve">
     <value>LogoJapanese</value>
   </data>
+  <data name="Status_CannotRedo" xml:space="preserve">
+    <value>これ以上やり直せません。</value>
+  </data>
+  <data name="Status_CannotUndo" xml:space="preserve">
+    <value>これ以上元に戻せません。</value>
+  </data>
   <data name="Status_CapturedActive" xml:space="preserve">
     <value>クリップボードにアクティブウィンドウ「{0}」をキャプチャしました。</value>
   </data>
