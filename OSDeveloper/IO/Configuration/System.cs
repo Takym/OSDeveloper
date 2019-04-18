@@ -16,6 +16,7 @@ namespace OSDeveloper.IO.Configuration
 				_ = VisualStyle;
 				_ = Language;
 				_ = MainWindowPosition;
+				_ = UseEXDialog;
 			}
 
 			public static VisualStyleState VisualStyle
@@ -76,6 +77,23 @@ namespace OSDeveloper.IO.Configuration
 			}
 			public const string KeyOfMainWindowPosition = "mwndpos";
 			public readonly static Rectangle DefaultMainWindowPosition = new Rectangle(-1, -1, 1000, 750);
+
+			public static bool UseEXDialog
+			{
+				get
+				{
+					var node = GetKey(_y_system_inix, _y_system_cfg, KeyOfUseEXDialog,
+						new YBoolean() { Flag = DefaultUseEXDialog });
+					return node.Flag;
+				}
+
+				set
+				{
+					_y_system_inix.Add(new YBoolean() { Name = KeyOfUseEXDialog, Flag = value });
+				}
+			}
+			public const string KeyOfUseEXDialog = "use_exdialog";
+			public readonly static bool DefaultUseEXDialog = true;
 		}
 	}
 }

@@ -138,6 +138,9 @@
   <data name="Status_Ready" xml:space="preserve">
     <value>準備完了</value>
   </data>
+  <data name="Status_StartedToPrint" xml:space="preserve">
+    <value>印刷を開始しました。</value>
+  </data>
   <data name="Status_WindowChanged" xml:space="preserve">
     <value>アクティブウィンドウが「{0}」に変更されました。</value>
   </data>

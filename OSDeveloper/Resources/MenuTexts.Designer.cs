@@ -142,6 +142,33 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   PageSetup に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_PageSetup {
+            get {
+                return ResourceManager.GetString("File_PageSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Print に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_Print {
+            get {
+                return ResourceManager.GetString("File_Print", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PrintPreview に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string File_PrintPreview {
+            get {
+                return ResourceManager.GetString("File_PrintPreview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Reload に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string File_Reload {

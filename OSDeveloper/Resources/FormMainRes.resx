@@ -138,6 +138,9 @@
   <data name="Status_Ready" xml:space="preserve">
     <value>Ready</value>
   </data>
+  <data name="Status_StartedToPrint" xml:space="preserve">
+    <value>StartedToPrint</value>
+  </data>
   <data name="Status_WindowChanged" xml:space="preserve">
     <value>WindowChanged {0}</value>
   </data>

@@ -144,6 +144,15 @@
   <data name="File_Exit" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
+  <data name="File_PageSetup" xml:space="preserve">
+    <value>Page set&amp;up...</value>
+  </data>
+  <data name="File_Print" xml:space="preserve">
+    <value>&amp;Print...</value>
+  </data>
+  <data name="File_PrintPreview" xml:space="preserve">
+    <value>Print preview...</value>
+  </data>
   <data name="File_Reload" xml:space="preserve">
     <value>&amp;Reload</value>
   </data>

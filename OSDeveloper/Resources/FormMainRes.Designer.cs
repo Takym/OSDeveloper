@@ -124,6 +124,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   StartedToPrint に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Status_StartedToPrint {
+            get {
+                return ResourceManager.GetString("Status_StartedToPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   WindowChanged {0} に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Status_WindowChanged {
