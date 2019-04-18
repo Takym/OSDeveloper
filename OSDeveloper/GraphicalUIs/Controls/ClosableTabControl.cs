@@ -19,6 +19,7 @@ namespace OSDeveloper.GraphicalUIs.Controls
 			_logger = Logger.Get(nameof(MdiChildrenTab));
 
 			this.InitializeComponent();
+			this.SuspendLayout();
 			this.SetStyle(
 				ControlStyles.UserPaint |
 				ControlStyles.Opaque |
@@ -37,6 +38,8 @@ namespace OSDeveloper.GraphicalUIs.Controls
 			_closebtn_clicked = -1;
 			_closebtn_over    = -1;
 			_mouse_over       = -1;
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 			_logger.Trace($"constructed {nameof(MdiChildrenTab)}");
 		}

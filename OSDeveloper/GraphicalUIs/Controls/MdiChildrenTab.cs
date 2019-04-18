@@ -57,6 +57,7 @@ namespace OSDeveloper.GraphicalUIs.Controls
 			_mouse_over = -1;
 			_click_index = -1;
 			this.InitializeComponent();
+			this.SuspendLayout();
 			this.ResetButtonColor();
 			this.ResetMouseActionButtonColor();
 			this.SetStyle(
@@ -68,6 +69,8 @@ namespace OSDeveloper.GraphicalUIs.Controls
 				ControlStyles.AllPaintingInWmPaint |
 				ControlStyles.OptimizedDoubleBuffer,
 				true);
+			this.ResumeLayout(false);
+			this.PerformLayout();
 			_logger.Trace($"constructed {nameof(MdiChildrenTab)}");
 		}
 

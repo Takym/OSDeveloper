@@ -66,8 +66,9 @@ namespace OSDeveloper
 				_logger.Trace($"setting {nameof(_mdi_tab)}...");
 				_mdi_tab.Name      = nameof(_mdi_tab);
 				_mdi_tab.Dock      = DockStyle.Top;
-				_mdi_tab.Size      = new Size(192, 26);
+				_mdi_tab.Size      = new Size(192, 32);
 				_mdi_tab.MdiClient = _mdi_client;
+				_mdi_tab.Font      = SystemFonts.IconTitleFont;
 			}
 
 			this.BuildMenus();
