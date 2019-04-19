@@ -92,7 +92,6 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			removeMenu.Text          = ExplorerTexts.PopupMenu_Remove;
 			deleteMenu.Text          = ExplorerTexts.PopupMenu_Delete;
 			renameMenu.Text          = ExplorerTexts.PopupMenu_Rename;
-			copyFullPathMenu.Text    = ExplorerTexts.PopupMenu_CopyFullPath;
 			propertyMenu.Text        = ExplorerTexts.PopupMenu_Property;
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
