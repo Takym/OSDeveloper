@@ -17,7 +17,7 @@ using Folder = System.IO.Directory;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
-	// TODO: 切り取りメニュー、PoweShellメニュー、Bashメニューの処理の実装
+	// TODO: 切り取りメニュー、PoweShellメニュー、Bashメニュー、新しい項目を生成メニューの処理の実装
 
 	public partial class FileTree : UserControl
 	{
@@ -92,6 +92,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			removeMenu.Text          = ExplorerTexts.PopupMenu_Remove;
 			deleteMenu.Text          = ExplorerTexts.PopupMenu_Delete;
 			renameMenu.Text          = ExplorerTexts.PopupMenu_Rename;
+			copyFullPathMenu.Text    = ExplorerTexts.PopupMenu_CopyFullPath;
 			propertyMenu.Text        = ExplorerTexts.PopupMenu_Property;
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
@@ -706,6 +707,9 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		private void cutMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(cutMenu_Click)}...");
+
+			MessageBox.Show("not supported yet");
+
 			_logger.Trace($"completed {nameof(cutMenu_Click)}");
 		}
 
@@ -794,6 +798,17 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			treeView.SelectedNode.BeginEdit();
 
 			_logger.Trace($"completed {nameof(renameMenu_Click)}");
+		}
+
+		private void copyFullPathMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(copyFullPathMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				Clipboard.SetText(node.Metadata.Path);
+			}
+
+			_logger.Trace($"completed {nameof(copyFullPathMenu_Click)}");
 		}
 
 		private void propertyMenu_Click(object sender, EventArgs e)

@@ -205,6 +205,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   copyFullPath に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_CopyFullPath {
+            get {
+                return ResourceManager.GetString("PopupMenu_CopyFullPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   createDir に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_CreateDir {

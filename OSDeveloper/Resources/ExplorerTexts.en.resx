@@ -165,6 +165,9 @@
   <data name="PopupMenu_Copy" xml:space="preserve">
     <value>&amp;Copy</value>
   </data>
+  <data name="PopupMenu_CopyFullPath" xml:space="preserve">
+    <value>Copy the absolute path</value>
+  </data>
   <data name="PopupMenu_CreateDir" xml:space="preserve">
     <value>Create new d&amp;irectory</value>
   </data>
