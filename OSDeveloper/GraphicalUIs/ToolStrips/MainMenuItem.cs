@@ -6,6 +6,8 @@ using OSDeveloper.IO.Logging;
 
 namespace OSDeveloper.GraphicalUIs.ToolStrips
 {
+	// TODO: 各メニューにアイコンを追加
+
 	[DesignerCategory("")] // デザイナ避け
 	[ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
 	public partial class MainMenuItem : ToolStripMenuItem

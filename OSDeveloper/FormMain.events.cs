@@ -20,21 +20,6 @@ namespace OSDeveloper
 			// このタイミングでディレクトリ設定
 			_explorer.Directory = new FolderMetadata(SystemPaths.Workspace);
 
-			// TODO: デバッグコード、次のコミットで削除
-#if DEBUG
-			try {
-				throw null;
-			} catch (Exception e0) {
-				_logger.Exception(e0);
-				try {
-					throw new ArgumentException("hello", "bye", new FieldAccessException("wow", new System.IO.IOException("hahaha", new Yencon.Exceptions.YenconException("gyaaaa!"))));
-				} catch (Exception e2) {
-					_logger.Exception(e2);
-				}
-			}
-#endif
-
-
 			_logger.Trace($"completed {nameof(OnLoad)}...");
 		}
 
