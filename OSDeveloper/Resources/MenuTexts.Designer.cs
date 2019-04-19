@@ -241,29 +241,29 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
-        ///   SCREEN に類似しているローカライズされた文字列を検索します。
+        ///   SCRN に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Screen {
+        internal static string Scrn {
             get {
-                return ResourceManager.GetString("Screen", resourceCulture);
+                return ResourceManager.GetString("Scrn", resourceCulture);
             }
         }
         
         /// <summary>
         ///   CaptureActive に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Screen_CaptureActive {
+        internal static string Scrn_CaptureActive {
             get {
-                return ResourceManager.GetString("Screen_CaptureActive", resourceCulture);
+                return ResourceManager.GetString("Scrn_CaptureActive", resourceCulture);
             }
         }
         
         /// <summary>
         ///   CaptureEntire に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Screen_CaptureEntire {
+        internal static string Scrn_CaptureEntire {
             get {
-                return ResourceManager.GetString("Screen_CaptureEntire", resourceCulture);
+                return ResourceManager.GetString("Scrn_CaptureEntire", resourceCulture);
             }
         }
         
@@ -331,74 +331,74 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
-        ///   WINDOW に類似しているローカライズされた文字列を検索します。
+        ///   WIND に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Window {
+        internal static string Wind {
             get {
-                return ResourceManager.GetString("Window", resourceCulture);
+                return ResourceManager.GetString("Wind", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Arricons に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Window_Arricons {
+        internal static string Wind_Arricons {
             get {
-                return ResourceManager.GetString("Window_Arricons", resourceCulture);
+                return ResourceManager.GetString("Wind_Arricons", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cascade に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Window_Cascade {
+        internal static string Wind_Cascade {
             get {
-                return ResourceManager.GetString("Window_Cascade", resourceCulture);
+                return ResourceManager.GetString("Wind_Cascade", resourceCulture);
             }
         }
         
         /// <summary>
         ///   CloseActiveWnd に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Window_CloseActiveWnd {
+        internal static string Wind_CloseActiveWnd {
             get {
-                return ResourceManager.GetString("Window_CloseActiveWnd", resourceCulture);
+                return ResourceManager.GetString("Wind_CloseActiveWnd", resourceCulture);
             }
         }
         
         /// <summary>
         ///   CloseAllWnds に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Window_CloseAllWnds {
+        internal static string Wind_CloseAllWnds {
             get {
-                return ResourceManager.GetString("Window_CloseAllWnds", resourceCulture);
+                return ResourceManager.GetString("Wind_CloseAllWnds", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Hori に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Window_Hori {
+        internal static string Wind_Hori {
             get {
-                return ResourceManager.GetString("Window_Hori", resourceCulture);
+                return ResourceManager.GetString("Wind_Hori", resourceCulture);
             }
         }
         
         /// <summary>
         ///   SwitchWnd に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Window_SwitchWnd {
+        internal static string Wind_SwitchWnd {
             get {
-                return ResourceManager.GetString("Window_SwitchWnd", resourceCulture);
+                return ResourceManager.GetString("Wind_SwitchWnd", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Vert に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Window_Vert {
+        internal static string Wind_Vert {
             get {
-                return ResourceManager.GetString("Window_Vert", resourceCulture);
+                return ResourceManager.GetString("Wind_Vert", resourceCulture);
             }
         }
     }

@@ -177,13 +177,13 @@
   <data name="Help" xml:space="preserve">
     <value>HELP</value>
   </data>
-  <data name="Screen" xml:space="preserve">
-    <value>SCREEN</value>
+  <data name="Scrn" xml:space="preserve">
+    <value>SCRN</value>
   </data>
-  <data name="Screen_CaptureActive" xml:space="preserve">
+  <data name="Scrn_CaptureActive" xml:space="preserve">
     <value>CaptureActive</value>
   </data>
-  <data name="Screen_CaptureEntire" xml:space="preserve">
+  <data name="Scrn_CaptureEntire" xml:space="preserve">
     <value>CaptureEntire</value>
   </data>
   <data name="Tool" xml:space="preserve">
@@ -207,28 +207,28 @@
   <data name="View_LogOutput_CannotShow" xml:space="preserve">
     <value>LogOutput_CannotShow</value>
   </data>
-  <data name="Window" xml:space="preserve">
-    <value>WINDOW</value>
+  <data name="Wind" xml:space="preserve">
+    <value>WIND</value>
   </data>
-  <data name="Window_Arricons" xml:space="preserve">
+  <data name="Wind_Arricons" xml:space="preserve">
     <value>Arricons</value>
   </data>
-  <data name="Window_Cascade" xml:space="preserve">
+  <data name="Wind_Cascade" xml:space="preserve">
     <value>Cascade</value>
   </data>
-  <data name="Window_CloseActiveWnd" xml:space="preserve">
+  <data name="Wind_CloseActiveWnd" xml:space="preserve">
     <value>CloseActiveWnd</value>
   </data>
-  <data name="Window_CloseAllWnds" xml:space="preserve">
+  <data name="Wind_CloseAllWnds" xml:space="preserve">
     <value>CloseAllWnds</value>
   </data>
-  <data name="Window_Hori" xml:space="preserve">
+  <data name="Wind_Hori" xml:space="preserve">
     <value>Hori</value>
   </data>
-  <data name="Window_SwitchWnd" xml:space="preserve">
+  <data name="Wind_SwitchWnd" xml:space="preserve">
     <value>SwitchWnd</value>
   </data>
-  <data name="Window_Vert" xml:space="preserve">
+  <data name="Wind_Vert" xml:space="preserve">
     <value>Vert</value>
   </data>
 </root>

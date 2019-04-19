@@ -5,16 +5,16 @@ using OSDeveloper.Resources;
 
 namespace OSDeveloper.GraphicalUIs.ToolStrips
 {
-	public partial class WindowMainMenuItem : MainMenuItem
+	public partial class WindMainMenuItem : MainMenuItem
 	{
 		private readonly ToolStripMenuItem _l_arricons, _l_cascade, _l_hori, _l_vert;
 		private readonly ToolStripMenuItem _switch_wnd, _close_active_wnd, _close_all_wnds;
 		private readonly MainMenuItem _screen;
 
-		public WindowMainMenuItem(FormMain mwnd) : base(mwnd)
+		public WindMainMenuItem(FormMain mwnd) : base(mwnd)
 		{
-			this.Name = "WINDOW";
-			this.Text = MenuTexts.Window;
+			this.Name = "WIND";
+			this.Text = MenuTexts.Wind;
 
 			_l_arricons       = new WindowLayoutToolStripMenuItem(_logger, _mwnd, MdiLayout.ArrangeIcons);
 			_l_cascade        = new WindowLayoutToolStripMenuItem(_logger, _mwnd, MdiLayout.Cascade);
@@ -23,36 +23,36 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			_switch_wnd       = new ToolStripMenuItem();
 			_close_active_wnd = new ToolStripMenuItem();
 			_close_all_wnds   = new ToolStripMenuItem();
-			_screen           = new ScreenMainMenuItem(mwnd);
+			_screen           = new ScrnMainMenuItem(mwnd);
 
 			_l_arricons.Name         = nameof(_l_arricons);
-			_l_arricons.Text         = MenuTexts.Window_Arricons;
+			_l_arricons.Text         = MenuTexts.Wind_Arricons;
 			_l_arricons.ShortcutKeys = Keys.Alt | Keys.Left;
 
 			_l_cascade.Name         = nameof(_l_cascade);
-			_l_cascade.Text         = MenuTexts.Window_Cascade;
+			_l_cascade.Text         = MenuTexts.Wind_Cascade;
 			_l_cascade.ShortcutKeys = Keys.Alt | Keys.Up;
 
 			_l_hori.Name         = nameof(_l_hori);
-			_l_hori.Text         = MenuTexts.Window_Hori;
+			_l_hori.Text         = MenuTexts.Wind_Hori;
 			_l_hori.ShortcutKeys = Keys.Alt | Keys.Down;
 
 			_l_vert.Name         = nameof(_l_vert);
-			_l_vert.Text         = MenuTexts.Window_Vert;
+			_l_vert.Text         = MenuTexts.Wind_Vert;
 			_l_vert.ShortcutKeys = Keys.Alt | Keys.Right;
 
 			_switch_wnd.Name          = nameof(_switch_wnd);
-			_switch_wnd.Text          = MenuTexts.Window_SwitchWnd;
+			_switch_wnd.Text          = MenuTexts.Wind_SwitchWnd;
 			_switch_wnd.Click        += this._switch_wnd_Click;
 			_switch_wnd.ShortcutKeys  = Keys.Control | Keys.Tab;
 
 			_close_active_wnd.Name          = nameof(_close_active_wnd);
-			_close_active_wnd.Text          = MenuTexts.Window_CloseActiveWnd;
+			_close_active_wnd.Text          = MenuTexts.Wind_CloseActiveWnd;
 			_close_active_wnd.Click        += this._close_active_wnd_Click;
 			_close_active_wnd.ShortcutKeys  = Keys.Control | Keys.Delete;
 
 			_close_all_wnds.Name          = nameof(_close_all_wnds);
-			_close_all_wnds.Text          = MenuTexts.Window_CloseAllWnds;
+			_close_all_wnds.Text          = MenuTexts.Wind_CloseAllWnds;
 			_close_all_wnds.Click        += this._close_all_wnds_Click;
 			_close_all_wnds.ShortcutKeys  = Keys.Control | Keys.Shift | Keys.Delete;
 
@@ -67,7 +67,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(new ToolStripSeparator());
 			this.DropDownItems.Add(_screen);
 
-			_logger.Trace($"constructed {nameof(WindowMainMenuItem)}");
+			_logger.Trace($"constructed {nameof(WindMainMenuItem)}");
 		}
 
 		private void _switch_wnd_Click(object sender, EventArgs e)

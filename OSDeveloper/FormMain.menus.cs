@@ -38,7 +38,7 @@ namespace OSDeveloper
 		private EditMainMenuItem _menu_edit;
 		private ViewMainMenuItem _menu_view;
 		private ToolMainMenuItem _menu_tool;
-		private WindowMainMenuItem _menu_wind;
+		private WindMainMenuItem _menu_wind;
 		private HelpMainMenuItem _menu_help;
 
 		private void BuildMainMenuItems()
@@ -58,7 +58,7 @@ namespace OSDeveloper
 			_menu_tool = new ToolMainMenuItem(this);
 
 			// _menu_window
-			_menu_wind = new WindowMainMenuItem(this);
+			_menu_wind = new WindMainMenuItem(this);
 
 			// _menu_help
 			_menu_help = new HelpMainMenuItem(this);

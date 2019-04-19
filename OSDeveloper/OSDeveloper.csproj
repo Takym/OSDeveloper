@@ -171,9 +171,9 @@
     <Compile Include="GraphicalUIs\ToolStrips\MainMenuItem.cs" />
     <Compile Include="GraphicalUIs\ToolStrips\FileMainMenuItem.cs" />
     <Compile Include="GraphicalUIs\ToolStrips\ViewMainMenuItem.cs" />
-    <Compile Include="GraphicalUIs\ToolStrips\ScreenMainMenuItem.cs" />
+    <Compile Include="GraphicalUIs\ToolStrips\ScrnMainMenuItem.cs" />
     <Compile Include="GraphicalUIs\ToolStrips\ToolMainMenuItem.cs" />
-    <Compile Include="GraphicalUIs\ToolStrips\WindowMainMenuItem.cs" />
+    <Compile Include="GraphicalUIs\ToolStrips\WindMainMenuItem.cs" />
     <Compile Include="IO\Configuration\SettingManager.cs" />
     <Compile Include="IO\Configuration\System.cs" />
     <Compile Include="IO\FileFormat.cs" />

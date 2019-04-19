@@ -5,14 +5,14 @@ using OSDeveloper.Resources;
 
 namespace OSDeveloper.GraphicalUIs.ToolStrips
 {
-	public partial class ScreenMainMenuItem : MainMenuItem
+	public partial class ScrnMainMenuItem : MainMenuItem
 	{
 		private readonly ToolStripMenuItem _entire, _active;
 
-		public ScreenMainMenuItem(FormMain mwnd) : base(mwnd)
+		public ScrnMainMenuItem(FormMain mwnd) : base(mwnd)
 		{
-			this.Name = "SCREEN";
-			this.Text = MenuTexts.Screen;
+			this.Name = "SCRN";
+			this.Text = MenuTexts.Scrn;
 
 			_entire = new ToolStripMenuItem();
 			_active = new ToolStripMenuItem();
@@ -20,12 +20,12 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			_mwnd.MdiChildActivate += this._mwnd_MdiChildActivate;
 
 			_entire.Name          = nameof(_entire);
-			_entire.Text          = MenuTexts.Screen_CaptureEntire;
+			_entire.Text          = MenuTexts.Scrn_CaptureEntire;
 			_entire.Click        += this._entire_Click;
 			_entire.ShortcutKeys  = Keys.Control | Keys.F12;
 
 			_active.Name          = nameof(_active);
-			_active.Text          = MenuTexts.Screen_CaptureActive;
+			_active.Text          = MenuTexts.Scrn_CaptureActive;
 			_active.Click        += this._active_Click;
 			_active.ShortcutKeys  = Keys.Control | Keys.Shift | Keys.F12;
 			_active.Enabled       = _mwnd.ActiveMdiChild != null;
@@ -33,7 +33,7 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 			this.DropDownItems.Add(_entire);
 			this.DropDownItems.Add(_active);
 
-			_logger.Trace($"constructed {nameof(ScreenMainMenuItem)}");
+			_logger.Trace($"constructed {nameof(ScrnMainMenuItem)}");
 		}
 
 		private void _mwnd_MdiChildActivate(object sender, EventArgs e)
