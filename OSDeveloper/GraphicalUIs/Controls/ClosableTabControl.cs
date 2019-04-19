@@ -31,7 +31,7 @@ namespace OSDeveloper.GraphicalUIs.Controls
 			this.Appearance   = TabAppearance.Normal;
 			this.Alignment    = TabAlignment.Top;
 			this.DrawMode     = TabDrawMode.OwnerDrawFixed;
-			this.SizeMode     = TabSizeMode.Fixed;
+			this.SizeMode     = TabSizeMode.Normal;//.Fixed;
 			this.ItemSize     = new Size(120, 20);
 			this.Multiline    = false;
 			this.AllTabPages  = new List<TabPage>();
