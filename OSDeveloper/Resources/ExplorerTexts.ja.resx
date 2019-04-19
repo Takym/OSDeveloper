@@ -165,9 +165,6 @@
   <data name="PopupMenu_Copy" xml:space="preserve">
     <value>コピー(&amp;C)</value>
   </data>
-  <data name="PopupMenu_CopyFullPath" xml:space="preserve">
-    <value>絶対パスをコピー</value>
-  </data>
   <data name="PopupMenu_CreateDir" xml:space="preserve">
     <value>フォルダを新規作成(&amp;I)</value>
   </data>

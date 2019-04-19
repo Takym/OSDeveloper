@@ -800,17 +800,6 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"completed {nameof(renameMenu_Click)}");
 		}
 
-		private void copyFullPathMenu_Click(object sender, EventArgs e)
-		{
-			_logger.Trace($"executing {nameof(copyFullPathMenu_Click)}...");
-
-			if (treeView.SelectedNode is FileTreeNode node) {
-				Clipboard.SetText(node.Metadata.Path);
-			}
-
-			_logger.Trace($"completed {nameof(copyFullPathMenu_Click)}");
-		}
-
 		private void propertyMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
