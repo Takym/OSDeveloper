@@ -10,6 +10,8 @@ namespace OSDeveloper.IO.Logging
 {
 	partial class Logger
 	{
+		private int _inner_exceptions = 0;
+
 		/// <summary>
 		///  指定された例外からログデータを作成して書き込みます。
 		/// </summary>
@@ -25,6 +27,7 @@ namespace OSDeveloper.IO.Logging
 			}
 
 			// エラーメッセージを書き込み
+			this.Trace($"-------- Start [{_inner_exceptions++}] of Error Report --------");
 			if (isFatal) {
 				this.Fatal("The following unresolvable exception occurred.");
 				this.Fatal(e.Message);
@@ -121,9 +124,11 @@ namespace OSDeveloper.IO.Logging
 			if (e.InnerException != null) {
 				this.Notice("This exception has inner exceptions.");
 				this.Exception(e.InnerException, isFatal);
-			} else {
-				this.Trace("-------- End of Error Report --------");
 			}
+
+			// エラーレポートの終了を記す
+			this.Trace($"-------- End [{--_inner_exceptions}] of Error Report --------");
+			return;
 		}
 	}
 }
