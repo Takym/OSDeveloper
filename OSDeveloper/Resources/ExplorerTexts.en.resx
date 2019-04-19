@@ -153,6 +153,12 @@
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>&amp;Add other type of item...</value>
   </data>
+  <data name="PopupMenu_Additem_FromSystem" xml:space="preserve">
+    <value>Add an existing item...</value>
+  </data>
+  <data name="PopupMenu_Additem_GenerateNew" xml:space="preserve">
+    <value>Generate a new item...</value>
+  </data>
   <data name="PopupMenu_Clone" xml:space="preserve">
     <value>Dup&amp;licate</value>
   </data>

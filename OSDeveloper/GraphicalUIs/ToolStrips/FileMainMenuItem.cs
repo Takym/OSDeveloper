@@ -142,7 +142,6 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 
 			if (_mwnd.ActiveMdiChild is EditorWindow editor && editor is IFileSaveFeature fsf) {
 				_sfd.Reset();
-				_sfd.ShowHelp         = true;
 				_sfd.OverwritePrompt  = true;
 				_sfd.AddExtension     = true;
 				_sfd.Title           += $" \"{fsf.Item.Name}\"";
@@ -182,7 +181,6 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 				var f = _mwnd.MdiChildren[i];
 				if (f is EditorWindow editor && editor is IFileSaveFeature fsf) {
 					_sfd.Reset();
-					_sfd.ShowHelp         = true;
 					_sfd.OverwritePrompt  = true;
 					_sfd.AddExtension     = true;
 					_sfd.Title           += $" \"{fsf.Item.Name}\"";
@@ -208,7 +206,6 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 					_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
 				} else {
 					_pd.Reset();
-					_pd.ShowHelp        = true;
 					_pd.ShowNetwork     = true;
 					_pd.Document        = pf.PrintDocument;
 					_pd.PrinterSettings = pf.PrintDocument.PrinterSettings;
@@ -260,7 +257,6 @@ namespace OSDeveloper.GraphicalUIs.ToolStrips
 					_mwnd.StatusMessageLeft = FormMainRes.Status_Ready;
 				} else {
 					_psd.Reset();
-					_psd.ShowHelp        = true;
 					_psd.ShowNetwork     = true;
 					_psd.Document        = pf.PrintDocument;
 					_psd.PrinterSettings = pf.PrintDocument.PrinterSettings;

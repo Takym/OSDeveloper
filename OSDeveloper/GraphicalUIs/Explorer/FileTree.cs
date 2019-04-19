@@ -79,6 +79,10 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			createFileMenu.Text      = ExplorerTexts.PopupMenu_CreateFile;
 			createDirMenu.Text       = ExplorerTexts.PopupMenu_CreateDir;
 			additemMenu.Text         = ExplorerTexts.PopupMenu_Additem;
+			{
+				generateNewMenu.Text = ExplorerTexts.PopupMenu_Additem_GenerateNew;
+				fromSystemMenu.Text  = ExplorerTexts.PopupMenu_Additem_FromSystem;
+			}
 			cloneMenu.Text           = ExplorerTexts.PopupMenu_Clone;
 			copyMenu.Text            = ExplorerTexts.PopupMenu_Copy;
 			cutMenu.Text             = ExplorerTexts.PopupMenu_Cut;
@@ -89,6 +93,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			propertyMenu.Text        = ExplorerTexts.PopupMenu_Property;
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
+			ofd.Filter = FileTypeRegistry.CreateFullSPFs();
 
 			_logger.Trace($"constructed {nameof(FileTree)}");
 		}
@@ -556,6 +561,40 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			}
 
 			_logger.Trace($"completed {nameof(createMenu_Click)}");
+		}
+
+		private void generateNewMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(generateNewMenu_Click)}...");
+
+			MessageBox.Show("not supported yet");
+
+			_logger.Trace($"completed {nameof(generateNewMenu_Click)}");
+		}
+
+		private void fromSystemMenu_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(fromSystemMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode node) {
+				var dir = this.GetFolderFromNode(node, out bool selectedFile);
+				var dr = ofd.ShowDialog();
+				if (dr == DialogResult.OK) {
+					var meta = dir.CreateFile(Path.GetFileName(ofd.FileName));
+					meta.WriteAllBytes(File.ReadAllBytes(ofd.FileName));
+					if (meta == null) {
+						MessageBox.Show(_mwnd,
+							ExplorerTexts.Msgbox_CannotCreate,
+							_mwnd.Text,
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Warning);
+					} else {
+						this.AddItemAsTreeNode(meta, node, selectedFile);
+					}
+				}
+			}
+
+			_logger.Trace($"completed {nameof(fromSystemMenu_Click)}");
 		}
 
 		private void cloneMenu_Click(object sender, EventArgs e)

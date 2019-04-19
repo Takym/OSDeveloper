@@ -169,6 +169,24 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   fromSystem に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Additem_FromSystem {
+            get {
+                return ResourceManager.GetString("PopupMenu_Additem_FromSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   generateNew に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Additem_GenerateNew {
+            get {
+                return ResourceManager.GetString("PopupMenu_Additem_GenerateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   clone に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_Clone {

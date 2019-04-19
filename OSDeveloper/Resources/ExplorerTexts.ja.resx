@@ -153,6 +153,12 @@
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>その他の種類の項目を追加(&amp;A)...</value>
   </data>
+  <data name="PopupMenu_Additem_FromSystem" xml:space="preserve">
+    <value>既存の項目を追加...</value>
+  </data>
+  <data name="PopupMenu_Additem_GenerateNew" xml:space="preserve">
+    <value>新しい項目を生成...</value>
+  </data>
   <data name="PopupMenu_Clone" xml:space="preserve">
     <value>複製(&amp;L)</value>
   </data>

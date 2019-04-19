@@ -153,6 +153,12 @@
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>additem</value>
   </data>
+  <data name="PopupMenu_Additem_FromSystem" xml:space="preserve">
+    <value>fromSystem</value>
+  </data>
+  <data name="PopupMenu_Additem_GenerateNew" xml:space="preserve">
+    <value>generateNew</value>
+  </data>
   <data name="PopupMenu_Clone" xml:space="preserve">
     <value>clone</value>
   </data>
