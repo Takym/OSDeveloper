@@ -198,6 +198,9 @@
   <data name="PopupMenu_OpenIn_PowerShell" xml:space="preserve">
     <value>Open in &amp;PowerShell...</value>
   </data>
+  <data name="PopupMenu_Open_DirClose" xml:space="preserve">
+    <value>Cl&amp;ose</value>
+  </data>
   <data name="PopupMenu_Paste" xml:space="preserve">
     <value>&amp;Paste</value>
   </data>

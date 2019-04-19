@@ -23,8 +23,10 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 	{
 		#region プロパティ
 
-		private readonly Logger   _logger;
-		private readonly FormMain _mwnd;
+		private readonly Logger       _logger;
+		private readonly FormMain     _mwnd;
+		private          FileTreeNode _root;
+		private          bool         _selected_root;
 
 		public FolderMetadata Directory
 		{
@@ -101,6 +103,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		#endregion
 
 		#region 読み込みイベント
+
 		protected override void OnLoad(EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(OnLoad)}...");
@@ -133,6 +136,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 				ftn.Text = $"{this.Directory.Path.GetFileNameWithoutExtension()} ({this.Directory.Path})";
 				ftn.Expand();
 				this.SetStyleToTreeNode(ftn);
+				_root = ftn;
 			}
 
 			_logger.Info($"finished to load the dir: {this.Directory.Path}");
@@ -141,18 +145,19 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 
 		private TreeNode CreateTreeNode(ItemMetadata item)
 		{
-			if (item == null) return DummyTreeNode.Instance;
+			if (item == null)   return DummyTreeNode.Instance;
+			if (item.IsRemoved) return new RemovedTreeNode(item);
 
 			var result = new FileTreeNode(item);
 			result.ContextMenuStrip = popupMenu;
 			if (result.Folder != null && result.Folder.CanAccess && !result.Folder.IsEmpty()) {
 				var fo = result.Folder.GetFolders();
 				for (int i = 0; i < fo.Length; ++i) {
-					if (fo[i] != null && !fo[i].IsRemoved) result.Nodes.Add(this.CreateTreeNode(fo[i]));
+					if (fo[i] != null /*&& !fo[i].IsRemoved*/) result.Nodes.Add(this.CreateTreeNode(fo[i]));
 				}
 				var fi = result.Folder.GetFiles();
 				for (int i = 0; i < fi.Length; ++i) {
-					if (fi[i] != null && !fi[i].IsRemoved) result.Nodes.Add(this.CreateTreeNode(fi[i]));
+					if (fi[i] != null /*&& !fi[i].IsRemoved*/) result.Nodes.Add(this.CreateTreeNode(fi[i]));
 				}
 			}
 			this.SetStyleToTreeNode(result);
@@ -307,6 +312,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 					node.Editor = node.Metadata.ExtendedDetail.CreateEditor(_mwnd);
 				}
 				node.Editor?.Show();
+				node.Editor?.Focus();
 			}
 		}
 
@@ -346,8 +352,26 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"executing {nameof(treeView_DoubleClick)}...");
 
 			this.OpenEditor();
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.Folder != null && node.IsExpanded) {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
+				} else {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open;
+				}
+			}
 
 			_logger.Trace($"completed {nameof(treeView_DoubleClick)}");
+		}
+
+		private void treeView_MouseClick(object sender, MouseEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_MouseClick)}...");
+
+			if (e.Button.HasFlag(MouseButtons.Right)) {
+				treeView.SelectedNode = treeView.GetNodeAt(e.Location);
+			}
+
+			_logger.Trace($"completed {nameof(treeView_MouseClick)}");
 		}
 
 		/* ---- Select ---- */
@@ -356,12 +380,49 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		{
 			_logger.Trace($"executing {nameof(treeView_BeforeSelect)}...");
 
+			if (e.Node is FileTreeNode node) {
+				if (node == _root) {
+					cloneMenu .Visible = false;
+					cloneMenu .Enabled = false;
+					//cutMenu .Visible = false;
+					//cutMenu .Enabled = false;
+					removeMenu.Visible = false;
+					removeMenu.Enabled = false;
+					deleteMenu.Visible = false;
+					deleteMenu.Enabled = false;
+					renameMenu.Visible = false;
+					renameMenu.Enabled = false;
+					_selected_root = true;
+				} else if (_selected_root) {
+					cloneMenu .Visible = true;
+					cloneMenu .Enabled = true;
+					//cutMenu .Visible = true;
+					//cutMenu .Enabled = true;
+					removeMenu.Visible = true;
+					removeMenu.Enabled = true;
+					deleteMenu.Visible = true;
+					deleteMenu.Enabled = true;
+					renameMenu.Visible = true;
+					renameMenu.Enabled = true;
+					_selected_root = false;
+				}
+				_logger.Info($"the selected node is: {node.FullPath}");
+			}
+
 			_logger.Trace($"completed {nameof(treeView_BeforeSelect)}");
 		}
 
 		private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
 		{
 			_logger.Trace($"executing {nameof(treeView_AfterSelect)}...");
+
+			if (e.Node is FileTreeNode node) {
+				if (node.Folder != null && node.IsExpanded) {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
+				} else {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open;
+				}
+			}
 
 			_logger.Trace($"completed {nameof(treeView_AfterSelect)}");
 		}
@@ -463,6 +524,17 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
 
 			this.OpenEditor();
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.Folder != null) {
+					if (node.IsExpanded) {
+						node.Collapse();
+						openMenu.Text = ExplorerTexts.PopupMenu_Open;
+					} else {
+						node.Expand();
+						openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
+					}
+				}
+			}
 
 			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
 		}

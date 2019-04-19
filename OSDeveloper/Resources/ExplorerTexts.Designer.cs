@@ -250,6 +250,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   dirClose に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_Open_DirClose {
+            get {
+                return ResourceManager.GetString("PopupMenu_Open_DirClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   openIn に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_OpenIn {

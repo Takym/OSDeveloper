@@ -198,6 +198,9 @@
   <data name="PopupMenu_OpenIn_PowerShell" xml:space="preserve">
     <value>PowerShellで開く(&amp;P)...</value>
   </data>
+  <data name="PopupMenu_Open_DirClose" xml:space="preserve">
+    <value>閉じる(&amp;O)</value>
+  </data>
   <data name="PopupMenu_Paste" xml:space="preserve">
     <value>貼り付け(&amp;P)</value>
   </data>
