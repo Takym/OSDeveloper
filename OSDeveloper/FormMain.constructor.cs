@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using OSDeveloper.GraphicalUIs.Controls;
-using OSDeveloper.GraphicalUIs.Explorer;
-using OSDeveloper.GraphicalUIs.Terminal;
-using OSDeveloper.GraphicalUIs.ToolStrips;
+using OSDeveloper.GUIs.Controls;
+using OSDeveloper.GUIs.Explorer;
+using OSDeveloper.GUIs.Terminal;
+using OSDeveloper.GUIs.ToolStrips;
 using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;

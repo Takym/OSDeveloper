@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using OSDeveloper.GraphicalUIs.Terminal;
+using OSDeveloper.GUIs.Terminal;
 
 namespace OSDeveloper
 {

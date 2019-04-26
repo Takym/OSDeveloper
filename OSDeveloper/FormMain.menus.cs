@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using OSDeveloper.GraphicalUIs.ToolStrips;
+using OSDeveloper.GUIs.ToolStrips;
 using OSDeveloper.Resources;
 
 namespace OSDeveloper

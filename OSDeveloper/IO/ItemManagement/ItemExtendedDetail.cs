@@ -1,5 +1,5 @@
-﻿using OSDeveloper.GraphicalUIs.Editors;
-using OSDeveloper.GraphicalUIs.Terminal;
+﻿using OSDeveloper.GUIs.Editors;
+using OSDeveloper.GUIs.Terminal;
 
 namespace OSDeveloper.IO.ItemManagement
 {

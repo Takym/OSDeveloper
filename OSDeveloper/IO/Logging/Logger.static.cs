@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using OSDeveloper.GraphicalUIs.Terminal;
+using OSDeveloper.GUIs.Terminal;
 
 namespace OSDeveloper.IO.Logging
 {
