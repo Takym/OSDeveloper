@@ -24,7 +24,7 @@ namespace OSDeveloper.IO.Configuration
 				get
 				{
 					var node = GetKey(_y_system_inix, _y_system_cfg, KeyOfVisualStyle,
-						new YString() { Text = DefaultVisualStyle.ToString() });
+						() => new YString() { Text = DefaultVisualStyle.ToString() });
 					if (Enum.TryParse(node.Text, out VisualStyleState result)) {
 						return result;
 					}
@@ -44,7 +44,7 @@ namespace OSDeveloper.IO.Configuration
 				get
 				{
 					var node = GetKey(_y_system_inix, _y_system_cfg, KeyOfLanguage,
-						new YString() { Text = DefaultLanguage.Name });
+						() => new YString() { Text = DefaultLanguage.Name });
 					try {
 						return CultureInfo.GetCultureInfo(node.Text) ?? DefaultLanguage;
 					} catch (Exception e) {
@@ -66,7 +66,7 @@ namespace OSDeveloper.IO.Configuration
 				get
 				{
 					var node = GetKey(_y_system_inix, _y_system_cfg, KeyOfMainWindowPosition,
-						DefaultMainWindowPosition.ToYSection());
+						() => DefaultMainWindowPosition.ToYSection());
 					return node?.ToRectangle() ?? DefaultMainWindowPosition;
 				}
 
@@ -83,7 +83,7 @@ namespace OSDeveloper.IO.Configuration
 				get
 				{
 					var node = GetKey(_y_system_inix, _y_system_cfg, KeyOfUseEXDialog,
-						new YBoolean() { Flag = DefaultUseEXDialog });
+						() => new YBoolean() { Flag = DefaultUseEXDialog });
 					return node.Flag;
 				}
 

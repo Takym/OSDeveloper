@@ -74,12 +74,24 @@ namespace OSDeveloper.IO.Configuration
 		}
 		#endregion
 
+		[Obsolete("既定値の設定が遅いので非推奨", true)]
 		private static T GetKey<T>(YSection inix, YSection cfg, string keyName, T defaultValue) where T : YNode
 		{
 			defaultValue.Name = keyName;
 			return inix.GetNode(keyName)  as T
 				?? cfg .GetNode(keyName)  as T
 				?? cfg .Add(defaultValue) as T;
+		}
+
+		private static T GetKey<T>(YSection inix, YSection cfg, string keyName, Func<T> defaultValueFactory) where T : YNode
+		{
+			var result = inix.GetNode(keyName) as T ?? cfg.GetNode(keyName) as T;
+			if (result == null) {
+				result = defaultValueFactory();
+				result.Name = keyName;
+				cfg.Add(result);
+			}
+			return result;
 		}
 	}
 }
