@@ -17,12 +17,13 @@ using Folder = System.IO.Directory;
 
 namespace OSDeveloper.GraphicalUIs.Explorer
 {
-	// TODO: 切り取りメニュー、PoweShellメニュー、Bashメニュー、新しい項目を生成メニューの処理の実装
+	// TODO: 切り取りメニュー、Bash(WSL)メニュー、新しい項目を生成メニューの処理の実装
 
 	public partial class FileTree : UserControl
 	{
 		#region プロパティ
 
+		private const    string       _psver = "WindowsPowerShell\\v1.0";
 		private readonly Logger       _logger;
 		private readonly FormMain     _mwnd;
 		private          FileTreeNode _root;
@@ -62,7 +63,6 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 			btnCollapse.Image = Libosdev.GetIcon(Libosdev.Icons.MiscCollapse, out uint vCol).ToBitmap();
 			btnCollapse.Text  = ExplorerTexts.BtnCollapse;
 
-			const string psver       = "WindowsPowerShell\\v1.0";
 			openMenu.Text            = ExplorerTexts.PopupMenu_Open;
 			openMenu.Font            = new Font(openMenu.Font, FontStyle.Bold);
 			openInMenu.Text          = ExplorerTexts.PopupMenu_OpenIn;
@@ -74,7 +74,7 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 				cmdMenu.Text         = ExplorerTexts.PopupMenu_OpenIn_Cmd;
 				cmdMenu.Image        = Shell32.GetIconFrom("%SystemRoot%\\System32\\cmd.exe", 0, false).ToBitmap();
 				powershellMenu.Text  = ExplorerTexts.PopupMenu_OpenIn_PowerShell;
-				powershellMenu.Image = Shell32.GetIconFrom($"%SystemRoot%\\System32\\{psver}\\powershell.exe", 0, false).ToBitmap();
+				powershellMenu.Image = Shell32.GetIconFrom($"%SystemRoot%\\System32\\{_psver}\\powershell.exe", 0, false).ToBitmap();
 				bashMenu.Text        = ExplorerTexts.PopupMenu_OpenIn_Bash;
 				bashMenu.Image       = Shell32.GetSmallImageAt(2, false);
 			}
@@ -580,10 +580,10 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 
 			if (treeView.SelectedNode is FileTreeNode node) {
 				if (node.File == null) { // ファイルでないなら (フォルダなら)
-					Process.Start("C:\\WINDOWS\\System32\\cmd.exe", $"/K cd \"{node.Metadata.Path}\"");
+					Process.Start("C:\\WINDOWS\\System32\\cmd.exe", $"/K cd /D \"{node.Metadata.Path}\"");
 				} else { // ファイルなら (フォルダでないなら)
 					Process.Start(
-						"C:\\WINDOWS\\System32\\cmd.exe", $"/K cd \"{node.File.Parent.Path}\"");
+						"C:\\WINDOWS\\System32\\cmd.exe", $"/K cd /D \"{node.File.Parent.Path}\"");
 				}
 			}
 
@@ -594,7 +594,17 @@ namespace OSDeveloper.GraphicalUIs.Explorer
 		{
 			_logger.Trace($"executing {nameof(powershellMenu_Click)}...");
 
-			MessageBox.Show("not supported yet");
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.File == null) { // ファイルでないなら (フォルダなら)
+					Process.Start(
+						$"C:\\WINDOWS\\System32\\{_psver}\\powershell.exe",
+						$"-NoExit -Command Set-Location -Path \"{node.Metadata.Path}\"");
+				} else { // ファイルなら (フォルダでないなら)
+					Process.Start(
+						$"C:\\WINDOWS\\System32\\{_psver}\\powershell.exe",
+						$"-NoExit -Command Set-Location -Path \"{node.File.Parent.Path}\"");
+				}
+			}
 
 			_logger.Trace($"completed {nameof(powershellMenu_Click)}");
 		}
