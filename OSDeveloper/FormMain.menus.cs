@@ -158,9 +158,11 @@ namespace OSDeveloper
 
 		private void SetStatusLabelLocation()
 		{
+			this.SuspendLayout();
 			var m1 = _status_label1.Margin;
 			m1.Right = this.ClientSize.Width / 2 - (_status_label1.Width + 16);
 			_status_label1.Margin = m1;
+			this.ResumeLayout();
 		}
 
 		#endregion
