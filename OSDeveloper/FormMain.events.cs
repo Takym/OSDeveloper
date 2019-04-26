@@ -24,22 +24,6 @@ namespace OSDeveloper
 			// ログを出力させる為にプロパティを利用している。
 			this.StatusMessageRight = string.Empty;
 
-#if DEBUG
-			var btnA = new Button();
-			btnA.Text = "Suspend";
-			btnA.Location = new Point(200, 150);
-			btnA.Click += new EventHandler((sender, ee) => this.SuspendLayout());
-
-			var btnB = new Button();
-			btnB.Text = "Resume";
-			btnB.Location = new Point(200, 200);
-			btnB.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
-			btnB.Click += new EventHandler((sender, ee) => this.ResumeLayout());
-
-			this.Controls.Add(btnA);
-			this.Controls.Add(btnB);
-#endif
-
 			_logger.Trace($"completed {nameof(OnLoad)}...");
 		}
 
