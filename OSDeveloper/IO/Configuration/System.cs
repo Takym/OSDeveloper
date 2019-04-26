@@ -17,6 +17,7 @@ namespace OSDeveloper.IO.Configuration
 				_ = Language;
 				_ = MainWindowPosition;
 				_ = UseEXDialog;
+				_ = UseWSLCommand;
 			}
 
 			public static VisualStyleState VisualStyle
@@ -93,7 +94,24 @@ namespace OSDeveloper.IO.Configuration
 				}
 			}
 			public const string KeyOfUseEXDialog = "use_exdialog";
-			public readonly static bool DefaultUseEXDialog = true;
+			public const bool DefaultUseEXDialog = true;
+
+			public static bool UseWSLCommand
+			{
+				get
+				{
+					var node = GetKey(_y_system_inix, _y_system_cfg, KeyOfUseWSLCommand,
+						() => new YBoolean() { Flag = DefaultUseWSLCommand });
+					return node.Flag;
+				}
+
+				set
+				{
+					_y_system_inix.Add(new YBoolean() { Name = KeyOfUseWSLCommand, Flag = value });
+				}
+			}
+			public const string KeyOfUseWSLCommand = "use_wslexe";
+			public const bool DefaultUseWSLCommand = false;
 		}
 	}
 }

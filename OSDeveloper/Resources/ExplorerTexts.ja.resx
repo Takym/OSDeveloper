@@ -184,7 +184,10 @@
     <value>外部プログラムで開く(&amp;X)...</value>
   </data>
   <data name="PopupMenu_OpenIn_Bash" xml:space="preserve">
-    <value>bash(WSL)で開く(&amp;B)...</value>
+    <value>bashで開く(&amp;B)...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_BashWsl" xml:space="preserve">
+    <value>WSLで開く(&amp;B)...</value>
   </data>
   <data name="PopupMenu_OpenIn_Cmd" xml:space="preserve">
     <value>コマンドプロンプトで開く(&amp;C)...</value>

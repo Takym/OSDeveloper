@@ -184,10 +184,13 @@
     <value>Open in e&amp;xternal program...</value>
   </data>
   <data name="PopupMenu_OpenIn_Bash" xml:space="preserve">
-    <value>Open in &amp;bash shell (WSL)...</value>
+    <value>Open in &amp;bash shell...</value>
+  </data>
+  <data name="PopupMenu_OpenIn_BashWsl" xml:space="preserve">
+    <value>Open in WSL shell(&amp;B)...</value>
   </data>
   <data name="PopupMenu_OpenIn_Cmd" xml:space="preserve">
-    <value>Open in &amp;cmd.exe...</value>
+    <value>Open in &amp;Command Prompt...</value>
   </data>
   <data name="PopupMenu_OpenIn_DefaultApp" xml:space="preserve">
     <value>Open in &amp;default app...</value>

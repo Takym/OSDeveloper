@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using OSDeveloper.GUIs.Editors;
 using OSDeveloper.GUIs.Terminal;
 using OSDeveloper.IO;
+using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
@@ -28,6 +29,7 @@ namespace OSDeveloper.GUIs.Explorer
 		private readonly FormMain     _mwnd;
 		private          FileTreeNode _root;
 		private          bool         _selected_root;
+		private          bool         _use_wsl_exe;
 
 		public FolderMetadata Directory
 		{
@@ -56,6 +58,8 @@ namespace OSDeveloper.GUIs.Explorer
 			_mwnd   = mwnd;
 			this.InitializeComponent();
 
+			this.SuspendLayout();
+			_use_wsl_exe = SettingManager.System.UseWSLCommand;
 			btnRefresh.Image  = Libosdev.GetIcon(Libosdev.Icons.MiscRefresh,  out uint vRef).ToBitmap();
 			btnRefresh.Text   = ExplorerTexts.BtnRefresh;
 			btnExpand.Image   = Libosdev.GetIcon(Libosdev.Icons.MiscExpand,   out uint vExp).ToBitmap();
@@ -75,7 +79,7 @@ namespace OSDeveloper.GUIs.Explorer
 				cmdMenu.Image        = Shell32.GetIconFrom("%SystemRoot%\\System32\\cmd.exe", 0, false).ToBitmap();
 				powershellMenu.Text  = ExplorerTexts.PopupMenu_OpenIn_PowerShell;
 				powershellMenu.Image = Shell32.GetIconFrom($"%SystemRoot%\\System32\\{_psver}\\powershell.exe", 0, false).ToBitmap();
-				bashMenu.Text        = ExplorerTexts.PopupMenu_OpenIn_Bash;
+				bashMenu.Text        = _use_wsl_exe ? ExplorerTexts.PopupMenu_OpenIn_BashWsl : ExplorerTexts.PopupMenu_OpenIn_Bash;
 				bashMenu.Image       = Shell32.GetSmallImageAt(2, false);
 			}
 			createFileMenu.Text      = ExplorerTexts.PopupMenu_CreateFile;
@@ -96,6 +100,7 @@ namespace OSDeveloper.GUIs.Explorer
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
 			ofd.Filter = FileTypeRegistry.CreateFullSPFs();
+			this.ResumeLayout();
 
 			_logger.Trace($"constructed {nameof(FileTree)}");
 		}
@@ -614,6 +619,21 @@ namespace OSDeveloper.GUIs.Explorer
 			_logger.Trace($"executing {nameof(bashMenu_Click)}...");
 
 			MessageBox.Show("not supported yet");
+#if false
+			if (treeView.SelectedNode is FileTreeNode node) {
+				var psi = new ProcessStartInfo();
+				psi.FileName = "C:\\WINDOWS\\System32\\cmd.exe";
+				psi.UseShellExecute = true;
+				if (node.File == null) { // ファイルでないなら (フォルダなら)
+					psi.Arguments = $"/C cd /D \"{node.Metadata.Path}\" & call C:\\WINDOWS\\System32\\"
+						+ (_use_wsl_exe ? "wsl.exe" : "bash.exe");
+				} else { // ファイルなら (フォルダでないなら)
+					psi.Arguments = $"/C cd /D \"{node.File.Parent.Path}\" & call C:\\WINDOWS\\System32\\"
+						+ (_use_wsl_exe ? "wsl.exe" : "bash.exe");
+				}
+				Process.Start(psi);
+			}
+#endif
 
 			_logger.Trace($"completed {nameof(bashMenu_Click)}");
 		}
@@ -823,9 +843,9 @@ namespace OSDeveloper.GUIs.Explorer
 			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
 		}
 
-		#endregion
+#endregion
 
-		#region FileTreeViewItem クラス
+#region FileTreeViewItem クラス
 
 		private class FileTreeNode : TreeNode
 		{
@@ -850,9 +870,9 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 		}
 
-		#endregion
+#endregion
 
-		#region DummyTreeNode クラス
+#region DummyTreeNode クラス
 
 		public sealed class DummyTreeNode : TreeNode
 		{
@@ -866,9 +886,9 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 		}
 
-		#endregion
+#endregion
 
-		#region RemovedTreeNode クラス
+#region RemovedTreeNode クラス
 
 		private class RemovedTreeNode : TreeNode
 		{
@@ -881,6 +901,6 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 		}
 
-		#endregion
+#endregion
 	}
 }

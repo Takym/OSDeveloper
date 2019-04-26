@@ -243,7 +243,7 @@
 			// 
 			this.generateNewMenu.Enabled = false;
 			this.generateNewMenu.Name = "generateNewMenu";
-			this.generateNewMenu.Size = new System.Drawing.Size(144, 22);
+			this.generateNewMenu.Size = new System.Drawing.Size(180, 22);
 			this.generateNewMenu.Text = "generateNew";
 			this.generateNewMenu.Visible = false;
 			this.generateNewMenu.Click += new System.EventHandler(this.generateNewMenu_Click);
@@ -251,7 +251,7 @@
 			// fromSystemMenu
 			// 
 			this.fromSystemMenu.Name = "fromSystemMenu";
-			this.fromSystemMenu.Size = new System.Drawing.Size(144, 22);
+			this.fromSystemMenu.Size = new System.Drawing.Size(180, 22);
 			this.fromSystemMenu.Text = "fromSystem";
 			this.fromSystemMenu.Click += new System.EventHandler(this.fromSystemMenu_Click);
 			// 

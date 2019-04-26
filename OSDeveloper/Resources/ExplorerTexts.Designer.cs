@@ -277,6 +277,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   bashWsl に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupMenu_OpenIn_BashWsl {
+            get {
+                return ResourceManager.GetString("PopupMenu_OpenIn_BashWsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   cmd に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_OpenIn_Cmd {
