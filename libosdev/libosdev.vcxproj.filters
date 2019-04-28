@@ -150,5 +150,14 @@
     <Image Include="icons\1203.MenuFile_SaveAllAs.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="icons\1204.MenuFile_Print.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1206.MenuFile_PageSetup.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1205.MenuFile_PrintPreview.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

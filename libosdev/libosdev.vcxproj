@@ -228,6 +228,9 @@
     <Image Include="icons\1201.MenuFile_SaveAs.ico" />
     <Image Include="icons\1202.MenuFile_SaveAll.ico" />
     <Image Include="icons\1203.MenuFile_SaveAllAs.ico" />
+    <Image Include="icons\1204.MenuFile_Print.ico" />
+    <Image Include="icons\1205.MenuFile_PrintPreview.ico" />
+    <Image Include="icons\1206.MenuFile_PageSetup.ico" />
     <Image Include="icons\1900.Misc_Unknown.ico" />
     <Image Include="icons\1901.Misc_Refresh.ico" />
     <Image Include="icons\1902.Misc_Expand.ico" />

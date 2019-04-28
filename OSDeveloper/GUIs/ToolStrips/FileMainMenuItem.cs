@@ -77,16 +77,19 @@ namespace OSDeveloper.GUIs.ToolStrips
 			_print.Text                 = MenuTexts.File_Print;
 			_print.Click               += this._print_Click;
 			_print.ShortcutKeys         = Keys.Control | Keys.P;
+			_print.Image                = Libosdev.GetIcon(Libosdev.Icons.MenuFilePrint, out uint v5).ToBitmap();
 
 			_printPreview.Name          = nameof(_printPreview);
 			_printPreview.Text          = MenuTexts.File_PrintPreview;
 			_printPreview.Click        += this._printPreview_Click;
 			_printPreview.ShortcutKeys  = Keys.Control | Keys.Shift | Keys.P;
+			_printPreview.Image         = Libosdev.GetIcon(Libosdev.Icons.MenuFilePrintPreview, out uint v6).ToBitmap();
 
 			_pageSetup.Name             = nameof(_pageSetup);
 			_pageSetup.Text             = MenuTexts.File_PageSetup;
 			_pageSetup.Click           += this._pageSetup_Click;
 			_pageSetup.ShortcutKeys     = Keys.Control | Keys.Alt | Keys.P;
+			_pageSetup.Image            = Libosdev.GetIcon(Libosdev.Icons.MenuFilePageSetup, out uint v7).ToBitmap();
 
 			_exit.Name                  = nameof(_exit);
 			_exit.Text                  = MenuTexts.File_Exit;
