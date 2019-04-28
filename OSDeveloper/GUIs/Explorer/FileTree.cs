@@ -236,7 +236,8 @@ namespace OSDeveloper.GUIs.Explorer
 							if (node.Folder.IsEmpty()) {
 								node.ImageIndex         = IconList.Junction;
 								node.SelectedImageIndex = IconList.Junction;
-							} else if (!node.IsExpanded) { // .NET の仕様なのか IsExpanded の値は何故か反転している。
+							//} else if (!node.IsExpanded) { // .NET の仕様なのか IsExpanded の値は何故か反転している。
+							} else if (node.IsExpanded) { // 何故か直ってた
 								node.ImageIndex         = IconList.JunOpened;
 								node.SelectedImageIndex = IconList.JunOpened;
 							} else {
@@ -248,7 +249,8 @@ namespace OSDeveloper.GUIs.Explorer
 							if (node.Folder.IsEmpty()) {
 								node.ImageIndex         = IconList.Folder;
 								node.SelectedImageIndex = IconList.Folder;
-							} else if (!node.IsExpanded) { // .NET の仕様なのか IsExpanded の値は何故か反転している。
+							//} else if (!node.IsExpanded) { // .NET の仕様なのか IsExpanded の値は何故か反転している。
+							} else if (node.IsExpanded) { // 何故か直ってた
 								node.ImageIndex         = IconList.FolderOpened;
 								node.SelectedImageIndex = IconList.FolderOpened;
 							} else {
@@ -845,7 +847,7 @@ namespace OSDeveloper.GUIs.Explorer
 
 #endregion
 
-#region FileTreeViewItem クラス
+		#region FileTreeViewItem クラス
 
 		private class FileTreeNode : TreeNode
 		{
@@ -870,9 +872,9 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 		}
 
-#endregion
+		#endregion
 
-#region DummyTreeNode クラス
+		#region DummyTreeNode クラス
 
 		public sealed class DummyTreeNode : TreeNode
 		{
@@ -886,9 +888,9 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 		}
 
-#endregion
+		#endregion
 
-#region RemovedTreeNode クラス
+		#region RemovedTreeNode クラス
 
 		private class RemovedTreeNode : TreeNode
 		{
@@ -901,6 +903,6 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 		}
 
-#endregion
+		#endregion
 	}
 }
