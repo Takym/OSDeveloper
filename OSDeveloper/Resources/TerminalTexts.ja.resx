@@ -132,6 +132,18 @@
   <data name="ItemProperty_Attribute_CanAccess_Description" xml:space="preserve">
     <value>このファイルまたはディレクトリがアクセス可能かを表します。</value>
   </data>
+  <data name="ItemProperty_Attribute_FileFormat" xml:space="preserve">
+    <value>ファイル形式</value>
+  </data>
+  <data name="ItemProperty_Attribute_FileFormat_Description" xml:space="preserve">
+    <value>このファイルのフォーマットを表します。</value>
+  </data>
+  <data name="ItemProperty_Attribute_FolderFormat" xml:space="preserve">
+    <value>フォルダ形式</value>
+  </data>
+  <data name="ItemProperty_Attribute_FolderFormat_Description" xml:space="preserve">
+    <value>このフォルダのフォーマットを表します。</value>
+  </data>
   <data name="ItemProperty_Attribute_IsRemoved" xml:space="preserve">
     <value>削除済み</value>
   </data>

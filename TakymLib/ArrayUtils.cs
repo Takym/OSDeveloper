@@ -87,5 +87,26 @@ namespace TakymLib
 			key   = kvp.Key;
 			value = kvp.Value;
 		}
+
+		/// <summary>
+		///  指定された条件を基に連想配列から値を削除します。
+		/// </summary>
+		/// <typeparam name="TKey">連想配列のキーとなる型です。</typeparam>
+		/// <typeparam name="TValue">連想配列の値となる型です。</typeparam>
+		/// <param name="map">連想配列です。</param>
+		/// <param name="condition">条件を取得する為の関数です。</param>
+		public static void RemoveAll<TKey, TValue>(this IDictionary<TKey, TValue> map, Func<KeyValuePair<TKey, TValue>, bool> condition)
+		{
+			// TODO: 実行時間を O(n) 以下にする。
+			var keys = new Stack<TKey>();
+			foreach (var item in map) {
+				if (condition(item)) {
+					keys.Push(item.Key);
+				}
+			}
+			while (keys.Count > 0){
+				map.Remove(keys.Pop());
+			}
+		}
 	}
 }

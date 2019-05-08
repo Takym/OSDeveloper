@@ -132,6 +132,18 @@
   <data name="ItemProperty_Attribute_CanAccess_Description" xml:space="preserve">
     <value>This represents a boolean value that can this file or directory access.</value>
   </data>
+  <data name="ItemProperty_Attribute_FileFormat" xml:space="preserve">
+    <value>File format</value>
+  </data>
+  <data name="ItemProperty_Attribute_FileFormat_Description" xml:space="preserve">
+    <value>This represents a format of this file.</value>
+  </data>
+  <data name="ItemProperty_Attribute_FolderFormat" xml:space="preserve">
+    <value>Folder format</value>
+  </data>
+  <data name="ItemProperty_Attribute_FolderFormat_Description" xml:space="preserve">
+    <value>This represents a format of this folder.</value>
+  </data>
   <data name="ItemProperty_Attribute_IsRemoved" xml:space="preserve">
     <value>Is removed</value>
   </data>

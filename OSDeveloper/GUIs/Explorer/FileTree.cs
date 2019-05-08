@@ -123,6 +123,9 @@ namespace OSDeveloper.GUIs.Explorer
 			_logger.Info($"started to load the dir: {this.Directory.Path}");
 			this.DirectoryChanged?.Invoke(this, e);
 
+			// 削除済みのアイテムをリストから削除する。
+			ItemList.ClearRemovedItems();
+
 			// ファイルまたはディレクトリを読み込んでFileTreeNode生成する。
 			var node = await Task.Run(() => {
 				if (this.Directory.IsRemoved){ // 削除されているディレクトリが参照された場合
@@ -755,10 +758,10 @@ namespace OSDeveloper.GUIs.Explorer
 					var src = new PathString(Clipboard.GetText());
 					var dst = dstdir.Path.Bond(src.GetFileName()).EnsureName();
 					if (Folder.Exists(src)) {
-						var srcdir = new FolderMetadata(src);
+						var srcdir = ItemList.GetDir(src);
 						meta = srcdir.Copy(dst);
 					} else if (File.Exists(src)) {
-						var srcfile = new FileMetadata(src, FileFormat.Unknown);
+						var srcfile = ItemList.GetFile(src, FileFormat.Unknown);
 						meta = srcfile.Copy(dst);
 					}
 					meta = meta ?? throw new FileNotFoundException(ExplorerTexts.Msgbox_CannotPaste_DoesNotExist, src);

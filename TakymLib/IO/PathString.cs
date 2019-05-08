@@ -7,7 +7,7 @@ namespace TakymLib.IO
 	/// <summary>
 	///  パス文字列を表します。このクラスは不変で、継承する事はできません。
 	/// </summary>
-	public sealed class PathString
+	public sealed class PathString : IEquatable<PathString>, IComparable<PathString>, IComparable
 	{
 		private readonly string _path, _value;
 
@@ -133,7 +133,10 @@ namespace TakymLib.IO
 		/// <summary>
 		///  親ディレクトリを表すパス文字列を取得します。
 		/// </summary>
-		/// <returns>新しく生成された親ディレクトリを表すパス文字列です。</returns>
+		/// <returns>
+		///  新しく生成された親ディレクトリを表すパス文字列です。
+		///  親ディレクトリを持たない場合は<see langword="null"/>が返ります。
+		/// </returns>
 		/// <exception cref="System.ArgumentException">
 		///  内部的な不具合により発生する可能性があります。通常は発生しません。
 		/// </exception>
@@ -145,7 +148,12 @@ namespace TakymLib.IO
 		/// </exception>
 		public PathString GetDirectory()
 		{
-			return new PathString(Path.GetDirectoryName(_path));
+			string p = Path.GetDirectoryName(_path);
+			if (string.IsNullOrEmpty(p)) {
+				return null;
+			} else {
+				return new PathString(p);
+			}
 		}
 
 		/// <summary>
@@ -267,6 +275,51 @@ namespace TakymLib.IO
 		}
 
 		/// <summary>
+		///  指定されたオブジェクトが現在のインスタンスの値と等しいかどうか比較します。
+		/// </summary>
+		/// <param name="other">比較するオブジェクトです。</param>
+		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>です。</returns>
+		public bool Equals(PathString other)
+		{
+			if (other is null) return false;
+			return _path == other._path;
+		}
+
+		/// <summary>
+		///  指定されたオブジェクトと現在のインスタンスの値を比較します。
+		/// </summary>
+		/// <param name="obj">比較するオブジェクトです。</param>
+		/// <returns>
+		///  等しい場合は<c>0</c>、
+		///  このインスタンスの方が大きい場合(並び替えで<paramref name="obj"/>が前方になる場合)は正の整数(<c>0</c>より大きい値)、
+		///  このインスタンスの方が小さい場合(並び替えで<paramref name="obj"/>が後方になる場合)は負の整数(<c>0</c>より小さい値)
+		///  を返します。
+		/// </returns>
+		/// <exception cref="System.ArgumentException"/>
+		public int CompareTo(object obj)
+		{
+			if (obj is PathString ps) {
+				return _path.CompareTo(ps._path);
+			} else {
+				return _path.CompareTo(obj);
+			}
+		}
+
+		/// <summary>
+		///  指定されたオブジェクトと現在のインスタンスの値を比較します。
+		/// </summary>
+		/// <param name="other">比較するオブジェクトです。</param>
+		/// <returns>
+		///  等しい場合は<c>0</c>、
+		///  このインスタンスの方が大きい場合(並び替えで<paramref name="other"/>が前方になる場合)は正の整数(<c>0</c>より大きい値)、
+		///  このインスタンスの方が小さい場合(並び替えで<paramref name="other"/>が後方になる場合)は負の整数(<c>0</c>より小さい値)
+		///  を返します。</returns>
+		public int CompareTo(PathString other)
+		{
+			return _path.CompareTo(other._path);
+		}
+
+		/// <summary>
 		///  指定された二つのオブジェクトが等しいかどうか比較します。
 		/// </summary>
 		/// <param name="left">左辺側のオブジェクトです。</param>
@@ -274,7 +327,7 @@ namespace TakymLib.IO
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>です。</returns>
 		public static bool operator ==(PathString left, PathString right)
 		{
-			return left._path == right._path;
+			return left?.Equals(right) ?? false;
 		}
 
 		/// <summary>
@@ -285,8 +338,65 @@ namespace TakymLib.IO
 		/// <returns>等しくない場合は<see langword="true"/>、等しい場合は<see langword="false"/>です。</returns>
 		public static bool operator !=(PathString left, PathString right)
 		{
-			return left._path != right._path;
+			return !(left?.Equals(right) ?? false);
 		}
+
+		/// <summary>
+		///  <paramref name="left"/>が<paramref name="right"/>より小さいかどうか判定します。
+		/// </summary>
+		/// <param name="left">左辺側のオブジェクトです。</param>
+		/// <param name="right">右辺側のオブジェクトです。</param>
+		/// <returns>
+		/// <paramref name="left"/>が<paramref name="right"/>より小さい場合は<see langword="true"/>、
+		/// <paramref name="left"/>が<paramref name="right"/>以上の場合は<see langword="false"/>です。
+		/// </returns>
+		public static bool operator <(PathString left, PathString right)
+		{
+			return left?.CompareTo(right) < 0;
+		}
+
+		/// <summary>
+		///  <paramref name="left"/>が<paramref name="right"/>より大きいかどうか判定します。
+		/// </summary>
+		/// <param name="left">左辺側のオブジェクトです。</param>
+		/// <param name="right">右辺側のオブジェクトです。</param>
+		/// <returns>
+		/// <paramref name="left"/>が<paramref name="right"/>より大きい場合は<see langword="true"/>、
+		/// <paramref name="left"/>が<paramref name="right"/>以下の場合は<see langword="false"/>です。
+		/// </returns>
+		public static bool operator >(PathString left, PathString right)
+		{
+			return left?.CompareTo(right) > 0;
+		}
+
+		/// <summary>
+		///  <paramref name="left"/>が<paramref name="right"/>以下かどうか判定します。
+		/// </summary>
+		/// <param name="left">左辺側のオブジェクトです。</param>
+		/// <param name="right">右辺側のオブジェクトです。</param>
+		/// <returns>
+		/// <paramref name="left"/>が<paramref name="right"/>以下の場合は<see langword="true"/>、
+		/// <paramref name="left"/>が<paramref name="right"/>より大きい場合は<see langword="false"/>です。
+		/// </returns>
+		public static bool operator <=(PathString left, PathString right)
+		{
+			return left?.CompareTo(right) <= 0;
+		}
+
+		/// <summary>
+		///  <paramref name="left"/>が<paramref name="right"/>以上かどうか判定します。
+		/// </summary>
+		/// <param name="left">左辺側のオブジェクトです。</param>
+		/// <param name="right">右辺側のオブジェクトです。</param>
+		/// <returns>
+		/// <paramref name="left"/>が<paramref name="right"/>以上の場合は<see langword="true"/>、
+		/// <paramref name="left"/>が<paramref name="right"/>より小さい場合は<see langword="false"/>です。
+		/// </returns>
+		public static bool operator >=(PathString left, PathString right)
+		{
+			return left?.CompareTo(right) >= 0;
+		}
+
 		#endregion
 
 		#region 変換処理

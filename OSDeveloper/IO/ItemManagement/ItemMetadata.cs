@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using OSDeveloper.Resources;
+﻿using System.IO;
 using TakymLib.IO;
 
 namespace OSDeveloper.IO.ItemManagement
@@ -13,38 +11,27 @@ namespace OSDeveloper.IO.ItemManagement
 		public  abstract FileSystemInfo     Info           { get; }
 		public  virtual  FileAttributes     Attributes     { get => this.Info.Attributes; }
 		public  virtual  bool               CanAccess      { get => true; }
-		public           bool               IsRemoved      { get; private set; }
+		private          bool               _is_removed;
+		public           bool               IsRemoved      { get => _is_removed || (_is_removed = !_path.Exists()); }
 		private          ItemExtendedDetail _ied;
 		public           ItemExtendedDetail ExtendedDetail { get => _ied; internal set { _ied = value ?? _ied; _ied.Metadata = this; } }
 
-		public virtual FolderMetadata Parent
+		public FolderMetadata Parent
 		{
 			get
 			{
 				if (_parent == null) {
-					_parent = new FolderMetadata(_path.GetDirectory());
+					_parent = ItemList.GetDir(_path.GetDirectory());
 				}
 				return _parent;
 			}
 		}
 		private FolderMetadata _parent;
 
-		internal ItemMetadata(PathString path)
+		protected private ItemMetadata(PathString path)
 		{
-			_path = path;
-
-			this.InitIED();
-		}
-
-		/// <exception cref="System.ArgumentException"/>
-		internal ItemMetadata(PathString path, FolderMetadata parent)
-		{
-			_path   = path;
-			_parent = parent;
-			if (parent != null && _path.GetDirectory() != parent._path) {
-				throw new ArgumentException(ErrorMessages.ItemMetadata_Argument);
-			}
-
+			_path       = path;
+			_is_removed = false;
 			this.InitIED();
 		}
 
@@ -67,13 +54,13 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public virtual bool Delete()
 		{
-			this.IsRemoved = true;
+			_is_removed = true;
 			return true;
 		}
 
 		public virtual bool TrashItem()
 		{
-			this.IsRemoved = true;
+			_is_removed = true;
 			return true;
 		}
 	}

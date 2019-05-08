@@ -98,6 +98,28 @@ namespace OSDeveloper.GUIs.Terminal
 			}
 
 			[OsdevCategory(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute))]
+			[OsdevDisplayName(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute_FileFormat))]
+			[OsdevDescription(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute_FileFormat_Description))]
+			public FileFormat FileFormat
+			{
+				get
+				{
+					return (_meta as FileMetadata)?.Format ?? FileFormat.Unknown;
+				}
+			}
+
+			[OsdevCategory(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute))]
+			[OsdevDisplayName(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute_FolderFormat))]
+			[OsdevDescription(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute_FolderFormat_Description))]
+			public FolderFormat FolderFormat
+			{
+				get
+				{
+					return (_meta as FolderMetadata)?.Format ?? FolderFormat.Unknown;
+				}
+			}
+
+			[OsdevCategory(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute))]
 			[OsdevDisplayName(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute_CanAccess))]
 			[OsdevDescription(nameof(TerminalTexts), nameof(TerminalTexts.ItemProperty_Attribute_CanAccess_Description))]
 			public bool CanAccess

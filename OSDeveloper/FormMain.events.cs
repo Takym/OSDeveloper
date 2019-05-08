@@ -18,7 +18,7 @@ namespace OSDeveloper
 			base.OnLoad(e);
 
 			// このタイミングでディレクトリ設定
-			_explorer.Directory = new FolderMetadata(SystemPaths.Workspace);
+			_explorer.Directory = ItemList.GetDir(SystemPaths.Workspace);
 
 			// _status_label2 の初期化
 			// ログを出力させる為にプロパティを利用している。
@@ -32,6 +32,7 @@ namespace OSDeveloper
 			_logger.Trace($"executing {nameof(OnShown)}...");
 			base.OnShown(e);
 
+			// ウィンドウが表示されたので _status_label1 を「準備完了」と設定する。
 			this.StatusMessageLeft = FormMainRes.Status_Ready;
 
 			_logger.Trace($"completed {nameof(OnShown)}...");

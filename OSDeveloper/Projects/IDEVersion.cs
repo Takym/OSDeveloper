@@ -4,7 +4,7 @@ using SysVer = System.Version;
 
 namespace OSDeveloper.Projects
 {
-	public class IDEVersion : IEquatable<IDEVersion>, IComparable<IDEVersion>
+	public class IDEVersion : IEquatable<IDEVersion>, IComparable<IDEVersion>, IComparable
 	{
 		#region 現在のバージョン
 		public static IDEVersion GetCurrentVersion()
@@ -78,6 +78,15 @@ namespace OSDeveloper.Projects
 			return this == other;
 		}
 
+		public int CompareTo(object obj)
+		{
+			if (obj is IDEVersion ver) {
+				return this.GetVersion().CompareTo(ver.GetVersion());
+			} else {
+				return this.GetVersion().CompareTo(obj);
+			}
+		}
+
 		public int CompareTo(IDEVersion other)
 		{
 			return this.GetVersion().CompareTo(other.GetVersion());
@@ -95,6 +104,7 @@ namespace OSDeveloper.Projects
 
 		public static bool operator ==(IDEVersion left, IDEVersion right)
 		{
+			if (left is null || right is null) return false;
 			return left.Caption == right.Caption
 				&& left.Version == right.Version
 				&& left.Edition == right.Edition;
@@ -102,6 +112,7 @@ namespace OSDeveloper.Projects
 
 		public static bool operator !=(IDEVersion left, IDEVersion right)
 		{
+			if (left is null || right is null) return true;
 			return left.Caption != right.Caption
 				|| left.Version != right.Version
 				|| left.Edition != right.Edition;
@@ -109,22 +120,22 @@ namespace OSDeveloper.Projects
 
 		public static bool operator <(IDEVersion left, IDEVersion right)
 		{
-			return left.CompareTo(right) < 0;
+			return left?.CompareTo(right) < 0;
 		}
 
 		public static bool operator >(IDEVersion left, IDEVersion right)
 		{
-			return left.CompareTo(right) > 0;
+			return left?.CompareTo(right) > 0;
 		}
 
 		public static bool operator <=(IDEVersion left, IDEVersion right)
 		{
-			return left.CompareTo(right) <= 0;
+			return left?.CompareTo(right) <= 0;
 		}
 
 		public static bool operator >=(IDEVersion left, IDEVersion right)
 		{
-			return left.CompareTo(right) >= 0;
+			return left?.CompareTo(right) >= 0;
 		}
 	}
 }

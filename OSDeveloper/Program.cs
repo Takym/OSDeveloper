@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using OSDeveloper.IO.Configuration;
+using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Resources;
@@ -43,6 +44,9 @@ namespace OSDeveloper
 			string culture = lang.Name + "; EN: " + lang.EnglishName + "; 日: " + lang.DisplayName + "; ::: " + lang.NativeName;
 			Logger.Debug($"{nameof(Application)}.{nameof(Application.VisualStyleState)} = {Application.VisualStyleState}");
 			Logger.Debug($"{nameof(CultureInfo)}.{nameof(CultureInfo.DefaultThreadCurrentCulture)} = {culture}");
+			Logger.Debug($"{nameof(FormMain)}.{nameof(FormMain.Location)} = {SettingManager.System.MainWindowPosition}");
+			Logger.Debug($"{nameof(SettingManager.System.UseEXDialog)} = {SettingManager.System.UseEXDialog}");
+			Logger.Debug($"{nameof(SettingManager.System.UseWSLCommand)} = {SettingManager.System.UseWSLCommand}");
 
 			// 言語設定
 			CultureInfo.DefaultThreadCurrentCulture   = lang;
@@ -61,10 +65,17 @@ namespace OSDeveloper
 				goto end;
 			}
 
+			// ファイル/ディレクトリ リストの初期化
+			ItemList.Init();
+
 			// メインウィンドウ表示
 			Application.Run(new FormMain(args));
 
 end:
+
+			// ファイル/ディレクトリ リストの破棄
+			ItemList.Final();
+
 			// 設定書き込み
 			SettingManager.Final();
 

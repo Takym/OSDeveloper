@@ -12,10 +12,8 @@ namespace OSDeveloper.IO.ItemManagement
 		public  override bool           CanAccess { get; }
 		public           FileFormat     Format    { get; }
 
-		public FileMetadata(PathString path, FileFormat format) : this(path, null, format) { }
-
 		/// <exception cref="System.ArgumentException"/>
-		public FileMetadata(PathString path, FolderMetadata parent, FileFormat format) : base(path, parent)
+		internal FileMetadata(PathString path, FileFormat format) : base(path)
 		{
 			try {
 				_finfo = new FileInfo(path);
@@ -118,7 +116,7 @@ namespace OSDeveloper.IO.ItemManagement
 		{
 			try {
 				_finfo.CopyTo(path, true);
-				return new FileMetadata(path, this.Format);
+				return ItemList.GetFile(path, this.Format);
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}, path:{path}");
 				Program.Logger.Exception(e);

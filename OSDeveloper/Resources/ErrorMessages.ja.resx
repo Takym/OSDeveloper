@@ -129,9 +129,6 @@
   <data name="InvalidCast" xml:space="preserve">
     <value>型「{0}」は型「{1}」に変換する事はできません。</value>
   </data>
-  <data name="ItemMetadata_Argument" xml:space="preserve">
-    <value>親フォルダのパスと渡されたファイルのパスが一致しません。</value>
-  </data>
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>「libosdev.dll」を読み込む事ができませんでした。</value>
   </data>

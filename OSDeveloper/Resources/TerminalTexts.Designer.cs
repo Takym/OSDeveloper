@@ -106,6 +106,42 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   ItemProperty_Attribute_FileFormat に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ItemProperty_Attribute_FileFormat {
+            get {
+                return ResourceManager.GetString("ItemProperty_Attribute_FileFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ItemProperty_Attribute_FileFormat_Description に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ItemProperty_Attribute_FileFormat_Description {
+            get {
+                return ResourceManager.GetString("ItemProperty_Attribute_FileFormat_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ItemProperty_Attribute_FolderFormat に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ItemProperty_Attribute_FolderFormat {
+            get {
+                return ResourceManager.GetString("ItemProperty_Attribute_FolderFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ItemProperty_Attribute_FolderFormat_Description に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ItemProperty_Attribute_FolderFormat_Description {
+            get {
+                return ResourceManager.GetString("ItemProperty_Attribute_FolderFormat_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ItemProperty_Attribute_IsRemoved に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ItemProperty_Attribute_IsRemoved {

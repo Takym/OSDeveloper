@@ -61,10 +61,10 @@ namespace OSDeveloper.IO
 		}
 
 		/// <exception cref="System.ArgumentException"/>
-		public FileMetadata CreateMetadata(PathString filename, FolderMetadata parent = null)
+		public FileMetadata CreateMetadata(PathString filename)
 		{
 			if (this.Extensions.ContainsValue(filename.GetExtension())) {
-				var result = new FileMetadata(filename, parent, this.Format);
+				var result = ItemList.GetFile(filename, this.Format);
 				if (this.ItemType != null) {
 					try {
 						result.ExtendedDetail = Activator.CreateInstance(this.ItemType) as ItemExtendedDetail;

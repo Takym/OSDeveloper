@@ -97,15 +97,6 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
-        ///   ItemMetadata_Argument に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ItemMetadata_Argument {
-            get {
-                return ResourceManager.GetString("ItemMetadata_Argument", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Libosdev_CannotLoad に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Libosdev_CannotLoad {

@@ -18,10 +18,8 @@ namespace OSDeveloper.IO.ItemManagement
 		public           FolderFormat      Format    { get; }
 		public           long              Count     { get => Directory.EnumerateFileSystemEntries(this.Path).LongCount(); }
 
-		public FolderMetadata(PathString path) : this(path, null) { }
-
 		/// <exception cref="System.ArgumentException"/>
-		public FolderMetadata(PathString path, FolderMetadata parent) : base(path, parent)
+		internal FolderMetadata(PathString path) : base(path)
 		{
 			try {
 				_dinfo = new DirectoryInfo(path);
@@ -71,11 +69,15 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public FolderMetadata[] GetFolders()
 		{
+			// キャッシュが null なら
 			if (_folders == null) {
+				// ディレクトリ情報からフォルダ一覧を取得
 				var dirs = _dinfo.GetDirectories();
+				// フォルダ数に合わせて配列を生成
 				_folders = new FolderMetadata[dirs.Length];
+				// フォルダのメタ情報をフォルダの数だけ生成
 				for (int i = 0; i < dirs.Length; ++i) {
-					_folders[i] = new FolderMetadata((PathString)(dirs[i].FullName));
+					_folders[i] = ItemList.GetDir((PathString)(dirs[i].FullName));
 				}
 			}
 			return _folders;
@@ -122,7 +124,7 @@ namespace OSDeveloper.IO.ItemManagement
 				for (int i = 0; i < files.Length; ++i) {
 					files[i].Copy(path.Bond(files[i].Name));
 				}
-				return new FolderMetadata(path);
+				return ItemList.GetDir(path);
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}, path:{path}");
 				Program.Logger.Exception(e);
@@ -205,7 +207,7 @@ namespace OSDeveloper.IO.ItemManagement
 				// ディレクトリを作成する。
 				Directory.CreateDirectory(dpath);
 				// ディレクトリのメタ情報を生成する。
-				var result = dirs[_folders.Length] = new FolderMetadata(dpath);
+				var result = dirs[_folders.Length] = ItemList.GetDir(dpath);
 				// 新しいディレクトリ一覧をフィールド変数へ代入する。
 				_folders = dirs;
 				// 生成したメタ情報を呼び出し元へ返す。
@@ -276,14 +278,12 @@ namespace OSDeveloper.IO.ItemManagement
 				var ft = FileTypeRegistry.GetByExtension(ext.Remove(0, 1));
 				// FileType が一つ以上あれば、FileType からメタ情報を生成
 				if (ft.Length != 0) {
-					return ft[0].CreateMetadata(((PathString)(info.FullName)), this);
+					return ft[0].CreateMetadata(((PathString)(info.FullName)));
 				} else { // なければ、通常の FileMetadata を生成
-					return new FileMetadata(
-						((PathString)(info.FullName)), this, FileFormat.Unknown);
+					return ItemList.GetFile(((PathString)(info.FullName)), FileFormat.Unknown);
 				}
 			} else { // 拡張子が無い場合は、通常の FileMetadata を生成
-				return new FileMetadata(
-					((PathString)(info.FullName)), this, FileFormat.Unknown);
+				return ItemList.GetFile(((PathString)(info.FullName)), FileFormat.Unknown);
 			}
 		}
 	}

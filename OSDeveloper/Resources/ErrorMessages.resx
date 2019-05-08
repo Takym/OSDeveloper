@@ -129,9 +129,6 @@
   <data name="InvalidCast" xml:space="preserve">
     <value>InvalidCast {0} {1}</value>
   </data>
-  <data name="ItemMetadata_Argument" xml:space="preserve">
-    <value>ItemMetadata_Argument</value>
-  </data>
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>Libosdev_CannotLoad</value>
   </data>

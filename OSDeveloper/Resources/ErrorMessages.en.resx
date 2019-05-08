@@ -129,9 +129,6 @@
   <data name="InvalidCast" xml:space="preserve">
     <value>The type "{0}" cannot be converted to the type "{1}".</value>
   </data>
-  <data name="ItemMetadata_Argument" xml:space="preserve">
-    <value>The parent folder path and the specified file path do not match.</value>
-  </data>
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>"libosdev.dll" could not be loaded on the application.</value>
   </data>
