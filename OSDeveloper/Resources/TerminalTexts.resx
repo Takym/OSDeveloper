@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnRefresh" xml:space="preserve">
+    <value>btnRefresh</value>
+  </data>
   <data name="ItemProperty_Attribute" xml:space="preserve">
     <value>ItemProperty_Attribute</value>
   </data>
@@ -201,7 +204,46 @@
   <data name="ItemProperty_Size_Size_Description" xml:space="preserve">
     <value>ItemProperty_Size_Size_Description</value>
   </data>
+  <data name="LogOutput_Caption" xml:space="preserve">
+    <value>LogOutput_Caption</value>
+  </data>
+  <data name="LogOutput_col_CreatedDate" xml:space="preserve">
+    <value>LogOutput_col_CreatedDate</value>
+  </data>
+  <data name="LogOutput_col_Level" xml:space="preserve">
+    <value>LogOutput_col_Level</value>
+  </data>
+  <data name="LogOutput_col_Logger" xml:space="preserve">
+    <value>LogOutput_col_Logger</value>
+  </data>
+  <data name="LogOutput_col_Message" xml:space="preserve">
+    <value>LogOutput_col_Message</value>
+  </data>
+  <data name="LogOutput_lblCount" xml:space="preserve">
+    <value>LogOutput_lblCount</value>
+  </data>
+  <data name="LogOutput_lblLevel" xml:space="preserve">
+    <value>LogOutput_lblLevel</value>
+  </data>
+  <data name="LogOutput_lblLogger" xml:space="preserve">
+    <value>LogOutput_lblLogger</value>
+  </data>
   <data name="TabControlEx_NoPage" xml:space="preserve">
     <value>TabControlEx_NoPage</value>
+  </data>
+  <data name="LoadedItemList_Caption" xml:space="preserve">
+    <value>LoadedItemList_Caption</value>
+  </data>
+  <data name="LoadedItemList_col_Name" xml:space="preserve">
+    <value>LoadedItemList_col_Name</value>
+  </data>
+  <data name="LoadedItemList_col_Type" xml:space="preserve">
+    <value>LoadedItemList_col_Type</value>
+  </data>
+  <data name="LoadedItemList_Directory" xml:space="preserve">
+    <value>LoadedItemList_Directory</value>
+  </data>
+  <data name="LoadedItemList_File" xml:space="preserve">
+    <value>LoadedItemList_File</value>
   </data>
 </root>

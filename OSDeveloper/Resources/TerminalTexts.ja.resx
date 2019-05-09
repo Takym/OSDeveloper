@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnRefresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
   <data name="ItemProperty_Attribute" xml:space="preserve">
     <value>属性</value>
   </data>
@@ -201,7 +204,46 @@
   <data name="ItemProperty_Size_Size_Description" xml:space="preserve">
     <value>ファイルの場合はファイルの長さ(バイト単位)を、フォルダの場合はファイル数を表します。</value>
   </data>
+  <data name="LogOutput_Caption" xml:space="preserve">
+    <value>ログ出力</value>
+  </data>
+  <data name="LogOutput_col_CreatedDate" xml:space="preserve">
+    <value>日付/時間</value>
+  </data>
+  <data name="LogOutput_col_Level" xml:space="preserve">
+    <value>レベル</value>
+  </data>
+  <data name="LogOutput_col_Logger" xml:space="preserve">
+    <value>出力元</value>
+  </data>
+  <data name="LogOutput_col_Message" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="LogOutput_lblCount" xml:space="preserve">
+    <value>表示行数：</value>
+  </data>
+  <data name="LogOutput_lblLevel" xml:space="preserve">
+    <value>レベル：</value>
+  </data>
+  <data name="LogOutput_lblLogger" xml:space="preserve">
+    <value>出力元：</value>
+  </data>
   <data name="TabControlEx_NoPage" xml:space="preserve">
     <value>開かれているターミナルページがありません。</value>
+  </data>
+  <data name="LoadedItemList_Caption" xml:space="preserve">
+    <value>読み込み済みのファイル/フォルダ</value>
+  </data>
+  <data name="LoadedItemList_col_Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="LoadedItemList_col_Type" xml:space="preserve">
+    <value>種類</value>
+  </data>
+  <data name="LoadedItemList_Directory" xml:space="preserve">
+    <value>ディレクトリ</value>
+  </data>
+  <data name="LoadedItemList_File" xml:space="preserve">
+    <value>ファイル</value>
   </data>
 </root>

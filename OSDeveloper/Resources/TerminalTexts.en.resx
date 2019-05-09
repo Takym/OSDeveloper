@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnRefresh" xml:space="preserve">
+    <value>Update</value>
+  </data>
   <data name="ItemProperty_Attribute" xml:space="preserve">
     <value>Attribute</value>
   </data>
@@ -201,7 +204,46 @@
   <data name="ItemProperty_Size_Size_Description" xml:space="preserve">
     <value>If a file, this represents the length (bytes) of the file. If a folder, this represents the count of files in the directory.</value>
   </data>
+  <data name="LogOutput_Caption" xml:space="preserve">
+    <value>Log Output</value>
+  </data>
+  <data name="LogOutput_col_CreatedDate" xml:space="preserve">
+    <value>Date/Time</value>
+  </data>
+  <data name="LogOutput_col_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="LogOutput_col_Logger" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="LogOutput_col_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="LogOutput_lblCount" xml:space="preserve">
+    <value>Lines shown:</value>
+  </data>
+  <data name="LogOutput_lblLevel" xml:space="preserve">
+    <value>Level filter:</value>
+  </data>
+  <data name="LogOutput_lblLogger" xml:space="preserve">
+    <value>Source filter:</value>
+  </data>
   <data name="TabControlEx_NoPage" xml:space="preserve">
     <value>There are no opened terminal pages.</value>
+  </data>
+  <data name="LoadedItemList_Caption" xml:space="preserve">
+    <value>Loaded Files/Folders</value>
+  </data>
+  <data name="LoadedItemList_col_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LoadedItemList_col_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="LoadedItemList_Directory" xml:space="preserve">
+    <value>Directory</value>
+  </data>
+  <data name="LoadedItemList_File" xml:space="preserve">
+    <value>File</value>
   </data>
 </root>

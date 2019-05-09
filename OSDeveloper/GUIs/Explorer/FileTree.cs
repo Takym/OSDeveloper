@@ -786,7 +786,11 @@ namespace OSDeveloper.GUIs.Explorer
 
 			if (treeView.SelectedNode is FileTreeNode node) {
 				if (node.Metadata.TrashItem()) {
+					var p = node.Parent;
 					node.Remove();
+					if (p.Nodes.Count == 0 && p is FileTreeNode parent) {
+						this.SetStyleToTreeNode(parent);
+					}
 				} else {
 					MessageBox.Show(_mwnd,
 						ExplorerTexts.Msgbox_CannotDelete,
@@ -811,7 +815,11 @@ namespace OSDeveloper.GUIs.Explorer
 					MessageBoxIcon.Question);
 				if (dr == DialogResult.Yes) {
 					if (node.Metadata.Delete()) {
+						var p = node.Parent;
 						node.Remove();
+						if (p.Nodes.Count == 0 && p is FileTreeNode parent) {
+							this.SetStyleToTreeNode(parent);
+						}
 					} else {
 						MessageBox.Show(_mwnd,
 							ExplorerTexts.Msgbox_CannotDelete,
@@ -848,7 +856,7 @@ namespace OSDeveloper.GUIs.Explorer
 			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
 		}
 
-#endregion
+		#endregion
 
 		#region FileTreeViewItem クラス
 

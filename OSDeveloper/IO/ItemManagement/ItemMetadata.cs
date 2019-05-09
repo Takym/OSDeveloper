@@ -43,8 +43,9 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public virtual bool Rename(string newName)
 		{
-			_path = _path.ChangeFileName(newName);
-			return true;
+			var oldpath = _path;
+			_path = oldpath.ChangeFileName(newName);
+			return ItemList.RenameItem(oldpath, _path);
 		}
 
 		public virtual ItemMetadata Copy(PathString path)
@@ -55,13 +56,13 @@ namespace OSDeveloper.IO.ItemManagement
 		public virtual bool Delete()
 		{
 			_is_removed = true;
-			return true;
+			return ItemList.RemoveItem(_path);
 		}
 
 		public virtual bool TrashItem()
 		{
 			_is_removed = true;
-			return true;
+			return ItemList.RemoveItem(_path);
 		}
 	}
 }

@@ -64,6 +64,7 @@ namespace OSDeveloper.IO.ItemManagement
 			if (path == null) return null;
 			if (_files.ContainsKey(path)) {
 				_logger.Trace($"getting the file metadata object for:\"{path}\"...");
+				_files[path].Format = format;
 				return _files[path];
 			} else {
 				_logger.Trace($"creating the file metadata object for:\"{path}\"...");
@@ -73,12 +74,82 @@ namespace OSDeveloper.IO.ItemManagement
 			}
 		}
 
-		public static void ClearRemovedItems()
+		internal static bool RenameItem(PathString oldpath, PathString newpath)
+		{
+			if (oldpath == null || newpath == null) return false;
+			if (_dirs.ContainsKey(oldpath)) {
+				_logger.Trace($"renaming the folder metadata object for:\"{oldpath}\"...");
+				var meta = _dirs[oldpath];
+				if (_dirs.Remove(oldpath)) {
+					_dirs.Add(newpath, meta);
+					_logger.Notice("renamed the folder.");
+					return true;
+				} else {
+					_logger.Notice("could not rename the folder.");
+					return false;
+				}
+			} else if (_files.ContainsKey(oldpath)) {
+				_logger.Trace($"renaming the file metadata object for:\"{oldpath}\"...");
+				var meta = _files[oldpath];
+				if (_files.Remove(oldpath)) {
+					_files.Add(newpath, meta);
+					_logger.Notice("renamed the file.");
+					return true;
+				} else {
+					_logger.Notice("could not rename the file.");
+					return false;
+				}
+			} else {
+				_logger.Warn($"\"{oldpath}\" does not exist in the file/folder list.");
+				_logger.Notice("could not rename the file/folder.");
+				return false;
+			}
+		}
+
+		internal static bool RemoveItem(PathString path)
+		{
+			if (path == null) return false;
+			if (_dirs.ContainsKey(path)) {
+				_logger.Trace($"removing the folder metadata object for:\"{path}\"...");
+				return _dirs.Remove(path);
+			} else if (_files.ContainsKey(path)) {
+				_logger.Trace($"removing the file metadata object for:\"{path}\"...");
+				return _files.Remove(path);
+			} else {
+				_logger.Warn($"\"{path}\" does not exist in the file/folder list.");
+				_logger.Notice("could not remove the file/folder.");
+				return false;
+			}
+		}
+
+		internal static void ClearRemovedItems()
 		{
 			_logger.Trace($"clearing removed items...");
 			_dirs.RemoveAll((KeyValuePair<PathString, FolderMetadata> k) => k.Value.IsRemoved);
 			_files.RemoveAll((KeyValuePair<PathString, FileMetadata> k) => k.Value.IsRemoved);
 			_logger.Trace($"cleared removed items");
+		}
+
+		internal static PathString[] GetLoadedDirs()
+		{
+			int i = 0;
+			var result = new PathString[_dirs.Count];
+			foreach (var item in _dirs) {
+				result[i] = item.Key;
+				++i;
+			}
+			return result;
+		}
+
+		internal static PathString[] GetLoadedFiles()
+		{
+			int i = 0;
+			var result = new PathString[_files.Count];
+			foreach (var item in _files) {
+				result[i] = item.Key;
+				++i;
+			}
+			return result;
 		}
 	}
 }

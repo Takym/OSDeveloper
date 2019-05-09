@@ -61,6 +61,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   btnRefresh に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string btnRefresh {
+            get {
+                return ResourceManager.GetString("btnRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ItemProperty_Attribute に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ItemProperty_Attribute {
@@ -309,6 +318,123 @@ namespace OSDeveloper.Resources {
         internal static string ItemProperty_Size_Size_Description {
             get {
                 return ResourceManager.GetString("ItemProperty_Size_Size_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LoadedItemList_Caption に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LoadedItemList_Caption {
+            get {
+                return ResourceManager.GetString("LoadedItemList_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LoadedItemList_col_Name に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LoadedItemList_col_Name {
+            get {
+                return ResourceManager.GetString("LoadedItemList_col_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LoadedItemList_col_Type に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LoadedItemList_col_Type {
+            get {
+                return ResourceManager.GetString("LoadedItemList_col_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LoadedItemList_Directory に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LoadedItemList_Directory {
+            get {
+                return ResourceManager.GetString("LoadedItemList_Directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LoadedItemList_File に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LoadedItemList_File {
+            get {
+                return ResourceManager.GetString("LoadedItemList_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LogOutput_Caption に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LogOutput_Caption {
+            get {
+                return ResourceManager.GetString("LogOutput_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LogOutput_col_CreatedDate に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LogOutput_col_CreatedDate {
+            get {
+                return ResourceManager.GetString("LogOutput_col_CreatedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LogOutput_col_Level に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LogOutput_col_Level {
+            get {
+                return ResourceManager.GetString("LogOutput_col_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LogOutput_col_Logger に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LogOutput_col_Logger {
+            get {
+                return ResourceManager.GetString("LogOutput_col_Logger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LogOutput_col_Message に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LogOutput_col_Message {
+            get {
+                return ResourceManager.GetString("LogOutput_col_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LogOutput_lblCount に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LogOutput_lblCount {
+            get {
+                return ResourceManager.GetString("LogOutput_lblCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LogOutput_lblLevel に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LogOutput_lblLevel {
+            get {
+                return ResourceManager.GetString("LogOutput_lblLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LogOutput_lblLogger に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LogOutput_lblLogger {
+            get {
+                return ResourceManager.GetString("LogOutput_lblLogger", resourceCulture);
             }
         }
         

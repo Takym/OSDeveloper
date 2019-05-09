@@ -154,6 +154,12 @@
     <Compile Include="GUIs\Terminal\ItemProperty.Designer.cs">
       <DependentUpon>ItemProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Terminal\LoadedItemList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUIs\Terminal\LoadedItemList.Designer.cs">
+      <DependentUpon>LoadedItemList.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Terminal\LogOutput.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -222,11 +228,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FormMainRes.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\LogOutputTexts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LogOutputTexts.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\MenuTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Terminal\ItemProperty.resx">
       <DependentUpon>ItemProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Terminal\LoadedItemList.resx">
+      <DependentUpon>LoadedItemList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Terminal\LogOutput.resx">
       <DependentUpon>LogOutput.cs</DependentUpon>
@@ -273,12 +277,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FormMainRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\LogOutputTexts.en.resx" />
-    <EmbeddedResource Include="Resources\LogOutputTexts.ja.resx" />
-    <EmbeddedResource Include="Resources\LogOutputTexts.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LogOutputTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\MenuTexts.en.resx" />
     <EmbeddedResource Include="Resources\MenuTexts.ja.resx" />

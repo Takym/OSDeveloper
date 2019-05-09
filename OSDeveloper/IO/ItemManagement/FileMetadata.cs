@@ -10,7 +10,7 @@ namespace OSDeveloper.IO.ItemManagement
 		private readonly FileInfo       _finfo;
 		public  override FileSystemInfo Info      { get => _finfo; }
 		public  override bool           CanAccess { get; }
-		public           FileFormat     Format    { get; }
+		public           FileFormat     Format    { get; internal set; }
 
 		/// <exception cref="System.ArgumentException"/>
 		internal FileMetadata(PathString path, FileFormat format) : base(path)

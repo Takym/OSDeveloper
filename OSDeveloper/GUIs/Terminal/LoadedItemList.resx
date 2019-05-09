@@ -117,31 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnRefresh" xml:space="preserve">
-    <value>btnRefresh</value>
-  </data>
-  <data name="Caption" xml:space="preserve">
-    <value>LogOutput</value>
-  </data>
-  <data name="col_CreatedDate" xml:space="preserve">
-    <value>col_CreatedDate</value>
-  </data>
-  <data name="col_Level" xml:space="preserve">
-    <value>col_Level</value>
-  </data>
-  <data name="col_Logger" xml:space="preserve">
-    <value>col_Logger</value>
-  </data>
-  <data name="col_Message" xml:space="preserve">
-    <value>col_Message</value>
-  </data>
-  <data name="lblCount" xml:space="preserve">
-    <value>lblCount</value>
-  </data>
-  <data name="lblLevel" xml:space="preserve">
-    <value>lblLevel</value>
-  </data>
-  <data name="lblLogger" xml:space="preserve">
-    <value>lblLogger</value>
-  </data>
+  <metadata name="listView.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
+  </metadata>
+  <metadata name="controller.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 95</value>
+  </metadata>
+  <metadata name="btnRefresh.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

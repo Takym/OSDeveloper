@@ -202,6 +202,12 @@
   <data name="View" xml:space="preserve">
     <value>&amp;View</value>
   </data>
+  <data name="View_LoadedItemList" xml:space="preserve">
+    <value>Loaded &amp;Files/Folders</value>
+  </data>
+  <data name="View_LoadedItemList_CannotShow" xml:space="preserve">
+    <value>The loaded files/folders tab was not shown.</value>
+  </data>
   <data name="View_LogOutput" xml:space="preserve">
     <value>&amp;Log Output</value>
   </data>

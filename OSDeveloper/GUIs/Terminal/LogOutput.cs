@@ -29,14 +29,14 @@ namespace OSDeveloper.GUIs.Terminal
 			controller.Controls.Add(btnRefresh);
 
 			// 表示文字列設定
-			col_CreatedDate .Text = LogOutputTexts.col_CreatedDate;
-			col_Level       .Text = LogOutputTexts.col_Level;
-			col_Logger      .Text = LogOutputTexts.col_Logger;
-			col_Message     .Text = LogOutputTexts.col_Message;
-			lblCount        .Text = LogOutputTexts.lblCount;
-			lblLevel        .Text = LogOutputTexts.lblLevel;
-			lblLogger       .Text = LogOutputTexts.lblLogger;
-			btnRefresh      .Text = LogOutputTexts.btnRefresh;
+			col_CreatedDate .Text = TerminalTexts.LogOutput_col_CreatedDate;
+			col_Level       .Text = TerminalTexts.LogOutput_col_Level;
+			col_Logger      .Text = TerminalTexts.LogOutput_col_Logger;
+			col_Message     .Text = TerminalTexts.LogOutput_col_Message;
+			lblCount        .Text = TerminalTexts.LogOutput_lblCount;
+			lblLevel        .Text = TerminalTexts.LogOutput_lblLevel;
+			lblLogger       .Text = TerminalTexts.LogOutput_lblLogger;
+			btnRefresh      .Text = TerminalTexts.btnRefresh;
 
 			// コントローラの位置設定
 			lblCount    .Location = new Point(                                   4, 4);
@@ -61,7 +61,7 @@ namespace OSDeveloper.GUIs.Terminal
 			cmbLevel.Items.Add(LogLevel.Error);
 			cmbLevel.Items.Add(LogLevel.Fatal);
 			cmbLevel.SelectedIndex = 0;
-			this.Text = LogOutputTexts.Caption;
+			this.Text = TerminalTexts.LogOutput_Caption;
 			this.SetComboBoxOptions();
 
 			// コントロール追加

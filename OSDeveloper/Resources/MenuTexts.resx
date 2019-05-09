@@ -201,6 +201,12 @@
   <data name="View" xml:space="preserve">
     <value>VIEW</value>
   </data>
+  <data name="View_LoadedItemList" xml:space="preserve">
+    <value>LoadedItemList</value>
+  </data>
+  <data name="View_LoadedItemList_CannotShow" xml:space="preserve">
+    <value>LoadedItemList_CannotShow</value>
+  </data>
   <data name="View_LogOutput" xml:space="preserve">
     <value>LogOutput</value>
   </data>

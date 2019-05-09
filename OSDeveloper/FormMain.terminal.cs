@@ -31,5 +31,20 @@ namespace OSDeveloper
 		}
 
 		#endregion
+
+		#region 読み込み済みのファイル/フォルダ
+		private LoadedItemList _itemlist;
+		public  LoadedItemList LoadedItemList
+		{
+			get
+			{
+				if (_itemlist == null || _itemlist.IsDisposed) {
+					_itemlist = new LoadedItemList();
+				}
+				return _itemlist;
+			}
+		}
+
+		#endregion
 	}
 }

@@ -202,6 +202,12 @@
   <data name="View" xml:space="preserve">
     <value>表示(&amp;V)</value>
   </data>
+  <data name="View_LoadedItemList" xml:space="preserve">
+    <value>読み込み済みのファイル/フォルダ(&amp;F)</value>
+  </data>
+  <data name="View_LoadedItemList_CannotShow" xml:space="preserve">
+    <value>読み込み済みのファイル/フォルダが表示できませんでした。</value>
+  </data>
   <data name="View_LogOutput" xml:space="preserve">
     <value>ログ出力(&amp;L)</value>
   </data>

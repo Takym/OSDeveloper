@@ -313,6 +313,24 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   LoadedItemList に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string View_LoadedItemList {
+            get {
+                return ResourceManager.GetString("View_LoadedItemList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   LoadedItemList_CannotShow に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string View_LoadedItemList_CannotShow {
+            get {
+                return ResourceManager.GetString("View_LoadedItemList_CannotShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   LogOutput に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string View_LogOutput {
