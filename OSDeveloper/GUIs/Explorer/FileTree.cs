@@ -159,6 +159,7 @@ namespace OSDeveloper.GUIs.Explorer
 			var result = new FileTreeNode(item);
 			result.ContextMenuStrip = popupMenu;
 			if (result.Folder != null && result.Folder.CanAccess && !result.Folder.IsEmpty()) {
+				result.Folder.Refresh();
 				var fo = result.Folder.GetFolders();
 				for (int i = 0; i < fo.Length; ++i) {
 					if (fo[i] != null /*&& !fo[i].IsRemoved*/) result.Nodes.Add(this.CreateTreeNode(fo[i]));
