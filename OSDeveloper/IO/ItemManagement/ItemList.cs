@@ -7,10 +7,10 @@ namespace OSDeveloper.IO.ItemManagement
 {
 	public static class ItemList
 	{
-		private static bool                                   _is_initialized;
-		private static Logger                                 _logger;
-		private static Dictionary<PathString, FolderMetadata> _dirs;
-		private static Dictionary<PathString, FileMetadata>   _files;
+		private static bool                                         _is_initialized;
+		private static Logger                                       _logger;
+		private static SortedDictionary<PathString, FolderMetadata> _dirs;
+		private static SortedDictionary<PathString, FileMetadata>   _files;
 
 		#region コンストラクタ/デストラクタ
 		static ItemList()
@@ -22,8 +22,8 @@ namespace OSDeveloper.IO.ItemManagement
 		{
 			if (!_is_initialized) {
 				_logger = Logger.Get(nameof(ItemList));
-				_dirs   = new Dictionary<PathString, FolderMetadata>();
-				_files  = new Dictionary<PathString, FileMetadata>();
+				_dirs   = new SortedDictionary<PathString, FolderMetadata>();
+				_files  = new SortedDictionary<PathString, FileMetadata>();
 				_is_initialized = true;
 
 				_logger.Trace("constructed the item list of files/directories");
