@@ -272,38 +272,13 @@ namespace TakymLib.IO
 			var rp = new StringBuilder();
 			int i = 0;
 			while (i < tp.Length && i < bp.Length && tp[i] == bp[i]) ++i;
-			/*
-			if (i >= tp.Length) {
-				// tp: aaa\bbb\ccc
-				// bp: aaa\bbb\ccc\ddd\eee\fff
-				// rp: ..\..\..
-				for (; i < bp.Length; ++i) {
-					rp.Append("..\\");
-				}
-			} else if (i >= bp.Length) {
-				// tp: aaa\bbb\ccc\ddd\eee\fff
-				// bp: aaa\bbb\ccc
-				// rp: ddd\eee\fff
-				for (; i < tp.Length; ++i) {
-					rp.Append(tp[i]).Append("\\");
-				}
-			} else {
-				// tp: aaa\bbb\ccc\xxx
-				// bp: aaa\bbb\ccc\ddd\eee\fff
-				// rp: ..\..\..\xxx
-				// ---- OR ----
-				// tp: aaa\xxx\yyy\ddd\eee\fff
-				// bp: aaa\bbb\ccc
-				// rp: ..\..\xxx\yyy\ddd\eee\fff
-				//*/
-				int j = i;
-				for (; i < bp.Length; ++i) {
-					rp.Append("..\\");
-				}
-				for (; j < tp.Length; ++j) {
-					rp.Append(tp[j]).Append("\\");
-				}
-			//}
+			int j = i;
+			for (; i < bp.Length; ++i) {
+				rp.Append("..\\");
+			}
+			for (; j < tp.Length; ++j) {
+				rp.Append(tp[j]).Append("\\");
+			}
 			rp.Remove(rp.Length - 1, 1);
 			return rp.ToString();
 		}
