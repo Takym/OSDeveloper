@@ -4,24 +4,24 @@ using SysVer = System.Version;
 
 namespace OSDeveloper.Projects
 {
-	public class IDEVersion : IEquatable<IDEVersion>, IComparable<IDEVersion>, IComparable
+	public struct IDEVersion : IEquatable<IDEVersion>, IComparable<IDEVersion>, IComparable
 	{
 		#region 現在のバージョン
 		public static IDEVersion GetCurrentVersion()
 		{
-			if (_curver == null) {
+			if (!_curver.HasValue) {
 				_curver = new IDEVersion(ASMINFO.Caption, ASMINFO.Version, ASMINFO.Edition);
 			}
-			return _curver;
+			return _curver.Value;
 		}
-		private static IDEVersion _curver;
+		private static IDEVersion? _curver;
 		#endregion
 
 		private readonly YSection _ysection;
 
-		public string Caption { get => (_ysection.GetNode(nameof(this.Caption)) as YString)?.Text; }
-		public string Version { get => (_ysection.GetNode(nameof(this.Version)) as YString)?.Text; }
-		public string Edition { get => (_ysection.GetNode(nameof(this.Edition)) as YString)?.Text; }
+		public string Caption { get => (_ysection?.GetNode(nameof(this.Caption)) as YString)?.Text ?? string.Empty; }
+		public string Version { get => (_ysection?.GetNode(nameof(this.Version)) as YString)?.Text ?? string.Empty; }
+		public string Edition { get => (_ysection?.GetNode(nameof(this.Edition)) as YString)?.Text ?? string.Empty; }
 
 		public IDEVersion(string caption, string version, string edition)
 		{
@@ -50,6 +50,21 @@ namespace OSDeveloper.Projects
 			}
 		}
 
+		/// <summary>
+		///  このバージョンと現在のバージョンに互換性があるか確認する。
+		/// </summary>
+		public bool HasCompatible()
+		{
+			// TODO: バージョン更新の度に必要ならば書き換える。
+			var current = GetCurrentVersion();
+			if (this.Caption != current.Caption ||
+				this.Edition != current.Edition) return false;
+			var thisver = this.GetVersion();
+			var curver = current.GetVersion();
+			return thisver.Major == curver.Major
+				&& thisver.Minor >= curver.Minor;
+		}
+
 #if false
 		public bool HasCompatibleWith(IDEVersion baseVer)
 		{
@@ -63,6 +78,8 @@ namespace OSDeveloper.Projects
 			return targetVer >= this;
 		}
 #endif
+
+		#region 比較系
 
 		public override bool Equals(object obj)
 		{
@@ -102,9 +119,13 @@ namespace OSDeveloper.Projects
 			return $"{this.Caption} {this.Edition} [v{this.Version}]";
 		}
 
+		#endregion
+
+		#region 演算子
+
 		public static bool operator ==(IDEVersion left, IDEVersion right)
 		{
-			if (left is null || right is null) return false;
+			//if (left is null || right is null) return false;
 			return left.Caption == right.Caption
 				&& left.Version == right.Version
 				&& left.Edition == right.Edition;
@@ -112,7 +133,7 @@ namespace OSDeveloper.Projects
 
 		public static bool operator !=(IDEVersion left, IDEVersion right)
 		{
-			if (left is null || right is null) return true;
+			//if (left is null || right is null) return true;
 			return left.Caption != right.Caption
 				|| left.Version != right.Version
 				|| left.Edition != right.Edition;
@@ -120,22 +141,28 @@ namespace OSDeveloper.Projects
 
 		public static bool operator <(IDEVersion left, IDEVersion right)
 		{
-			return left?.CompareTo(right) < 0;
+			//return left?.CompareTo(right) < 0;
+			return left.CompareTo(right) < 0;
 		}
 
 		public static bool operator >(IDEVersion left, IDEVersion right)
 		{
-			return left?.CompareTo(right) > 0;
+			//return left?.CompareTo(right) > 0;
+			return left.CompareTo(right) > 0;
 		}
 
 		public static bool operator <=(IDEVersion left, IDEVersion right)
 		{
-			return left?.CompareTo(right) <= 0;
+			//return left?.CompareTo(right) <= 0;
+			return left.CompareTo(right) <= 0;
 		}
 
 		public static bool operator >=(IDEVersion left, IDEVersion right)
 		{
-			return left?.CompareTo(right) >= 0;
+			//return left?.CompareTo(right) >= 0;
+			return left.CompareTo(right) >= 0;
 		}
+
+		#endregion
 	}
 }

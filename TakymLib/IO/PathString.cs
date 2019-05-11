@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using TakymLib.Resources;
 
 namespace TakymLib.IO
@@ -244,9 +245,67 @@ namespace TakymLib.IO
 		/// <summary>
 		///  コンストラクタに渡されたパス文字列を取得します。
 		/// </summary>
+		/// <returns>型'<see cref="string"/>'の値です。</returns>
 		public string GetOriginalPath()
 		{
 			return _value;
+		}
+
+		/// <summary>
+		///  現在のインスタンスが格納している絶対パスを取得します。
+		/// </summary>
+		/// <returns>型'<see cref="string"/>'の値です。</returns>
+		public string GetAbsolutePath()
+		{
+			return _path;
+		}
+
+		/// <summary>
+		///  指定された基底パスを基に現在のパス文字列から相対パスを生成します。
+		/// </summary>
+		/// <param name="basePath">現在のパスを相対パスへ変換する為の基底パスです。</param>
+		/// <returns><paramref name="basePath"/>を利用して元のパスへ復元可能な相対パスです。</returns>
+		public string GetRelativePath(PathString basePath)
+		{
+			string[] tp =          _path.Split(Path.DirectorySeparatorChar);
+			string[] bp = basePath._path.Split(Path.DirectorySeparatorChar);
+			var rp = new StringBuilder();
+			int i = 0;
+			while (i < tp.Length && i < bp.Length && tp[i] == bp[i]) ++i;
+			/*
+			if (i >= tp.Length) {
+				// tp: aaa\bbb\ccc
+				// bp: aaa\bbb\ccc\ddd\eee\fff
+				// rp: ..\..\..
+				for (; i < bp.Length; ++i) {
+					rp.Append("..\\");
+				}
+			} else if (i >= bp.Length) {
+				// tp: aaa\bbb\ccc\ddd\eee\fff
+				// bp: aaa\bbb\ccc
+				// rp: ddd\eee\fff
+				for (; i < tp.Length; ++i) {
+					rp.Append(tp[i]).Append("\\");
+				}
+			} else {
+				// tp: aaa\bbb\ccc\xxx
+				// bp: aaa\bbb\ccc\ddd\eee\fff
+				// rp: ..\..\..\xxx
+				// ---- OR ----
+				// tp: aaa\xxx\yyy\ddd\eee\fff
+				// bp: aaa\bbb\ccc
+				// rp: ..\..\xxx\yyy\ddd\eee\fff
+				//*/
+				int j = i;
+				for (; i < bp.Length; ++i) {
+					rp.Append("..\\");
+				}
+				for (; j < tp.Length; ++j) {
+					rp.Append(tp[j]).Append("\\");
+				}
+			//}
+			rp.Remove(rp.Length - 1, 1);
+			return rp.ToString();
 		}
 
 		/// <summary>
