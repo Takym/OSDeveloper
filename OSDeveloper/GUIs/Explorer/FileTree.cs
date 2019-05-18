@@ -766,7 +766,7 @@ namespace OSDeveloper.GUIs.Explorer
 						var srcdir = ItemList.GetDir(src);
 						meta = srcdir.Copy(dst);
 					} else if (File.Exists(src)) {
-						var srcfile = ItemList.GetFile(src, FileFormat.Unknown);
+						var srcfile = ItemList.GetFile(src);
 						meta = srcfile.Copy(dst);
 					}
 					meta = meta ?? throw new FileNotFoundException(ExplorerTexts.Msgbox_CannotPaste_DoesNotExist, src);

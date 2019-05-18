@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using OSDeveloper.IO.Logging;
 using TakymLib;
 using TakymLib.IO;
@@ -45,6 +46,16 @@ namespace OSDeveloper.IO.ItemManagement
 		}
 		#endregion
 
+		public static ItemMetadata GetItem(PathString path)
+		{
+			if (Directory.Exists(path)) {
+				return GetDir(path);
+			} else if (File.Exists(path)) {
+				return GetFile(path);
+			}
+			return null;
+		}
+
 		public static FolderMetadata GetDir(PathString path)
 		{
 			if (path == null) return null;
@@ -59,19 +70,27 @@ namespace OSDeveloper.IO.ItemManagement
 			}
 		}
 
-		public static FileMetadata GetFile(PathString path, FileFormat format)
+		public static FileMetadata GetFile(PathString path)
 		{
 			if (path == null) return null;
 			if (_files.ContainsKey(path)) {
 				_logger.Trace($"getting the file metadata object for:\"{path}\"...");
-				_files[path].Format = format;
 				return _files[path];
 			} else {
 				_logger.Trace($"creating the file metadata object for:\"{path}\"...");
-				var result = new FileMetadata(path, format);
+				var result = new FileMetadata(path, FileFormat.Unknown);
 				_files.Add(path, result);
 				return result;
 			}
+		}
+
+		internal static FileMetadata GetFile(PathString path, FileFormat format)
+		{
+			if (path == null) return null;
+			var meta = GetFile(path);
+			if (meta == null) return null;
+			meta.Format = format;
+			return meta;
 		}
 
 		internal static bool RenameItem(PathString oldpath, PathString newpath)

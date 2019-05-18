@@ -7,15 +7,20 @@ namespace OSDeveloper.Projects
 	public struct IDEVersion : IEquatable<IDEVersion>, IComparable<IDEVersion>, IComparable
 	{
 		#region 現在のバージョン
+
 		public static IDEVersion GetCurrentVersion()
 		{
-			if (!_curver.HasValue) {
-				_curver = new IDEVersion(ASMINFO.Caption, ASMINFO.Version, ASMINFO.Edition);
-			}
-			return _curver.Value;
+			return new IDEVersion(ASMINFO.Caption, ASMINFO.Version, ASMINFO.Edition);
 		}
-		private static IDEVersion? _curver;
+
+		public static IDEVersion GetCurrentVersion(string keyname)
+		{
+			return new IDEVersion(ASMINFO.Caption, ASMINFO.Version, ASMINFO.Edition, keyname);
+		}
+
 		#endregion
+
+		public const string DefaultKeyName = nameof(IDEVersion);
 
 		private readonly YSection _ysection;
 
@@ -23,9 +28,10 @@ namespace OSDeveloper.Projects
 		public string Version { get => (_ysection?.GetNode(nameof(this.Version)) as YString)?.Text ?? string.Empty; }
 		public string Edition { get => (_ysection?.GetNode(nameof(this.Edition)) as YString)?.Text ?? string.Empty; }
 
-		public IDEVersion(string caption, string version, string edition)
+		public IDEVersion(string caption, string version, string edition, string keyname = DefaultKeyName)
 		{
 			_ysection = new YSection();
+			_ysection.Name = keyname;
 			_ysection.Add(new YString() { Name = nameof(this.Caption), Text = caption });
 			_ysection.Add(new YString() { Name = nameof(this.Version), Text = version });
 			_ysection.Add(new YString() { Name = nameof(this.Edition), Text = edition });
@@ -125,7 +131,6 @@ namespace OSDeveloper.Projects
 
 		public static bool operator ==(IDEVersion left, IDEVersion right)
 		{
-			//if (left is null || right is null) return false;
 			return left.Caption == right.Caption
 				&& left.Version == right.Version
 				&& left.Edition == right.Edition;
@@ -133,7 +138,6 @@ namespace OSDeveloper.Projects
 
 		public static bool operator !=(IDEVersion left, IDEVersion right)
 		{
-			//if (left is null || right is null) return true;
 			return left.Caption != right.Caption
 				|| left.Version != right.Version
 				|| left.Edition != right.Edition;
@@ -141,25 +145,21 @@ namespace OSDeveloper.Projects
 
 		public static bool operator <(IDEVersion left, IDEVersion right)
 		{
-			//return left?.CompareTo(right) < 0;
 			return left.CompareTo(right) < 0;
 		}
 
 		public static bool operator >(IDEVersion left, IDEVersion right)
 		{
-			//return left?.CompareTo(right) > 0;
 			return left.CompareTo(right) > 0;
 		}
 
 		public static bool operator <=(IDEVersion left, IDEVersion right)
 		{
-			//return left?.CompareTo(right) <= 0;
 			return left.CompareTo(right) <= 0;
 		}
 
 		public static bool operator >=(IDEVersion left, IDEVersion right)
 		{
-			//return left?.CompareTo(right) >= 0;
 			return left.CompareTo(right) >= 0;
 		}
 

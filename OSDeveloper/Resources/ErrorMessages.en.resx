@@ -132,4 +132,22 @@
   <data name="Libosdev_CannotLoad" xml:space="preserve">
     <value>"libosdev.dll" could not be loaded on the application.</value>
   </data>
+  <data name="ProjectItem_ReadFrom_DoesNotMatch" xml:space="preserve">
+    <value>The file name "{0}" of the specified item does not match with the file name "{1}" saved in the project/solution settings.</value>
+  </data>
+  <data name="ProjectItem_ReadFrom_InvalidValue" xml:space="preserve">
+    <value>The file name data saved in the project/solution settings of the specified item "{0}" is invalid.</value>
+  </data>
+  <data name="Project_ReadFrom_InvalidItemKey" xml:space="preserve">
+    <value>The item data "{0}" saved in the project/solution settings is invalid.</value>
+  </data>
+  <data name="Project_ReadFrom_InvalidItems" xml:space="preserve">
+    <value>The item data saved in the project/solution settings are all invalid.</value>
+  </data>
+  <data name="Project_ReadFrom_InvalidVersion" xml:space="preserve">
+    <value>The version information saved in the project/solution settings is invalid.</value>
+  </data>
+  <data name="Project_ReadFrom_NonCompatibleVersion" xml:space="preserve">
+    <value>The version information "{1}" saved in the project/solution settings is not compatible with the current version "{0}".</value>
+  </data>
 </root>

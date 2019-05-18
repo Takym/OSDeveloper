@@ -280,10 +280,10 @@ namespace OSDeveloper.IO.ItemManagement
 				if (ft.Length != 0) {
 					return ft[0].CreateMetadata(((PathString)(info.FullName)));
 				} else { // なければ、通常の FileMetadata を生成
-					return ItemList.GetFile(((PathString)(info.FullName)), FileFormat.Unknown);
+					return ItemList.GetFile((PathString)(info.FullName));
 				}
 			} else { // 拡張子が無い場合は、通常の FileMetadata を生成
-				return ItemList.GetFile(((PathString)(info.FullName)), FileFormat.Unknown);
+				return ItemList.GetFile((PathString)(info.FullName));
 			}
 		}
 	}

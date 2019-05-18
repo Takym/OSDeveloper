@@ -104,5 +104,59 @@ namespace OSDeveloper.Resources {
                 return ResourceManager.GetString("Libosdev_CannotLoad", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Project_ReadFrom_InvalidItemKey {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Project_ReadFrom_InvalidItemKey {
+            get {
+                return ResourceManager.GetString("Project_ReadFrom_InvalidItemKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Project_ReadFrom_InvalidItems に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Project_ReadFrom_InvalidItems {
+            get {
+                return ResourceManager.GetString("Project_ReadFrom_InvalidItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Project_ReadFrom_InvalidVersion に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Project_ReadFrom_InvalidVersion {
+            get {
+                return ResourceManager.GetString("Project_ReadFrom_InvalidVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Project_ReadFrom_NonCompatibleVersion {0} {1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Project_ReadFrom_NonCompatibleVersion {
+            get {
+                return ResourceManager.GetString("Project_ReadFrom_NonCompatibleVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ProjectItem_ReadFrom_DoesNotMatch {0} {1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ProjectItem_ReadFrom_DoesNotMatch {
+            get {
+                return ResourceManager.GetString("ProjectItem_ReadFrom_DoesNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ProjectItem_ReadFrom_InvalidValue {0} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ProjectItem_ReadFrom_InvalidValue {
+            get {
+                return ResourceManager.GetString("ProjectItem_ReadFrom_InvalidValue", resourceCulture);
+            }
+        }
     }
 }
