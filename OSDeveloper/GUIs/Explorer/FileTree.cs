@@ -59,7 +59,7 @@ namespace OSDeveloper.GUIs.Explorer
 			this.InitializeComponent();
 
 			this.SuspendLayout();
-			_use_wsl_exe = SettingManager.System.UseWSLCommand;
+			_use_wsl_exe      = SettingManager.System.UseWSLCommand;
 			btnRefresh.Image  = Libosdev.GetIcon(Libosdev.Icons.MiscRefresh,  out uint vRef).ToBitmap();
 			btnRefresh.Text   = ExplorerTexts.BtnRefresh;
 			btnExpand.Image   = Libosdev.GetIcon(Libosdev.Icons.MiscExpand,   out uint vExp).ToBitmap();
@@ -135,9 +135,13 @@ namespace OSDeveloper.GUIs.Explorer
 				}
 			});
 
+			// 既に追加されているFileTreeNodeを削除する。
+			if (treeView.Nodes.Count > 0) {
+				treeView.Nodes.RemoveAt(0);
+			}
+
 			// TreeViewに生成したFileTreeNodeを追加する。
-			treeView.Nodes.Clear();
-			treeView.Nodes.Add(node);
+			treeView.Nodes.Insert(0, node);
 
 			// 一番上のノード(Root Node)の設定を変更する。
 			if (node is FileTreeNode ftn) {
