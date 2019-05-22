@@ -9,23 +9,31 @@ namespace OSDeveloper.Projects
 	public class ProjectItem : IComparable<ProjectItem>
 	{
 		#region プロパティ
-		public string     Name     { get; }
-		public PathString HintPath { get; protected set; }
-		public Project    Parent   { get; }
+		public    string     Name     { get; }
+		public    PathString HintPath { get; protected set; }
+		public    Project    Parent   { get; }
+		protected Solution   Solution { get; }
 		#endregion
 
 		#region コンストラクタ
-		protected ProjectItem(string name)
+
+		private protected ProjectItem(string name)
 		{
 			this.Name = name;
+			if (this is Solution root) {
+				this.Solution = root;
+				this.HintPath = root.GetFullPath();
+			}
 		}
 
-		public ProjectItem(Project parent, string name)
+		public ProjectItem(Solution root, Project parent, string name)
 		{
 			this.Parent   = parent;
 			this.Name     = name;
+			this.Solution = root;
 			this.HintPath = parent.HintPath.Bond(name);
 		}
+
 		#endregion
 
 		#region 情報取得
@@ -48,6 +56,7 @@ namespace OSDeveloper.Projects
 		{
 			section.Add(new YString() { Name = "Name", Text = this.Name });
 			section.Add(new YString() { Name = "Hint", Text = this.HintPath });
+			section.Add(new YString() { Name = "Type", Text = this.GetType().FullName });
 		}
 
 		/// <exception cref="System.ArgumentException" />

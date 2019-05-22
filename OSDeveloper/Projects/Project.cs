@@ -11,8 +11,6 @@ namespace OSDeveloper.Projects
 	{
 		#region プロパティ
 		public    IDEVersion                 SavedVersion           { get; protected set; }
-		public    IList<Project>             DependsOn              { get => _depends_on; }
-		private   List<Project>              _depends_on;
 		public    IReadOnlyList<ProjectItem> Contents               { get => _contents_as_readonly; }
 		private   IReadOnlyList<ProjectItem> _contents_as_readonly;
 		private   List<ProjectItem>          _contents;
@@ -21,12 +19,13 @@ namespace OSDeveloper.Projects
 		#endregion
 
 		#region コンストラクタ
-		protected Project(string name) : base(name)
+
+		private protected Project(string name) : base(name)
 		{
 			this.Init();
 		}
 
-		public Project(Project parent, string name) : base(parent, name)
+		public Project(Solution root, Project parent, string name) : base(root, parent, name)
 		{
 			this.Init();
 		}
@@ -35,7 +34,6 @@ namespace OSDeveloper.Projects
 
 		private void Init()
 		{
-			_depends_on           = new List<Project>();
 			_contents             = new List<ProjectItem>();
 			_contents_as_readonly = _contents.AsReadOnly();
 			_folder               = ItemList.GetDir(this.GetFullPath());
@@ -48,13 +46,18 @@ namespace OSDeveloper.Projects
 		{
 			var dirs = _folder.GetFolders();
 			for (int i = 0; i < dirs.Length; ++i) {
-				_contents.Add(new ProjectItem(this, dirs[i].Name));
+				_contents.Add(this.LoadItem(dirs[i].Name));
 				this.LoadItems(dirs[i], path + Path.DirectorySeparatorChar + dirs[i].Name);
 			}
 			var files = _folder.GetFiles();
 			for (int i = 0; i < files.Length; ++i) {
-				_contents.Add(new ProjectItem(this, files[i].Name));
+				_contents.Add(this.LoadItem(files[i].Name));
 			}
+		}
+
+		private ProjectItem LoadItem(string name)
+		{
+			return new ProjectItem(this.Solution, this, name);
 		}
 
 		#endregion
@@ -69,6 +72,17 @@ namespace OSDeveloper.Projects
 			return _folder;
 		}
 
+		public ProjectItem GetItem(string name)
+		{
+			_contents.Sort();
+			int j = _contents.BinarySearch(new DummyProjectItem(name));
+			if (0 <= j && j < _contents.Count) {
+				return _contents[j];
+			} else {
+				return null;
+			}
+		}
+
 		#endregion
 
 		#region 計画設定ファイルの読み書き
@@ -78,12 +92,6 @@ namespace OSDeveloper.Projects
 			base.WriteTo(section);
 			this.SavedVersion = IDEVersion.GetCurrentVersion();
 			section.Add(this.SavedVersion.GetYSection());
-
-			/*var dependsOn = new YSection() { Name = "DependsOn" };
-			for (int i = 0; i < _depends_on.Count; ++i) {
-
-			}
-			//*/
 
 			var items = new YSection() { Name = "Items" };
 			for (int i = 0; i < _contents.Count; ++i) {
@@ -119,12 +127,19 @@ namespace OSDeveloper.Projects
 			// Contents
 			node = section.GetNode("Items");
 			if (node is YSection itemKey) {
-				var keys = itemKey.SubKeys;
+				var keys     = itemKey.SubKeys;
+				var newitems = new List<ProjectItem>();
 				_contents.Sort();
 				for (int i = 0; i < keys.Length; ++i) {
 					if (keys[i] is YSection k) {
 						int j = _contents.BinarySearch(new DummyProjectItem(keys[i].Name));
-						_contents[j].ReadFrom(k);
+						if (0 <= j && j < _contents.Count) {
+							_contents[j].ReadFrom(k);
+						} else {
+							var item = this.LoadItem(keys[i].Name);
+							item.ReadFrom(k);
+							newitems.Add(item);
+						}
 					} else {
 						throw new ArgumentException(string.Format(
 							ErrorMessages.Project_ReadFrom_InvalidItemKey,
@@ -132,6 +147,7 @@ namespace OSDeveloper.Projects
 						));
 					}
 				}
+				_contents.AddRange(newitems);
 			} else {
 				throw new ArgumentException(ErrorMessages.Project_ReadFrom_InvalidItems);
 			}

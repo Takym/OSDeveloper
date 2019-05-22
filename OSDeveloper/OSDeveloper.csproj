@@ -203,6 +203,7 @@
     <Compile Include="Native\Shell32.cs" />
     <Compile Include="Native\User32.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Projects\Solution.cs" />
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Projects\ProjectItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
