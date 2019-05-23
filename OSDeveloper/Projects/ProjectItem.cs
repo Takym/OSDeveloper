@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
@@ -29,7 +28,7 @@ namespace OSDeveloper.Projects
 				this.Solution = root;
 				this.HintPath = root.GetFullPath();
 			}
-			this.Logger.Trace($"New project item \"{name}\" constructed with the type: {this.GetType().FullName}");
+			this.Logger.Trace($"constructing new project item \"{name}\" with the type: {this.GetType().FullName}...");
 		}
 
 		public ProjectItem(Solution root, Project parent, string name)
@@ -39,7 +38,7 @@ namespace OSDeveloper.Projects
 			this.Name     = name;
 			this.Solution = root;
 			this.HintPath = parent.HintPath.Bond(name);
-			this.Logger.Trace($"New project item \"{name}\" constructed with the type: {this.GetType().FullName}");
+			this.Logger.Trace($"constructing new project item \"{name}\" with the type: {this.GetType().FullName}...");
 		}
 
 		#endregion

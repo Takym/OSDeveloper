@@ -18,7 +18,7 @@ namespace OSDeveloper
 		private readonly Logger         _logger;
 		private readonly MdiClient      _mdi_client;
 		private readonly MdiChildrenTab _mdi_tab;
-		private readonly FileTree       _explorer;
+		private readonly FileTreeBox       _explorer;
 		private readonly TabControlEx   _terminal;
 		private readonly Splitter       _splitter_vert;
 		private readonly Splitter       _splitter_hori;
@@ -34,7 +34,7 @@ namespace OSDeveloper
 			_main_menu     = new MenuStrip();
 			_tool_menu     = new ToolStrip();
 			_status_bar    = new StatusStrip();
-			_explorer      = new FileTree(this);
+			_explorer      = new FileTreeBox(this);
 			_terminal      = new TabControlEx();
 			_splitter_vert = new Splitter();
 			_splitter_hori = new Splitter();

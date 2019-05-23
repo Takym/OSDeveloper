@@ -1,22 +1,14 @@
-﻿using TakymLib.IO;
+﻿using OSDeveloper.IO;
+using TakymLib.IO;
 using Yencon;
 
 namespace OSDeveloper.Projects
 {
 	public sealed class Solution : Project
 	{
-		#region プロパティ
-
-		public PathString Workspace { get; }
-
-		#endregion
-
 		#region コンストラクタ
 
-		public Solution(PathString cwd, string name) : base(name)
-		{
-			this.Workspace = cwd;
-		}
+		public Solution(string name) : base(name) { }
 
 		#endregion
 
@@ -24,7 +16,7 @@ namespace OSDeveloper.Projects
 
 		public override PathString GetFullPath()
 		{
-			return this.Workspace.Bond(this.Name);
+			return SystemPaths.Workspace.Bond(this.Name);
 		}
 
 		#endregion

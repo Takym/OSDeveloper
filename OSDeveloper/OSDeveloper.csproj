@@ -133,13 +133,14 @@
       <DependentUpon>EditorWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Editors\SimpleTextEditor.cs" />
-    <Compile Include="GUIs\Explorer\FileTree.cs">
+    <Compile Include="GUIs\Explorer\FileTreeBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUIs\Explorer\FileTree.Designer.cs">
-      <DependentUpon>FileTree.cs</DependentUpon>
+    <Compile Include="GUIs\Explorer\FileTreeBox.Designer.cs">
+      <DependentUpon>FileTreeBox.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Explorer\IconList.cs" />
+    <Compile Include="GUIs\Explorer\SolutionTreeNode.cs" />
     <Compile Include="GUIs\Features\IClipboardFeature.cs" />
     <Compile Include="GUIs\Features\IFileSaveLoadFeature.cs" />
     <Compile Include="GUIs\Features\IFileLoadFeature.cs" />
@@ -242,8 +243,8 @@
     <EmbeddedResource Include="GUIs\Editors\EditorWindow.resx">
       <DependentUpon>EditorWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Explorer\FileTree.resx">
-      <DependentUpon>FileTree.cs</DependentUpon>
+    <EmbeddedResource Include="GUIs\Explorer\FileTreeBox.resx">
+      <DependentUpon>FileTreeBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Terminal\ItemProperty.resx">
       <DependentUpon>ItemProperty.cs</DependentUpon>

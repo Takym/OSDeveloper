@@ -1,6 +1,6 @@
 ﻿namespace OSDeveloper.GUIs.Explorer
 {
-	partial class FileTree
+	partial class FileTreeBox
 	{
 		/// <summary> 
 		/// 必要なデザイナー変数です。
@@ -28,7 +28,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileTree));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileTreeBox));
 			this.toolStrip = new System.Windows.Forms.ToolStrip();
 			this.btnRefresh = new System.Windows.Forms.ToolStripButton();
 			this.btnExpand = new System.Windows.Forms.ToolStripButton();

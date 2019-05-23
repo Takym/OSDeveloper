@@ -38,6 +38,8 @@ namespace OSDeveloper.Projects
 			_folder               = ItemList.GetDir(this.GetFullPath());
 
 			this.SavedVersion = IDEVersion.GetCurrentVersion();
+
+			this.Logger.Trace($"constructed the project item \"{this.Name}\" with the type: {this.GetType().FullName}");
 		}
 
 		#endregion

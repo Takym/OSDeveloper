@@ -12,6 +12,7 @@ using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
+using OSDeveloper.Projects;
 using OSDeveloper.Resources;
 using TakymLib.IO;
 using Folder = System.IO.Directory;
@@ -20,7 +21,7 @@ namespace OSDeveloper.GUIs.Explorer
 {
 	// TODO: 切り取りメニュー、Bash(WSL)メニュー、新しい項目を生成メニューの処理の実装
 
-	public partial class FileTree : UserControl
+	public partial class FileTreeBox : UserControl
 	{
 		#region プロパティ
 
@@ -52,9 +53,9 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#region コンストラクタ
 
-		public FileTree(FormMain mwnd)
+		public FileTreeBox(FormMain mwnd)
 		{
-			_logger = Logger.Get(nameof(FileTree));
+			_logger = Logger.Get(nameof(FileTreeBox));
 			_mwnd   = mwnd;
 			this.InitializeComponent();
 
@@ -102,7 +103,7 @@ namespace OSDeveloper.GUIs.Explorer
 			ofd.Filter = FileTypeRegistry.CreateFullSPFs();
 			this.ResumeLayout();
 
-			_logger.Trace($"constructed {nameof(FileTree)}");
+			_logger.Trace($"constructed {nameof(FileTreeBox)}");
 		}
 
 		#endregion
@@ -150,6 +151,11 @@ namespace OSDeveloper.GUIs.Explorer
 				this.SetStyleToTreeNode(ftn);
 				_root = ftn;
 			}
+
+			var sln = new SolutionTreeNode(new Solution("TestSln"));
+			treeView.Nodes.Add(sln);
+			sln.Save();
+			sln.Load();
 
 			_logger.Info($"finished to load the dir: {this.Directory.Path}");
 			_logger.Trace($"completed {nameof(OnDirectoryChanged)}");
@@ -863,9 +869,9 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#endregion
 
-		#region FileTreeViewItem クラス
+		#region FileTreeNode クラス
 
-		private class FileTreeNode : TreeNode
+		internal class FileTreeNode : TreeNode
 		{
 			public ItemMetadata Metadata { get; }
 			public ItemProperty Property { get; set; }
@@ -892,7 +898,7 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#region DummyTreeNode クラス
 
-		public sealed class DummyTreeNode : TreeNode
+		internal sealed class DummyTreeNode : TreeNode
 		{
 			public readonly static DummyTreeNode Instance = new DummyTreeNode();
 
@@ -908,7 +914,7 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#region RemovedTreeNode クラス
 
-		private class RemovedTreeNode : TreeNode
+		internal class RemovedTreeNode : TreeNode
 		{
 			public ItemMetadata Metadata { get; }
 
