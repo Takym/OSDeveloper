@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using OSDeveloper.GUIs.Terminal;
 
 namespace OSDeveloper.IO.Logging
 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.Resources;
 using Yencon;
@@ -38,26 +37,7 @@ namespace OSDeveloper.Projects
 			_contents_as_readonly = _contents.AsReadOnly();
 			_folder               = ItemList.GetDir(this.GetFullPath());
 
-			this.LoadItems(_folder, string.Empty);
 			this.SavedVersion = IDEVersion.GetCurrentVersion();
-		}
-
-		private void LoadItems(FolderMetadata folder, string path)
-		{
-			var dirs = _folder.GetFolders();
-			for (int i = 0; i < dirs.Length; ++i) {
-				_contents.Add(this.LoadItem(dirs[i].Name));
-				this.LoadItems(dirs[i], path + Path.DirectorySeparatorChar + dirs[i].Name);
-			}
-			var files = _folder.GetFiles();
-			for (int i = 0; i < files.Length; ++i) {
-				_contents.Add(this.LoadItem(files[i].Name));
-			}
-		}
-
-		private ProjectItem LoadItem(string name)
-		{
-			return new ProjectItem(this.Solution, this, name);
 		}
 
 		#endregion
@@ -85,11 +65,13 @@ namespace OSDeveloper.Projects
 
 		#endregion
 
-		#region 計画設定ファイルの読み書き
+		#region 企画/計画設定ファイルの読み書き
 
 		public override void WriteTo(YSection section)
 		{
 			base.WriteTo(section);
+			this.Logger.Trace($"executing {nameof(Project)}.{nameof(this.WriteTo)} ({this.Name})...");
+
 			this.SavedVersion = IDEVersion.GetCurrentVersion();
 			section.Add(this.SavedVersion.GetYSection());
 
@@ -100,12 +82,15 @@ namespace OSDeveloper.Projects
 				items.Add(item);
 			}
 			section.Add(items);
+
+			this.Logger.Trace($"completed {nameof(Project)}.{nameof(this.WriteTo)} ({this.Name})");
 		}
 
 		/// <exception cref="System.ArgumentException" />
 		public override void ReadFrom(YSection section)
 		{
 			base.ReadFrom(section);
+			this.Logger.Trace($"executing {nameof(Project)}.{nameof(this.ReadFrom)} ({this.Name})...");
 
 			// SavedVersion
 			var node = section.GetNode(IDEVersion.DefaultKeyName);
@@ -127,19 +112,13 @@ namespace OSDeveloper.Projects
 			// Contents
 			node = section.GetNode("Items");
 			if (node is YSection itemKey) {
-				var keys     = itemKey.SubKeys;
-				var newitems = new List<ProjectItem>();
-				_contents.Sort();
+				var keys = itemKey.SubKeys;
+				_contents.Clear();
 				for (int i = 0; i < keys.Length; ++i) {
 					if (keys[i] is YSection k) {
-						int j = _contents.BinarySearch(new DummyProjectItem(keys[i].Name));
-						if (0 <= j && j < _contents.Count) {
-							_contents[j].ReadFrom(k);
-						} else {
-							var item = this.LoadItem(keys[i].Name);
-							item.ReadFrom(k);
-							newitems.Add(item);
-						}
+						var item = this.LoadItem(keys[i].Name, k);
+						item.ReadFrom(k);
+						_contents.Add(item);
 					} else {
 						throw new ArgumentException(string.Format(
 							ErrorMessages.Project_ReadFrom_InvalidItemKey,
@@ -147,10 +126,20 @@ namespace OSDeveloper.Projects
 						));
 					}
 				}
-				_contents.AddRange(newitems);
 			} else {
 				throw new ArgumentException(ErrorMessages.Project_ReadFrom_InvalidItems);
 			}
+
+			this.Logger.Trace($"completed {nameof(Project)}.{nameof(this.ReadFrom)} ({this.Name})...");
+		}
+
+		private ProjectItem LoadItem(string name, YSection section)
+		{
+			this.Logger.Info($"{this.Name}: loading {name}...");
+
+			var pitem = new TentativeProjectItem(this.Solution, this, name);
+			pitem.ReadFrom(section);
+			return Activator.CreateInstance(pitem.Type, this.Solution, this, name) as ProjectItem;
 		}
 
 		#endregion

@@ -84,6 +84,41 @@ namespace OSDeveloper.IO.ItemManagement
 			}
 		}
 
+		public static FolderMetadata CreateDir(PathString path)
+		{
+			if (path == null) return null;
+			if (_dirs.ContainsKey(path)) {
+				_logger.Trace($"getting the folder metadata object for:\"{path}\"...");
+				return _dirs[path];
+			} else {
+				_logger.Trace($"creating a new folder and its metadata object for:\"{path}\"...");
+				Directory.CreateDirectory(path);
+				var result = new FolderMetadata(path);
+				_dirs.Add(path, result);
+				return result;
+			}
+		}
+
+		public static FileMetadata CreateNewFile(PathString path, FileFormat format)
+		{
+			if (path == null) return null;
+			if (_files.ContainsKey(path)) {
+				_logger.Trace($"recreating the file and its file metadata object for:\"{path}\"...");
+				if (RemoveItem(path)) {
+					return CreateNewFile(path, format);
+				} else {
+					return null; // 絶対に来ない筈
+				}
+			} else {
+				_logger.Trace($"creating a new file and its file metadata object for:\"{path}\"...");
+				Directory.CreateDirectory(path.GetDirectory());
+				File.Create(path).Close();
+				var result = new FileMetadata(path, format);
+				_files.Add(path, result);
+				return result;
+			}
+		}
+
 		internal static FileMetadata GetFile(PathString path, FileFormat format)
 		{
 			if (path == null) return null;

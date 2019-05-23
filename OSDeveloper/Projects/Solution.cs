@@ -29,7 +29,7 @@ namespace OSDeveloper.Projects
 
 		#endregion
 
-		#region 計画設定ファイルの読み書き
+		#region 企画/計画設定ファイルの読み書き
 
 		public override void WriteTo(YSection section)
 		{

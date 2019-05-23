@@ -136,7 +136,7 @@
     <value>指定された項目のファイル名「{0}」と計画/企画設定ファイルに保存されているファイル名「{1}」が一致しません。</value>
   </data>
   <data name="ProjectItem_ReadFrom_InvalidValue" xml:space="preserve">
-    <value>指定された項目「{0}」の計画/企画設定ファイルに保存されているファイル名情報が不正です。</value>
+    <value>指定された項目「{0}」の計画/企画設定ファイルに保存されているファイル名情報または種類の型名が不正です。</value>
   </data>
   <data name="Project_ReadFrom_InvalidItemKey" xml:space="preserve">
     <value>計画/企画設定ファイルに保存されている項目情報「{0}」が不正です。</value>
