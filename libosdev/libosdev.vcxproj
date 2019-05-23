@@ -182,60 +182,6 @@
       <Culture />
     </ResourceCompile>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="libosdev.h" />
-    <ClInclude Include="assets.h" />
-    <ClInclude Include="stdafx.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="assets.c" />
-    <ClCompile Include="dllmain.c" />
-    <ClCompile Include="sendkey.c" />
-    <ClCompile Include="stdafx.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="assets.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="icons\1001.Logo_FormMain.ico" />
-    <Image Include="icons\1002.Logo_Japanese.ico" />
-    <Image Include="icons\1003.Logo_English.ico" />
-    <Image Include="icons\1048.Logo_Zerolib.ico" />
-    <Image Include="icons\1049.Logo_ZerolibEx.ico" />
-    <Image Include="icons\1050.Form_EditorWindow.ico" />
-    <Image Include="icons\1051.Form_Settings.ico" />
-    <Image Include="icons\1100.File.ico" />
-    <Image Include="icons\1101.File_Binary.ico" />
-    <Image Include="icons\1102.File_Text.ico" />
-    <Image Include="icons\1103.File_Program.ico" />
-    <Image Include="icons\1104.File_SourceCode.ico" />
-    <Image Include="icons\1105.File_Resource.ico" />
-    <Image Include="icons\1106.File_Document.ico" />
-    <Image Include="icons\1150.Folder.ico" />
-    <Image Include="icons\1151.Folder_Closed.ico" />
-    <Image Include="icons\1152.Folder_Opened.ico" />
-    <Image Include="icons\1153.Folder_Directory.ico" />
-    <Image Include="icons\1154.Folder_DirClosed.ico" />
-    <Image Include="icons\1155.Folder_DirOpened.ico" />
-    <Image Include="icons\1156.Folder_FDD.ico" />
-    <Image Include="icons\1157.Folder_HDD.ico" />
-    <Image Include="icons\1158.Folder_ODD.ico" />
-    <Image Include="icons\1159.Folder_Junction.ico" />
-    <Image Include="icons\1160.Folder_JunClosed.ico" />
-    <Image Include="icons\1161.Folder_JunOpened.ico" />
-    <Image Include="icons\1199.Item_CannotAccess.ico" />
-    <Image Include="icons\1200.MenuFile_Save.ico" />
-    <Image Include="icons\1201.MenuFile_SaveAs.ico" />
-    <Image Include="icons\1202.MenuFile_SaveAll.ico" />
-    <Image Include="icons\1203.MenuFile_SaveAllAs.ico" />
-    <Image Include="icons\1204.MenuFile_Print.ico" />
-    <Image Include="icons\1205.MenuFile_PrintPreview.ico" />
-    <Image Include="icons\1206.MenuFile_PageSetup.ico" />
-    <Image Include="icons\1900.Misc_Unknown.ico" />
-    <Image Include="icons\1901.Misc_Refresh.ico" />
-    <Image Include="icons\1902.Misc_Expand.ico" />
-    <Image Include="icons\1903.Misc_Collapse.ico" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

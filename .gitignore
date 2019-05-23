@@ -267,3 +267,8 @@ __pycache__/
 
 # desktop.ini 削除
 desktop.ini
+
+# ソースコード無視 (言語用のブランチでは必要無い)
+*.c
+*.h
+*.cs

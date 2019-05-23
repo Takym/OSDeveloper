@@ -85,32 +85,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AOP\AspectableAttribute.cs" />
-    <Compile Include="AOP\AspectProxy.cs" />
-    <Compile Include="AOP\EmptyAspectBehavior.cs" />
-    <Compile Include="AOP\IAspectBehavior.cs" />
-    <Compile Include="AOP\ILogger.cs" />
-    <Compile Include="AOP\LoggingAspectBehavior.cs" />
-    <Compile Include="AOP\MultipleLogger.cs" />
-    <Compile Include="ArrayUtils.cs" />
-    <Compile Include="Collections\HybridEnumerator.cs" />
-    <Compile Include="Collections\HybridList_func.cs" />
-    <Compile Include="Collections\HybridList_prop.cs" />
-    <Compile Include="Collections\HybridList.cs" />
-    <Compile Include="Collections\HybridListItemMode.cs" />
-    <Compile Include="ConsoleUtils.cs" />
-    <Compile Include="DisposableBase.cs" />
-    <Compile Include="IO\PathString.cs" />
-    <Compile Include="IRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringUtils.cs" />
-    <Compile Include="WinFormUtils.cs" />
-    <Compile Include="Xorshift.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Zerolib.ico" />

@@ -108,113 +108,12 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormMain.constructor.cs" />
-    <Compile Include="FormMain.events.cs" />
-    <Compile Include="FormMain.menus.cs" />
-    <Compile Include="GUIs\Controls\ClosableTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUIs\Controls\ClosableTabControl.Designer.cs">
-      <DependentUpon>ClosableTabControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\Controls\MdiChildrenTab.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUIs\Controls\MdiChildrenTab.Designer.cs">
-      <DependentUpon>MdiChildrenTab.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\Design\ColorTheme.cs" />
-    <Compile Include="GUIs\Design\ColorThemeConverter.cs" />
-    <Compile Include="GUIs\Design\ColorThemes.cs" />
-    <Compile Include="GUIs\Editors\EditorWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUIs\Editors\EditorWindow.Designer.cs">
-      <DependentUpon>EditorWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\Editors\SimpleTextEditor.cs" />
-    <Compile Include="GUIs\Explorer\FileTreeBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUIs\Explorer\FileTreeBox.Designer.cs">
-      <DependentUpon>FileTreeBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\Explorer\IconList.cs" />
-    <Compile Include="GUIs\Explorer\SolutionTreeNode.cs" />
-    <Compile Include="GUIs\Features\IClipboardFeature.cs" />
-    <Compile Include="GUIs\Features\IFileSaveLoadFeature.cs" />
-    <Compile Include="GUIs\Features\IFileLoadFeature.cs" />
-    <Compile Include="GUIs\Features\IFileSaveFeature.cs" />
-    <Compile Include="GUIs\Features\IPrintingFeature.cs" />
-    <Compile Include="GUIs\Features\ISelectionFeature.cs" />
-    <Compile Include="GUIs\Features\IUndoRedoFeature.cs" />
-    <Compile Include="GUIs\propgridattrs.cs" />
-    <Compile Include="GUIs\Terminal\ItemProperty.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUIs\Terminal\ItemProperty.Designer.cs">
-      <DependentUpon>ItemProperty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\Terminal\LoadedItemList.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUIs\Terminal\LoadedItemList.Designer.cs">
-      <DependentUpon>LoadedItemList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\Terminal\LogOutput.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUIs\Terminal\LogOutput.Designer.cs">
-      <DependentUpon>LogOutput.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\Terminal\TabControlEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GUIs\Terminal\TabControlEx.Designer.cs">
-      <DependentUpon>TabControlEx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\ToolStrips\HelpMainMenuItem.cs" />
-    <Compile Include="GUIs\ToolStrips\EditMainMenuItem.cs" />
-    <Compile Include="GUIs\ToolStrips\MainMenuItem.cs" />
-    <Compile Include="GUIs\ToolStrips\FileMainMenuItem.cs" />
-    <Compile Include="GUIs\ToolStrips\ViewMainMenuItem.cs" />
-    <Compile Include="GUIs\ToolStrips\ScrnMainMenuItem.cs" />
-    <Compile Include="GUIs\ToolStrips\ToolMainMenuItem.cs" />
-    <Compile Include="GUIs\ToolStrips\WindMainMenuItem.cs" />
-    <Compile Include="IO\ItemManagement\ItemList.cs" />
-    <Compile Include="Projects\IDEVersion.cs" />
-    <Compile Include="IO\Configuration\SettingManager.cs" />
-    <Compile Include="IO\Configuration\System.cs" />
-    <Compile Include="IO\FileFormat.cs" />
-    <Compile Include="IO\FileType.cs" />
-    <Compile Include="IO\FileTypeRegistry.cs" />
-    <Compile Include="IO\FolderFormat.cs" />
-    <Compile Include="IO\ItemManagement\FileMetadata.cs" />
-    <Compile Include="IO\ItemManagement\FolderMetadata.cs" />
-    <Compile Include="IO\ItemManagement\ItemExtendedDetail.cs" />
-    <Compile Include="IO\ItemManagement\ItemMetadata.cs" />
-    <Compile Include="IO\Logging\LogData.cs" />
-    <Compile Include="IO\Logging\LogFile.cs" />
-    <Compile Include="IO\Logging\Logger.cs" />
-    <Compile Include="IO\Logging\Logger.exceptions.cs" />
-    <Compile Include="IO\Logging\LogLevel.cs" />
-    <Compile Include="IO\SystemPaths.cs" />
-    <Compile Include="Native\Kernel32.cs" />
-    <Compile Include="Native\Libosdev.cs" />
-    <Compile Include="Native\Shell32.cs" />
-    <Compile Include="Native\User32.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Projects\Solution.cs" />
-    <Compile Include="Projects\Project.cs" />
-    <Compile Include="Projects\ProjectItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Native\WinapiWrapper.cs" />
     <Compile Include="Resources\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\ToolStrips\ToolStripRendererEx.cs" />
     <Compile Include="Resources\ExplorerTexts.Designer.cs">
       <DependentUpon>ExplorerTexts.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -240,21 +139,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TerminalTexts.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GUIs\Editors\EditorWindow.resx">
-      <DependentUpon>EditorWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Explorer\FileTreeBox.resx">
-      <DependentUpon>FileTreeBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Terminal\ItemProperty.resx">
-      <DependentUpon>ItemProperty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Terminal\LoadedItemList.resx">
-      <DependentUpon>LoadedItemList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Terminal\LogOutput.resx">
-      <DependentUpon>LogOutput.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ErrorMessages.en.resx" />
     <EmbeddedResource Include="Resources\ErrorMessages.ja.resx" />
     <EmbeddedResource Include="Resources\ErrorMessages.resx">
@@ -295,14 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Compile Include="FormMain.terminal.cs" />
-    <Compile Include="IO\Logging\Logger.static.cs" />
     <None Include="Properties\app.manifest" />
-    <Content Include="GUIs\Explorer\bashlist.txt" />
-    <Content Include="GUIs\Features\spec.txt" />
-    <Content Include="Resources\DesktopThemepacks\Darkolorfuler.themepack">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\FormMain.ico" />
