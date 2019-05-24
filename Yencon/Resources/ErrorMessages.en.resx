@@ -136,6 +136,6 @@
     <value>The token '{0}' is not expected.</value>
   </data>
   <data name="YenconFormatRecognition_IOException" xml:space="preserve">
-    <value>The specified file "{0}" could not be open.</value>
+    <value>Failed to input or output the specified file "{0}".</value>
   </data>
 </root>
