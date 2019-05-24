@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
 using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Resources;
 using TakymLib.IO;
 using Yencon;
+using Yencon.Extension;
 
 namespace OSDeveloper.Projects
 {
@@ -75,9 +77,9 @@ namespace OSDeveloper.Projects
 		{
 			this.Logger.Trace($"executing {nameof(ProjectItem)}.{nameof(this.WriteTo)} ({this.Name})...");
 
-			section.Add(new YString() { Name = "Name", Text = this.Name });
-			section.Add(new YString() { Name = "Hint", Text = this.HintPath });
-			section.Add(new YString() { Name = "Type", Text = this.GetType().FullName });
+			section.SetNodeAsString("Name", this.Name);
+			section.SetNodeAsString("Hint", this.HintPath);
+			section.SetNodeAsString("Type", this.GetType().FullName);
 
 			this.Logger.Trace($"completed {nameof(ProjectItem)}.{nameof(this.WriteTo)} ({this.Name})");
 		}
@@ -87,26 +89,18 @@ namespace OSDeveloper.Projects
 		{
 			this.Logger.Trace($"executing {nameof(ProjectItem)}.{nameof(this.ReadFrom)} ({this.Name})...");
 
-			var node = section.GetNode("Name");
-			if (node is YString nameKey) {
-				if (nameKey.Text == this.Name) {
-					// HintPath を取得
-					node = section.GetNode("Hint");
-					if (node is YString hintKey) {
-						this.HintPath = new PathString(hintKey.Text);
-					}
-				} else { // ヱンコンに保存されているファイル名が一致しない場合
-					throw new ArgumentException(string.Format(
-						ErrorMessages.ProjectItem_ReadFrom_DoesNotMatch,
-						this.Name,
-						node.GetValue()
-					));
+			var name = section.GetNodeAsString("Name");
+			if (name == this.Name) {
+				var hint = section.GetNodeAsString("Hint");
+				if (!string.IsNullOrEmpty(hint)) {
+					this.HintPath = new PathString(hint);
 				}
-			} else { // ヱンコンに保存されているファイル名が文字列ではない場合
+			} else {
 				throw new ArgumentException(string.Format(
-					ErrorMessages.ProjectItem_ReadFrom_InvalidValue,
-					this.Name
-				));
+					ErrorMessages.ProjectItem_ReadFrom_DoesNotMatch,
+					this.Name,
+					name
+				), nameof(section));
 			}
 
 			this.Logger.Trace($"completed {nameof(ProjectItem)}.{nameof(this.ReadFrom)} ({this.Name})...");
@@ -179,14 +173,16 @@ namespace OSDeveloper.Projects
 		public override void ReadFrom(YSection section)
 		{
 			base.ReadFrom(section);
-			var node = section.GetNode("Type");
-			if (node is YString typeKey) {
-				this.Type = Type.GetType(typeKey.Text, true);
-			} else {// ヱンコンに保存されているファイル名が文字列ではない場合
+
+			var typeName = section.GetNodeAsString("Type");
+			try {
+				this.Type = Type.GetType(typeName, true);
+			} catch (Exception e) {
 				throw new ArgumentException(string.Format(
-					ErrorMessages.ProjectItem_ReadFrom_InvalidValue,
-					this.Name
-				));
+					ErrorMessages.ProjectItem_ReadFrom_InvalidType,
+					this.Name,
+					typeName
+				), nameof(section), e);
 			}
 		}
 	}

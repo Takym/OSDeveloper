@@ -135,8 +135,8 @@
   <data name="ProjectItem_ReadFrom_DoesNotMatch" xml:space="preserve">
     <value>ProjectItem_ReadFrom_DoesNotMatch {0} {1}</value>
   </data>
-  <data name="ProjectItem_ReadFrom_InvalidValue" xml:space="preserve">
-    <value>ProjectItem_ReadFrom_InvalidValue {0}</value>
+  <data name="ProjectItem_ReadFrom_InvalidType" xml:space="preserve">
+    <value>ProjectItem_ReadFrom_InvalidValue {0} {1}</value>
   </data>
   <data name="Project_ReadFrom_InvalidItemKey" xml:space="preserve">
     <value>Project_ReadFrom_InvalidItemKey {0}</value>

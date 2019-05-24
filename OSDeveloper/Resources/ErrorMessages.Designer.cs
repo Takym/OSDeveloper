@@ -151,11 +151,11 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
-        ///   ProjectItem_ReadFrom_InvalidValue {0} に類似しているローカライズされた文字列を検索します。
+        ///   ProjectItem_ReadFrom_InvalidValue {0} {1} に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ProjectItem_ReadFrom_InvalidValue {
+        internal static string ProjectItem_ReadFrom_InvalidType {
             get {
-                return ResourceManager.GetString("ProjectItem_ReadFrom_InvalidValue", resourceCulture);
+                return ResourceManager.GetString("ProjectItem_ReadFrom_InvalidType", resourceCulture);
             }
         }
     }
