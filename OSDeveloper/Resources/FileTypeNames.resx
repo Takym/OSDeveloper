@@ -135,6 +135,9 @@
   <data name="LogFile" xml:space="preserve">
     <value>LogFile</value>
   </data>
+  <data name="OsdevSolution" xml:space="preserve">
+    <value>OsdevSolution</value>
+  </data>
   <data name="TextFile" xml:space="preserve">
     <value>TextFile</value>
   </data>

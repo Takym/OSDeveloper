@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -25,12 +26,13 @@ namespace OSDeveloper.GUIs.Explorer
 	{
 		#region プロパティ
 
-		private const    string       _psver = "WindowsPowerShell\\v1.0";
-		private readonly Logger       _logger;
-		private readonly FormMain     _mwnd;
-		private          FileTreeNode _root;
-		private          bool         _selected_root;
-		private          bool         _use_wsl_exe;
+		private const    string                 _psver = "WindowsPowerShell\\v1.0";
+		private readonly Logger                 _logger;
+		private readonly FormMain               _mwnd;
+		private          FileTreeNode           _root;
+		private          bool                   _selected_root;
+		private          bool                   _use_wsl_exe;
+		private readonly List<SolutionTreeNode> _solutions;
 
 		public FolderMetadata Directory
 		{
@@ -101,6 +103,7 @@ namespace OSDeveloper.GUIs.Explorer
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
 			ofd.Filter = FileTypeRegistry.CreateFullSPFs();
+			_solutions = new List<SolutionTreeNode>();
 			this.ResumeLayout();
 
 			_logger.Trace($"constructed {nameof(FileTreeBox)}");
@@ -136,13 +139,15 @@ namespace OSDeveloper.GUIs.Explorer
 				}
 			});
 
+			// ソリューションの再読み込み
+			this.ReloadSolutions();
+
 			// 既に追加されているFileTreeNodeを削除する。
-			if (treeView.Nodes.Count > 0) {
-				treeView.Nodes.RemoveAt(0);
-			}
+			treeView.Nodes.Clear();
 
 			// TreeViewに生成したFileTreeNodeを追加する。
-			treeView.Nodes.Insert(0, node);
+			treeView.Nodes.Add(node);
+			treeView.Nodes.AddRange(_solutions.ToArray());
 
 			// 一番上のノード(Root Node)の設定を変更する。
 			if (node is FileTreeNode ftn) {
@@ -152,10 +157,8 @@ namespace OSDeveloper.GUIs.Explorer
 				_root = ftn;
 			}
 
-			var sln = new SolutionTreeNode(new Solution("TestSln"));
-			treeView.Nodes.Add(sln);
-			sln.Save();
-			sln.Load();
+			// コントロール全体を更新
+			this.Update();
 
 			_logger.Info($"finished to load the dir: {this.Directory.Path}");
 			_logger.Trace($"completed {nameof(OnDirectoryChanged)}");
@@ -225,8 +228,7 @@ namespace OSDeveloper.GUIs.Explorer
 							if (node.Folder.IsEmpty()) {
 								node.ImageIndex         = IconList.Directory;
 								node.SelectedImageIndex = IconList.Directory;
-							//} else if (!node.IsExpanded) { // .NET の仕様なのか IsExpanded の値は何故か反転している。
-							} else if (node.IsExpanded) { // 何故か直ってた
+							} else if (node.IsExpanded) {
 								node.ImageIndex         = IconList.DirOpened;
 								node.SelectedImageIndex = IconList.DirOpened;
 							} else {
@@ -250,8 +252,7 @@ namespace OSDeveloper.GUIs.Explorer
 							if (node.Folder.IsEmpty()) {
 								node.ImageIndex         = IconList.Junction;
 								node.SelectedImageIndex = IconList.Junction;
-							//} else if (!node.IsExpanded) { // .NET の仕様なのか IsExpanded の値は何故か反転している。
-							} else if (node.IsExpanded) { // 何故か直ってた
+							} else if (node.IsExpanded) {
 								node.ImageIndex         = IconList.JunOpened;
 								node.SelectedImageIndex = IconList.JunOpened;
 							} else {
@@ -263,8 +264,7 @@ namespace OSDeveloper.GUIs.Explorer
 							if (node.Folder.IsEmpty()) {
 								node.ImageIndex         = IconList.Folder;
 								node.SelectedImageIndex = IconList.Folder;
-							//} else if (!node.IsExpanded) { // .NET の仕様なのか IsExpanded の値は何故か反転している。
-							} else if (node.IsExpanded) { // 何故か直ってた
+							} else if (node.IsExpanded) {
 								node.ImageIndex         = IconList.FolderOpened;
 								node.SelectedImageIndex = IconList.FolderOpened;
 							} else {
@@ -295,6 +295,23 @@ namespace OSDeveloper.GUIs.Explorer
 
 			_logger.Notice($"finished to set styles to: {node.Metadata.Path}");
 			_logger.Info($"icon id:{node.ImageIndex}, color:{node.ForeColor}");
+		}
+
+		private void ReloadSolutions()
+		{
+			// リスト初期化
+			_solutions.Clear();
+
+			// ディレクトリがソリューションならリストに追加
+			var dirs = this.Directory.GetFolders();
+			for (int i = 0; i < dirs.Length; ++i) {
+				if (dirs[i].Path.Bond(dirs[i].Name + ".osdev_sln").Exists()) {
+					var sln = new Solution(dirs[i].Name);
+					var stn = new SolutionTreeNode(sln);
+					stn.Refresh(this);
+					_solutions.Add(stn);
+				}
+			}
 		}
 
 		private FolderMetadata GetFolderFromNode(FileTreeNode node, out bool selectedFile)
@@ -335,6 +352,12 @@ namespace OSDeveloper.GUIs.Explorer
 				node.Editor?.Show();
 				node.Editor?.Focus();
 			}
+		}
+
+		internal void UpdatePItemNode(ProjectItemTreeNode node)
+		{
+			node.ContextMenuStrip = popupMenu;
+			this.SetStyleToTreeNode(node);
 		}
 
 		#endregion
@@ -871,7 +894,7 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#region FileTreeNode クラス
 
-		internal class FileTreeNode : TreeNode
+		public class FileTreeNode : TreeNode
 		{
 			public ItemMetadata Metadata { get; }
 			public ItemProperty Property { get; set; }

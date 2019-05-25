@@ -82,6 +82,12 @@ namespace OSDeveloper.IO
 				nameof(FileTypeNames.YenconBinary),
 				false,
 				"bycn", "cfg"));
+
+			_types.Add(new SystemFileType(
+				FileFormat.SourceCode, // TODO: 専用のフォーマットに変更する。
+				nameof(FileTypeNames.OsdevSolution),
+				false,
+				"osdev_sln"));
 		}
 
 		public static void Add(FileType fileType)

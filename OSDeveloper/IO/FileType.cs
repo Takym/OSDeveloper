@@ -88,12 +88,12 @@ namespace OSDeveloper.IO
 		internal bool Removable { get; }
 
 		protected SystemFileType() { }
-		internal  SystemFileType(FileFormat format, string name, bool removable = false, params string[] extensions)
+		internal  SystemFileType(FileFormat format, string name, bool removable, params string[] extensions)
 			: base(format, name, extensions)
 		{
 			this.Removable = removable;
 		}
-		internal SystemFileType(FileFormat format, string name, Type item, bool removable = false, params string[] extensions)
+		internal SystemFileType(FileFormat format, string name, Type item, bool removable, params string[] extensions)
 			: base(format, name, item, extensions)
 		{
 			this.Removable = removable;

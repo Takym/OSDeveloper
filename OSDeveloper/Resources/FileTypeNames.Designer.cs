@@ -115,6 +115,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   OsdevSolution に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string OsdevSolution {
+            get {
+                return ResourceManager.GetString("OsdevSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   TextFile に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string TextFile {

@@ -140,6 +140,7 @@
       <DependentUpon>FileTreeBox.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Explorer\IconList.cs" />
+    <Compile Include="GUIs\Explorer\ProjectItemTreeNode.cs" />
     <Compile Include="GUIs\Explorer\SolutionTreeNode.cs" />
     <Compile Include="GUIs\Features\IClipboardFeature.cs" />
     <Compile Include="GUIs\Features\IFileSaveLoadFeature.cs" />

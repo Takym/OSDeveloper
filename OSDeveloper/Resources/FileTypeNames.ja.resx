@@ -135,6 +135,9 @@
   <data name="LogFile" xml:space="preserve">
     <value>ログファイル</value>
   </data>
+  <data name="OsdevSolution" xml:space="preserve">
+    <value>企画/計画設定ファイル</value>
+  </data>
   <data name="TextFile" xml:space="preserve">
     <value>テキストファイル</value>
   </data>
