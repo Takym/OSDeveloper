@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using OSDeveloper.GUIs.Controls;
+using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Resources;
 
@@ -16,6 +17,7 @@ namespace OSDeveloper.GUIs.Terminal
 			_logger = Logger.Get(nameof(TabControlEx));
 
 			this.InitializeComponent();
+			this.SizeMode = SettingManager.System.TerminalTabSizeMode;
 
 			_logger.Trace($"constructed {nameof(TabControlEx)}");
 		}

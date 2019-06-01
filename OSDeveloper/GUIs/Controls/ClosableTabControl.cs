@@ -31,7 +31,7 @@ namespace OSDeveloper.GUIs.Controls
 			this.Appearance   = TabAppearance.Normal;
 			this.Alignment    = TabAlignment.Top;
 			this.DrawMode     = TabDrawMode.OwnerDrawFixed;
-			this.SizeMode     = TabSizeMode.Normal;//.Fixed;
+			this.SizeMode     = TabSizeMode.Normal;
 			this.ItemSize     = new Size(120, 20);
 			this.Multiline    = false;
 			this.AllTabPages  = new List<TabPage>();
@@ -89,7 +89,8 @@ skip:
 
 				if (this.SelectedIndex == i) {
 					// 選択中のタブを強調表示
-					tabRect.Height += 1;
+					tabRect.Y      -= 2;
+					tabRect.Height += 4;
 				}
 
 				// タブ描画
@@ -130,25 +131,31 @@ skip:
 				}
 
 				// 閉じるボタン描画
-				int x1 = tabRect.X + tabRect.Width - 17;
-				int y1 = tabRect.Y;
-				int x2 = tabRect.X + tabRect.Width - 1;
-				int y2 = tabRect.Y + 16;
-				if (_closebtn_clicked == i) { // 左クリック中
-					e.Graphics.FillRectangle(SystemBrushes.ControlDark, x1, y1, 16, 16);
-				} else if (_closebtn_over == i) { // カーソルが重なった
-					e.Graphics.FillRectangle(SystemBrushes.MenuHighlight, x1, y1, 16, 16);
-				} else { // 通常状態
-					e.Graphics.FillRectangle(SystemBrushes.Control, x1, y1, 16, 16);
-				}
-				e.Graphics.DrawLine(SystemPens.ControlDarkDark, x1, y1, x2, y2);
-				e.Graphics.DrawLine(SystemPens.ControlDarkDark, x1, y2, x2, y1);
-				e.Graphics.DrawRectangle(SystemPens.ControlDarkDark, x1, y1, 16, 16);
+				this.DrawCloseButton(e.Graphics, tabRect, i);
 			}
 
 end:
 			this.ResumeLayout();
 			_logger.Trace($"completed {nameof(OnPaint)}");
+		}
+
+		private void DrawCloseButton(Graphics g, Rectangle tabRect, int i)
+		{
+			// 閉じるボタン描画
+			int x1 = tabRect.X + tabRect.Width - 17;
+			int y1 = tabRect.Y;
+			int x2 = tabRect.X + tabRect.Width - 1;
+			int y2 = tabRect.Y + 16;
+			if (_closebtn_clicked == i) { // 左クリック中
+				g.FillRectangle(SystemBrushes.ControlDark, x1, y1, 16, 16);
+			} else if (_closebtn_over == i) { // カーソルが重なった
+				g.FillRectangle(SystemBrushes.MenuHighlight, x1, y1, 16, 16);
+			} else { // 通常状態
+				g.FillRectangle(SystemBrushes.Control, x1, y1, 16, 16);
+			}
+			g.DrawLine(SystemPens.ControlDarkDark, x1, y1, x2, y2);
+			g.DrawLine(SystemPens.ControlDarkDark, x1, y2, x2, y1);
+			g.DrawRectangle(SystemPens.ControlDarkDark, x1, y1, 16, 16);
 		}
 
 		protected override void OnMouseMove(MouseEventArgs e)
@@ -167,7 +174,7 @@ end:
 				int y2 = rect.Y + rect.Height;
 				if (x1 <= e.X && e.X < x2 && y1 <= e.Y && e.Y < y2) {
 					_mouse_over = i;
-					x1 += rect.Width  - 17;
+					x1 += rect.Width - 17;
 					x2 -= 1;
 					y2 -= rect.Height - 16;
 					if (x1 <= e.X && e.X < x2 && y1 <= e.Y && e.Y < y2) {

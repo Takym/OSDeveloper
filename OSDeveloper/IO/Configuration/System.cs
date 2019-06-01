@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using Yencon;
 using Yencon.Extension;
@@ -18,6 +19,7 @@ namespace OSDeveloper.IO.Configuration
 				_ = MainWindowPosition;
 				_ = UseEXDialog;
 				_ = UseWSLCommand;
+				_ = TerminalTabSizeMode;
 			}
 
 			public static VisualStyleState VisualStyle
@@ -112,6 +114,26 @@ namespace OSDeveloper.IO.Configuration
 			}
 			public const string KeyOfUseWSLCommand = "use_wslexe";
 			public const bool DefaultUseWSLCommand = false;
+
+			public static TabSizeMode TerminalTabSizeMode
+			{
+				get
+				{
+					var node = GetKey(_y_system_inix, _y_system_cfg, KeyOfTerminalTabSizeMode,
+						() => new YString() { Text = DefaultTerminalTabSizeMode.ToString() });
+					if (Enum.TryParse(node.Text, out TabSizeMode result)) {
+						return result;
+					}
+					return DefaultTerminalTabSizeMode;
+				}
+
+				set
+				{
+					_y_system_inix.Add(new YString() { Name = KeyOfTerminalTabSizeMode, Text = value.ToString() });
+				}
+			}
+			public const string KeyOfTerminalTabSizeMode = "term_szmd";
+			public const TabSizeMode DefaultTerminalTabSizeMode = TabSizeMode.Normal;
 		}
 	}
 }

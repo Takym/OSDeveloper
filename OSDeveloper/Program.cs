@@ -47,6 +47,7 @@ namespace OSDeveloper
 			Logger.Debug($"{nameof(FormMain)}.{nameof(FormMain.Location)} = {SettingManager.System.MainWindowPosition}");
 			Logger.Debug($"{nameof(SettingManager.System.UseEXDialog)} = {SettingManager.System.UseEXDialog}");
 			Logger.Debug($"{nameof(SettingManager.System.UseWSLCommand)} = {SettingManager.System.UseWSLCommand}");
+			Logger.Debug($"{nameof(SettingManager.System.TerminalTabSizeMode)} = {SettingManager.System.TerminalTabSizeMode}");
 
 			// 言語設定
 			CultureInfo.DefaultThreadCurrentCulture   = lang;

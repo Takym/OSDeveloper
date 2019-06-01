@@ -29,6 +29,7 @@ namespace OSDeveloper.GUIs.Editors
 			if (this.Item is FileMetadata file) {
 				var t = YenconFormatRecognition.GetYenconType(file.Path);
 				YenconFormatRecognition.Save(file.Path, _conv.ToYencon(this.TextBox.Text), t);
+				this.Text = this.Item.Name;
 			}
 		}
 

@@ -392,8 +392,8 @@ retry:
 				if (node.Editor is IFileLoadFeature flf && !flf.Loaded) {
 					flf.Reload();
 				}
-				node.Editor.Show();
-				node.Editor.Focus();
+				node.Editor?.Show();
+				node.Editor?.Focus();
 			}
 		}
 
