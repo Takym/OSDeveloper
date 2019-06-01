@@ -78,7 +78,7 @@ namespace Yencon.Extension
 			if (node is YString strKey) {
 				return strKey.Text;
 			} else {
-				return node.GetValue().ToString();
+				return node?.GetValue()?.ToString() ?? string.Empty;
 			}
 		}
 

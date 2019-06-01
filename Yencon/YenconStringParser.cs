@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Yencon.Exceptions;
+using Yencon.Resources;
 using Yencon.Text;
 
 namespace Yencon
@@ -20,15 +21,11 @@ namespace Yencon
 		/// </exception>
 		public YSection Parse(IReadOnlyList<Token> tokens)
 		{
-#if RELEASE
 			try {
-#endif
 				return this.ParseInternal(tokens);
-#if RELEASE
 			} catch (Exception e) when (e.GetType() != typeof(InvalidSyntaxException)) {
 				throw new InvalidSyntaxException(ErrorMessages.InvalidSyntaxException_InnerException, e);
 			}
-#endif
 		}
 
 		private YSection ParseInternal(IReadOnlyList<Token> tokens)
