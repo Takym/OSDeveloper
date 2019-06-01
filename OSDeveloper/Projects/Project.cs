@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.Resources;
 using Yencon;
+using Yencon.Extension;
 
 namespace OSDeveloper.Projects
 {
@@ -67,6 +68,21 @@ namespace OSDeveloper.Projects
 
 		#endregion
 
+		#region 項目の追加/削除
+
+		public void AddItem(ItemMetadata meta)
+		{
+			_contents.Add(new ProjectItem(this.Solution, this, meta.Path.GetRelativePath(this.GetFullPath())));
+		}
+
+		public void RemoveItem(ItemMetadata meta)
+		{
+			var item = this.GetItem(meta.Path.GetRelativePath(this.GetFullPath()));
+			_contents.Remove(item);
+		}
+
+		#endregion
+
 		#region 企画/計画設定ファイルの読み書き
 
 		public override void WriteTo(YSection section)
@@ -79,7 +95,7 @@ namespace OSDeveloper.Projects
 
 			var items = new YSection() { Name = "Items" };
 			for (int i = 0; i < _contents.Count; ++i) {
-				var item = new YSection() { Name = _contents[i].Name };
+				var item = new YSection() { Name = i.ToString() };
 				_contents[i].WriteTo(item);
 				items.Add(item);
 			}
@@ -118,7 +134,7 @@ namespace OSDeveloper.Projects
 				_contents.Clear();
 				for (int i = 0; i < keys.Length; ++i) {
 					if (keys[i] is YSection k) {
-						var item = this.LoadItem(keys[i].Name, k);
+						var item = this.LoadItem(k.GetNodeAsString("Name"), k);
 						item.ReadFrom(k);
 						_contents.Add(item);
 					} else {

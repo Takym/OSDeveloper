@@ -16,6 +16,7 @@
 			if (disposing && (components != null)) {
 				components.Dispose();
 			}
+			this.SaveSolutions();
 			base.Dispose(disposing);
 		}
 

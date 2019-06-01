@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;

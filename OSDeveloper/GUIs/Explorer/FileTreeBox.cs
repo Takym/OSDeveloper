@@ -139,7 +139,8 @@ namespace OSDeveloper.GUIs.Explorer
 				}
 			});
 
-			// ソリューションの再読み込み
+			// ソリューションの保存＆再読み込み
+			this.SaveSolutions();
 			this.ReloadSolutions();
 
 			// 既に追加されているFileTreeNodeを削除する。
@@ -152,7 +153,7 @@ namespace OSDeveloper.GUIs.Explorer
 			// 一番上のノード(Root Node)の設定を変更する。
 			if (node is FileTreeNode ftn) {
 				ftn.Text = $"{this.Directory.Path.GetFileNameWithoutExtension()} ({this.Directory.Path})";
-				ftn.Expand();
+				//ftn.Expand(); // ツリーを展開しない。
 				this.SetStyleToTreeNode(ftn);
 				_root = ftn;
 			}
@@ -297,6 +298,13 @@ namespace OSDeveloper.GUIs.Explorer
 			_logger.Info($"icon id:{node.ImageIndex}, color:{node.ForeColor}");
 		}
 
+		private void SaveSolutions()
+		{
+			for (int i = 0; i < _solutions.Count; ++i) {
+				_solutions[i].Save();
+			}
+		}
+
 		private void ReloadSolutions()
 		{
 			// リスト初期化
@@ -336,6 +344,7 @@ namespace OSDeveloper.GUIs.Explorer
 				node.Expand();
 			}
 			treeView.Invalidate();
+			(node as ProjectItemTreeNode)?.AddItem(meta);
 			newnode.BeginEdit();
 		}
 
@@ -748,6 +757,7 @@ namespace OSDeveloper.GUIs.Explorer
 					var newnode = this.CreateTreeNode(newitem);
 					node.Parent.Nodes.Add(newnode);
 					node.Parent.Expand();
+					(node as ProjectItemTreeNode)?.AddItem(newitem);
 					newnode.BeginEdit();
 				} else {
 					MessageBox.Show(_mwnd,
@@ -822,6 +832,7 @@ namespace OSDeveloper.GUIs.Explorer
 				if (node.Metadata.TrashItem()) {
 					var p = node.Parent;
 					node.Remove();
+					(node as ProjectItemTreeNode)?.RemoveItem(node.Metadata);
 					if (p.Nodes.Count == 0 && p is FileTreeNode parent) {
 						this.SetStyleToTreeNode(parent);
 					}
@@ -851,6 +862,7 @@ namespace OSDeveloper.GUIs.Explorer
 					if (node.Metadata.Delete()) {
 						var p = node.Parent;
 						node.Remove();
+						(node as ProjectItemTreeNode)?.RemoveItem(node.Metadata);
 						if (p.Nodes.Count == 0 && p is FileTreeNode parent) {
 							this.SetStyleToTreeNode(parent);
 						}
