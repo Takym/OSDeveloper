@@ -17,18 +17,13 @@ namespace OSDeveloper.GUIs.Editors
 	{
 		private TextBox       _textBox;
 		private PrintDocument _pdoc;
-
-		public PrintDocument PrintDocument
-		{
-			get
-			{
-				return _pdoc;
-			}
-		}
-
-		public bool UseCustomDialogs => false;
-		public bool CanUndo          => _textBox.CanUndo;
-		public bool CanRedo          => false;
+		
+		protected TextBox       TextBox          => _textBox;
+		public    PrintDocument PrintDocument    => _pdoc;
+		public    bool          UseCustomDialogs => false;
+		public    bool          CanUndo          => _textBox.CanUndo;
+		public    bool          CanRedo          => false;
+		public    bool          Loaded           { get; protected set; }
 
 		public SimpleTextEditor(FormMain mwnd, ItemMetadata metadata) : base(mwnd, metadata)
 		{
@@ -39,7 +34,6 @@ namespace OSDeveloper.GUIs.Editors
 			_textBox.ScrollBars   = ScrollBars.Both;
 			_textBox.Dock         = DockStyle.Fill;
 			_textBox.Font         = new Font(_textBox.Font.FontFamily, 12.5F);
-			_textBox.Text         = (metadata as FileMetadata)?.ReadAllText();
 			_textBox.TextChanged += this._textBox_TextChanged;
 
 			_pdoc               = new PrintDocument();
@@ -49,21 +43,25 @@ namespace OSDeveloper.GUIs.Editors
 			this.Controls.Add(_textBox);
 			this.ResumeLayout(false);
 			this.PerformAutoScale();
+			this.Loaded = false;
 		}
 
-		public void Reload()
+		public virtual void Reload()
 		{
-			_textBox.Text = (this.Item as FileMetadata)?.ReadAllText();
-			this.Text = this.Item.Name;
+			if (this.Item is FileMetadata file) {
+				_textBox.Text = file.ReadAllText();
+				this.Text     = this.Item.Name;
+				this.Loaded   = true;
+			}
 		}
 
-		public void Save()
+		public virtual void Save()
 		{
 			(this.Item as FileMetadata)?.WriteAllText(_textBox.Text);
 			this.Text = this.Item.Name;
 		}
 
-		public void SaveAs(PathString filename)
+		public virtual void SaveAs(PathString filename)
 		{
 			using (var sw = new StreamWriter(filename)) {
 				sw.Write(_textBox.Text);

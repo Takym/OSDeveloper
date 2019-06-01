@@ -68,24 +68,28 @@ namespace OSDeveloper.IO
 			_types.Add(new SystemFileType(
 				FileFormat.Resource,
 				nameof(FileTypeNames.YenconResource),
+				typeof(YenconFileExtendedDetail),
 				false,
 				"ycn", "rycn"));
 
 			_types.Add(new SystemFileType(
 				FileFormat.Text,
 				nameof(FileTypeNames.YenconText),
+				typeof(YenconFileExtendedDetail),
 				false,
 				"tycn", "inix"));
 
 			_types.Add(new SystemFileType(
 				FileFormat.Binary,
 				nameof(FileTypeNames.YenconBinary),
+				typeof(YenconFileExtendedDetail),
 				false,
 				"bycn", "cfg"));
 
 			_types.Add(new SystemFileType(
 				FileFormat.SourceCode, // TODO: 専用のフォーマットに変更する。
 				nameof(FileTypeNames.OsdevSolution),
+				typeof(YenconFileExtendedDetail),
 				false,
 				"osdev_sln"));
 		}

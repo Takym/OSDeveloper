@@ -2,6 +2,7 @@
 {
 	public interface IFileLoadFeature
 	{
+		bool Loaded { get; }
 		void Reload();
 	}
 }

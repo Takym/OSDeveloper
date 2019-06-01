@@ -32,6 +32,14 @@ namespace OSDeveloper.IO.ItemManagement
 		}
 	}
 
+	public class YenconFileExtendedDetail : DefaultItemExtendedDetail
+	{
+		public override EditorWindow CreateEditor(FormMain mwnd)
+		{
+			return new SimpleYenconTextEditor(mwnd, this.Metadata);
+		}
+	}
+
 	public class FolderExtendedDetail : DefaultItemExtendedDetail
 	{
 		public override EditorWindow CreateEditor(FormMain mwnd)

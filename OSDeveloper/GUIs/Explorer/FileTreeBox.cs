@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSDeveloper.GUIs.Editors;
+using OSDeveloper.GUIs.Features;
 using OSDeveloper.GUIs.Terminal;
 using OSDeveloper.IO;
 using OSDeveloper.IO.Configuration;
@@ -380,8 +381,11 @@ retry:
 				if (node.Editor == null || node.Editor.IsDisposed) {
 					node.Editor = node.Metadata.ExtendedDetail.CreateEditor(_mwnd);
 				}
-				node.Editor?.Show();
-				node.Editor?.Focus();
+				if (node.Editor is IFileLoadFeature flf && !flf.Loaded) {
+					flf.Reload();
+				}
+				node.Editor.Show();
+				node.Editor.Focus();
 			}
 		}
 
