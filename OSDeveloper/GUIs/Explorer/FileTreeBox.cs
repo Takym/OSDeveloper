@@ -301,6 +301,7 @@ namespace OSDeveloper.GUIs.Explorer
 		private void SaveSolutions()
 		{
 			for (int i = 0; i < _solutions.Count; ++i) {
+				_logger.Info($"saving solution \"{_solutions[i].Solution.Name}\"...");
 				_solutions[i].Save();
 			}
 		}
@@ -314,10 +315,31 @@ namespace OSDeveloper.GUIs.Explorer
 			var dirs = this.Directory.GetFolders();
 			for (int i = 0; i < dirs.Length; ++i) {
 				if (dirs[i].Path.Bond(dirs[i].Name + ".osdev_sln").Exists()) {
-					var sln = new Solution(dirs[i].Name);
-					var stn = new SolutionTreeNode(sln);
-					stn.Refresh(this);
-					_solutions.Add(stn);
+retry:
+					_logger.Info($"reloading solution \"{dirs[i].Name}\"...");
+					try {
+						var sln = new Solution(dirs[i].Name);
+						var stn = new SolutionTreeNode(sln);
+						stn.Refresh(this);
+						_solutions.Add(stn);
+					} catch (Exception e) {
+						// ソリューションファイルに不正がある場合はスキップする。
+						_logger.Exception(e);
+						var dr = MessageBox.Show(
+							_mwnd,
+							e.Message,
+							_mwnd.Text,
+							MessageBoxButtons.AbortRetryIgnore,
+							MessageBoxIcon.Error
+						);
+						if (dr == DialogResult.Abort) {
+							return; // 読み込みを停止する。
+						} else if (dr == DialogResult.Retry) {
+							goto retry; // もう一度試す。
+						} else if (dr == DialogResult.Ignore) {
+							continue; // 無視して続行する。
+						}
+					}
 				}
 			}
 		}

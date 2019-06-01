@@ -25,7 +25,9 @@ namespace OSDeveloper.GUIs.Explorer
 		public void Load()
 		{
 			var data = _converter.Load(_solution.GetFullPath().Bond(_solution.Name + ".osdev_sln"));
-			_solution.ReadFrom(data);
+			if (data.SubKeys.Length > 0) { // キーが存在する＝空ではない。
+				_solution.ReadFrom(data);
+			}
 		}
 
 		public void Save()
