@@ -159,5 +159,11 @@
     <Image Include="icons\1205.MenuFile_PrintPreview.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="icons\1162.Folder_Solution.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="icons\1107.File_Solution.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

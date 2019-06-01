@@ -7,6 +7,7 @@
 		FloppyDisk,
 		HardDisk,
 		OpticalDisc,
-		Junction
+		Junction,
+		Solution
 	}
 }

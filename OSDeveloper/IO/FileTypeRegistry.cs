@@ -87,7 +87,7 @@ namespace OSDeveloper.IO
 				"bycn", "cfg"));
 
 			_types.Add(new SystemFileType(
-				FileFormat.SourceCode, // TODO: 専用のフォーマットに変更する。
+				FileFormat.Solution,
 				nameof(FileTypeNames.OsdevSolution),
 				typeof(YenconFileExtendedDetail),
 				false,

@@ -12,8 +12,8 @@ namespace OSDeveloper.GUIs.Explorer
 		private readonly static List<Icon> _icons_folder;
 		private readonly static Icon       _cannot_access;
 
-		private readonly static int _file, _bin, _txt, _prg, _src, _res, _doc;
-		private readonly static int _folder, _closed, _opened, _dir, _dirc, _diro, _fdd, _hdd, _odd, _jun, _junc, _juno;
+		private readonly static int _file, _bin, _txt, _prg, _src, _res, _doc, _fsln;
+		private readonly static int _folder, _closed, _opened, _dir, _dirc, _diro, _fdd, _hdd, _odd, _jun, _junc, _juno, _dsln;
 		public readonly static int _cntacs;
 
 		static IconList()
@@ -30,6 +30,7 @@ namespace OSDeveloper.GUIs.Explorer
 				_icons_file.Add(Libosdev.GetIcon(Libosdev.Icons.FileSourceCode, out uint v4)); _src  = 4;
 				_icons_file.Add(Libosdev.GetIcon(Libosdev.Icons.FileResource,   out uint v5)); _res  = 5;
 				_icons_file.Add(Libosdev.GetIcon(Libosdev.Icons.FileDocument,   out uint v6)); _doc  = 6;
+				_icons_file.Add(Libosdev.GetIcon(Libosdev.Icons.FileSolution,   out uint v7)); _fsln = 7;
 			}
 
 			{
@@ -45,6 +46,7 @@ namespace OSDeveloper.GUIs.Explorer
 				_icons_folder.Add(Libosdev.GetIcon(Libosdev.Icons.FolderJunction,  out uint v09)); _jun    = 09 + _icons_file.Count;
 				_icons_folder.Add(Libosdev.GetIcon(Libosdev.Icons.FolderJunClosed, out uint v10)); _junc   = 10 + _icons_file.Count;
 				_icons_folder.Add(Libosdev.GetIcon(Libosdev.Icons.FolderJunOpened, out uint v11)); _juno   = 11 + _icons_file.Count;
+				_icons_folder.Add(Libosdev.GetIcon(Libosdev.Icons.FolderSolution,  out uint v12)); _dsln   = 12 + _icons_file.Count;
 			}
 
 			{
@@ -76,6 +78,7 @@ namespace OSDeveloper.GUIs.Explorer
 		public static int SourceFile   { get => _src; }
 		public static int ResourceFile { get => _res; }
 		public static int DocumentFile { get => _doc; }
+		public static int SolutionFile { get => _fsln; }
 
 		public static int Folder       { get => _folder; }
 		public static int FolderClosed { get => _closed; }
@@ -89,6 +92,7 @@ namespace OSDeveloper.GUIs.Explorer
 		public static int Junction     { get => _jun; }
 		public static int JunClosed    { get => _junc; }
 		public static int JunOpened    { get => _juno; }
+		public static int Solution     { get => _dsln; }
 
 		public static int CannotAccess { get => _cntacs; }
 	}

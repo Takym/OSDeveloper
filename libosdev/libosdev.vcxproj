@@ -211,6 +211,7 @@
     <Image Include="icons\1104.File_SourceCode.ico" />
     <Image Include="icons\1105.File_Resource.ico" />
     <Image Include="icons\1106.File_Document.ico" />
+    <Image Include="icons\1107.File_Solution.ico" />
     <Image Include="icons\1150.Folder.ico" />
     <Image Include="icons\1151.Folder_Closed.ico" />
     <Image Include="icons\1152.Folder_Opened.ico" />
@@ -223,6 +224,7 @@
     <Image Include="icons\1159.Folder_Junction.ico" />
     <Image Include="icons\1160.Folder_JunClosed.ico" />
     <Image Include="icons\1161.Folder_JunOpened.ico" />
+    <Image Include="icons\1162.Folder_Solution.ico" />
     <Image Include="icons\1199.Item_CannotAccess.ico" />
     <Image Include="icons\1200.MenuFile_Save.ico" />
     <Image Include="icons\1201.MenuFile_SaveAs.ico" />

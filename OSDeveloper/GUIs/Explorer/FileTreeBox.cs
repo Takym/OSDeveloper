@@ -219,6 +219,10 @@ namespace OSDeveloper.GUIs.Explorer
 							node.ImageIndex         = IconList.DocumentFile;
 							node.SelectedImageIndex = IconList.DocumentFile;
 							break;
+						case FileFormat.Solution:
+							node.ImageIndex         = IconList.SolutionFile;
+							node.SelectedImageIndex = IconList.SolutionFile;
+							break;
 						default:
 							node.ImageIndex         = IconList.File;
 							node.SelectedImageIndex = IconList.File;
@@ -261,6 +265,10 @@ namespace OSDeveloper.GUIs.Explorer
 								node.ImageIndex         = IconList.JunClosed;
 								node.SelectedImageIndex = IconList.JunClosed;
 							}
+							break;
+						case FolderFormat.Solution:
+							node.ImageIndex         = IconList.Solution;
+							node.SelectedImageIndex = IconList.Solution;
 							break;
 						default:
 							if (node.Folder.IsEmpty()) {

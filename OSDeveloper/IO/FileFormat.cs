@@ -8,6 +8,7 @@
 		Program,
 		SourceCode,
 		Resource,
-		Document
+		Document,
+		Solution
 	}
 }

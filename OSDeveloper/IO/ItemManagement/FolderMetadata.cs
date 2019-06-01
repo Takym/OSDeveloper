@@ -23,7 +23,10 @@ namespace OSDeveloper.IO.ItemManagement
 		{
 			try {
 				_dinfo = new DirectoryInfo(path);
-				if (_dinfo.Attributes.HasFlag(FileAttributes.ReparsePoint)) {
+				if (path.Bond(path.GetFileName() + ".osdev_sln").Exists()) {
+					// ソリューションかどうかは一番優先する。
+					this.Format = FolderFormat.Solution;
+				} else if (_dinfo.Attributes.HasFlag(FileAttributes.ReparsePoint)) {
 					this.Format = FolderFormat.Junction;
 				} else if (path.GetDirectoryName() == null) {
 					this.Drive = new DriveInfo(path);

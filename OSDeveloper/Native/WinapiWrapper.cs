@@ -113,6 +113,7 @@ namespace OSDeveloper.Native
 			public const int ICON1104_FILE_SOURCECODE        = 1104;
 			public const int ICON1105_FILE_RESOURCE          = 1105;
 			public const int ICON1106_FILE_DOCUMENT          = 1106;
+			public const int ICON1107_FILE_SOLUTION          = 1107;
 			public const int ICON1150_FOLDER                 = 1150;
 			public const int ICON1151_FOLDER_CLOSED          = 1151;
 			public const int ICON1152_FOLDER_OPENED          = 1152;
@@ -125,6 +126,7 @@ namespace OSDeveloper.Native
 			public const int ICON1159_FOLDER_JUNCTION        = 1159;
 			public const int ICON1160_FOLDER_JUNCLOSED       = 1160;
 			public const int ICON1161_FOLDER_JUNOPENED       = 1161;
+			public const int ICON1162_FOLDER_SOLUTION        = 1162;
 			public const int ICON1199_ITEM_CANNOT_ACCESS     = 1199;
 			public const int ICON1200_MENU_FILE_SAVE         = 1200;
 			public const int ICON1201_MENU_FILE_SAVEAS       = 1201;
