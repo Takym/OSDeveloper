@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Microsoft.VisualBasic.FileIO;
+using OSDeveloper.Projects;
 using OSDeveloper.Resources;
 using TakymLib.IO;
 
@@ -9,6 +10,7 @@ namespace OSDeveloper.IO.ItemManagement
 {
 	public sealed class FolderMetadata : ItemMetadata
 	{
+		private readonly PathString        _slnfile;
 		private          FolderMetadata [] _folders;
 		private          FileMetadata   [] _files;
 		private readonly DirectoryInfo     _dinfo;
@@ -22,8 +24,9 @@ namespace OSDeveloper.IO.ItemManagement
 		internal FolderMetadata(PathString path) : base(path)
 		{
 			try {
-				_dinfo = new DirectoryInfo(path);
-				if (path.Bond(path.GetFileName() + ".osdev_sln").Exists()) {
+				_dinfo   = new DirectoryInfo(path);
+				_slnfile = path.Bond(path.GetFileName() + ".osdev_sln");
+				if (_slnfile.Exists()) {
 					// ソリューションかどうかは一番優先する。
 					this.Format = FolderFormat.Solution;
 				} else if (_dinfo.Attributes.HasFlag(FileAttributes.ReparsePoint)) {
@@ -68,6 +71,21 @@ namespace OSDeveloper.IO.ItemManagement
 		public bool IsEmpty()
 		{
 			return !Directory.EnumerateFileSystemEntries(this.Path).Any();
+		}
+
+		public PathString GetSolutionFilePath()
+		{
+			return _slnfile;
+		}
+
+		public FileMetadata GetSolutionFile()
+		{
+			return null; // TODO: GetSolutionFile
+		}
+
+		public Solution GetSolution()
+		{
+			return null; // TODO: GetSolution
 		}
 
 		public FolderMetadata[] GetFolders()
