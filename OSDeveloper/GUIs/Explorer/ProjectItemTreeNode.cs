@@ -21,21 +21,50 @@ namespace OSDeveloper.GUIs.Explorer
 			_logger.Trace($"constructed {nameof(SolutionTreeNode)}");
 		}
 
-		public virtual void Update(FileTreeBox parent)
+		public void Update(FileTreeBox parent)
 		{
 			parent.UpdatePItemNode(this);
+			var items = (_project_item as Project)?.Contents;
+			if (items != null) {
+				for (int i = 0; i < items.Count; ++i) {
+					if (this.Nodes.ContainsKey(items[i].Name)) {
+						(this.Nodes[items[i].Name] as ProjectItemTreeNode)?.Update(parent);
+					} else {
+						var pitn = this.CreateNode(items[i]);
+						pitn.Update(parent);
+						this.Nodes.Add(pitn);
+					}
+				}
+			}
 		}
 
-		public void AddItem(ItemMetadata meta)
+		public ProjectItemTreeNode AddItem(ItemMetadata item)
 		{
-			var prj = _project_item as Project ?? _project_item.Parent;
-			prj.AddItem(meta);
+			var prj  = _project_item as Project ?? _project_item.Parent;
+			var pi   = prj.AddItem(item);
+			var pitn = this.CreateNode(pi);
+
+			if (_project_item is Project) {
+				this.Nodes.Add(pitn);
+			} else {
+				this.Parent.Nodes.Add(pitn);
+			}
+
+			return pitn;
 		}
 
-		public void RemoveItem(ItemMetadata meta)
+		public void RemoveItem(ItemMetadata item)
 		{
-			var prj = _project_item as Project ?? _project_item.Parent;
-			prj.RemoveItem(meta);
+			var prj  = _project_item as Project ?? _project_item.Parent;
+			prj.RemoveItem(item);
+		}
+
+		private ProjectItemTreeNode CreateNode(ProjectItem pItem)
+		{
+			var pitn = new ProjectItemTreeNode(pItem);
+			pitn.Name = pItem.Name;
+			pitn.Text = pItem.Name;
+			return pitn;
 		}
 	}
 }

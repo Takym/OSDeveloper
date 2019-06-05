@@ -353,32 +353,6 @@ retry:
 			}
 		}
 
-		private FolderMetadata GetFolderFromNode(FileTreeNode node, out bool selectedFile)
-		{
-			if (node.Folder == null) {
-				selectedFile = true;
-				return node.File.Parent;
-			} else {
-				selectedFile = false;
-				return node.Folder;
-			}
-		}
-
-		private void AddItemAsTreeNode(ItemMetadata meta, FileTreeNode node, bool selectedFile)
-		{
-			var newnode = this.CreateTreeNode(meta);
-			if (selectedFile) {
-				node.Parent.Nodes.Add(newnode);
-				node.Parent.Expand();
-			} else {
-				node.Nodes.Add(newnode);
-				node.Expand();
-			}
-			treeView.Invalidate();
-			(node as ProjectItemTreeNode)?.AddItem(meta);
-			newnode.BeginEdit();
-		}
-
 		#endregion
 
 		#region 共通機能
@@ -401,6 +375,38 @@ retry:
 		{
 			node.ContextMenuStrip = popupMenu;
 			this.SetStyleToTreeNode(node);
+		}
+
+		private FolderMetadata GetFolderFromNode(FileTreeNode node, out bool selectedFile)
+		{
+			if (node.Folder == null) {
+				selectedFile = true;
+				return node.File.Parent;
+			} else {
+				selectedFile = false;
+				return node.Folder;
+			}
+		}
+
+		private void AddItemAsTreeNode(ItemMetadata meta, FileTreeNode node, bool selectedFile)
+		{
+			if (node is ProjectItemTreeNode pitn) {
+				var newnode = pitn.AddItem(meta);
+				newnode.Update(this);
+				treeView.Invalidate();
+				newnode.BeginEdit();
+			} else {
+				var newnode = this.CreateTreeNode(meta);
+				if (selectedFile) {
+					node.Parent.Nodes.Add(newnode);
+					node.Parent.Expand();
+				} else {
+					node.Nodes.Add(newnode);
+					node.Expand();
+				}
+				treeView.Invalidate();
+				newnode.BeginEdit();
+			}
 		}
 
 		#endregion
@@ -765,7 +771,6 @@ retry:
 				var dr = ofd.ShowDialog();
 				if (dr == DialogResult.OK) {
 					var meta = dir.CreateFile(Path.GetFileName(ofd.FileName));
-					meta.WriteAllBytes(File.ReadAllBytes(ofd.FileName));
 					if (meta == null) {
 						MessageBox.Show(_mwnd,
 							ExplorerTexts.Msgbox_CannotCreate,
@@ -773,6 +778,7 @@ retry:
 							MessageBoxButtons.OK,
 							MessageBoxIcon.Warning);
 					} else {
+						meta.WriteAllBytes(File.ReadAllBytes(ofd.FileName));
 						this.AddItemAsTreeNode(meta, node, selectedFile);
 					}
 				}
@@ -788,11 +794,16 @@ retry:
 			if (treeView.SelectedNode is FileTreeNode node) {
 				var newitem = node.Metadata.Copy(node.Metadata.Path.EnsureName());
 				if (newitem != null && node.Metadata.Parent.AddItem(newitem)) {
+
+					this.AddItemAsTreeNode(newitem, node, false);
+
+					/*
 					var newnode = this.CreateTreeNode(newitem);
 					node.Parent.Nodes.Add(newnode);
 					node.Parent.Expand();
 					(node as ProjectItemTreeNode)?.AddItem(newitem);
 					newnode.BeginEdit();
+					//*/
 				} else {
 					MessageBox.Show(_mwnd,
 						ExplorerTexts.Msgbox_CannotClone,

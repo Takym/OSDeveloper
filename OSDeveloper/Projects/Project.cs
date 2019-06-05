@@ -70,9 +70,11 @@ namespace OSDeveloper.Projects
 
 		#region 項目の追加/削除
 
-		public void AddItem(ItemMetadata meta)
+		public ProjectItem AddItem(ItemMetadata meta)
 		{
-			_contents.Add(new ProjectItem(this.Solution, this, meta.Path.GetRelativePath(this.GetFullPath())));
+			var result = new ProjectItem(this.Solution, this, meta.Path.GetRelativePath(this.GetFullPath()));
+			_contents.Add(result);
+			return result;
 		}
 
 		public void RemoveItem(ItemMetadata meta)

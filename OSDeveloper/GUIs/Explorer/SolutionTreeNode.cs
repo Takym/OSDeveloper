@@ -37,22 +37,6 @@ namespace OSDeveloper.GUIs.Explorer
 			_converter.Save(_solution.GetFullPath().Bond(_solution.Name + ".osdev_sln"), data);
 		}
 
-		public override void Update(FileTreeBox parent)
-		{
-			base.Update(parent);
-			var items = _solution.Contents;
-			for (int i = 0; i < items.Count; ++i) {
-				if (this.Nodes.ContainsKey(items[i].Name)) {
-					(this.Nodes[items[i].Name] as ProjectItemTreeNode)?.Update(parent);
-				} else {
-					var pitn = new ProjectItemTreeNode(items[i]);
-					pitn.Name = items[i].Name;
-					pitn.Update(parent);
-					this.Nodes.Add(pitn);
-				}
-			}
-		}
-
 		public void Refresh(FileTreeBox parent)
 		{
 			this.Load();
