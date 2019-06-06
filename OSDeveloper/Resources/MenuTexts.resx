@@ -198,6 +198,9 @@
   <data name="Tool_DesktopThemepacks_Text" xml:space="preserve">
     <value>DesktopThemepacks_Text {0}</value>
   </data>
+  <data name="Tool_ShowSettings" xml:space="preserve">
+    <value>ShowSettings</value>
+  </data>
   <data name="View" xml:space="preserve">
     <value>VIEW</value>
   </data>

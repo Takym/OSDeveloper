@@ -199,6 +199,9 @@
   <data name="Tool_DesktopThemepacks_Text" xml:space="preserve">
     <value>Install the "{0}"</value>
   </data>
+  <data name="Tool_ShowSettings" xml:space="preserve">
+    <value>&amp;Option...</value>
+  </data>
   <data name="View" xml:space="preserve">
     <value>&amp;View</value>
   </data>

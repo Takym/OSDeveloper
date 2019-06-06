@@ -304,6 +304,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   ShowSettings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Tool_ShowSettings {
+            get {
+                return ResourceManager.GetString("Tool_ShowSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   VIEW に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string View {
