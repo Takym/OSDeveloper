@@ -8,9 +8,9 @@ namespace OSDeveloper.GUIs.Editors
 {
 	public partial class EditorWindow : Form
 	{
-		public ItemMetadata Item { get; }
-		protected FormMain MainWindow { get; }
-		protected Logger Logger { get; }
+		public    ItemMetadata Item       { get; }
+		protected FormMain     MainWindow { get; }
+		protected Logger       Logger     { get; }
 
 		public EditorWindow()
 		{

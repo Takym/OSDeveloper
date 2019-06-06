@@ -117,6 +117,12 @@
     <Compile Include="GUIs\Controls\ClosableTabControl.Designer.cs">
       <DependentUpon>ClosableTabControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Controls\FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Controls\FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Controls\MdiChildrenTab.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -232,6 +238,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FormMainRes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\FormSettingsRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormSettingsRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\MenuTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,6 +253,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TerminalTexts.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUIs\Controls\FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Editors\EditorWindow.resx">
       <DependentUpon>EditorWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +295,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FormMainRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FormSettingsRes.en.resx" />
+    <EmbeddedResource Include="Resources\FormSettingsRes.ja.resx" />
+    <EmbeddedResource Include="Resources\FormSettingsRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormSettingsRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\MenuTexts.en.resx" />
     <EmbeddedResource Include="Resources\MenuTexts.ja.resx" />
