@@ -31,7 +31,7 @@ namespace OSDeveloper.GUIs.Controls
 			var n1 = treeView.Nodes.Add("構成設定");
 			n1.Nodes.Add("起動設定");
 			n1.Nodes.Add("環境設定");
-			var n2 = treeView.Nodes.Add("追加設定");
+			var n2 = treeView.Nodes.Add("拡張設定");
 #endif
 
 			_logger.Trace($"completed {nameof(FormSettings_Load)}");
