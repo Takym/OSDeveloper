@@ -129,6 +129,12 @@
     <Compile Include="GUIs\Controls\MdiChildrenTab.Designer.cs">
       <DependentUpon>MdiChildrenTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Controls\SettingPanels\Configuration\StartupSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\Controls\SettingPanels\Configuration\StartupSettings.Designer.cs">
+      <DependentUpon>StartupSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Design\ColorTheme.cs" />
     <Compile Include="GUIs\Design\ColorThemeConverter.cs" />
     <Compile Include="GUIs\Design\ColorThemes.cs" />
@@ -255,6 +261,9 @@
     </Compile>
     <EmbeddedResource Include="GUIs\Controls\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Controls\SettingPanels\Configuration\StartupSettings.resx">
+      <DependentUpon>StartupSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Editors\EditorWindow.resx">
       <DependentUpon>EditorWindow.cs</DependentUpon>

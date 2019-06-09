@@ -14,12 +14,12 @@ namespace OSDeveloper.IO.Configuration
 		{
 			internal static void EnsureAvailable()
 			{
-				_ = VisualStyle;
-				_ = Language;
-				_ = MainWindowPosition;
-				_ = UseEXDialog;
-				_ = UseWSLCommand;
-				_ = TerminalTabSizeMode;
+				_ = VisualStyle;         // 起動設定
+				_ = Language;            // 起動設定
+				_ = MainWindowPosition;  // 起動設定
+				_ = UseEXDialog;         // 環境設定
+				_ = UseWSLCommand;       // 環境設定
+				_ = TerminalTabSizeMode; // 起動設定
 			}
 
 			public static VisualStyleState VisualStyle

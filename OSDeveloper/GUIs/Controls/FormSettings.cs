@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using OSDeveloper.GUIs.Controls.SettingPanels.Configuration;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Resources;
@@ -8,7 +9,7 @@ namespace OSDeveloper.GUIs.Controls
 {
 	public sealed partial class FormSettings : Form
 	{
-		private readonly Logger _logger;
+		internal readonly Logger _logger;
 
 		public FormSettings()
 		{
@@ -33,6 +34,10 @@ namespace OSDeveloper.GUIs.Controls
 			n1.Nodes.Add("環境設定");
 			var n2 = treeView.Nodes.Add("拡張設定");
 #endif
+
+			var ss = new StartupSettings(this);
+			ss.Dock = DockStyle.Fill;
+			panel.Controls.Add(ss);
 
 			_logger.Trace($"completed {nameof(FormSettings_Load)}");
 		}
