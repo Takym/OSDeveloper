@@ -18,7 +18,7 @@ namespace OSDeveloper
 		private readonly Logger         _logger;
 		private readonly MdiClient      _mdi_client;
 		private readonly MdiChildrenTab _mdi_tab;
-		private readonly FileTreeBox       _explorer;
+		private readonly FileTreeBox    _explorer;
 		private readonly TabControlEx   _terminal;
 		private readonly Splitter       _splitter_vert;
 		private readonly Splitter       _splitter_hori;

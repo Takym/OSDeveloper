@@ -4,31 +4,31 @@ using OSDeveloper.Projects;
 
 namespace OSDeveloper.GUIs.Explorer
 {
-	public class ProjectItemTreeNode : FileTreeBox.FileTreeNode
+	public class ProjectItemTreeNodeOld : FileTreeBoxOld.FileTreeNode
 	{
 		private Logger                _logger;
 		private ProjectItem           _project_item;
 
 		public ProjectItem ProjectItem { get => _project_item; }
 
-		public ProjectItemTreeNode(ProjectItem projectItem) : base(projectItem.GetMetadata())
+		public ProjectItemTreeNodeOld(ProjectItem projectItem) : base(projectItem.GetMetadata())
 		{
-			_logger = Logger.Get(nameof(SolutionTreeNode));
+			_logger = Logger.Get(nameof(SolutionTreeNodeOld));
 
 			_project_item = projectItem;
 			this.Text = _project_item.Name;
 
-			_logger.Trace($"constructed {nameof(SolutionTreeNode)}");
+			_logger.Trace($"constructed {nameof(SolutionTreeNodeOld)}");
 		}
 
-		public void Update(FileTreeBox parent)
+		public void Update(FileTreeBoxOld parent)
 		{
 			parent.UpdatePItemNode(this);
 			var items = (_project_item as Project)?.Contents;
 			if (items != null) {
 				for (int i = 0; i < items.Count; ++i) {
 					if (this.Nodes.ContainsKey(items[i].Name)) {
-						(this.Nodes[items[i].Name] as ProjectItemTreeNode)?.Update(parent);
+						(this.Nodes[items[i].Name] as ProjectItemTreeNodeOld)?.Update(parent);
 					} else {
 						var pitn = this.CreateNode(items[i]);
 						pitn.Update(parent);
@@ -38,7 +38,7 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 		}
 
-		public ProjectItemTreeNode AddItem(ItemMetadata item)
+		public ProjectItemTreeNodeOld AddItem(ItemMetadata item)
 		{
 			var prj  = _project_item as Project ?? _project_item.Parent;
 			var pi   = prj.AddItem(item);
@@ -59,9 +59,9 @@ namespace OSDeveloper.GUIs.Explorer
 			prj.RemoveItem(item);
 		}
 
-		private ProjectItemTreeNode CreateNode(ProjectItem pItem)
+		private ProjectItemTreeNodeOld CreateNode(ProjectItem pItem)
 		{
-			var pitn = new ProjectItemTreeNode(pItem);
+			var pitn = new ProjectItemTreeNodeOld(pItem);
 			pitn.Name = pItem.Name;
 			pitn.Text = pItem.Name;
 			return pitn;

@@ -4,7 +4,7 @@ using Yencon;
 
 namespace OSDeveloper.GUIs.Explorer
 {
-	public class SolutionTreeNode : ProjectItemTreeNode
+	public class SolutionTreeNodeOld : ProjectItemTreeNodeOld
 	{
 		private Logger                _logger;
 		private YenconStringConverter _converter;
@@ -12,14 +12,14 @@ namespace OSDeveloper.GUIs.Explorer
 
 		public Solution Solution { get => _solution; }
 
-		public SolutionTreeNode(Solution solution) : base(solution)
+		public SolutionTreeNodeOld(Solution solution) : base(solution)
 		{
-			_logger = Logger.Get(nameof(SolutionTreeNode));
+			_logger = Logger.Get(nameof(SolutionTreeNodeOld));
 
 			_converter = YenconFormatRecognition.StringConverter;
 			_solution  = solution;
 
-			_logger.Trace($"constructed {nameof(SolutionTreeNode)}");
+			_logger.Trace($"constructed {nameof(SolutionTreeNodeOld)}");
 		}
 
 		public void Load()
@@ -37,7 +37,7 @@ namespace OSDeveloper.GUIs.Explorer
 			_converter.Save(_solution.GetFullPath().Bond(_solution.Name + ".osdev_sln"), data);
 		}
 
-		public void Refresh(FileTreeBox parent)
+		public void Refresh(FileTreeBoxOld parent)
 		{
 			this.Load();
 			this.Update(parent);
