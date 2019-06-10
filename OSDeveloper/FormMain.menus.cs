@@ -75,11 +75,20 @@ namespace OSDeveloper
 		#endregion
 
 		#region ツールメニュー
+		private ToolStripButton _toolbtn_reload;
 		private ToolStripButton _toolbtn_save, _toolbtn_saveAs, _toolbtn_saveAll, _toolbtn_saveAllAs;
+		private ToolStripButton _toolbtn_print, _toolbtn_printPreview, _toolbtn_pageSetup;
+		private ToolStripButton _toolbtn_showSettings;
 
 		private void BuildToolMenuItems()
 		{
 			_logger.Trace($"building menu items for {nameof(_tool_menu)}...");
+
+			_toolbtn_reload = new ToolStripButton(_menu_file.Reload.Text, _menu_file.Reload.Image);
+			_toolbtn_reload.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_reload.Click        += (sender, e) => {
+				_menu_file.Reload.PerformClick();
+			};
 
 			_toolbtn_save = new ToolStripButton(_menu_file.SaveMenu.Text, _menu_file.SaveMenu.Image);
 			_toolbtn_save.DisplayStyle  = ToolStripItemDisplayStyle.Image;
@@ -105,10 +114,42 @@ namespace OSDeveloper
 				_menu_file.SaveAllAsMenu.PerformClick();
 			};
 
+			_toolbtn_print = new ToolStripButton(_menu_file.Print.Text, _menu_file.Print.Image);
+			_toolbtn_print.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_print.Click        += (sender, e) => {
+				_menu_file.Print.PerformClick();
+			};
+
+			_toolbtn_printPreview = new ToolStripButton(_menu_file.PrintPreview.Text, _menu_file.PrintPreview.Image);
+			_toolbtn_printPreview.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_printPreview.Click        += (sender, e) => {
+				_menu_file.PrintPreview.PerformClick();
+			};
+
+			_toolbtn_pageSetup = new ToolStripButton(_menu_file.PageSetup.Text, _menu_file.PageSetup.Image);
+			_toolbtn_pageSetup.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_pageSetup.Click        += (sender, e) => {
+				_menu_file.PageSetup.PerformClick();
+			};
+
+			_toolbtn_showSettings = new ToolStripButton(_menu_tool.ShowSettings.Text, _menu_tool.ShowSettings.Image);
+			_toolbtn_showSettings.DisplayStyle  = ToolStripItemDisplayStyle.Image;
+			_toolbtn_showSettings.Click        += (sender, e) => {
+				_menu_tool.ShowSettings.PerformClick();
+			};
+
+			_tool_menu.Items.Add(_toolbtn_reload);
+			_tool_menu.Items.Add(new ToolStripSeparator());
 			_tool_menu.Items.Add(_toolbtn_save);
 			_tool_menu.Items.Add(_toolbtn_saveAs);
 			_tool_menu.Items.Add(_toolbtn_saveAll);
 			_tool_menu.Items.Add(_toolbtn_saveAllAs);
+			_tool_menu.Items.Add(new ToolStripSeparator());
+			_tool_menu.Items.Add(_toolbtn_print);
+			_tool_menu.Items.Add(_toolbtn_printPreview);
+			_tool_menu.Items.Add(_toolbtn_pageSetup);
+			_tool_menu.Items.Add(new ToolStripSeparator());
+			_tool_menu.Items.Add(_toolbtn_showSettings);
 		}
 
 		#endregion

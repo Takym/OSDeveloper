@@ -20,10 +20,14 @@ namespace OSDeveloper.GUIs.ToolStrips
 		private readonly ToolStripMenuItem _print, _printPreview, _pageSetup;
 		private readonly ToolStripMenuItem _exit;
 
-		public ToolStripMenuItem SaveMenu      => _save;
-		public ToolStripMenuItem SaveAsMenu    => _saveAs;
-		public ToolStripMenuItem SaveAllMenu   => _saveAll;
-		public ToolStripMenuItem SaveAllAsMenu => _saveAllAs;
+		internal ToolStripMenuItem Reload        => _reload;
+		internal ToolStripMenuItem SaveMenu      => _save;
+		internal ToolStripMenuItem SaveAsMenu    => _saveAs;
+		internal ToolStripMenuItem SaveAllMenu   => _saveAll;
+		internal ToolStripMenuItem SaveAllAsMenu => _saveAllAs;
+		internal ToolStripMenuItem Print         => _print;
+		internal ToolStripMenuItem PrintPreview  => _printPreview;
+		internal ToolStripMenuItem PageSetup     => _pageSetup;
 
 		public FileMainMenuItem(FormMain mwnd) : base(mwnd)
 		{

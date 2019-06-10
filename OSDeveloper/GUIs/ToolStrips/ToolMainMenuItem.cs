@@ -15,6 +15,8 @@ namespace OSDeveloper.GUIs.ToolStrips
 		private readonly ToolStripMenuItem _desktop_themepacks;
 		private readonly ToolStripMenuItem _show_settings;
 
+		internal ToolStripMenuItem ShowSettings => _show_settings;
+
 		public ToolMainMenuItem(FormMain mwnd) : base(mwnd)
 		{
 			this.Name = "TOOL";
