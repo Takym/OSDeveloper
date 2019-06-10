@@ -71,7 +71,7 @@
 			this.Controls.Add(this.useExdialog);
 			this.Controls.Add(this.labelDesc);
 			this.Name = "EnvironmentSettings";
-			this.Size = new System.Drawing.Size(256, 150);
+			this.Size = new System.Drawing.Size(512, 150);
 			this.Load += new System.EventHandler(this.EnvironmentSettings_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

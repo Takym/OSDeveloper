@@ -38,7 +38,7 @@
 			this.treeView.BackColor = System.Drawing.SystemColors.Control;
 			this.treeView.Location = new System.Drawing.Point(8, 8);
 			this.treeView.Name = "treeView";
-			this.treeView.Size = new System.Drawing.Size(256, 544);
+			this.treeView.Size = new System.Drawing.Size(264, 544);
 			this.treeView.TabIndex = 0;
 			this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
 			// 
@@ -47,17 +47,17 @@
 			this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel.AutoScroll = true;
-			this.panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.panel.Location = new System.Drawing.Point(272, 8);
+			this.panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel.Location = new System.Drawing.Point(280, 8);
 			this.panel.Name = "panel";
-			this.panel.Size = new System.Drawing.Size(504, 544);
+			this.panel.Size = new System.Drawing.Size(520, 544);
 			this.panel.TabIndex = 1;
 			// 
 			// FormSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(784, 561);
+			this.ClientSize = new System.Drawing.Size(808, 561);
 			this.Controls.Add(this.panel);
 			this.Controls.Add(this.treeView);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
