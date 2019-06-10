@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.Logging;
+using OSDeveloper.Resources;
 
 namespace OSDeveloper.GUIs.Controls.SettingPanels.Configuration
 {
@@ -17,6 +18,13 @@ namespace OSDeveloper.GUIs.Controls.SettingPanels.Configuration
 			_logger = Logger.Get(nameof(StartupSettings));
 			_parent = parent;
 			this.InitializeComponent();
+			this.SuspendLayout();
+			labelDesc  .Text = FormSettingsRes.Startup_labelDesc;
+			visualstyle.Text = FormSettingsRes.Startup_visualstyle;
+			labelLang  .Text = FormSettingsRes.Startup_labelLang;
+			this       .Text = FormSettingsRes.Startup_Caption;
+			this.ResumeLayout(false);
+			this.PerformLayout();
 			_logger.Trace($"constructed {nameof(StartupSettings)}");
 		}
 
@@ -28,7 +36,7 @@ namespace OSDeveloper.GUIs.Controls.SettingPanels.Configuration
 				case VisualStyleState.ClientAndNonClientAreasEnabled:
 					visualstyle.CheckState = CheckState.Checked;
 					break;
-				case VisualStyleState.NonClientAreaEnabled:
+				case VisualStyleState.NoneEnabled:
 					visualstyle.CheckState = CheckState.Unchecked;
 					break;
 				default:

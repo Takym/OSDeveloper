@@ -120,4 +120,22 @@
   <data name="Caption" xml:space="preserve">
     <value>FormSettings</value>
   </data>
+  <data name="Config" xml:space="preserve">
+    <value>Config</value>
+  </data>
+  <data name="Extension" xml:space="preserve">
+    <value>Extension</value>
+  </data>
+  <data name="Startup_Caption" xml:space="preserve">
+    <value>Startup_Caption</value>
+  </data>
+  <data name="Startup_labelDesc" xml:space="preserve">
+    <value>Startup_labelDesc</value>
+  </data>
+  <data name="Startup_labelLang" xml:space="preserve">
+    <value>Startup_labelLang</value>
+  </data>
+  <data name="Startup_visualstyle" xml:space="preserve">
+    <value>Startup_visualstyle</value>
+  </data>
 </root>

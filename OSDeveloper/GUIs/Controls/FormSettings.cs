@@ -9,7 +9,8 @@ namespace OSDeveloper.GUIs.Controls
 {
 	public sealed partial class FormSettings : Form
 	{
-		internal readonly Logger _logger;
+		private readonly Logger      _logger;
+		private          UserControl _current;
 
 		public FormSettings()
 		{
@@ -27,17 +28,10 @@ namespace OSDeveloper.GUIs.Controls
 		{
 			_logger.Trace($"executing {nameof(FormSettings_Load)}...");
 
-#if DEBUG
-			// TODO: メモ的に項目を追加。
-			var n1 = treeView.Nodes.Add("構成設定");
-			n1.Nodes.Add("起動設定");
-			n1.Nodes.Add("環境設定");
-			var n2 = treeView.Nodes.Add("拡張設定");
-#endif
+			var node_cfg = treeView.Nodes.Add(FormSettingsRes.Config);
+			node_cfg.Nodes.Add(new PanelTreeNode(new StartupSettings(this)));
 
-			var ss = new StartupSettings(this);
-			ss.Dock = DockStyle.Fill;
-			panel.Controls.Add(ss);
+			var node_ext = treeView.Nodes.Add(FormSettingsRes.Extension);
 
 			_logger.Trace($"completed {nameof(FormSettings_Load)}");
 		}
@@ -46,7 +40,25 @@ namespace OSDeveloper.GUIs.Controls
 		{
 			_logger.Trace($"executing {nameof(treeView_AfterSelect)}...");
 
+			if (_current != null) {
+				panel.Controls.Remove(_current);
+			}
+			if (e.Node is PanelTreeNode ptn) {
+				_current = ptn.UserControl;
+				panel.Controls.Add(_current);
+			}
+
 			_logger.Trace($"completed {nameof(treeView_AfterSelect)}");
+		}
+
+		private sealed class PanelTreeNode : TreeNode
+		{
+			public UserControl UserControl { get; }
+
+			public PanelTreeNode(UserControl userControl) : base(userControl.Text)
+			{
+				this.UserControl = userControl;
+			}
 		}
 	}
 }

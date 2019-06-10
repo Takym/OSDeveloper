@@ -36,7 +36,7 @@
 			// visualstyle
 			// 
 			this.visualstyle.AutoSize = true;
-			this.visualstyle.Location = new System.Drawing.Point(8, 32);
+			this.visualstyle.Location = new System.Drawing.Point(8, 40);
 			this.visualstyle.Name = "visualstyle";
 			this.visualstyle.Size = new System.Drawing.Size(79, 16);
 			this.visualstyle.TabIndex = 0;
@@ -57,7 +57,7 @@
 			// 
 			this.cmbxLang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbxLang.FormattingEnabled = true;
-			this.cmbxLang.Location = new System.Drawing.Point(8, 72);
+			this.cmbxLang.Location = new System.Drawing.Point(8, 88);
 			this.cmbxLang.Name = "cmbxLang";
 			this.cmbxLang.Size = new System.Drawing.Size(496, 20);
 			this.cmbxLang.TabIndex = 2;
@@ -66,7 +66,7 @@
 			// labelLang
 			// 
 			this.labelLang.AutoSize = true;
-			this.labelLang.Location = new System.Drawing.Point(8, 56);
+			this.labelLang.Location = new System.Drawing.Point(8, 64);
 			this.labelLang.Name = "labelLang";
 			this.labelLang.Size = new System.Drawing.Size(53, 12);
 			this.labelLang.TabIndex = 3;

@@ -46,6 +46,7 @@
 			// 
 			this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel.AutoScroll = true;
 			this.panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.panel.Location = new System.Drawing.Point(272, 8);
 			this.panel.Name = "panel";

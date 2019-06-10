@@ -68,5 +68,59 @@ namespace OSDeveloper.Resources {
                 return ResourceManager.GetString("Caption", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Config に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Config {
+            get {
+                return ResourceManager.GetString("Config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Extension に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Extension {
+            get {
+                return ResourceManager.GetString("Extension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Startup_Caption に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Startup_Caption {
+            get {
+                return ResourceManager.GetString("Startup_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Startup_labelDesc に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Startup_labelDesc {
+            get {
+                return ResourceManager.GetString("Startup_labelDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Startup_labelLang に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Startup_labelLang {
+            get {
+                return ResourceManager.GetString("Startup_labelLang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Startup_visualstyle に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Startup_visualstyle {
+            get {
+                return ResourceManager.GetString("Startup_visualstyle", resourceCulture);
+            }
+        }
     }
 }
