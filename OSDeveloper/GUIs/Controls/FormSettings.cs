@@ -30,6 +30,7 @@ namespace OSDeveloper.GUIs.Controls
 
 			var node_cfg = treeView.Nodes.Add(FormSettingsRes.Config);
 			node_cfg.Nodes.Add(new PanelTreeNode(new StartupSettings(this)));
+			node_cfg.Nodes.Add(new PanelTreeNode(new EnvironmentSettings(this)));
 
 			var node_ext = treeView.Nodes.Add(FormSettingsRes.Extension);
 

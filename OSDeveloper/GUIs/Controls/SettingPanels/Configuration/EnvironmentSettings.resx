@@ -117,38 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Caption" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="Config" xml:space="preserve">
-    <value>Configuration Settings</value>
-  </data>
-  <data name="Environment_Caption" xml:space="preserve">
-    <value>Environment Settings</value>
-  </data>
-  <data name="Environment_labelDesc" xml:space="preserve">
-    <value>Changes the basic behavior in the software.</value>
-  </data>
-  <data name="Environment_useExdialog" xml:space="preserve">
-    <value>Use extended dialog box.</value>
-  </data>
-  <data name="Environment_useWsl" xml:space="preserve">
-    <value>Use wsl.exe command instead of bash.exe command.</value>
-  </data>
-  <data name="Extension" xml:space="preserve">
-    <value>Additional Settings</value>
-  </data>
-  <data name="Startup_Caption" xml:space="preserve">
-    <value>Startup Settings</value>
-  </data>
-  <data name="Startup_labelDesc" xml:space="preserve">
-    <value>This is the settings loaded when the software starting up.
-You might need to restart to apply changes.</value>
-  </data>
-  <data name="Startup_labelLang" xml:space="preserve">
-    <value>UI Language:</value>
-  </data>
-  <data name="Startup_visualstyle" xml:space="preserve">
-    <value>Enable Visual Style</value>
-  </data>
 </root>

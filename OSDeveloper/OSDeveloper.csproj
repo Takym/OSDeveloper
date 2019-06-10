@@ -129,6 +129,12 @@
     <Compile Include="GUIs\Controls\MdiChildrenTab.Designer.cs">
       <DependentUpon>MdiChildrenTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Controls\SettingPanels\Configuration\EnvironmentSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\Controls\SettingPanels\Configuration\EnvironmentSettings.Designer.cs">
+      <DependentUpon>EnvironmentSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Controls\SettingPanels\Configuration\StartupSettings.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -261,6 +267,9 @@
     </Compile>
     <EmbeddedResource Include="GUIs\Controls\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Controls\SettingPanels\Configuration\EnvironmentSettings.resx">
+      <DependentUpon>EnvironmentSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Controls\SettingPanels\Configuration\StartupSettings.resx">
       <DependentUpon>StartupSettings.cs</DependentUpon>

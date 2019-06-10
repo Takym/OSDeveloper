@@ -123,6 +123,18 @@
   <data name="Config" xml:space="preserve">
     <value>構成設定</value>
   </data>
+  <data name="Environment_Caption" xml:space="preserve">
+    <value>環境設定</value>
+  </data>
+  <data name="Environment_labelDesc" xml:space="preserve">
+    <value>ソフトウェアの基本的な動作を変更します。</value>
+  </data>
+  <data name="Environment_useExdialog" xml:space="preserve">
+    <value>拡張ダイアログボックスを利用する。</value>
+  </data>
+  <data name="Environment_useWsl" xml:space="preserve">
+    <value>bash.exe コマンドの代わりに wsl.exe コマンドを利用する。</value>
+  </data>
   <data name="Extension" xml:space="preserve">
     <value>拡張設定</value>
   </data>

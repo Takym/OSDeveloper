@@ -79,6 +79,42 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Environment_Caption に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Environment_Caption {
+            get {
+                return ResourceManager.GetString("Environment_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Environment_labelDesc に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Environment_labelDesc {
+            get {
+                return ResourceManager.GetString("Environment_labelDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Environment_useExdialog に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Environment_useExdialog {
+            get {
+                return ResourceManager.GetString("Environment_useExdialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Environment_useWsl に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Environment_useWsl {
+            get {
+                return ResourceManager.GetString("Environment_useWsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Extension に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Extension {

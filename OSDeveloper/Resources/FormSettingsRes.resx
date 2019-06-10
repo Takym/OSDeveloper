@@ -123,6 +123,18 @@
   <data name="Config" xml:space="preserve">
     <value>Config</value>
   </data>
+  <data name="Environment_Caption" xml:space="preserve">
+    <value>Environment_Caption</value>
+  </data>
+  <data name="Environment_labelDesc" xml:space="preserve">
+    <value>Environment_labelDesc</value>
+  </data>
+  <data name="Environment_useExdialog" xml:space="preserve">
+    <value>Environment_useExdialog</value>
+  </data>
+  <data name="Environment_useWsl" xml:space="preserve">
+    <value>Environment_useWsl</value>
+  </data>
   <data name="Extension" xml:space="preserve">
     <value>Extension</value>
   </data>
