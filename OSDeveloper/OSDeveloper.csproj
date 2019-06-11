@@ -213,6 +213,7 @@
     <Compile Include="GUIs\ToolStrips\ScrnMainMenuItem.cs" />
     <Compile Include="GUIs\ToolStrips\ToolMainMenuItem.cs" />
     <Compile Include="GUIs\ToolStrips\WindMainMenuItem.cs" />
+    <Compile Include="IO\Configuration\Globalization.cs" />
     <Compile Include="IO\ItemManagement\ItemList.cs" />
     <Compile Include="Projects\IDEVersion.cs" />
     <Compile Include="IO\Configuration\SettingManager.cs" />

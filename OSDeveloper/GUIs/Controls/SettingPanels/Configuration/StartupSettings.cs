@@ -44,13 +44,22 @@ namespace OSDeveloper.GUIs.Controls.SettingPanels.Configuration
 					break;
 			}
 
-			var clist = CultureInfo.GetCultures(CultureTypes.AllCultures);
+#if DEBUG
+			var clist = Globalization.GetSupportedCultures();
+#else
+			var clist = Globalization.GetInstalledCultures();
+#endif
 			for (int i = 0; i < clist.Length; ++i) {
 				var l = new Locale(clist[i]);
 				cmbxLang.Items.Add(l);
 				if (clist[i].Name == SettingManager.System.Language.Name) {
 					cmbxLang.SelectedItem = l;
 				}
+			}
+			if (cmbxLang.SelectedItem == null) {
+				var l = new Locale(SettingManager.System.Language);
+				cmbxLang.Items.Add(l);
+				cmbxLang.SelectedItem = l;
 			}
 
 			_logger.Trace($"completed {nameof(StartupSettings_Load)}");
