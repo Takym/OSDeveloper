@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BtnCollapse" xml:space="preserve">
-    <value>折り畳む(&amp;C)</value>
+    <value>全て折り畳む</value>
   </data>
   <data name="BtnExpand" xml:space="preserve">
-    <value>展開(&amp;X)</value>
+    <value>全て展開</value>
   </data>
   <data name="BtnRefresh" xml:space="preserve">
-    <value>再読み込み(&amp;R)</value>
+    <value>ツリーを再読み込み</value>
   </data>
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>ファイル名を変更する事ができませんでした。</value>

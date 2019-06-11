@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BtnCollapse" xml:space="preserve">
-    <value>&amp;Collapse</value>
+    <value>Collapse all nodes</value>
   </data>
   <data name="BtnExpand" xml:space="preserve">
-    <value>E&amp;xpand</value>
+    <value>Expand all nodes</value>
   </data>
   <data name="BtnRefresh" xml:space="preserve">
-    <value>&amp;Refresh</value>
+    <value>Refresh the tree</value>
   </data>
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>The file name could not be changed.</value>
