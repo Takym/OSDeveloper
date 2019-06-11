@@ -166,12 +166,25 @@
         TgDQASA1MVpwzwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="iconList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>115, 17</value>
   </metadata>
   <metadata name="popupMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>218, 17</value>
   </metadata>
+  <data name="bashMenu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGMSURBVDhPYxh4wFt57YBW35OPcp1PX0u3P30t2fHktVTb
+        k9eynU+A/CevRVqfvBZsevRasu3pa4n2569VOh6+Maw//Z47d38BUDsnA3vyrh8CKXv/8ybv+c8LooGY
+        D8rnTgJiIM0DxBoVJ/4rFJ/6b56/+X9QeM3/8KpZZ4EGBDHUbrj38fqDp//P33ny/8Ldp/8v3IHiu0A+
+        jA2UO33r8f8zQHzy9vP/e2+9+W+X3HULaEABw7QDbz7+h4N/aBgEsIn9/6/o23wbbMCk3c+gBvwiAv8G
+        479Ag1T9GiAGTNn1BMkAkAJ0TZgYbIBPLcSAaTsekuACEP4N1P7nv5pnFcSA6dvvkWHA3//qHuUQA2Zu
+        vU2eAW4lEAPmbb0JNeAvFP8hgEFq/v3XdCmEumDDtV+fv/76/+nrTyD+AcTfoWzsGKZW27XoLtgANf/5
+        O5TdOp4qOje/geAmKI0dKzjWv1FxbXsnrBF0HmwAEAgAcTYQNwBxI5G4CYirgdgfiMEAZIgQEAuSgIHq
+        GbgATYtiqaJ8DRMAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="ofd.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>337, 17</value>
   </metadata>

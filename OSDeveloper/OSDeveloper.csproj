@@ -167,6 +167,12 @@
     <Compile Include="GUIs\Explorer\IconList.cs" />
     <Compile Include="GUIs\Explorer\ProjectItemTreeNodeOld.cs" />
     <Compile Include="GUIs\Explorer\SolutionTreeNodeOld.cs" />
+    <Compile Include="GUIs\Explorer\WslBashToolStripMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUIs\Explorer\WslBashToolStripMenuItem.Designer.cs">
+      <DependentUpon>WslBashToolStripMenuItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\Features\IClipboardFeature.cs" />
     <Compile Include="GUIs\Features\IFileSaveLoadFeature.cs" />
     <Compile Include="GUIs\Features\IFileLoadFeature.cs" />

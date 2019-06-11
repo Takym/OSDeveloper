@@ -34,7 +34,6 @@
 			this.btnExpand = new System.Windows.Forms.ToolStripButton();
 			this.btnCollapse = new System.Windows.Forms.ToolStripButton();
 			this.treeView = new System.Windows.Forms.TreeView();
-			this.imageList = new System.Windows.Forms.ImageList(this.components);
 			this.popupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.openInMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +41,7 @@
 			this.explorerMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.cmdMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.powershellMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.bashMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.bashMenu = new OSDeveloper.GUIs.Explorer.WslBashToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.createFileMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.createDirMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,6 +58,7 @@
 			this.renameMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.propertyMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.iconList = new System.Windows.Forms.ImageList(this.components);
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
 			this.toolStrip.SuspendLayout();
 			this.popupMenu.SuspendLayout();
@@ -111,18 +111,12 @@
 			// 
 			this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.treeView.ImageIndex = 0;
-			this.treeView.ImageList = this.imageList;
+			this.treeView.ImageList = this.iconList;
 			this.treeView.Location = new System.Drawing.Point(0, 25);
 			this.treeView.Name = "treeView";
 			this.treeView.SelectedImageIndex = 0;
 			this.treeView.Size = new System.Drawing.Size(196, 171);
 			this.treeView.TabIndex = 1;
-			// 
-			// imageList
-			// 
-			this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-			this.imageList.ImageSize = new System.Drawing.Size(16, 16);
-			this.imageList.TransparentColor = System.Drawing.Color.Transparent;
 			// 
 			// popupMenu
 			// 
@@ -144,7 +138,7 @@
             this.toolStripSeparator3,
             this.propertyMenu});
 			this.popupMenu.Name = "popupMenu";
-			this.popupMenu.Size = new System.Drawing.Size(181, 330);
+			this.popupMenu.Size = new System.Drawing.Size(125, 308);
 			// 
 			// openMenu
 			// 
@@ -161,38 +155,40 @@
             this.powershellMenu,
             this.bashMenu});
 			this.openInMenu.Name = "openInMenu";
-			this.openInMenu.Size = new System.Drawing.Size(180, 22);
+			this.openInMenu.Size = new System.Drawing.Size(124, 22);
 			this.openInMenu.Text = "openIn";
 			// 
 			// defaultAppMenu
 			// 
 			this.defaultAppMenu.Name = "defaultAppMenu";
-			this.defaultAppMenu.Size = new System.Drawing.Size(180, 22);
+			this.defaultAppMenu.Size = new System.Drawing.Size(133, 22);
 			this.defaultAppMenu.Text = "defaultApp";
 			// 
 			// explorerMenu
 			// 
 			this.explorerMenu.Name = "explorerMenu";
-			this.explorerMenu.Size = new System.Drawing.Size(180, 22);
+			this.explorerMenu.Size = new System.Drawing.Size(133, 22);
 			this.explorerMenu.Text = "explorer";
 			// 
 			// cmdMenu
 			// 
 			this.cmdMenu.Name = "cmdMenu";
-			this.cmdMenu.Size = new System.Drawing.Size(180, 22);
+			this.cmdMenu.Size = new System.Drawing.Size(133, 22);
 			this.cmdMenu.Text = "cmd";
 			// 
 			// powershellMenu
 			// 
 			this.powershellMenu.Name = "powershellMenu";
-			this.powershellMenu.Size = new System.Drawing.Size(180, 22);
+			this.powershellMenu.Size = new System.Drawing.Size(133, 22);
 			this.powershellMenu.Text = "powershell";
 			// 
 			// bashMenu
 			// 
+			this.bashMenu.Image = ((System.Drawing.Image)(resources.GetObject("bashMenu.Image")));
 			this.bashMenu.Name = "bashMenu";
-			this.bashMenu.Size = new System.Drawing.Size(180, 22);
+			this.bashMenu.Size = new System.Drawing.Size(133, 22);
 			this.bashMenu.Text = "bash";
+			this.bashMenu.TextModified = false;
 			// 
 			// toolStripSeparator1
 			// 
@@ -217,21 +213,21 @@
             this.generateNewMenu,
             this.fromSystemMenu});
 			this.additemMenu.Name = "additemMenu";
-			this.additemMenu.Size = new System.Drawing.Size(180, 22);
+			this.additemMenu.Size = new System.Drawing.Size(124, 22);
 			this.additemMenu.Text = "additem";
 			// 
 			// generateNewMenu
 			// 
 			this.generateNewMenu.Enabled = false;
 			this.generateNewMenu.Name = "generateNewMenu";
-			this.generateNewMenu.Size = new System.Drawing.Size(180, 22);
+			this.generateNewMenu.Size = new System.Drawing.Size(144, 22);
 			this.generateNewMenu.Text = "generateNew";
 			this.generateNewMenu.Visible = false;
 			// 
 			// fromSystemMenu
 			// 
 			this.fromSystemMenu.Name = "fromSystemMenu";
-			this.fromSystemMenu.Size = new System.Drawing.Size(180, 22);
+			this.fromSystemMenu.Size = new System.Drawing.Size(144, 22);
 			this.fromSystemMenu.Text = "fromSystem";
 			// 
 			// toolStripSeparator2
@@ -292,6 +288,12 @@
 			this.propertyMenu.Size = new System.Drawing.Size(124, 22);
 			this.propertyMenu.Text = "property";
 			// 
+			// iconList
+			// 
+			this.iconList.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
+			this.iconList.ImageSize = new System.Drawing.Size(16, 16);
+			this.iconList.TransparentColor = System.Drawing.Color.Transparent;
+			// 
 			// ofd
 			// 
 			this.ofd.ShowReadOnly = true;
@@ -317,7 +319,7 @@
 
 		private System.Windows.Forms.ToolStrip toolStrip;
 		private System.Windows.Forms.TreeView treeView;
-		private System.Windows.Forms.ImageList imageList;
+		private System.Windows.Forms.ImageList iconList;
 		private System.Windows.Forms.ContextMenuStrip popupMenu;
 		private System.Windows.Forms.OpenFileDialog ofd;
 		private System.Windows.Forms.ToolStripButton btnRefresh;
@@ -329,7 +331,6 @@
 		private System.Windows.Forms.ToolStripMenuItem explorerMenu;
 		private System.Windows.Forms.ToolStripMenuItem cmdMenu;
 		private System.Windows.Forms.ToolStripMenuItem powershellMenu;
-		private System.Windows.Forms.ToolStripMenuItem bashMenu;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem createFileMenu;
 		private System.Windows.Forms.ToolStripMenuItem createDirMenu;
@@ -346,5 +347,6 @@
 		private System.Windows.Forms.ToolStripMenuItem renameMenu;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem propertyMenu;
+		private WslBashToolStripMenuItem bashMenu;
 	}
 }
