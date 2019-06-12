@@ -158,6 +158,7 @@
     <Compile Include="GUIs\Explorer\FileTreeBox.Designer.cs">
       <DependentUpon>FileTreeBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\Explorer\FileTreeNode.cs" />
     <Compile Include="GUIs\Explorer\Old\FileTreeBoxOld.cs">
       <SubType>UserControl</SubType>
     </Compile>
