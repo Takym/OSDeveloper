@@ -39,7 +39,7 @@
 			this.visualstyle.Location = new System.Drawing.Point(8, 40);
 			this.visualstyle.Name = "visualstyle";
 			this.visualstyle.Size = new System.Drawing.Size(79, 16);
-			this.visualstyle.TabIndex = 0;
+			this.visualstyle.TabIndex = 1;
 			this.visualstyle.Text = "visualstyle";
 			this.visualstyle.UseVisualStyleBackColor = true;
 			this.visualstyle.CheckedChanged += new System.EventHandler(this.visualstyle_CheckedChanged);
@@ -50,7 +50,7 @@
 			this.labelDesc.Location = new System.Drawing.Point(8, 8);
 			this.labelDesc.Name = "labelDesc";
 			this.labelDesc.Size = new System.Drawing.Size(55, 12);
-			this.labelDesc.TabIndex = 1;
+			this.labelDesc.TabIndex = 0;
 			this.labelDesc.Text = "labelDesc";
 			// 
 			// cmbxLang
@@ -60,7 +60,7 @@
 			this.cmbxLang.Location = new System.Drawing.Point(8, 88);
 			this.cmbxLang.Name = "cmbxLang";
 			this.cmbxLang.Size = new System.Drawing.Size(496, 20);
-			this.cmbxLang.TabIndex = 2;
+			this.cmbxLang.TabIndex = 3;
 			this.cmbxLang.SelectedIndexChanged += new System.EventHandler(this.cmbxLang_SelectedIndexChanged);
 			// 
 			// labelLang
@@ -69,7 +69,7 @@
 			this.labelLang.Location = new System.Drawing.Point(8, 64);
 			this.labelLang.Name = "labelLang";
 			this.labelLang.Size = new System.Drawing.Size(53, 12);
-			this.labelLang.TabIndex = 3;
+			this.labelLang.TabIndex = 2;
 			this.labelLang.Text = "labelLang";
 			// 
 			// StartupSettings

@@ -20,7 +20,7 @@ namespace OSDeveloper.GUIs.Controls.SettingPanels.Configuration
 			labelDesc  .Text = FormSettingsRes.Environment_labelDesc;
 			useExdialog.Text = FormSettingsRes.Environment_useExdialog;
 			useWsl     .Text = FormSettingsRes.Environment_useWsl;
-			this       .Text = FormSettingsRes.Environment_Caption;
+			this       .Text = FormSettingsRes.Environment_Caption + "(system)";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 			_logger.Trace($"constructed {nameof(EnvironmentSettings)}");

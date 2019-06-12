@@ -22,7 +22,7 @@ namespace OSDeveloper.GUIs.Controls.SettingPanels.Configuration
 			labelDesc  .Text = FormSettingsRes.Startup_labelDesc;
 			visualstyle.Text = FormSettingsRes.Startup_visualstyle;
 			labelLang  .Text = FormSettingsRes.Startup_labelLang;
-			this       .Text = FormSettingsRes.Startup_Caption;
+			this       .Text = FormSettingsRes.Startup_Caption + "(system)";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 			_logger.Trace($"constructed {nameof(StartupSettings)}");
