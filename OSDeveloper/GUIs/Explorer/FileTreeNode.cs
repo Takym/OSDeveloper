@@ -42,7 +42,7 @@ namespace OSDeveloper.GUIs.Explorer
 		}
 	}
 
-	internal class RemovedTreeNode : TreeNode
+	internal sealed class RemovedTreeNode : TreeNode
 	{
 		public ItemMetadata Metadata { get; }
 

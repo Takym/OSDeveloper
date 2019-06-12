@@ -86,6 +86,7 @@
 			this.btnRefresh.Size = new System.Drawing.Size(23, 22);
 			this.btnRefresh.Text = "btnRefresh";
 			this.btnRefresh.ToolTipText = "btnRefresh";
+			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
 			// 
 			// btnExpand
 			// 
@@ -96,6 +97,7 @@
 			this.btnExpand.Size = new System.Drawing.Size(23, 22);
 			this.btnExpand.Text = "btnExpand";
 			this.btnExpand.ToolTipText = "btnExpand";
+			this.btnExpand.Click += new System.EventHandler(this.btnExpand_Click);
 			// 
 			// btnCollapse
 			// 
@@ -106,6 +108,7 @@
 			this.btnCollapse.Size = new System.Drawing.Size(23, 22);
 			this.btnCollapse.Text = "btnCollapse";
 			this.btnCollapse.ToolTipText = "btnCollapse";
+			this.btnCollapse.Click += new System.EventHandler(this.btnCollapse_Click);
 			// 
 			// treeView
 			// 
