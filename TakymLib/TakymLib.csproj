@@ -93,11 +93,6 @@
     <Compile Include="AOP\LoggingAspectBehavior.cs" />
     <Compile Include="AOP\MultipleLogger.cs" />
     <Compile Include="ArrayUtils.cs" />
-    <Compile Include="Collections\HybridEnumerator.cs" />
-    <Compile Include="Collections\HybridList_func.cs" />
-    <Compile Include="Collections\HybridList_prop.cs" />
-    <Compile Include="Collections\HybridList.cs" />
-    <Compile Include="Collections\HybridListItemMode.cs" />
     <Compile Include="ConsoleUtils.cs" />
     <Compile Include="DisposableBase.cs" />
     <Compile Include="IO\PathString.cs" />

@@ -6,7 +6,7 @@ namespace TakymLib.AOP
 	/// <summary>
 	///  複数の出力先を持つロガーです。
 	/// </summary>
-	public class MultipleLogger : List<ILogger>/*HybridList<ILogger>*/, ILogger
+	public class MultipleLogger : List<ILogger>, ILogger
 	{
 		/// <summary>
 		///  <see langword="Notice"/>レベルで、指定されたメッセージでログを書き込みます。
