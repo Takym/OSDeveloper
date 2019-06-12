@@ -112,5 +112,131 @@ namespace OSDeveloper.GUIs.Explorer
 		}
 
 		#endregion
+
+		#region ツリービュー
+
+		private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
+		{
+
+		}
+
+		private void treeView_AfterExpand(object sender, TreeViewEventArgs e)
+		{
+
+		}
+
+		private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+		{
+
+		}
+
+		private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
+		{
+
+		}
+
+		#endregion
+
+		#region コンテキストメニュー
+
+		#region 開く系メニュー
+
+		private void openMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void defaultAppMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void explorerMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void cmdMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void powershellMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+
+		#endregion
+
+		#region 作る系メニュー
+
+		private void createMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void generateNewMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void fromSystemMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+
+		#endregion
+
+		#region 操作系メニュー
+
+		private void cloneMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void copyMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void cutMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void pasteMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void removeMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void deleteMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void renameMenu_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		#endregion
+
+		#region プロパティ メニュー
+
+		private void propertyMenu_Click(object sender, EventArgs e)
+		{
+			
+		}
+
+		#endregion
+
+		#endregion
 	}
 }

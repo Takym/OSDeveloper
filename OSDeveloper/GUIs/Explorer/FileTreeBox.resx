@@ -174,15 +174,15 @@
   </metadata>
   <data name="bashMenu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGMSURBVDhPYxh4wFt57YBW35OPcp1PX0u3P30t2fHktVTb
-        k9eynU+A/CevRVqfvBZsevRasu3pa4n2569VOh6+Maw//Z47d38BUDsnA3vyrh8CKXv/8ybv+c8LooGY
-        D8rnTgJiIM0DxBoVJ/4rFJ/6b56/+X9QeM3/8KpZZ4EGBDHUbrj38fqDp//P33ny/8Ldp/8v3IHiu0A+
-        jA2UO33r8f8zQHzy9vP/e2+9+W+X3HULaEABw7QDbz7+h4N/aBgEsIn9/6/o23wbbMCk3c+gBvwiAv8G
-        479Ag1T9GiAGTNn1BMkAkAJ0TZgYbIBPLcSAaTsekuACEP4N1P7nv5pnFcSA6dvvkWHA3//qHuUQA2Zu
-        vU2eAW4lEAPmbb0JNeAvFP8hgEFq/v3XdCmEumDDtV+fv/76/+nrTyD+AcTfoWzsGKZW27XoLtgANf/5
-        O5TdOp4qOje/geAmKI0dKzjWv1FxbXsnrBF0HmwAEAgAcTYQNwBxI5G4CYirgdgfiMEAZIgQEAuSgIHq
-        GbgATYtiqaJ8DRMAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAYxJREFUOE9jGHjAW3ntgFbfk49ynU9fS7c/fS3Z8eS1VNuT17KdT4D8J69FWp+8
+        Fmx69Fqy7elrifbnr1U6Hr4xrD/9njt3fwFQOycDe/KuHwIpe//zJu/5zwuigZgPyudOAmIgzQPEGhUn
+        /isUn/pvnr/5f1B4zf/wqllngQYEMdRuuPfx+oOn/8/fefL/wt2n/y/cgeK7QD6MDZQ7fevx/zNAfPL2
+        8/97b735b5fcdQtoQAHDtANvPv6Hg39oGASwif3/r+jbfBtswKTdz6AG/CIC/wbjv0CDVP0aIAZM2fUE
+        yQCQAnRNmBhsgE8txIBpOx6S4AIQ/g3U/ue/mmcVxIDp2++RYcDf/+oe5RADZm69TZ4BbiUQA+ZtvQk1
+        4C8U/yGAQWr+/dd0KYS6YMO1X5+//vr/6etPIP4BxN+hbOwYplbbtegu2AA1//k7lN06nio6N7+B4CYo
+        jR0rONa/UXFteyesEXQebAAQCABxNhA3AHEjkbgJiKuB2B+IwQBkiBAQC5KAgeoZuABNi2KponwNEwAA
+        AABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="ofd.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

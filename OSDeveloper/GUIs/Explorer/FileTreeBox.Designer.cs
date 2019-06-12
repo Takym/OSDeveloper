@@ -34,6 +34,7 @@
 			this.btnExpand = new System.Windows.Forms.ToolStripButton();
 			this.btnCollapse = new System.Windows.Forms.ToolStripButton();
 			this.treeView = new System.Windows.Forms.TreeView();
+			this.iconList = new System.Windows.Forms.ImageList(this.components);
 			this.popupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.openInMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,6 @@
 			this.renameMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.propertyMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.iconList = new System.Windows.Forms.ImageList(this.components);
 			this.ofd = new System.Windows.Forms.OpenFileDialog();
 			this.toolStrip.SuspendLayout();
 			this.popupMenu.SuspendLayout();
@@ -110,6 +110,7 @@
 			// treeView
 			// 
 			this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treeView.HotTracking = true;
 			this.treeView.ImageIndex = 0;
 			this.treeView.ImageList = this.iconList;
 			this.treeView.Location = new System.Drawing.Point(0, 25);
@@ -117,6 +118,16 @@
 			this.treeView.SelectedImageIndex = 0;
 			this.treeView.Size = new System.Drawing.Size(196, 171);
 			this.treeView.TabIndex = 1;
+			this.treeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_AfterLabelEdit);
+			this.treeView.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterCollapse);
+			this.treeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterExpand);
+			this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
+			// 
+			// iconList
+			// 
+			this.iconList.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
+			this.iconList.ImageSize = new System.Drawing.Size(16, 16);
+			this.iconList.TransparentColor = System.Drawing.Color.Transparent;
 			// 
 			// popupMenu
 			// 
@@ -145,6 +156,7 @@
 			this.openMenu.Name = "openMenu";
 			this.openMenu.Size = new System.Drawing.Size(124, 22);
 			this.openMenu.Text = "open";
+			this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
 			// 
 			// openInMenu
 			// 
@@ -163,24 +175,28 @@
 			this.defaultAppMenu.Name = "defaultAppMenu";
 			this.defaultAppMenu.Size = new System.Drawing.Size(133, 22);
 			this.defaultAppMenu.Text = "defaultApp";
+			this.defaultAppMenu.Click += new System.EventHandler(this.defaultAppMenu_Click);
 			// 
 			// explorerMenu
 			// 
 			this.explorerMenu.Name = "explorerMenu";
 			this.explorerMenu.Size = new System.Drawing.Size(133, 22);
 			this.explorerMenu.Text = "explorer";
+			this.explorerMenu.Click += new System.EventHandler(this.explorerMenu_Click);
 			// 
 			// cmdMenu
 			// 
 			this.cmdMenu.Name = "cmdMenu";
 			this.cmdMenu.Size = new System.Drawing.Size(133, 22);
 			this.cmdMenu.Text = "cmd";
+			this.cmdMenu.Click += new System.EventHandler(this.cmdMenu_Click);
 			// 
 			// powershellMenu
 			// 
 			this.powershellMenu.Name = "powershellMenu";
 			this.powershellMenu.Size = new System.Drawing.Size(133, 22);
 			this.powershellMenu.Text = "powershell";
+			this.powershellMenu.Click += new System.EventHandler(this.powershellMenu_Click);
 			// 
 			// bashMenu
 			// 
@@ -200,12 +216,14 @@
 			this.createFileMenu.Name = "createFileMenu";
 			this.createFileMenu.Size = new System.Drawing.Size(124, 22);
 			this.createFileMenu.Text = "createFile";
+			this.createFileMenu.Click += new System.EventHandler(this.createMenu_Click);
 			// 
 			// createDirMenu
 			// 
 			this.createDirMenu.Name = "createDirMenu";
 			this.createDirMenu.Size = new System.Drawing.Size(124, 22);
 			this.createDirMenu.Text = "createDir";
+			this.createDirMenu.Click += new System.EventHandler(this.createMenu_Click);
 			// 
 			// additemMenu
 			// 
@@ -223,12 +241,14 @@
 			this.generateNewMenu.Size = new System.Drawing.Size(144, 22);
 			this.generateNewMenu.Text = "generateNew";
 			this.generateNewMenu.Visible = false;
+			this.generateNewMenu.Click += new System.EventHandler(this.generateNewMenu_Click);
 			// 
 			// fromSystemMenu
 			// 
 			this.fromSystemMenu.Name = "fromSystemMenu";
 			this.fromSystemMenu.Size = new System.Drawing.Size(144, 22);
 			this.fromSystemMenu.Text = "fromSystem";
+			this.fromSystemMenu.Click += new System.EventHandler(this.fromSystemMenu_Click);
 			// 
 			// toolStripSeparator2
 			// 
@@ -240,42 +260,49 @@
 			this.cloneMenu.Name = "cloneMenu";
 			this.cloneMenu.Size = new System.Drawing.Size(124, 22);
 			this.cloneMenu.Text = "clone";
+			this.cloneMenu.Click += new System.EventHandler(this.cloneMenu_Click);
 			// 
 			// copyMenu
 			// 
 			this.copyMenu.Name = "copyMenu";
 			this.copyMenu.Size = new System.Drawing.Size(124, 22);
 			this.copyMenu.Text = "copy";
+			this.copyMenu.Click += new System.EventHandler(this.copyMenu_Click);
 			// 
 			// cutMenu
 			// 
 			this.cutMenu.Name = "cutMenu";
 			this.cutMenu.Size = new System.Drawing.Size(124, 22);
 			this.cutMenu.Text = "cut";
+			this.cutMenu.Click += new System.EventHandler(this.cutMenu_Click);
 			// 
 			// pasteMenu
 			// 
 			this.pasteMenu.Name = "pasteMenu";
 			this.pasteMenu.Size = new System.Drawing.Size(124, 22);
 			this.pasteMenu.Text = "paste";
+			this.pasteMenu.Click += new System.EventHandler(this.pasteMenu_Click);
 			// 
 			// removeMenu
 			// 
 			this.removeMenu.Name = "removeMenu";
 			this.removeMenu.Size = new System.Drawing.Size(124, 22);
 			this.removeMenu.Text = "remove";
+			this.removeMenu.Click += new System.EventHandler(this.removeMenu_Click);
 			// 
 			// deleteMenu
 			// 
 			this.deleteMenu.Name = "deleteMenu";
 			this.deleteMenu.Size = new System.Drawing.Size(124, 22);
 			this.deleteMenu.Text = "delete";
+			this.deleteMenu.Click += new System.EventHandler(this.deleteMenu_Click);
 			// 
 			// renameMenu
 			// 
 			this.renameMenu.Name = "renameMenu";
 			this.renameMenu.Size = new System.Drawing.Size(124, 22);
 			this.renameMenu.Text = "rename";
+			this.renameMenu.Click += new System.EventHandler(this.renameMenu_Click);
 			// 
 			// toolStripSeparator3
 			// 
@@ -287,12 +314,7 @@
 			this.propertyMenu.Name = "propertyMenu";
 			this.propertyMenu.Size = new System.Drawing.Size(124, 22);
 			this.propertyMenu.Text = "property";
-			// 
-			// iconList
-			// 
-			this.iconList.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-			this.iconList.ImageSize = new System.Drawing.Size(16, 16);
-			this.iconList.TransparentColor = System.Drawing.Color.Transparent;
+			this.propertyMenu.Click += new System.EventHandler(this.propertyMenu_Click);
 			// 
 			// ofd
 			// 
