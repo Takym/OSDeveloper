@@ -117,17 +117,23 @@ namespace OSDeveloper.GUIs.Explorer
 
 		private void btnRefresh_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(btnRefresh_Click)}...");
 
+			_logger.Trace($"completed {nameof(btnRefresh_Click)}");
 		}
 
 		private void btnExpand_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(btnExpand_Click)}...");
 
+			_logger.Trace($"completed {nameof(btnExpand_Click)}");
 		}
 
 		private void btnCollapse_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(btnCollapse_Click)}...");
 
+			_logger.Trace($"completed {nameof(btnCollapse_Click)}");
 		}
 
 		#endregion
@@ -136,22 +142,30 @@ namespace OSDeveloper.GUIs.Explorer
 
 		private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(treeView_AfterCollapse)}...");
 
+			_logger.Trace($"completed {nameof(treeView_AfterCollapse)}");
 		}
 
 		private void treeView_AfterExpand(object sender, TreeViewEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(treeView_AfterExpand)}...");
 
+			_logger.Trace($"completed {nameof(treeView_AfterExpand)}");
 		}
 
 		private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(treeView_AfterLabelEdit)}...");
 
+			_logger.Trace($"completed {nameof(treeView_AfterLabelEdit)}");
 		}
 
 		private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
 		{
+			_logger.Trace($"executing {nameof(treeView_AfterSelect)}...");
 
+			_logger.Trace($"completed {nameof(treeView_AfterSelect)}");
 		}
 
 		#endregion
@@ -162,27 +176,37 @@ namespace OSDeveloper.GUIs.Explorer
 
 		private void openMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(openMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(openMenu_Click)}");
 		}
 
 		private void defaultAppMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(defaultAppMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(defaultAppMenu_Click)}");
 		}
 
 		private void explorerMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(explorerMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(explorerMenu_Click)}");
 		}
 
 		private void cmdMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(cmdMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(cmdMenu_Click)}");
 		}
 
 		private void powershellMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(powershellMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(powershellMenu_Click)}");
 		}
 
 
@@ -192,19 +216,28 @@ namespace OSDeveloper.GUIs.Explorer
 
 		private void createMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(createMenu_Click)}...");
 
+			if (sender is ToolStripMenuItem tsmi) {
+				_logger.Notice($"clicked menu is: {tsmi.Name}");
+			}
+
+			_logger.Trace($"completed {nameof(createMenu_Click)}");
 		}
 
 		private void generateNewMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(generateNewMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(generateNewMenu_Click)}");
 		}
 
 		private void fromSystemMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(fromSystemMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(fromSystemMenu_Click)}");
 		}
-
 
 		#endregion
 
@@ -212,37 +245,51 @@ namespace OSDeveloper.GUIs.Explorer
 
 		private void cloneMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(cloneMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(cloneMenu_Click)}");
 		}
 
 		private void copyMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(copyMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(copyMenu_Click)}");
 		}
 
 		private void cutMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(cutMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(cutMenu_Click)}");
 		}
 
 		private void pasteMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(pasteMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(pasteMenu_Click)}");
 		}
 
 		private void removeMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(removeMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(removeMenu_Click)}");
 		}
 
 		private void deleteMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(deleteMenu_Click)}");
 		}
 
 		private void renameMenu_Click(object sender, EventArgs e)
 		{
+			_logger.Trace($"executing {nameof(renameMenu_Click)}...");
 
+			_logger.Trace($"completed {nameof(renameMenu_Click)}");
 		}
 
 		#endregion
@@ -251,7 +298,9 @@ namespace OSDeveloper.GUIs.Explorer
 
 		private void propertyMenu_Click(object sender, EventArgs e)
 		{
-			
+			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
+
+			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
 		}
 
 		#endregion
