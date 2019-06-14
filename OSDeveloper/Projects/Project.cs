@@ -83,6 +83,11 @@ namespace OSDeveloper.Projects
 			_contents.Remove(item);
 		}
 
+		public void Compact()
+		{
+			_contents.RemoveAll((ProjectItem item) => item.IsTransient());
+		}
+
 		#endregion
 
 		#region 企画/計画設定ファイルの読み書き
@@ -114,41 +119,50 @@ namespace OSDeveloper.Projects
 
 			// SavedVersion
 			var node = section.GetNode(IDEVersion.DefaultKeyName);
-			if (node is YSection verKey) {
+			if (node is YSection verKey) { // セクションかどうか判定
 				var version = new IDEVersion(verKey);
-				if (version.HasCompatible()) {
+				if (version.HasCompatible()) { // 互換性が現在のバージョンとあるかどうか判定
 					this.SavedVersion = version;
-				} else {
+				} else { // 互換性が無い
 					throw new ArgumentException(string.Format(
 						ErrorMessages.Project_ReadFrom_NonCompatibleVersion,
 						IDEVersion.GetCurrentVersion(),
 						version
 					));
 				}
-			} else {
+			} else { // ヱンコン値が不正
 				throw new ArgumentException(ErrorMessages.Project_ReadFrom_InvalidVersion);
 			}
 
 			// Contents
 			node = section.GetNode("Items");
-			if (node is YSection itemKey) {
+			_contents.Sort(); // 二分探索の為に並び替え
+			var addlist = new List<ProjectItem>(); // 新しく追加する項目一覧
+			if (node is YSection itemKey) { // セクションかどうか
 				var keys = itemKey.SubKeys;
-				_contents.Clear();
 				for (int i = 0; i < keys.Length; ++i) {
-					if (keys[i] is YSection k) {
-						var item = this.LoadItem(k.GetNodeAsString("Name"), k);
-						item.ReadFrom(k);
-						_contents.Add(item);
-					} else {
+					if (keys[i] is YSection k) { // セクションかどうか
+						string name = k.GetNodeAsString("Name");
+						int j = _contents.BinarySearch(new DummyProjectItem(name));
+						if (0 <= j && j < _contents.Count) { // 既に同名の項目が有る場合
+							_contents[j].ReadFrom(k); // 情報を再読み込みする
+						} else { // 同名のアイテムが無い場合
+							var item = this.LoadItem(k.GetNodeAsString("Name"), k);
+							item.ReadFrom(k);
+							addlist.Add(item); // 新しく生成して追加する
+						}
+					} else { // ヱンコン値が不正
 						throw new ArgumentException(string.Format(
 							ErrorMessages.Project_ReadFrom_InvalidItemKey,
 							keys[i].Name
 						));
 					}
 				}
-			} else {
+			} else { // ヱンコン値が不正
 				throw new ArgumentException(ErrorMessages.Project_ReadFrom_InvalidItems);
 			}
+			_contents.AddRange(addlist); // 新しい項目を追加
+			this.Compact();
 
 			this.Logger.Trace($"completed {nameof(Project)}.{nameof(this.ReadFrom)} ({this.Name})...");
 		}

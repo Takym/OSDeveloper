@@ -3,13 +3,14 @@ using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Resources;
+using TakymLib;
 using TakymLib.IO;
 using Yencon;
 using Yencon.Extension;
 
 namespace OSDeveloper.Projects
 {
-	public class ProjectItem : IComparable<ProjectItem>
+	public class ProjectItem : DisposableBase, IComparable<ProjectItem>
 	{
 		#region プロパティ
 		public    string     Name     { get; }
@@ -34,7 +35,7 @@ namespace OSDeveloper.Projects
 
 		public ProjectItem(Solution root, Project parent, string name)
 		{
-			this.Logger = Logger.Get("prj/sln_mngr");
+			this.Logger   = Logger.Get("prj/sln_mngr");
 			this.Parent   = parent;
 			this.Name     = name;
 			this.Solution = root;
@@ -146,7 +147,7 @@ namespace OSDeveloper.Projects
 		protected TemporaryProjectItem(string name) : base(name) { }
 		protected TemporaryProjectItem(Solution root, Project parent, string name) : base(root, parent, name) { }
 
-		internal override bool IsTransient()
+		internal sealed override bool IsTransient()
 		{
 			return true;
 		}
