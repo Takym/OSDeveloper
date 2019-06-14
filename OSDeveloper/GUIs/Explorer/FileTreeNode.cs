@@ -27,12 +27,17 @@ namespace OSDeveloper.GUIs.Explorer
 			get => this.Metadata as FileMetadata;
 		}
 
-		public FileTreeNode(ItemMetadata meta)
+		private protected FileTreeNode()
 		{
-			this.Logger   = Logger.Get(this.GetType().Name);
+			this.Logger = Logger.Get(this.GetType().Name);
+		}
+
+		public FileTreeNode(ItemMetadata meta) : this()
+		{
 			this.Metadata = meta;
 			this.Text     = meta.Name;
 			this.SetStyle();
+			this.Logger.Trace($"constructed {nameof(FileTreeNode)}, path:{meta.Path}");
 		}
 
 		public void SetStyle()
@@ -153,25 +158,27 @@ namespace OSDeveloper.GUIs.Explorer
 		}
 	}
 
-#if false
-	internal sealed class DummyTreeNode : TreeNode
+	internal class RemovedTreeNode : FileTreeNode
+	{
+		private protected RemovedTreeNode() : base() { }
+
+		public RemovedTreeNode(ItemMetadata meta) : base(meta)
+		{
+			this.Text = $"{ExplorerTexts.RemovedTreeNode} ({meta.Path})";
+			this.Logger.Trace($"constructed {nameof(RemovedTreeNode)}, path:{meta.Path}");
+		}
+	}
+
+	internal sealed class DummyTreeNode : RemovedTreeNode
 	{
 		public readonly static DummyTreeNode Instance = new DummyTreeNode();
 
-		private DummyTreeNode()
+		private DummyTreeNode() : base()
 		{
 			this.Text = this.GetType().FullName;
 			this.BackColor = Color.FromArgb(0xCC, 0xCC, 0xCC);
 			this.ForeColor = Color.FromArgb(0x22, 0x22, 0x22);
-		}
-	}
-#endif
-
-	internal sealed class RemovedTreeNode : FileTreeNode
-	{
-		public RemovedTreeNode(ItemMetadata meta) : base(meta)
-		{
-			this.Text = $"{ExplorerTexts.RemovedTreeNode} ({meta.Path})";
+			this.Logger.Trace($"constructed {nameof(DummyTreeNode)}");
 		}
 	}
 }

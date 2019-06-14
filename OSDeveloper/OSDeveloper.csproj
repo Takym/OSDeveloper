@@ -169,6 +169,8 @@
     <Compile Include="GUIs\Explorer\IconList.cs" />
     <Compile Include="GUIs\Explorer\Old\ProjectItemTreeNodeOld.cs" />
     <Compile Include="GUIs\Explorer\Old\SolutionTreeNodeOld.cs" />
+    <Compile Include="GUIs\Explorer\SolutionTreeNode.cs" />
+    <Compile Include="GUIs\Explorer\ProjectItemTreeNode.cs" />
     <Compile Include="GUIs\Explorer\WslBashToolStripMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
+using OSDeveloper.Projects;
 using OSDeveloper.Resources;
 
 namespace OSDeveloper.GUIs.Explorer
@@ -17,7 +19,8 @@ namespace OSDeveloper.GUIs.Explorer
 		private const    string                       _psver = "WindowsPowerShell\\v1.0";
 		private readonly Logger                       _logger;
 		private readonly FormMain                     _mwnd;
-		private readonly List<SolutionTreeNodeOld>    _solutions;
+		private          FileTreeNode                 _wksp_root;
+		private readonly List<SolutionTreeNode>       _solutions;
 		private          FolderMetadata               _dir;
 		public           FolderMetadata               Directory { get => _dir; set => this.SetFolder(value); }
 		public  event    DirectoryChangedEventHandler DirectoryChanged;
@@ -70,7 +73,7 @@ namespace OSDeveloper.GUIs.Explorer
 
 			iconList.Images.AddRange(IconList.CreateImageArray());
 			ofd.Filter = FileTypeRegistry.CreateFullSPFs();
-			_solutions = new List<SolutionTreeNodeOld>();
+			_solutions = new List<SolutionTreeNode>();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -81,11 +84,44 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#region 独自イベント
 
-		protected virtual void OnDirectoryChanged(DirectoryChangedEventArgs e)
+		protected virtual async void OnDirectoryChanged(DirectoryChangedEventArgs e)
 		{
 			_logger.Trace($"executing {nameof(OnDirectoryChanged)}...");
+			_logger.Info($"started to load the dir: {this.Directory.Path}");
 
-			// TODO: ここにコードを挿入。
+			// 削除済みのアイテムをリストから削除する。
+			await Task.Run(() => ItemList.ClearRemovedItems());
+
+			// ファイルまたはディレクトリを読み込んでFileTreeNode生成する。
+			var node = await Task.Run(() => {
+				if (this.Directory.IsRemoved){ // 削除されているディレクトリが参照された場合
+					return new RemovedTreeNode(this.Directory);
+				} else {
+					return this.CreateTreeNode(this.Directory);
+				}
+			});
+
+			// ソリューションの読み込み
+			await Task.Run(() => {
+				this.SaveSolutions();
+				this.ReloadSolutions();
+			});
+
+			// 既に追加されているFileTreeNodeを削除する。
+			treeView.Nodes.Clear();
+
+			// TreeViewに生成したFileTreeNodeを追加する。
+			treeView.Nodes.Add(node);
+			treeView.Nodes.AddRange(_solutions.ToArray());
+
+			// 一番上のノード(Root Node)の設定を変更する。
+			node.Text  = $"{this.Directory.Path.GetFileNameWithoutExtension()} ({this.Directory.Path})";
+			_wksp_root = node;
+
+			// コントロール全体を更新
+			this.Update();
+
+			_logger.Info($"finished to load the dir: {this.Directory.Path}");
 
 			// null合体演算子 (?) は使わない。(非同期処理の為)
 			var h = this.DirectoryChanged;
@@ -106,6 +142,79 @@ namespace OSDeveloper.GUIs.Explorer
 			var old = _dir;
 			_dir = folder;
 			this.OnDirectoryChanged(new DirectoryChangedEventArgs(old, folder, false));
+		}
+
+		#endregion
+
+		#region 私的関数
+
+		private FileTreeNode CreateTreeNode(ItemMetadata item)
+		{
+			if (item == null)   return DummyTreeNode.Instance;
+			if (item.IsRemoved) return new RemovedTreeNode(item);
+
+			var result = new FileTreeNode(item);
+			result.ContextMenuStrip = popupMenu;
+			if (result.Folder != null && result.Folder.CanAccess && !result.Folder.IsEmpty()) {
+				result.Folder.Refresh();
+				var fo = result.Folder.GetFolders();
+				for (int i = 0; i < fo.Length; ++i) {
+					if (fo[i] != null) result.Nodes.Add(this.CreateTreeNode(fo[i]));
+				}
+				var fi = result.Folder.GetFiles();
+				for (int i = 0; i < fi.Length; ++i) {
+					if (fi[i] != null) result.Nodes.Add(this.CreateTreeNode(fi[i]));
+				}
+			}
+
+			_logger.Info($"loaded the dir or file: {item.Path}");
+			return result;
+		}
+
+		private void SaveSolutions()
+		{
+			for (int i = 0; i < _solutions.Count; ++i) {
+				_logger.Info($"saving solution \"{_solutions[i].Solution.Name}\"...");
+				_solutions[i].Save();
+			}
+		}
+
+		private void ReloadSolutions()
+		{
+			// リスト初期化
+			_solutions.Clear();
+
+			// ディレクトリがソリューションならリストに追加
+			var dirs = this.Directory.GetFolders();
+			for (int i = 0; i < dirs.Length; ++i) {
+				if (dirs[i].Format == FolderFormat.Solution) {
+retry:
+					_logger.Info($"reloading solution \"{dirs[i].Name}\"...");
+					try {
+						var sln = new Solution(dirs[i].Name);
+						var stn = new SolutionTreeNode(sln);
+						stn.Load();
+						_solutions.Add(stn);
+					} catch (Exception e) {
+						// ソリューションファイルに不正がある場合はスキップする。
+						_logger.Exception(e);
+						var dr = MessageBox.Show(
+							_mwnd,
+							e.Message,
+							_mwnd.Text,
+							MessageBoxButtons.AbortRetryIgnore,
+							MessageBoxIcon.Error
+						);
+						if (dr == DialogResult.Abort) {
+							return; // 読み込みを停止する。
+						} else if (dr == DialogResult.Retry) {
+							goto retry; // もう一度試す。
+						} else if (dr == DialogResult.Ignore) {
+							continue; // 無視して続行する。
+						}
+					}
+				}
+			}
 		}
 
 		#endregion
