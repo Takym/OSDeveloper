@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="GUIs\Editors\SimpleYenconTextEditor.cs" />
     <Compile Include="GUIs\Editors\SimpleTextEditor.cs" />
+    <Compile Include="GUIs\Explorer\DirectoryChangedEventArgs.cs" />
     <Compile Include="GUIs\Explorer\FileTreeBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

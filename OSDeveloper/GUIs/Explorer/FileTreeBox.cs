@@ -13,30 +13,14 @@ namespace OSDeveloper.GUIs.Explorer
 	public partial class FileTreeBox : UserControl
 	{
 		#region プロパティ
-
-		private const    string                    _sys32 = "%SystemRoot%\\System32\\";
-		private const    string                    _psver = "WindowsPowerShell\\v1.0";
-		private readonly Logger                    _logger;
-		private readonly FormMain                  _mwnd;
-		private readonly List<SolutionTreeNodeOld> _solutions;
-
-		public FolderMetadata Directory
-		{
-			get
-			{
-				return _dir;
-			}
-
-			set
-			{
-				_dir = value;
-				this.OnDirectoryChanged(new EventArgs());
-			}
-		}
-		private FolderMetadata _dir;
-
-		public event EventHandler DirectoryChanged;
-
+		private const    string                       _sys32 = "%SystemRoot%\\System32\\";
+		private const    string                       _psver = "WindowsPowerShell\\v1.0";
+		private readonly Logger                       _logger;
+		private readonly FormMain                     _mwnd;
+		private readonly List<SolutionTreeNodeOld>    _solutions;
+		private          FolderMetadata               _dir;
+		public           FolderMetadata               Directory { get => _dir; set => this.SetFolder(value); }
+		public  event    DirectoryChangedEventHandler DirectoryChanged;
 		#endregion
 
 		#region コンストラクタ
@@ -97,7 +81,7 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#region 独自イベント
 
-		protected virtual void OnDirectoryChanged(EventArgs e)
+		protected virtual void OnDirectoryChanged(DirectoryChangedEventArgs e)
 		{
 			_logger.Trace($"executing {nameof(OnDirectoryChanged)}...");
 
@@ -113,11 +97,28 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#endregion
 
+		#region 便利関数
+
+		#region 公開関数
+
+		public void SetFolder(FolderMetadata folder)
+		{
+			var old = _dir;
+			_dir = folder;
+			this.OnDirectoryChanged(new DirectoryChangedEventArgs(old, folder, false));
+		}
+
+		#endregion
+
+		#endregion
+
 		#region ボタン
 
 		private void btnRefresh_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(btnRefresh_Click)}...");
+
+			this.OnDirectoryChanged(new DirectoryChangedEventArgs(_dir, _dir, false));
 
 			_logger.Trace($"completed {nameof(btnRefresh_Click)}");
 		}
@@ -126,12 +127,16 @@ namespace OSDeveloper.GUIs.Explorer
 		{
 			_logger.Trace($"executing {nameof(btnExpand_Click)}...");
 
+			treeView.ExpandAll();
+
 			_logger.Trace($"completed {nameof(btnExpand_Click)}");
 		}
 
 		private void btnCollapse_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(btnCollapse_Click)}...");
+
+			treeView.CollapseAll();
 
 			_logger.Trace($"completed {nameof(btnCollapse_Click)}");
 		}
