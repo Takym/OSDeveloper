@@ -156,6 +156,58 @@ namespace OSDeveloper.GUIs.Explorer
 			Logger.Notice($"finished to set styles to: {this.Metadata.Path}");
 			Logger.Info($"icon id:{this.ImageIndex}, color:{this.ForeColor}");
 		}
+
+		public virtual FileTreeNode CreateFile(string filename)
+		{
+			FileTreeNode result;
+			if (this.Folder == null) { // フォルダではない、ファイルである。
+				var meta = this.File.Parent.CreateFile(filename);
+				result = (this.TreeView.Parent as FileTreeBox)?.CreateTreeNode(meta);
+				this.Parent.Nodes.Add(result);
+			} else { // フォルダである、ファイルでない。
+				var meta = this.Folder.CreateFile(filename);
+				result = (this.TreeView.Parent as FileTreeBox)?.CreateTreeNode(meta);
+				this.Nodes.Add(result);
+			}
+			return result;
+		}
+
+		public virtual FileTreeNode CreateDir(string dirname)
+		{
+			FileTreeNode result;
+			if (this.Folder == null) { // フォルダではない、ファイルである。
+				var meta = this.File.Parent.CreateDir(dirname);
+				result = (this.TreeView.Parent as FileTreeBox)?.CreateTreeNode(meta);
+				this.Parent.Nodes.Add(result);
+			} else { // フォルダである、ファイルでない。
+				var meta = this.Folder.CreateDir(dirname);
+				result = (this.TreeView.Parent as FileTreeBox)?.CreateTreeNode(meta);
+				this.Nodes.Add(result);
+			}
+			return result;
+		}
+
+		public virtual FileTreeNode AddItem(ItemMetadata meta)
+		{
+			FileTreeNode result;
+			if (this.Folder == null) { // フォルダではない、ファイルである。
+				meta = meta.Copy(this.File.Parent.Path.Bond(meta.Name));
+				this.File.Parent.AddItem(meta);
+				result = (this.TreeView.Parent as FileTreeBox)?.CreateTreeNode(meta);
+				this.Parent.Nodes.Add(result);
+			} else { // フォルダである、ファイルでない。
+				meta = meta.Copy(this.Folder.Path.Bond(meta.Name));
+				this.Folder.AddItem(meta);
+				result = (this.TreeView.Parent as FileTreeBox)?.CreateTreeNode(meta);
+				this.Nodes.Add(result);
+			}
+			return result;
+		}
+
+		public virtual void Rename(string newname)
+		{
+			this.Metadata.Rename(newname);
+		}
 	}
 
 	internal class RemovedTreeNode : FileTreeNode

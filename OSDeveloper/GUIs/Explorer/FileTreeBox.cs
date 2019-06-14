@@ -12,6 +12,7 @@ using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Projects;
 using OSDeveloper.Resources;
+using TakymLib.IO;
 
 namespace OSDeveloper.GUIs.Explorer
 {
@@ -179,11 +180,11 @@ namespace OSDeveloper.GUIs.Explorer
 
 		#endregion
 
-		#region 私的関数
+		#region 内部関数
 
-		private FileTreeNode CreateTreeNode(ItemMetadata item)
+		internal FileTreeNode CreateTreeNode(ItemMetadata item)
 		{
-			if (item == null)   return DummyTreeNode.Instance;
+			if (item == null) return DummyTreeNode.Instance;
 			if (item.IsRemoved) return new RemovedTreeNode(item);
 
 			var result = new FileTreeNode(item);
@@ -203,6 +204,10 @@ namespace OSDeveloper.GUIs.Explorer
 			_logger.Info($"loaded the dir or file: {item.Path}");
 			return result;
 		}
+
+		#endregion
+
+		#region 私的関数
 
 		private void SaveSolutions()
 		{
@@ -364,6 +369,21 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(treeView_AfterLabelEdit)}...");
 
+			if (e.Node is FileTreeNode ftn) {
+				try {
+					ftn.Rename(e.Label);
+				} catch (Exception error) {
+					_logger.Exception(error);
+					MessageBox.Show(
+						_mwnd,
+						ExplorerTexts.Msgbox_CannotChangeName,
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error
+					);
+				}
+			}
+
 			_logger.Trace($"completed {nameof(treeView_AfterLabelEdit)}");
 		}
 
@@ -506,6 +526,26 @@ retry:
 
 			if (sender is ToolStripMenuItem tsmi) {
 				_logger.Notice($"clicked menu is: {tsmi.Name}");
+				if (treeView.SelectedNode is FileTreeNode ftn) {
+					try {
+						FileTreeNode newnode;
+						if (tsmi.Name == "createFileMenu") {
+							newnode = ftn.CreateFile("New File.txt");
+						} else {
+							newnode = ftn.CreateDir("New Folder");
+						}
+						newnode.BeginEdit();
+					} catch (Exception error) {
+						_logger.Exception(error);
+						MessageBox.Show(
+							_mwnd,
+							ExplorerTexts.Msgbox_CannotCreate,
+							_mwnd.Text,
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Error
+						);
+					}
+				}
 			}
 
 			_logger.Trace($"completed {nameof(createMenu_Click)}");
@@ -515,12 +555,36 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(generateNewMenu_Click)}...");
 
+			MessageBox.Show("not supported yet");
+
 			_logger.Trace($"completed {nameof(generateNewMenu_Click)}");
 		}
 
 		private void fromSystemMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(fromSystemMenu_Click)}...");
+
+			if (sender is ToolStripMenuItem tsmi) {
+				_logger.Notice($"clicked menu is: {tsmi.Name}");
+				if (treeView.SelectedNode is FileTreeNode ftn) {
+					try {
+						if (ofd.ShowDialog() == DialogResult.OK) {
+							var meta    = ItemList.GetItem((PathString)(ofd.FileName));
+							var newnode = ftn.AddItem(meta);
+							newnode.BeginEdit();
+						}
+					} catch (Exception error) {
+						_logger.Exception(error);
+						MessageBox.Show(
+							_mwnd,
+							ExplorerTexts.Msgbox_CannotCreate,
+							_mwnd.Text,
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Error
+						);
+					}
+				}
+			}
 
 			_logger.Trace($"completed {nameof(fromSystemMenu_Click)}");
 		}
