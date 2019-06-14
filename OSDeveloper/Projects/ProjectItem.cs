@@ -3,7 +3,6 @@ using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Resources;
-using TakymLib;
 using TakymLib.IO;
 using Yencon;
 using Yencon.Extension;
@@ -13,7 +12,7 @@ namespace OSDeveloper.Projects
 	public class ProjectItem : IComparable<ProjectItem>
 	{
 		#region プロパティ
-		public    string     Name     { get; }
+		public    string     Name     { get; private   set; }
 		public    PathString HintPath { get; protected set; }
 		public    Project    Parent   { get; }
 		protected Solution   Solution { get; }
@@ -45,7 +44,7 @@ namespace OSDeveloper.Projects
 
 		#endregion
 
-		#region 情報取得
+		#region 情報取得/設定
 
 		public virtual PathString GetFullPath()
 		{
@@ -62,6 +61,13 @@ namespace OSDeveloper.Projects
 			} else {
 				return ItemList.CreateNewFile(path, FileFormat.Unknown);
 			}
+		}
+
+		public void Rename(string newname)
+		{
+			this.Name     = newname;
+			this.HintPath = this.Parent.HintPath.Bond(newname);
+			this.GetMetadata().Rename(newname);
 		}
 
 		internal virtual bool IsTransient()

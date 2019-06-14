@@ -77,6 +77,14 @@ namespace OSDeveloper.Projects
 			return result;
 		}
 
+		public ItemGroup AddGroup(FolderMetadata meta, ItemGroup.FolderKind kind)
+		{
+			var result = new ItemGroup(this.Solution, this, meta.Path.GetRelativePath(this.GetFullPath()));
+			result.Kind = kind;
+			_contents.Add(result);
+			return result;
+		}
+
 		public void RemoveItem(ItemMetadata meta)
 		{
 			var item = this.GetItem(meta.Path.GetRelativePath(this.GetFullPath()));
