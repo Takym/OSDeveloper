@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OSDeveloper.GUIs.Features;
 using OSDeveloper.IO;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
@@ -20,6 +21,7 @@ namespace OSDeveloper.GUIs.Explorer
 		private readonly Logger                       _logger;
 		private readonly FormMain                     _mwnd;
 		private          FileTreeNode                 _wksp_root;
+		private          bool                         _selected_root;
 		private readonly List<SolutionTreeNode>       _solutions;
 		private          FolderMetadata               _dir;
 		public           FolderMetadata               Directory { get => _dir; set => this.SetFolder(value); }
@@ -136,6 +138,33 @@ namespace OSDeveloper.GUIs.Explorer
 		#region 便利関数
 
 		#region 公開関数
+
+		public void OpenEditor()
+		{
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				if (ftn.Editor == null || ftn.Editor.IsDisposed) {
+					ftn.Editor = ftn.Metadata.ExtendedDetail.CreateEditor(_mwnd);
+				}
+				if (ftn.Editor is IFileLoadFeature flf && !flf.Loaded) {
+					flf.Reload();
+				}
+				if (ftn.Editor != null) {
+					ftn.Editor.WindowState = FormWindowState.Normal;
+					ftn.Editor.Show();
+					ftn.Editor.Focus();
+				}
+			}
+		}
+
+		public void OpenProperty()
+		{
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				if (ftn.Property == null || ftn.Property.IsDisposed) {
+					ftn.Property = ftn.Metadata.ExtendedDetail.CreatePropTab();
+				}
+				_mwnd.OpenTab(ftn.Property);
+			}
+		}
 
 		public void SetFolder(FolderMetadata folder)
 		{
@@ -254,19 +283,77 @@ retry:
 
 		#region ツリービュー
 
-		private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
-		{
-			_logger.Trace($"executing {nameof(treeView_AfterCollapse)}...");
+		/* ---- Click ---- */
 
-			_logger.Trace($"completed {nameof(treeView_AfterCollapse)}");
+		private void treeView_DoubleClick(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_DoubleClick)}...");
+
+			this.OpenEditor();
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				if (ftn.Folder != null && ftn.IsExpanded) {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
+				} else {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open;
+				}
+			}
+
+			_logger.Trace($"completed {nameof(treeView_DoubleClick)}");
 		}
 
-		private void treeView_AfterExpand(object sender, TreeViewEventArgs e)
+		private void treeView_MouseClick(object sender, MouseEventArgs e)
 		{
-			_logger.Trace($"executing {nameof(treeView_AfterExpand)}...");
+			_logger.Trace($"executing {nameof(treeView_MouseClick)}...");
 
-			_logger.Trace($"completed {nameof(treeView_AfterExpand)}");
+			if (e.Button.HasFlag(MouseButtons.Right)) {
+				treeView.SelectedNode = treeView.GetNodeAt(e.Location);
+			}
+
+			_logger.Trace($"completed {nameof(treeView_MouseClick)}");
 		}
+
+		/* ---- Select ---- */
+
+		private void treeView_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_BeforeSelect)}...");
+
+			if (e.Node == _wksp_root) {
+				cloneMenu .Enabled = false;
+				cutMenu   .Enabled = false;
+				removeMenu.Enabled = false;
+				deleteMenu.Enabled = false;
+				renameMenu.Enabled = false;
+				_selected_root = true;
+			} else if (_selected_root) {
+				cloneMenu .Enabled = true;
+				cutMenu   .Enabled = true;
+				removeMenu.Enabled = true;
+				deleteMenu.Enabled = true;
+				renameMenu.Enabled = true;
+				_selected_root = false;
+			}
+			_logger.Info($"the selected node is: {e.Node.FullPath}");
+
+			_logger.Trace($"completed {nameof(treeView_BeforeSelect)}");
+		}
+
+		private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_AfterSelect)}...");
+
+			if (e.Node is FileTreeNode ftn) {
+				if (ftn.Folder != null && ftn.IsExpanded) {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
+				} else {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open;
+				}
+			}
+
+			_logger.Trace($"completed {nameof(treeView_AfterSelect)}");
+		}
+
+		/* ---- LabelEdit ---- */
 
 		private void treeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
 		{
@@ -275,11 +362,38 @@ retry:
 			_logger.Trace($"completed {nameof(treeView_AfterLabelEdit)}");
 		}
 
-		private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
-		{
-			_logger.Trace($"executing {nameof(treeView_AfterSelect)}...");
+		/* ---- Expand/Collapse ---- */
 
-			_logger.Trace($"completed {nameof(treeView_AfterSelect)}");
+		private void treeView_AfterExpand(object sender, TreeViewEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_AfterExpand)}...");
+
+			if (e.Node is FileTreeNode ftn) {
+				ftn.SetStyle();
+				if (ftn.Folder != null && ftn.IsExpanded) {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
+				} else {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open;
+				}
+			}
+
+			_logger.Trace($"completed {nameof(treeView_AfterExpand)}");
+		}
+
+		private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
+		{
+			_logger.Trace($"executing {nameof(treeView_AfterCollapse)}...");
+
+			if (e.Node is FileTreeNode ftn) {
+				ftn.SetStyle();
+				if (ftn.Folder != null && ftn.IsExpanded) {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
+				} else {
+					openMenu.Text = ExplorerTexts.PopupMenu_Open;
+				}
+			}
+
+			_logger.Trace($"completed {nameof(treeView_AfterCollapse)}");
 		}
 
 		#endregion
@@ -291,6 +405,19 @@ retry:
 		private void openMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(openMenu_Click)}...");
+
+			this.OpenEditor();
+			if (treeView.SelectedNode is FileTreeNode node) {
+				if (node.Folder != null) {
+					if (node.IsExpanded) {
+						node.Collapse();
+						openMenu.Text = ExplorerTexts.PopupMenu_Open;
+					} else {
+						node.Expand();
+						openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
+					}
+				}
+			}
 
 			_logger.Trace($"completed {nameof(openMenu_Click)}");
 		}
@@ -413,6 +540,8 @@ retry:
 		private void propertyMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(propertyMenu_Click)}...");
+
+			this.OpenProperty();
 
 			_logger.Trace($"completed {nameof(propertyMenu_Click)}");
 		}
