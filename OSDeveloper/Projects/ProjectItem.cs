@@ -10,7 +10,7 @@ using Yencon.Extension;
 
 namespace OSDeveloper.Projects
 {
-	public class ProjectItem : DisposableBase, IComparable<ProjectItem>
+	public class ProjectItem : IComparable<ProjectItem>
 	{
 		#region プロパティ
 		public    string     Name     { get; }

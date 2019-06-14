@@ -13,7 +13,7 @@ namespace TakymLib
 		/// <summary>
 		///  このオブジェクトが破損されているかどうかを取得します。
 		/// </summary>
-		protected bool IsDisposed { get; private set; } = false;
+		public bool IsDisposed { get; private set; } = false;
 
 		/// <summary>
 		///  このクラスの新しいオブジェクトインスタンスを生成します。

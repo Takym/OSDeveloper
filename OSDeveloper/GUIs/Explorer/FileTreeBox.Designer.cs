@@ -17,6 +17,7 @@
 				components.Dispose();
 			}
 			base.Dispose(disposing);
+			this.SaveSolutions();
 		}
 
 		#region コンポーネント デザイナーで生成されたコード

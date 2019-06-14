@@ -107,8 +107,10 @@ namespace OSDeveloper.GUIs.Explorer
 
 			// ソリューションの読み込み
 			await Task.Run(() => {
-				this.SaveSolutions();
-				this.ReloadSolutions();
+				if (e.IsRefreshing) {
+					this.SaveSolutions();
+				}
+				this.LoadSolutions();
 			});
 
 			// 既に追加されているFileTreeNodeを削除する。
@@ -210,7 +212,7 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 		}
 
-		private void ReloadSolutions()
+		private void LoadSolutions()
 		{
 			// リスト初期化
 			_solutions.Clear();
@@ -220,7 +222,7 @@ namespace OSDeveloper.GUIs.Explorer
 			for (int i = 0; i < dirs.Length; ++i) {
 				if (dirs[i].Format == FolderFormat.Solution) {
 retry:
-					_logger.Info($"reloading solution \"{dirs[i].Name}\"...");
+					_logger.Info($"loading solution \"{dirs[i].Name}\"...");
 					try {
 						var sln = new Solution(dirs[i].Name);
 						var stn = new SolutionTreeNode(sln);
