@@ -537,6 +537,10 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(copyMenu_Click)}...");
 
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				Clipboard.SetText(ftn.Metadata.Path);
+			}
+
 			_logger.Trace($"completed {nameof(copyMenu_Click)}");
 		}
 
@@ -571,6 +575,8 @@ retry:
 		private void renameMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(renameMenu_Click)}...");
+
+			treeView.SelectedNode.BeginEdit();
 
 			_logger.Trace($"completed {nameof(renameMenu_Click)}");
 		}
