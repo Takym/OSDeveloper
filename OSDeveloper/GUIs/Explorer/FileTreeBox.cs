@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +18,7 @@ namespace OSDeveloper.GUIs.Explorer
 	public partial class FileTreeBox : UserControl
 	{
 		#region プロパティ
-		private const    string                       _sys32 = "%SystemRoot%\\System32\\";
+		private const    string                       _sys32 = "C:\\WINDOWS\\System32\\";
 		private const    string                       _psver = "WindowsPowerShell\\v1.0";
 		private readonly Logger                       _logger;
 		private readonly FormMain                     _mwnd;
@@ -407,13 +409,13 @@ retry:
 			_logger.Trace($"executing {nameof(openMenu_Click)}...");
 
 			this.OpenEditor();
-			if (treeView.SelectedNode is FileTreeNode node) {
-				if (node.Folder != null) {
-					if (node.IsExpanded) {
-						node.Collapse();
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				if (ftn.Folder != null) {
+					if (ftn.IsExpanded) {
+						ftn.Collapse();
 						openMenu.Text = ExplorerTexts.PopupMenu_Open;
 					} else {
-						node.Expand();
+						ftn.Expand();
 						openMenu.Text = ExplorerTexts.PopupMenu_Open_DirClose;
 					}
 				}
@@ -426,12 +428,33 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(defaultAppMenu_Click)}...");
 
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				try {
+					Process.Start(ftn.Metadata.Path);
+				} catch (Win32Exception error) when (error.ErrorCode == unchecked((int)(0x80004005))) {
+					_logger.Exception(error);
+					MessageBox.Show(_mwnd,
+						string.Format(ExplorerTexts.Msgbox_CannotOpenIn_DefaultApp, ftn.Metadata.Path),
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Warning);
+				}
+			}
+
 			_logger.Trace($"completed {nameof(defaultAppMenu_Click)}");
 		}
 
 		private void explorerMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(explorerMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				if (ftn.File == null) { // ファイルでないなら (フォルダなら)
+					Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{ftn.Metadata.Path}\"");
+				} else { // ファイルなら (フォルダでないなら)
+					Process.Start("C:\\WINDOWS\\explorer.exe", $"\"{ftn.File.Parent.Path}\"");
+				}
+			}
 
 			_logger.Trace($"completed {nameof(explorerMenu_Click)}");
 		}
@@ -440,6 +463,14 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(cmdMenu_Click)}...");
 
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				if (ftn.File == null) { // ファイルでないなら (フォルダなら)
+					Process.Start($"{_sys32}cmd.exe", $"/K cd /D \"{ftn.Metadata.Path}\"");
+				} else { // ファイルなら (フォルダでないなら)
+					Process.Start($"{_sys32}cmd.exe", $"/K cd /D \"{ftn.File.Parent.Path}\"");
+				}
+			}
+
 			_logger.Trace($"completed {nameof(cmdMenu_Click)}");
 		}
 
@@ -447,9 +478,20 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(powershellMenu_Click)}...");
 
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				if (ftn.File == null) { // ファイルでないなら (フォルダなら)
+					Process.Start(
+						$"{_sys32}{_psver}\\powershell.exe",
+						$"-NoExit -Command Set-Location -Path \"{ftn.Metadata.Path}\"");
+				} else { // ファイルなら (フォルダでないなら)
+					Process.Start(
+						$"{_sys32}{_psver}\\powershell.exe",
+						$"-NoExit -Command Set-Location -Path \"{ftn.File.Parent.Path}\"");
+				}
+			}
+
 			_logger.Trace($"completed {nameof(powershellMenu_Click)}");
 		}
-
 
 		#endregion
 
