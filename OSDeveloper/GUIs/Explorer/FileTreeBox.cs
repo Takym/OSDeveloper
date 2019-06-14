@@ -227,6 +227,7 @@ retry:
 						var sln = new Solution(dirs[i].Name);
 						var stn = new SolutionTreeNode(sln);
 						stn.Load();
+						stn.LoadItems();
 						_solutions.Add(stn);
 					} catch (Exception e) {
 						// ソリューションファイルに不正がある場合はスキップする。
