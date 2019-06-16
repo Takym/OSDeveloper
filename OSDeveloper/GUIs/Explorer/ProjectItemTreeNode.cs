@@ -77,6 +77,22 @@ namespace OSDeveloper.GUIs.Explorer
 			return result;
 		}
 
+		public override bool TrashItem()
+		{
+			bool result = this.Metadata.TrashItem();
+			if (result) {
+				this.Remove();
+				this.ProjectItem.Parent.RemoveItem(this.Metadata);
+			}
+			return result;
+		}
+
+		public override bool Delete()
+		{
+			this.ProjectItem.Parent.RemoveItem(this.Metadata);
+			return base.Delete();
+		}
+
 		public override void Rename(string newname)
 		{
 			this.ProjectItem.Rename(newname);

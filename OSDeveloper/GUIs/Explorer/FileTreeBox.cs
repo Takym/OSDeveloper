@@ -597,6 +597,23 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(cloneMenu_Click)}...");
 
+			if (treeView.SelectedNode is FileTreeNode ftn &&
+				ftn.Parent            is FileTreeNode parent) {
+				try {
+					var newnode = parent.AddItem(ftn.Metadata);
+					newnode.BeginEdit();
+				} catch (Exception error) {
+					_logger.Exception(error);
+					MessageBox.Show(
+						_mwnd,
+						ExplorerTexts.Msgbox_CannotClone,
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error
+					);
+				}
+			}
+
 			_logger.Trace($"completed {nameof(cloneMenu_Click)}");
 		}
 
@@ -615,12 +632,34 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(cutMenu_Click)}...");
 
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				// TODO: 切り取りメニュー
+				Clipboard.SetText(ftn.Metadata.Path);
+			}
+
 			_logger.Trace($"completed {nameof(cutMenu_Click)}");
 		}
 
 		private void pasteMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(pasteMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode ftn && Clipboard.ContainsText()) {
+				try {
+					var meta    = ItemList.GetItem((PathString)(Clipboard.GetText()));
+					var newnode = ftn.AddItem(meta);
+					newnode.BeginEdit();
+				} catch (Exception error) {
+					_logger.Exception(error);
+					MessageBox.Show(
+						_mwnd,
+						ExplorerTexts.Msgbox_CannotPaste,
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error
+					);
+				}
+			}
 
 			_logger.Trace($"completed {nameof(pasteMenu_Click)}");
 		}
@@ -629,12 +668,41 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(removeMenu_Click)}...");
 
+			if (treeView.SelectedNode is FileTreeNode ftn && !ftn.TrashItem()) {
+				MessageBox.Show(
+					_mwnd,
+					ExplorerTexts.Msgbox_CannotDelete,
+					_mwnd.Text,
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Error
+				);
+			}
+
 			_logger.Trace($"completed {nameof(removeMenu_Click)}");
 		}
 
 		private void deleteMenu_Click(object sender, EventArgs e)
 		{
 			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
+
+			if (treeView.SelectedNode is FileTreeNode ftn) {
+				var dr = MessageBox.Show(
+					_mwnd,
+					string.Format(ExplorerTexts.Msgbox_ConfirmDelete, ftn.Metadata.Path),
+					_mwnd.Text,
+					MessageBoxButtons.YesNo,
+					MessageBoxIcon.Question
+				);
+				if (dr == DialogResult.Yes && !ftn.Delete()) {
+					MessageBox.Show(
+						_mwnd,
+						ExplorerTexts.Msgbox_CannotDelete,
+						_mwnd.Text,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error
+					);
+				}
+			}
 
 			_logger.Trace($"completed {nameof(deleteMenu_Click)}");
 		}

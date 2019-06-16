@@ -18,7 +18,7 @@ namespace OSDeveloper.IO.ItemManagement
 			try {
 				_finfo = new FileInfo(path);
 				using (_finfo.OpenRead()) { /* アクセス可能か確認 */ }
-				this.Format = format;
+				this.Format    = format;
 				this.CanAccess = true;
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");
@@ -115,6 +115,7 @@ namespace OSDeveloper.IO.ItemManagement
 		public override ItemMetadata Copy(PathString path)
 		{
 			try {
+				path = path.EnsureName();
 				_finfo.CopyTo(path, true);
 				return ItemList.GetFile(path, this.Format);
 			} catch (Exception e) {
@@ -140,6 +141,7 @@ namespace OSDeveloper.IO.ItemManagement
 		{
 			try {
 				FileSystem.DeleteFile(this.Path, UIOption.AllDialogs, RecycleOption.SendToRecycleBin);
+				if (this.Path.Exists()) return false;
 				return base.TrashItem();
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FileMetadata)}, filename:{this.Path}");

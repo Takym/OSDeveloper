@@ -204,6 +204,21 @@ namespace OSDeveloper.GUIs.Explorer
 			return result;
 		}
 
+		public virtual bool TrashItem()
+		{
+			bool result = this.Metadata.TrashItem();
+			if (result) {
+				this.Remove();
+			}
+			return result;
+		}
+
+		public virtual bool Delete()
+		{
+			this.Remove();
+			return this.Metadata.Delete();
+		}
+
 		public virtual void Rename(string newname)
 		{
 			this.Metadata.Rename(newname);
@@ -223,9 +238,16 @@ namespace OSDeveloper.GUIs.Explorer
 
 	internal sealed class DummyTreeNode : RemovedTreeNode
 	{
-		public readonly static DummyTreeNode Instance = new DummyTreeNode();
+		public readonly static ItemMetadata  DummyFile;
+		public readonly static DummyTreeNode Instance;
 
-		private DummyTreeNode() : base()
+		static DummyTreeNode()
+		{
+			DummyFile = ItemList.CreateNewFile(SystemPaths.Temporary.Bond("dummytreenode"), FileFormat.Unknown);
+			Instance  = new DummyTreeNode();
+		}
+
+		private DummyTreeNode() : base(DummyFile)
 		{
 			this.Text = this.GetType().FullName;
 			this.BackColor = Color.FromArgb(0xCC, 0xCC, 0xCC);

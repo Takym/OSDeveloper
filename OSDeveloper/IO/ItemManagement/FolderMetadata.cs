@@ -136,6 +136,7 @@ namespace OSDeveloper.IO.ItemManagement
 		public override ItemMetadata Copy(PathString path)
 		{
 			try {
+				path = path.EnsureName();
 				Directory.CreateDirectory(path);
 				var dirs = this.GetFolders();
 				for (int i = 0; i < dirs.Length; ++i) {
@@ -169,6 +170,7 @@ namespace OSDeveloper.IO.ItemManagement
 		{
 			try {
 				FileSystem.DeleteDirectory(this.Path, UIOption.AllDialogs, RecycleOption.SendToRecycleBin);
+				if (this.Path.Exists()) return false;
 				return base.TrashItem();
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
