@@ -63,14 +63,18 @@ namespace OSDeveloper.IO.Logging
 			} else if (e.Data.Count == 0) {
 				this.Info("Data       : <empty>");
 			} else {
-				var ks = e.Data.Keys.GetEnumerator();
+				var ks = e.Data.Keys  .GetEnumerator();
 				var vs = e.Data.Values.GetEnumerator();
 				ks.Reset();
 				vs.Reset();
-				for (int i = 0; i < e.Data.Count; ++i) {
-					this.Info($"Data       : {ks.Current ?? "<null>"}=={vs.Current ?? "<null>"}");
-					ks.MoveNext();
-					vs.MoveNext();
+				while (ks.MoveNext() && vs.MoveNext()) {
+					try {
+						this.Info($"Data       : {ks.Current ?? "<null>"}=={vs.Current ?? "<null>"}");
+					} catch (Exception ex2) {
+						Program.Logger.Trace(" ** DATA SHOWING ERROR REPORT START");
+						Program.Logger.Exception(ex2);
+						Program.Logger.Trace(" ** DATA SHOWING ERROR REPORT END");
+					}
 				}
 			}
 
@@ -107,13 +111,15 @@ namespace OSDeveloper.IO.Logging
 			}
 			switch (e) { // 共通
 				case IOException ioe:
-					this.Notice($"This exception was a input and output system error.");
+					this.Notice($"This exception was an input and output system error.");
 					break;
 				case SystemException se:
-					this.Notice($"This exception was maybe the developer coding error.");
+					//this.Notice($"This exception was maybe the developer coding error.");
+					this.Notice($"This exception was a system/runtime-level error.");
 					break;
 				case ApplicationException ae:
-					this.Notice($"This exception was maybe the user operation error.");
+					this.Notice($"This exception was an application-level error.");
+					//this.Notice($"This exception was maybe the user operation error.");
 					break;
 				case YenconException ye:
 					this.Notice($"This exception was occurred by Yencon library.");

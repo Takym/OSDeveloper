@@ -13,7 +13,7 @@ namespace OSDeveloper.GUIs.Explorer
 		{
 			this.OldDirectory = oldDir;
 			this.NewDirectory = newDir;
-			this.IsRefreshing = IsRefreshing;
+			this.IsRefreshing = isRefreshing;
 		}
 	}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Yencon
@@ -8,8 +9,15 @@ namespace Yencon
 	/// </summary>
 	public class YString : YNode
 	{
-		private static readonly (string e, char v)[] _escape_map = new (string e, char v)[] {
-			("\\'", '\''), ("\\\\", '\\'), ("\\q", '\"'), ("\\s", ' '), ("\\S", '　'), ("\\t", '\t'), ("\\n", '\n'), ("\\r", '\r')
+		private static readonly Dictionary<char, char> _escape_map = new Dictionary<char, char>() {
+			['p'] = '\'',
+			['y'] = '\\',
+			['q'] = '\"',
+			['s'] = ' ' ,
+			['S'] = '　',
+			['t'] = '\t',
+			['n'] = '\n',
+			['r'] = '\r',
 		};
 
 		private string _s = string.Empty;
@@ -21,18 +29,31 @@ namespace Yencon
 		{
 			get
 			{
-				StringBuilder sb = new StringBuilder(_s);
-				for (int i = 0; i < _escape_map.Length; ++i) {
-					sb.Replace(_escape_map[i].e, _escape_map[i].v.ToString());
+				var sb = new StringBuilder();
+				for (int i = 0; i < _s.Length; ++i) {
+					if (_s[i] == '\\' && (i + 1) < _s.Length) {
+						++i;
+						sb.Append(_escape_map[_s[i]]);
+					} else {
+						sb.Append(_s[i]);
+					}
 				}
 				return sb.ToString();
 			}
 
 			set
 			{
-				StringBuilder sb = new StringBuilder(value);
-				for (int i = 0; i < _escape_map.Length; ++i) {
-					sb.Replace(_escape_map[i].v.ToString(), _escape_map[i].e);
+				var sb = new StringBuilder();
+				for (int i = 0; i < value.Length; ++i) {
+					if (_escape_map.ContainsValue(value[i])) {
+						foreach (var item in _escape_map) {
+							if (item.Value == value[i]) {
+								sb.Append($"\\{item.Key}");
+							}
+						}
+					} else {
+						sb.Append(value[i]);
+					}
 				}
 				_s = sb.ToString();
 			}

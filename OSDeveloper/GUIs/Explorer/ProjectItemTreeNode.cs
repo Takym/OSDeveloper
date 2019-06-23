@@ -18,6 +18,7 @@ namespace OSDeveloper.GUIs.Explorer
 			if (this.ProjectItem is Project prj) {
 				for (int i = 0; i < prj.Contents.Count; ++i) {
 					var pitn = new ProjectItemTreeNode(prj.Contents[i]);
+					pitn.ContextMenuStrip = this.ContextMenuStrip;
 					pitn.LoadItems();
 					this.Nodes.Add(pitn);
 				}

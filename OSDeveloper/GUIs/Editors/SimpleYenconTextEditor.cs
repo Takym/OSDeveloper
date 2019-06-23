@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 using OSDeveloper.IO.ItemManagement;
 using TakymLib.IO;
 using Yencon;
@@ -27,17 +29,37 @@ namespace OSDeveloper.GUIs.Editors
 		public override void Save()
 		{
 			if (this.Item is FileMetadata file) {
-				var t = YenconFormatRecognition.GetYenconType(file.Path);
-				YenconFormatRecognition.Save(file.Path, _conv.ToYencon(this.TextBox.Text), t);
-				this.Text = this.Item.Name;
+				try {
+					var t = YenconFormatRecognition.GetYenconType(file.Path);
+					YenconFormatRecognition.Save(file.Path, _conv.ToYencon(this.TextBox.Text), t);
+					this.Text = this.Item.Name;
+				} catch (Exception e) {
+					this.Logger.Exception(e);
+					MessageBox.Show(this,
+						e.Message,
+						this.Item.Name,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error
+					);
+				}
 			}
 		}
 
 		public override void SaveAs(PathString filename)
 		{
 			if (this.Item is FileMetadata file) {
-				var t = YenconFormatRecognition.GetYenconType(file.Path);
-				YenconFormatRecognition.Save(filename, _conv.ToYencon(this.TextBox.Text), t);
+				try {
+					var t = YenconFormatRecognition.GetYenconType(file.Path);
+					YenconFormatRecognition.Save(filename, _conv.ToYencon(this.TextBox.Text), t);
+				} catch (Exception e) {
+					this.Logger.Exception(e);
+					MessageBox.Show(this,
+						e.Message,
+						this.Item.Name,
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Error
+					);
+				}
 			}
 		}
 	}

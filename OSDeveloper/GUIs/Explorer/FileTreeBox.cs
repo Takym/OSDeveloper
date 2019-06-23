@@ -231,19 +231,22 @@ retry:
 					try {
 						var sln = new Solution(dirs[i].Name);
 						var stn = new SolutionTreeNode(sln);
+						stn.ContextMenuStrip = popupMenu;
 						stn.Load();
 						stn.LoadItems();
 						_solutions.Add(stn);
 					} catch (Exception e) {
 						// ソリューションファイルに不正がある場合はスキップする。
 						_logger.Exception(e);
-						var dr = MessageBox.Show(
-							_mwnd,
-							e.Message,
-							_mwnd.Text,
-							MessageBoxButtons.AbortRetryIgnore,
-							MessageBoxIcon.Error
-						);
+						var dr = ((DialogResult)(_mwnd.Invoke(new Func<DialogResult>(() => {
+							return MessageBox.Show(
+								_mwnd,
+								e.Message,
+								_mwnd.Text,
+								MessageBoxButtons.AbortRetryIgnore,
+								MessageBoxIcon.Error
+							);
+						}))));
 						if (dr == DialogResult.Abort) {
 							return; // 読み込みを停止する。
 						} else if (dr == DialogResult.Retry) {
@@ -266,7 +269,7 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(btnRefresh_Click)}...");
 
-			this.OnDirectoryChanged(new DirectoryChangedEventArgs(_dir, _dir, false));
+			this.OnDirectoryChanged(new DirectoryChangedEventArgs(_dir, _dir, true));
 
 			_logger.Trace($"completed {nameof(btnRefresh_Click)}");
 		}
@@ -371,7 +374,9 @@ retry:
 
 			if (e.Node is FileTreeNode ftn) {
 				try {
-					ftn.Rename(e.Label);
+					if (!string.IsNullOrWhiteSpace(e.Label) && e.Label != ftn.Metadata.Name) {
+						ftn.Rename(e.Label);
+					}
 				} catch (Exception error) {
 					_logger.Exception(error);
 					MessageBox.Show(
@@ -534,6 +539,7 @@ retry:
 						} else {
 							newnode = ftn.CreateDir("New Folder");
 						}
+						newnode.Parent.Expand();
 						newnode.BeginEdit();
 					} catch (Exception error) {
 						_logger.Exception(error);
@@ -571,6 +577,7 @@ retry:
 						if (ofd.ShowDialog() == DialogResult.OK) {
 							var meta    = ItemList.GetItem((PathString)(ofd.FileName));
 							var newnode = ftn.AddItem(meta);
+							newnode.Parent.Expand();
 							newnode.BeginEdit();
 						}
 					} catch (Exception error) {
@@ -648,6 +655,7 @@ retry:
 				try {
 					var meta    = ItemList.GetItem((PathString)(Clipboard.GetText()));
 					var newnode = ftn.AddItem(meta);
+					newnode.Parent.Expand();
 					newnode.BeginEdit();
 				} catch (Exception error) {
 					_logger.Exception(error);
