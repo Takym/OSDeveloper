@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Resources;
+using TakymLib.IO;
 
 namespace OSDeveloper.GUIs.Explorer
 {
@@ -45,7 +47,18 @@ namespace OSDeveloper.GUIs.Explorer
 			_logger.Trace($"executing {nameof(OnClick)}...");
 			base.OnClick(e);
 
-			MessageBox.Show($"not supported yet. wsl:{SettingManager.System.UseWSLCommand}");
+			PathString wslpath;
+			if (SettingManager.System.UseWSLCommand) {
+				wslpath = ((PathString)($"{FileTreeBox._sys32}wsl.exe"));
+			} else {
+				wslpath = ((PathString)($"{FileTreeBox._sys32}bash.exe"));
+			}
+
+			if (wslpath.Exists()) {
+				Process.Start(wslpath, "--login -i");
+			} else {
+				MessageBox.Show(ExplorerTexts.Msgbox_WslNonInstalled, ASMINFO.Caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 
 			_logger.Trace($"completed {nameof(OnClick)}");
 		}

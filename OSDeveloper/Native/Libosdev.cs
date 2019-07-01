@@ -98,14 +98,27 @@ namespace OSDeveloper.Native
 		public static Icon GetIcon(Icons name, out uint hResult)
 		{
 			_logger.Trace($"getting an icon named {name}...");
+#if x64
+			var hIcon = osdev_loadIcon(
+				((uint)(name)),
+				16,
+				IntPtr.Zero,
+				out ulong hRes);
+			hResult = unchecked((uint)(hRes));
+#else
 			var hIcon = osdev_loadIcon(
 				((uint)(name)),
 				16,
 				IntPtr.Zero,
 				out hResult);
+#endif
 			_logger.Info("HResult    : " + $"0x{hResult:X8} ({hResult})");
 			_logger.Info("HResult Msg: " + Kernel32.GetErrorMessage(unchecked((int)(hResult))));
-			return Icon.FromHandle(hIcon);
+			if (hIcon != IntPtr.Zero) {
+				return Icon.FromHandle(hIcon);
+			} else {
+				return GetIcon(Icons.MiscUnknown, out uint w);
+			}
 		}
 
 		public static Icon GetIcon(string name)

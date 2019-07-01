@@ -150,6 +150,9 @@
   <data name="Msgbox_ConfirmDelete" xml:space="preserve">
     <value>指定されたファイル「{0}」を完全に削除してもよろしいですか？この処理は取り消せません。</value>
   </data>
+  <data name="Msgbox_WslNonInstalled" xml:space="preserve">
+    <value>Windows Subsystem for Linux がインストールされていません。</value>
+  </data>
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>その他の種類の項目を追加(&amp;A)...</value>
   </data>
@@ -184,10 +187,10 @@
     <value>外部プログラムで開く(&amp;X)...</value>
   </data>
   <data name="PopupMenu_OpenIn_Bash" xml:space="preserve">
-    <value>bashで開く(&amp;B)...</value>
+    <value>bashを開く(&amp;B)...</value>
   </data>
   <data name="PopupMenu_OpenIn_BashWsl" xml:space="preserve">
-    <value>WSLで開く(&amp;B)...</value>
+    <value>WSLを開く(&amp;B)...</value>
   </data>
   <data name="PopupMenu_OpenIn_Cmd" xml:space="preserve">
     <value>コマンドプロンプトで開く(&amp;C)...</value>

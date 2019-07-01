@@ -19,16 +19,16 @@ namespace OSDeveloper.GUIs.Explorer
 	public partial class FileTreeBox : UserControl
 	{
 		#region プロパティ
-		private const    string                       _sys32 = "C:\\WINDOWS\\System32\\";
-		private const    string                       _psver = "WindowsPowerShell\\v1.0";
-		private readonly Logger                       _logger;
-		private readonly FormMain                     _mwnd;
-		private          FileTreeNode                 _wksp_root;
-		private          bool                         _selected_root;
-		private readonly List<SolutionTreeNode>       _solutions;
-		private          FolderMetadata               _dir;
-		public           FolderMetadata               Directory { get => _dir; set => this.SetFolder(value); }
-		public  event    DirectoryChangedEventHandler DirectoryChanged;
+		internal const    string                       _sys32 = "C:\\WINDOWS\\System32\\";
+		internal const    string                       _psver = "WindowsPowerShell\\v1.0";
+		private  readonly Logger                       _logger;
+		private  readonly FormMain                     _mwnd;
+		private           FileTreeNode                 _wksp_root;
+		private           bool                         _selected_root;
+		private  readonly List<SolutionTreeNode>       _solutions;
+		private           FolderMetadata               _dir;
+		public            FolderMetadata               Directory { get => _dir; set => this.SetFolder(value); }
+		public   event    DirectoryChangedEventHandler DirectoryChanged;
 		#endregion
 
 		#region コンストラクタ
@@ -639,10 +639,7 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(cutMenu_Click)}...");
 
-			if (treeView.SelectedNode is FileTreeNode ftn) {
-				// TODO: 切り取りメニュー
-				Clipboard.SetText(ftn.Metadata.Path);
-			}
+			MessageBox.Show($"not supported yet.");
 
 			_logger.Trace($"completed {nameof(cutMenu_Click)}");
 		}

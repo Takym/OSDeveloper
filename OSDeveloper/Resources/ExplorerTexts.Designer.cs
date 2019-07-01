@@ -160,6 +160,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Msgbox_WslNonInstalled に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Msgbox_WslNonInstalled {
+            get {
+                return ResourceManager.GetString("Msgbox_WslNonInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   additem に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupMenu_Additem {

@@ -208,7 +208,6 @@
 			// 
 			// bashMenu
 			// 
-			this.bashMenu.Enabled = false;
 			this.bashMenu.Image = ((System.Drawing.Image)(resources.GetObject("bashMenu.Image")));
 			this.bashMenu.Name = "bashMenu";
 			this.bashMenu.Size = new System.Drawing.Size(180, 22);
@@ -279,9 +278,11 @@
 			// 
 			// cutMenu
 			// 
+			this.cutMenu.Enabled = false;
 			this.cutMenu.Name = "cutMenu";
 			this.cutMenu.Size = new System.Drawing.Size(180, 22);
 			this.cutMenu.Text = "cut";
+			this.cutMenu.Visible = false;
 			this.cutMenu.Click += new System.EventHandler(this.cutMenu_Click);
 			// 
 			// pasteMenu

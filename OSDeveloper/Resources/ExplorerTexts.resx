@@ -150,6 +150,9 @@
   <data name="Msgbox_ConfirmDelete" xml:space="preserve">
     <value>Msgbox_ConfirmDelete {0}</value>
   </data>
+  <data name="Msgbox_WslNonInstalled" xml:space="preserve">
+    <value>Msgbox_WslNonInstalled</value>
+  </data>
   <data name="PopupMenu_Additem" xml:space="preserve">
     <value>additem</value>
   </data>

@@ -147,8 +147,13 @@ namespace OSDeveloper.Native
 			[DllImport(Path)]
 			public static extern int osdev_checkStatus();
 
+#if x64
+			[DllImport(Path)]
+			public static extern IntPtr osdev_loadIcon(ulong dwIconID, int nSize, IntPtr hWnd, out ulong pdwHResult);
+#else
 			[DllImport(Path)]
 			public static extern IntPtr osdev_loadIcon(uint dwIconID, int nSize, IntPtr hWnd, out uint pdwHResult);
+#endif
 
 			[DllImport(Path)]
 			public static extern void osdev_sendKey(IntPtr hCtrl, uint nKeyCode, uint nModifier);
