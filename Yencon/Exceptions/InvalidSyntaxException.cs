@@ -8,6 +8,7 @@ namespace Yencon.Exceptions
 	/// <summary>
 	///  テキスト形式のヱンコンで構文の誤りが発生した事を表します。
 	/// </summary>
+	[Serializable()]
 	public class InvalidSyntaxException : YenconException
 	{
 		/// <summary>

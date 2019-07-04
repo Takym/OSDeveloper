@@ -6,6 +6,7 @@ namespace Yencon.Exceptions
 	/// <summary>
 	///  バイナリ形式のヱンコンのヘッダー情報が無効の場合に発生します。
 	/// </summary>
+	[Serializable()]
 	public class InvalidHeaderException : YenconException
 	{
 		/// <summary>

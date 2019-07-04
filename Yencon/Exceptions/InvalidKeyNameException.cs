@@ -7,6 +7,7 @@ namespace Yencon.Exceptions
 	/// <summary>
 	///  キー名が無効の場合に発生します。
 	/// </summary>
+	[Serializable()]
 	public class InvalidKeyNameException : YenconException
 	{
 		/// <summary>

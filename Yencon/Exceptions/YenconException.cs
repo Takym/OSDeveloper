@@ -6,6 +6,7 @@ namespace Yencon.Exceptions
 	/// <summary>
 	///  システムで定義されていないヱンコン独自の例外を表す基本クラスです。
 	/// </summary>
+	[Serializable()]
 	public class YenconException : Exception
 	{
 		/// <summary>
