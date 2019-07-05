@@ -81,6 +81,7 @@ namespace OSDeveloper.Native
 			FolderJunClosed      = ICON1160_FOLDER_JUNCLOSED,
 			FolderJunOpened      = ICON1161_FOLDER_JUNOPENED,
 			FolderSolution       = ICON1162_FOLDER_SOLUTION,
+			FolderProject        = ICON1163_FOLDER_PROJECT,
 			ItemCannotAccess     = ICON1199_ITEM_CANNOT_ACCESS,
 			MenuFileSave         = ICON1200_MENU_FILE_SAVE,
 			MenuFileSaveAs       = ICON1201_MENU_FILE_SAVEAS,

@@ -165,5 +165,8 @@
     <Image Include="icons\1107.File_Solution.ico">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="icons\1163.Folder_Project.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

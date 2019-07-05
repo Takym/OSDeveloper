@@ -127,6 +127,7 @@ namespace OSDeveloper.Native
 			public const int ICON1160_FOLDER_JUNCLOSED       = 1160;
 			public const int ICON1161_FOLDER_JUNOPENED       = 1161;
 			public const int ICON1162_FOLDER_SOLUTION        = 1162;
+			public const int ICON1163_FOLDER_PROJECT         = 1163;
 			public const int ICON1199_ITEM_CANNOT_ACCESS     = 1199;
 			public const int ICON1200_MENU_FILE_SAVE         = 1200;
 			public const int ICON1201_MENU_FILE_SAVEAS       = 1201;

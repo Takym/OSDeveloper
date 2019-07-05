@@ -225,6 +225,7 @@
     <Image Include="icons\1160.Folder_JunClosed.ico" />
     <Image Include="icons\1161.Folder_JunOpened.ico" />
     <Image Include="icons\1162.Folder_Solution.ico" />
+    <Image Include="icons\1163.Folder_Project.ico" />
     <Image Include="icons\1199.Item_CannotAccess.ico" />
     <Image Include="icons\1200.MenuFile_Save.ico" />
     <Image Include="icons\1201.MenuFile_SaveAs.ico" />

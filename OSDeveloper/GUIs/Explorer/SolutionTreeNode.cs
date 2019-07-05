@@ -10,8 +10,9 @@ namespace OSDeveloper.GUIs.Explorer
 
 		public SolutionTreeNode(Solution sln) : base(sln)
 		{
-			_converter    = YenconFormatRecognition.StringConverter;
-			this.Solution = sln;
+			_converter      = YenconFormatRecognition.StringConverter;
+			this.Solution   = sln;
+			this.ImageIndex = IconList.Solution;
 			this.Logger.Trace($"constructed {nameof(SolutionTreeNode)}, name:{sln.Name}");
 		}
 

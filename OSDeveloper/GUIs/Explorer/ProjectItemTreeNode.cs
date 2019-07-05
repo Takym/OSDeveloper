@@ -10,6 +10,9 @@ namespace OSDeveloper.GUIs.Explorer
 		public ProjectItemTreeNode(ProjectItem pitem) : base(pitem.GetMetadata())
 		{
 			this.ProjectItem = pitem;
+			if ((pitem is Project) && !(pitem is ItemGroup)) {
+				this.ImageIndex = IconList.Project;
+			}
 			this.Logger.Trace($"constructed {nameof(ProjectItemTreeNode)}, name:{pitem.Name}");
 		}
 
