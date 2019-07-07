@@ -79,6 +79,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   BtnNewSln に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string BtnNewSln {
+            get {
+                return ResourceManager.GetString("BtnNewSln", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   BtnRefresh に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string BtnRefresh {

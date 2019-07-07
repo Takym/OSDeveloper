@@ -17,7 +17,7 @@ namespace OSDeveloper.IO.ItemManagement
 		public  override FileSystemInfo    Info      { get => _dinfo; }
 		public  override bool              CanAccess { get; }
 		public           DriveInfo         Drive     { get; }
-		public           FolderFormat      Format    { get; }
+		public           FolderFormat      Format    { get; private set; }
 		public           long              Count     { get => Directory.EnumerateFileSystemEntries(this.Path).LongCount(); }
 
 		/// <exception cref="System.ArgumentException"/>
@@ -75,17 +75,28 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public PathString GetSolutionFilePath()
 		{
+			if (_slnfile.Exists()) {
+				this.Format = FolderFormat.Solution;
+			}
 			return _slnfile;
 		}
 
 		public FileMetadata GetSolutionFile()
 		{
-			return null; // TODO: GetSolutionFile
+			if (this.Format == FolderFormat.Solution) {
+				return ItemList.GetFile(_slnfile);
+			} else {
+				return null;
+			}
 		}
 
 		public Solution GetSolution()
 		{
-			return null; // TODO: GetSolution
+			if (this.Format == FolderFormat.Solution) {
+				return new Solution(this.Name);
+			} else {
+				return null;
+			}
 		}
 
 		public FolderMetadata[] GetFolders()

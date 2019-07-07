@@ -50,6 +50,8 @@ namespace OSDeveloper.GUIs.Explorer
 			btnCollapse.Image       = Libosdev.GetIcon(Libosdev.Icons.MiscCollapse, out uint vCol).ToBitmap();
 			btnCollapse.Text        = ExplorerTexts.BtnCollapse;
 			btnCollapse.ToolTipText = ExplorerTexts.BtnCollapse;
+			btnNewSln.Text          = ExplorerTexts.BtnNewSln;
+			btnNewSln.ToolTipText   = ExplorerTexts.BtnNewSln;
 			openMenu.Text           = ExplorerTexts.PopupMenu_Open;
 			openMenu.Font           = new Font(openMenu.Font, FontStyle.Bold);
 			openInMenu.Text         = ExplorerTexts.PopupMenu_OpenIn;
@@ -229,12 +231,7 @@ namespace OSDeveloper.GUIs.Explorer
 retry:
 					_logger.Info($"loading solution \"{dirs[i].Name}\"...");
 					try {
-						var sln = new Solution(dirs[i].Name);
-						var stn = new SolutionTreeNode(sln);
-						stn.ContextMenuStrip = popupMenu;
-						stn.Load();
-						stn.LoadItems();
-						_solutions.Add(stn);
+						this.AddSolution(dirs[i].Name);
 					} catch (Exception e) {
 						// ソリューションファイルに不正がある場合はスキップする。
 						_logger.Exception(e);
@@ -257,6 +254,17 @@ retry:
 					}
 				}
 			}
+		}
+
+		private SolutionTreeNode AddSolution(string name)
+		{
+			var sln = new Solution(name);
+			var stn = new SolutionTreeNode(sln);
+			stn.ContextMenuStrip = popupMenu;
+			stn.Load();
+			stn.LoadItems();
+			_solutions.Add(stn);
+			return stn;
 		}
 
 		#endregion
@@ -290,6 +298,17 @@ retry:
 			treeView.CollapseAll();
 
 			_logger.Trace($"completed {nameof(btnCollapse_Click)}");
+		}
+
+		private void btnNewSln_Click(object sender, EventArgs e)
+		{
+			_logger.Trace($"executing {nameof(btnNewSln_Click)}...");
+
+			var ftn = _wksp_root.CreateDir("New Solution");
+			ftn.CreateFile(ftn.Folder.GetSolutionFilePath());
+			treeView.Nodes.Add(this.AddSolution(ftn.Metadata.Name));
+
+			_logger.Trace($"completed {nameof(btnNewSln_Click)}");
 		}
 
 		#endregion

@@ -123,6 +123,9 @@
   <data name="BtnExpand" xml:space="preserve">
     <value>BtnExpand</value>
   </data>
+  <data name="BtnNewSln" xml:space="preserve">
+    <value>BtnNewSln</value>
+  </data>
   <data name="BtnRefresh" xml:space="preserve">
     <value>BtnRefresh</value>
   </data>
