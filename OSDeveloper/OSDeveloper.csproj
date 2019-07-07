@@ -160,15 +160,7 @@
       <DependentUpon>FileTreeBox.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\Explorer\FileTreeNode.cs" />
-    <Compile Include="GUIs\Explorer\Old\FileTreeBoxOld.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUIs\Explorer\Old\FileTreeBoxOld.Designer.cs">
-      <DependentUpon>FileTreeBoxOld.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUIs\Explorer\IconList.cs" />
-    <Compile Include="GUIs\Explorer\Old\ProjectItemTreeNodeOld.cs" />
-    <Compile Include="GUIs\Explorer\Old\SolutionTreeNodeOld.cs" />
     <Compile Include="GUIs\Explorer\SolutionTreeNode.cs" />
     <Compile Include="GUIs\Explorer\ProjectItemTreeNode.cs" />
     <Compile Include="GUIs\Explorer\WslBashToolStripMenuItem.cs">
@@ -297,9 +289,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Explorer\FileTreeBox.resx">
       <DependentUpon>FileTreeBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\Explorer\Old\FileTreeBoxOld.resx">
-      <DependentUpon>FileTreeBoxOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\Terminal\ItemProperty.resx">
       <DependentUpon>ItemProperty.cs</DependentUpon>
