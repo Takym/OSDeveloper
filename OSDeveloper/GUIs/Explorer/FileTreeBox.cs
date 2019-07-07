@@ -229,7 +229,7 @@ namespace OSDeveloper.GUIs.Explorer
 			// ディレクトリがソリューションならリストに追加
 			var dirs = this.Directory.GetFolders();
 			for (int i = 0; i < dirs.Length; ++i) {
-				if (dirs[i].Format == FolderFormat.Solution) {
+				if (dirs[i].Format == FolderFormat.Solution && !dirs[i].IsRemoved) {
 retry:
 					_logger.Info($"loading solution \"{dirs[i].Name}\"...");
 					try {
@@ -566,6 +566,7 @@ retry:
 						} else {
 							newnode = ftn.CreateDir("New Folder");
 						}
+						newnode.ContextMenuStrip = popupMenu;
 						newnode.Parent.Expand();
 						newnode.BeginEdit();
 					} catch (Exception error) {

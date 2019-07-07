@@ -65,9 +65,9 @@ namespace OSDeveloper.Projects
 
 		public void Rename(string newname)
 		{
+			this.GetMetadata().Rename(newname);
 			this.Name     = newname;
 			this.HintPath = this.Parent.HintPath.Bond(newname);
-			this.GetMetadata().Rename(newname);
 		}
 
 		internal virtual bool IsTransient()

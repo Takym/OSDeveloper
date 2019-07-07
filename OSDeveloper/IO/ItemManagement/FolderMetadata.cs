@@ -83,7 +83,8 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public FileMetadata GetSolutionFile()
 		{
-			if (this.Format == FolderFormat.Solution) {
+			if (_slnfile.Exists()) {
+				this.Format = FolderFormat.Solution;
 				return ItemList.GetFile(_slnfile);
 			} else {
 				return null;
@@ -92,7 +93,8 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public Solution GetSolution()
 		{
-			if (this.Format == FolderFormat.Solution) {
+			if (_slnfile.Exists()) {
+				this.Format = FolderFormat.Solution;
 				return new Solution(this.Name);
 			} else {
 				return null;

@@ -11,7 +11,8 @@ namespace OSDeveloper.GUIs.Explorer
 		{
 			this.ProjectItem = pitem;
 			if ((pitem is Project) && !(pitem is ItemGroup)) {
-				this.ImageIndex = IconList.Project;
+				this.ImageIndex         = IconList.Project;
+				this.SelectedImageIndex = IconList.Project;
 			}
 			this.Logger.Trace($"constructed {nameof(ProjectItemTreeNode)}, name:{pitem.Name}");
 		}

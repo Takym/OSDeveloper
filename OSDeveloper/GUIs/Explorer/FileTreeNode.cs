@@ -79,59 +79,61 @@ namespace OSDeveloper.GUIs.Explorer
 							break;
 					}
 				} else if (this.Folder != null) {
-					switch (this.Folder.Format) {
-						case FolderFormat.Directory:
-							if (this.Folder.IsEmpty()) {
-								this.ImageIndex         = IconList.Directory;
-								this.SelectedImageIndex = IconList.Directory;
-							} else if (this.IsExpanded) {
-								this.ImageIndex         = IconList.DirOpened;
-								this.SelectedImageIndex = IconList.DirOpened;
-							} else {
-								this.ImageIndex         = IconList.DirClosed;
-								this.SelectedImageIndex = IconList.DirClosed;
-							}
-							break;
-						case FolderFormat.FloppyDisk:
-							this.ImageIndex         = IconList.FloppyDisk;
-							this.SelectedImageIndex = IconList.FloppyDisk;
-							break;
-						case FolderFormat.HardDisk:
-							this.ImageIndex         = IconList.HardDisk;
-							this.SelectedImageIndex = IconList.HardDisk;
-							break;
-						case FolderFormat.OpticalDisc:
-							this.ImageIndex         = IconList.OpticalDisc;
-							this.SelectedImageIndex = IconList.OpticalDisc;
-							break;
-						case FolderFormat.Junction:
-							if (this.Folder.IsEmpty()) {
-								this.ImageIndex         = IconList.Junction;
-								this.SelectedImageIndex = IconList.Junction;
-							} else if (this.IsExpanded) {
-								this.ImageIndex         = IconList.JunOpened;
-								this.SelectedImageIndex = IconList.JunOpened;
-							} else {
-								this.ImageIndex         = IconList.JunClosed;
-								this.SelectedImageIndex = IconList.JunClosed;
-							}
-							break;
-						case FolderFormat.Solution:
-							this.ImageIndex         = IconList.Solution;
-							this.SelectedImageIndex = IconList.Solution;
-							break;
-						default:
-							if (this.Folder.IsEmpty()) {
-								this.ImageIndex         = IconList.Folder;
-								this.SelectedImageIndex = IconList.Folder;
-							} else if (this.IsExpanded) {
-								this.ImageIndex         = IconList.FolderOpened;
-								this.SelectedImageIndex = IconList.FolderOpened;
-							} else {
-								this.ImageIndex         = IconList.FolderClosed;
-								this.SelectedImageIndex = IconList.FolderClosed;
-							}
-							break;
+					if (this.ImageIndex != IconList.Project) {
+						switch (this.Folder.Format) {
+							case FolderFormat.Directory:
+								if (this.Folder.IsEmpty()) {
+									this.ImageIndex         = IconList.Directory;
+									this.SelectedImageIndex = IconList.Directory;
+								} else if (this.IsExpanded) {
+									this.ImageIndex         = IconList.DirOpened;
+									this.SelectedImageIndex = IconList.DirOpened;
+								} else {
+									this.ImageIndex         = IconList.DirClosed;
+									this.SelectedImageIndex = IconList.DirClosed;
+								}
+								break;
+							case FolderFormat.FloppyDisk:
+								this.ImageIndex         = IconList.FloppyDisk;
+								this.SelectedImageIndex = IconList.FloppyDisk;
+								break;
+							case FolderFormat.HardDisk:
+								this.ImageIndex         = IconList.HardDisk;
+								this.SelectedImageIndex = IconList.HardDisk;
+								break;
+							case FolderFormat.OpticalDisc:
+								this.ImageIndex         = IconList.OpticalDisc;
+								this.SelectedImageIndex = IconList.OpticalDisc;
+								break;
+							case FolderFormat.Junction:
+								if (this.Folder.IsEmpty()) {
+									this.ImageIndex         = IconList.Junction;
+									this.SelectedImageIndex = IconList.Junction;
+								} else if (this.IsExpanded) {
+									this.ImageIndex         = IconList.JunOpened;
+									this.SelectedImageIndex = IconList.JunOpened;
+								} else {
+									this.ImageIndex         = IconList.JunClosed;
+									this.SelectedImageIndex = IconList.JunClosed;
+								}
+								break;
+							case FolderFormat.Solution:
+								this.ImageIndex         = IconList.Solution;
+								this.SelectedImageIndex = IconList.Solution;
+								break;
+							default:
+								if (this.Folder.IsEmpty()) {
+									this.ImageIndex         = IconList.Folder;
+									this.SelectedImageIndex = IconList.Folder;
+								} else if (this.IsExpanded) {
+									this.ImageIndex         = IconList.FolderOpened;
+									this.SelectedImageIndex = IconList.FolderOpened;
+								} else {
+									this.ImageIndex         = IconList.FolderClosed;
+									this.SelectedImageIndex = IconList.FolderClosed;
+								}
+								break;
+						}
 					}
 				}
 				byte r = 0, g = 0, b = 0;
@@ -215,8 +217,11 @@ namespace OSDeveloper.GUIs.Explorer
 
 		public virtual bool Delete()
 		{
-			this.Remove();
-			return this.Metadata.Delete();
+			bool result = this.Metadata.Delete();
+			if (result) {
+				this.Remove();
+			}
+			return result;
 		}
 
 		public virtual void Rename(string newname)
