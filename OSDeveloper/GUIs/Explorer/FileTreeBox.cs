@@ -191,7 +191,7 @@ namespace OSDeveloper.GUIs.Explorer
 			if (item == null) return DummyTreeNode.Instance;
 			if (item.IsRemoved) return new RemovedTreeNode(item);
 
-			var result = new FileTreeNode(item);
+			var result = new SimpleFileTreeNode(item);
 			result.ContextMenuStrip = popupMenu;
 			if (result.Folder != null && result.Folder.CanAccess && !result.Folder.IsEmpty()) {
 				result.Folder.Refresh();

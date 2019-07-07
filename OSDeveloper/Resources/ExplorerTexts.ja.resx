@@ -129,6 +129,9 @@
   <data name="BtnRefresh" xml:space="preserve">
     <value>ツリーを再読み込み</value>
   </data>
+  <data name="DummyTreeNode" xml:space="preserve">
+    <value>ノードの生成に失敗しました。</value>
+  </data>
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>ファイル名を変更する事ができませんでした。</value>
   </data>

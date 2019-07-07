@@ -97,6 +97,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   DummyTreeNode に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DummyTreeNode {
+            get {
+                return ResourceManager.GetString("DummyTreeNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Msgbox_CannotChangeName に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Msgbox_CannotChangeName {

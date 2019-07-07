@@ -129,6 +129,9 @@
   <data name="BtnRefresh" xml:space="preserve">
     <value>BtnRefresh</value>
   </data>
+  <data name="DummyTreeNode" xml:space="preserve">
+    <value>DummyTreeNode</value>
+  </data>
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>Msgbox_CannotChangeName</value>
   </data>

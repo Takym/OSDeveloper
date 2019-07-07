@@ -10,7 +10,7 @@ using OSDeveloper.Resources;
 
 namespace OSDeveloper.GUIs.Explorer
 {
-	public class FileTreeNode : TreeNode
+	public abstract class FileTreeNode : TreeNode
 	{
 		protected Logger       Logger   { get; }
 		public    ItemMetadata Metadata { get; }
@@ -222,6 +222,14 @@ namespace OSDeveloper.GUIs.Explorer
 		public virtual void Rename(string newname)
 		{
 			this.Metadata.Rename(newname);
+		}
+	}
+
+	internal class SimpleFileTreeNode : FileTreeNode
+	{
+		public SimpleFileTreeNode(ItemMetadata meta) : base(meta)
+		{
+			this.Logger.Trace($"constructed {nameof(SimpleFileTreeNode)}, path:{meta.Path}");
 		}
 	}
 

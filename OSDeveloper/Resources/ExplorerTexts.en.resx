@@ -129,6 +129,9 @@
   <data name="BtnRefresh" xml:space="preserve">
     <value>Refresh the tree</value>
   </data>
+  <data name="DummyTreeNode" xml:space="preserve">
+    <value>Failed to make a node.</value>
+  </data>
   <data name="Msgbox_CannotChangeName" xml:space="preserve">
     <value>The file name could not be changed.</value>
   </data>
