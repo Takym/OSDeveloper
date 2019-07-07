@@ -23,8 +23,8 @@ namespace OSDeveloper.GUIs.Explorer
 		internal const    string                       _psver = "WindowsPowerShell\\v1.0";
 		private  readonly Logger                       _logger;
 		private  readonly FormMain                     _mwnd;
-		private           FileTreeNode                 _wksp_root;
-		private           bool                         _selected_root;
+		//private         FileTreeNode                 _wksp_root;
+		//private         bool                         _selected_root;
 		private  readonly List<SolutionTreeNode>       _solutions;
 		private           FolderMetadata               _dir;
 		public            FolderMetadata               Directory { get => _dir; set => this.SetFolder(value); }
@@ -99,6 +99,7 @@ namespace OSDeveloper.GUIs.Explorer
 			// 削除済みのアイテムをリストから削除する。
 			await Task.Run(() => ItemList.ClearRemovedItems());
 
+			/*
 			// ファイルまたはディレクトリを読み込んでFileTreeNode生成する。
 			var node = await Task.Run(() => {
 				if (this.Directory.IsRemoved){ // 削除されているディレクトリが参照された場合
@@ -107,6 +108,7 @@ namespace OSDeveloper.GUIs.Explorer
 					return this.CreateTreeNode(this.Directory);
 				}
 			});
+			//*/
 
 			// ソリューションの読み込み
 			await Task.Run(() => {
@@ -120,12 +122,12 @@ namespace OSDeveloper.GUIs.Explorer
 			treeView.Nodes.Clear();
 
 			// TreeViewに生成したFileTreeNodeを追加する。
-			treeView.Nodes.Add(node);
+			//treeView.Nodes.Add(node);
 			treeView.Nodes.AddRange(_solutions.ToArray());
 
 			// 一番上のノード(Root Node)の設定を変更する。
-			node.Text  = $"{this.Directory.Path.GetFileNameWithoutExtension()} ({this.Directory.Path})";
-			_wksp_root = node;
+			//node.Text  = $"{this.Directory.Path.GetFileNameWithoutExtension()} ({this.Directory.Path})";
+			//_wksp_root = node;
 
 			// コントロール全体を更新
 			this.Update();
@@ -304,9 +306,13 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(btnNewSln_Click)}...");
 
-			var ftn = _wksp_root.CreateDir("New Solution");
-			ftn.CreateFile(ftn.Folder.GetSolutionFilePath());
-			treeView.Nodes.Add(this.AddSolution(ftn.Metadata.Name));
+			//var ftn = _wksp_root.CreateDir("New Solution");
+			//ftn.CreateFile(ftn.Folder.GetSolutionFilePath());
+			//treeView.Nodes.Add(this.AddSolution(ftn.Metadata.Name));
+
+			var dir = _dir.CreateDir("New Solution");
+			dir.CreateFile(dir.GetSolutionFilePath());
+			treeView.Nodes.Add(this.AddSolution(dir.Name));
 
 			_logger.Trace($"completed {nameof(btnNewSln_Click)}");
 		}
@@ -350,6 +356,7 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(treeView_BeforeSelect)}...");
 
+			/*
 			if (e.Node == _wksp_root) {
 				cloneMenu .Enabled = false;
 				cutMenu   .Enabled = false;
@@ -365,6 +372,7 @@ retry:
 				renameMenu.Enabled = true;
 				_selected_root = false;
 			}
+			//*/
 			_logger.Info($"the selected node is: {e.Node.FullPath}");
 
 			_logger.Trace($"completed {nameof(treeView_BeforeSelect)}");
