@@ -63,7 +63,7 @@ namespace OSDeveloper.IO.Configuration
 				}
 			}
 			public const string KeyOfLanguage = "lang";
-			public readonly static CultureInfo DefaultLanguage = CultureInfo.InstalledUICulture;
+			public readonly static CultureInfo DefaultLanguage = Globalization.GetDefaultCulture();
 
 			public static Rectangle MainWindowPosition
 			{

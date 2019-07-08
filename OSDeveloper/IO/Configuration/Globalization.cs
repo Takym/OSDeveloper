@@ -46,6 +46,18 @@ namespace OSDeveloper.IO.Configuration
 			return _i_cultures;
 		}
 
+		public static CultureInfo GetDefaultCulture()
+		{
+			var c = CultureInfo.InstalledUICulture;
+			var cultures = new List<CultureInfo>(GetInstalledCultures());
+			int i = cultures.BinarySearch(CultureInfo.GetCultureInfo(c.Parent?.Name ?? c.Name), comparer);
+			if (0 <= i && i < cultures.Count) {
+				return c;
+			} else {
+				return CultureInfo.GetCultureInfo("en");
+			}
+		}
+
 		private readonly static CultureInfoComparer comparer = new CultureInfoComparer();
 		private class CultureInfoComparer : IComparer<CultureInfo>
 		{
