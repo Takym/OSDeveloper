@@ -10,7 +10,7 @@ namespace OSDeveloper.IO.ItemManagement
 {
 	public sealed class FolderMetadata : ItemMetadata
 	{
-		private readonly PathString        _slnfile;
+		private          PathString        _slnfile;
 		private          FolderMetadata [] _folders;
 		private          FileMetadata   [] _files;
 		private readonly DirectoryInfo     _dinfo;
@@ -138,7 +138,9 @@ namespace OSDeveloper.IO.ItemManagement
 			try {
 				if (string.IsNullOrEmpty(newName) || newName == this.Path.GetFileName()) return true;
 				Directory.Move(this.Path, this.Path.ChangeFileName(newName));
-				return base.Rename(newName);
+				var result = base.Rename(newName);
+				_slnfile = this.Path.Bond(this.Path.GetFileName() + ".osdev_sln");
+				return result;
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}, newname:{newName}");
 				Program.Logger.Exception(e);

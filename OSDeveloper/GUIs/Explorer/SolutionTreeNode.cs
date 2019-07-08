@@ -53,5 +53,17 @@ namespace OSDeveloper.GUIs.Explorer
 			}
 			return result;
 		}
+
+		public override void Rename(string newname)
+		{
+			var p = this.Folder.GetSolutionFilePath().GetFileName();
+			for (int i = 0; i < this.Nodes.Count; ++i) {
+				if (this.Nodes[i] is ProjectItemTreeNode pitn && pitn.Metadata.Name == p) {
+					pitn.ProjectItem.Rename(newname + ".osdev_sln");
+					pitn.Text = pitn.ProjectItem.Name;
+				}
+			}
+			this.ProjectItem.Rename(newname);
+		}
 	}
 }

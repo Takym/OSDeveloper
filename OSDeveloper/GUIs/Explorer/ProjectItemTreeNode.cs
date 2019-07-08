@@ -1,4 +1,5 @@
-﻿using OSDeveloper.IO.ItemManagement;
+﻿using OSDeveloper.IO;
+using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.Projects;
 
 namespace OSDeveloper.GUIs.Explorer
@@ -100,7 +101,11 @@ namespace OSDeveloper.GUIs.Explorer
 
 		public override void Rename(string newname)
 		{
-			this.ProjectItem.Rename(newname);
+			if (this.File?.Format == FileFormat.Solution) {
+				(this.Parent as SolutionTreeNode)?.Rename(newname);
+			} else {
+				this.ProjectItem.Rename(newname);
+			}
 		}
 	}
 }

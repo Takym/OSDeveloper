@@ -5,6 +5,7 @@ using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
 using OSDeveloper.Resources;
+using TakymLib;
 using TakymLib.IO;
 
 namespace OSDeveloper.GUIs.Explorer
@@ -20,9 +21,13 @@ namespace OSDeveloper.GUIs.Explorer
 				if (this.TextModified) {
 					return base.Text;
 				} else {
-					return SettingManager.System.UseWSLCommand
-						? ExplorerTexts.PopupMenu_OpenIn_BashWsl
-						: ExplorerTexts.PopupMenu_OpenIn_Bash;
+					if (WinFormUtils.DesignMode) {
+						return "bash";
+					} else {
+						return SettingManager.System.UseWSLCommand
+							? ExplorerTexts.PopupMenu_OpenIn_BashWsl
+							: ExplorerTexts.PopupMenu_OpenIn_Bash;
+					}
 				}
 			}
 

@@ -263,7 +263,11 @@ retry:
 
 		private SolutionTreeNode AddSolution(string name)
 		{
-			var sln = new Solution(name);
+			return this.AddSolution(new Solution(name));
+		}
+
+		private SolutionTreeNode AddSolution(Solution sln)
+		{
 			var stn = new SolutionTreeNode(sln);
 			stn.ContextMenuStrip = popupMenu;
 			stn.Load();
@@ -315,7 +319,9 @@ retry:
 
 			var dir = _dir.CreateDir("New Solution");
 			dir.CreateFile(dir.GetSolutionFilePath());
-			treeView.Nodes.Add(this.AddSolution(dir.Name));
+			var sln = new Solution(dir.Name);
+			sln.AddItem(dir.GetSolutionFile());
+			treeView.Nodes.Add(this.AddSolution(sln));
 
 			_logger.Trace($"completed {nameof(btnNewSln_Click)}");
 		}
