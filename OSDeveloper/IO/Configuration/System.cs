@@ -20,6 +20,7 @@ namespace OSDeveloper.IO.Configuration
 				_ = UseEXDialog;         // 環境設定
 				_ = UseWSLCommand;       // 環境設定
 				_ = TerminalTabSizeMode; // 起動設定
+				_ = RiskySettings;       // 起動設定
 			}
 
 			public static VisualStyleState VisualStyle
@@ -36,7 +37,7 @@ namespace OSDeveloper.IO.Configuration
 
 				set
 				{
-					_y_system_inix.Add(new YString() { Name = KeyOfVisualStyle, Text = value.ToString() });
+					_y_system_inix.SetNodeAsString(KeyOfVisualStyle, value.ToString());
 				}
 			}
 			public const string KeyOfVisualStyle = "visualstyle";
@@ -58,7 +59,7 @@ namespace OSDeveloper.IO.Configuration
 
 				set
 				{
-					_y_system_inix.Add(new YString() { Name = KeyOfLanguage, Text = value.Name });
+					_y_system_inix.SetNodeAsString(KeyOfLanguage, value.Name);
 				}
 			}
 			public const string KeyOfLanguage = "lang";
@@ -92,7 +93,7 @@ namespace OSDeveloper.IO.Configuration
 
 				set
 				{
-					_y_system_inix.Add(new YBoolean() { Name = KeyOfUseEXDialog, Flag = value });
+					_y_system_inix.SetNodeAsBoolean(KeyOfUseEXDialog, value);
 				}
 			}
 			public const string KeyOfUseEXDialog = "use_exdialog";
@@ -109,7 +110,7 @@ namespace OSDeveloper.IO.Configuration
 
 				set
 				{
-					_y_system_inix.Add(new YBoolean() { Name = KeyOfUseWSLCommand, Flag = value });
+					_y_system_inix.SetNodeAsBoolean(KeyOfUseWSLCommand, value);
 				}
 			}
 			public const string KeyOfUseWSLCommand = "use_wslexe";
@@ -129,11 +130,70 @@ namespace OSDeveloper.IO.Configuration
 
 				set
 				{
-					_y_system_inix.Add(new YString() { Name = KeyOfTerminalTabSizeMode, Text = value.ToString() });
+					_y_system_inix.SetNodeAsString(KeyOfTerminalTabSizeMode, value.ToString());
 				}
 			}
 			public const string KeyOfTerminalTabSizeMode = "term_szmd";
 			public const TabSizeMode DefaultTerminalTabSizeMode = TabSizeMode.Normal;
+
+			public static DangerSettings RiskySettings
+			{
+				get
+				{
+					var node   = GetKey(_y_system_inix, _y_system_cfg, KeyOfRiskySettings, () => DefaultRiskySettings.ToYencon());
+					var result = DangerSettings.FromYencon(node);
+					if (result.AllowDangerSettings) {
+						return result;
+					} else {
+						return DefaultRiskySettings;
+					}
+				}
+
+				set
+				{
+					_y_system_inix.Add(value.ToYencon());
+				}
+			}
+			public const string KeyOfRiskySettings = "risky_settings";
+			public readonly static DangerSettings DefaultRiskySettings = DangerSettings.GetDefault();
+
+			public readonly struct DangerSettings
+			{
+				public bool AllowDangerSettings { get; }
+				public const string KeyOfAllowDangerSettings = "allow";
+
+				public bool ShowDeleteMenu { get; }
+				public const string KeyOfShowDeleteMenu = "show_delmenu";
+
+				public DangerSettings(bool allowDangerSettings, bool showDeleteMenu)
+				{
+					this.AllowDangerSettings = allowDangerSettings;
+					this.ShowDeleteMenu      = showDeleteMenu;
+				}
+
+				public static DangerSettings GetDefault()
+				{
+					return new DangerSettings(
+						allowDangerSettings: false,
+						showDeleteMenu:      false
+					);
+				}
+
+				public YSection ToYencon()
+				{
+					var result = new YSection() { Name = KeyOfRiskySettings };
+					result.SetNodeAsBoolean(KeyOfAllowDangerSettings, this.AllowDangerSettings);
+					result.SetNodeAsBoolean(KeyOfShowDeleteMenu,      this.ShowDeleteMenu);
+					return result;
+				}
+
+				public static DangerSettings FromYencon(YSection section)
+				{
+					bool allow    = section.GetNodeAsBoolean(KeyOfAllowDangerSettings) ?? false;
+					bool show_del = section.GetNodeAsBoolean(KeyOfShowDeleteMenu)      ?? false;
+					return new DangerSettings(allow, show_del);
+				}
+			}
 		}
 	}
 }

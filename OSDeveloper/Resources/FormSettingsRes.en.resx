@@ -138,6 +138,9 @@
   <data name="Extension" xml:space="preserve">
     <value>Additional Settings</value>
   </data>
+  <data name="Startup_allowRisky" xml:space="preserve">
+    <value>Allow to change the danger configuration in this section.</value>
+  </data>
   <data name="Startup_Caption" xml:space="preserve">
     <value>Startup Settings</value>
   </data>
@@ -147,6 +150,12 @@ You might need to restart to apply changes.</value>
   </data>
   <data name="Startup_labelLang" xml:space="preserve">
     <value>UI Language:</value>
+  </data>
+  <data name="Startup_riskySettings" xml:space="preserve">
+    <value>Risky Settings:</value>
+  </data>
+  <data name="Startup_showDelMenu" xml:space="preserve">
+    <value>Show the "Delete completely" menu.</value>
   </data>
   <data name="Startup_visualstyle" xml:space="preserve">
     <value>Enable Visual Style</value>

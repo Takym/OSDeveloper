@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSDeveloper.GUIs.Features;
 using OSDeveloper.IO;
+using OSDeveloper.IO.Configuration;
 using OSDeveloper.IO.ItemManagement;
 using OSDeveloper.IO.Logging;
 using OSDeveloper.Native;
@@ -74,6 +75,8 @@ namespace OSDeveloper.GUIs.Explorer
 			pasteMenu.Text          = ExplorerTexts.PopupMenu_Paste;
 			removeMenu.Text         = ExplorerTexts.PopupMenu_Remove;
 			deleteMenu.Text         = ExplorerTexts.PopupMenu_Delete;
+			deleteMenu.Enabled      = SettingManager.System.RiskySettings.ShowDeleteMenu;
+			deleteMenu.Visible      = SettingManager.System.RiskySettings.ShowDeleteMenu;
 			renameMenu.Text         = ExplorerTexts.PopupMenu_Rename;
 			propertyMenu.Text       = ExplorerTexts.PopupMenu_Property;
 			#endregion
@@ -718,22 +721,24 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(deleteMenu_Click)}...");
 
-			if (treeView.SelectedNode is FileTreeNode ftn) {
-				var dr = MessageBox.Show(
-					_mwnd,
-					string.Format(ExplorerTexts.Msgbox_ConfirmDelete, ftn.Metadata.Path),
-					_mwnd.Text,
-					MessageBoxButtons.YesNo,
-					MessageBoxIcon.Question
-				);
-				if (dr == DialogResult.Yes && !ftn.Delete()) {
-					MessageBox.Show(
+			if (SettingManager.System.RiskySettings.ShowDeleteMenu) {
+				if (treeView.SelectedNode is FileTreeNode ftn) {
+					var dr = MessageBox.Show(
 						_mwnd,
-						ExplorerTexts.Msgbox_CannotDelete,
+						string.Format(ExplorerTexts.Msgbox_ConfirmDelete, ftn.Metadata.Path),
 						_mwnd.Text,
-						MessageBoxButtons.OK,
-						MessageBoxIcon.Error
+						MessageBoxButtons.YesNo,
+						MessageBoxIcon.Question
 					);
+					if (dr == DialogResult.Yes && !ftn.Delete()) {
+						MessageBox.Show(
+							_mwnd,
+							ExplorerTexts.Msgbox_CannotDelete,
+							_mwnd.Text,
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Error
+						);
+					}
 				}
 			}
 

@@ -124,6 +124,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   Startup_allowRisky に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Startup_allowRisky {
+            get {
+                return ResourceManager.GetString("Startup_allowRisky", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Startup_Caption に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Startup_Caption {
@@ -147,6 +156,24 @@ namespace OSDeveloper.Resources {
         internal static string Startup_labelLang {
             get {
                 return ResourceManager.GetString("Startup_labelLang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Startup_riskySettings に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Startup_riskySettings {
+            get {
+                return ResourceManager.GetString("Startup_riskySettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Startup_showDelMenu に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Startup_showDelMenu {
+            get {
+                return ResourceManager.GetString("Startup_showDelMenu", resourceCulture);
             }
         }
         
