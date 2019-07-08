@@ -29,6 +29,8 @@
 		{
 			this.treeView = new System.Windows.Forms.TreeView();
 			this.panel = new System.Windows.Forms.Panel();
+			this.labelDesc = new System.Windows.Forms.Label();
+			this.panel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// treeView
@@ -48,10 +50,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel.AutoScroll = true;
 			this.panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel.Controls.Add(this.labelDesc);
 			this.panel.Location = new System.Drawing.Point(280, 8);
 			this.panel.Name = "panel";
 			this.panel.Size = new System.Drawing.Size(520, 544);
 			this.panel.TabIndex = 1;
+			// 
+			// labelDesc
+			// 
+			this.labelDesc.AutoSize = true;
+			this.labelDesc.Location = new System.Drawing.Point(8, 8);
+			this.labelDesc.Name = "labelDesc";
+			this.labelDesc.Size = new System.Drawing.Size(55, 12);
+			this.labelDesc.TabIndex = 0;
+			this.labelDesc.Text = "labelDesc";
 			// 
 			// FormSettings
 			// 
@@ -68,6 +80,8 @@
 			this.ShowInTaskbar = false;
 			this.Text = "FormSettings";
 			this.Load += new System.EventHandler(this.FormSettings_Load);
+			this.panel.ResumeLayout(false);
+			this.panel.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -76,5 +90,6 @@
 
 		private System.Windows.Forms.TreeView treeView;
 		private System.Windows.Forms.Panel panel;
+		private System.Windows.Forms.Label labelDesc;
 	}
 }

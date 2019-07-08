@@ -160,4 +160,7 @@
   <data name="Startup_visualstyle" xml:space="preserve">
     <value>Visual Style を利用する。</value>
   </data>
+  <data name="labelDesc" xml:space="preserve">
+    <value>左側のツリーから変更する設定の種類を選んでください。</value>
+  </data>
 </root>

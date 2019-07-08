@@ -160,4 +160,7 @@ You might need to restart to apply changes.</value>
   <data name="Startup_visualstyle" xml:space="preserve">
     <value>Enable Visual Style</value>
   </data>
+  <data name="labelDesc" xml:space="preserve">
+    <value>Please select the setting category on the left tree box.</value>
+  </data>
 </root>

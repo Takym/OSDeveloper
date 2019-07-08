@@ -124,6 +124,15 @@ namespace OSDeveloper.Resources {
         }
         
         /// <summary>
+        ///   labelDesc に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string labelDesc {
+            get {
+                return ResourceManager.GetString("labelDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Startup_allowRisky に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Startup_allowRisky {

@@ -17,8 +17,9 @@ namespace OSDeveloper.GUIs.Controls
 			_logger = Logger.Get(nameof(FormSettings));
 			this.InitializeComponent();
 			this.SuspendLayout();
-			this.Icon = Libosdev.GetIcon(Libosdev.Icons.FormSettings, out uint v0);
-			this.Text = FormSettingsRes.Caption;
+			this.Icon      = Libosdev.GetIcon(Libosdev.Icons.FormSettings, out uint v0);
+			this.Text      = FormSettingsRes.Caption;
+			labelDesc.Text = FormSettingsRes.labelDesc;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 			_logger.Trace($"constructed {nameof(FormSettings)}");
@@ -43,11 +44,13 @@ namespace OSDeveloper.GUIs.Controls
 
 			if (_current != null) {
 				panel.Controls.Remove(_current);
+				_current = null;
 			}
 			if (e.Node is PanelTreeNode ptn) {
 				_current = ptn.UserControl;
 				panel.Controls.Add(_current);
 			}
+			labelDesc.Visible = _current == null;
 
 			_logger.Trace($"completed {nameof(treeView_AfterSelect)}");
 		}

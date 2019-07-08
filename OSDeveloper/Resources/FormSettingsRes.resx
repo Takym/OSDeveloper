@@ -159,4 +159,7 @@
   <data name="Startup_visualstyle" xml:space="preserve">
     <value>Startup_visualstyle</value>
   </data>
+  <data name="labelDesc" xml:space="preserve">
+    <value>labelDesc</value>
+  </data>
 </root>
