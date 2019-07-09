@@ -361,7 +361,9 @@ namespace TakymLib.IO
 		/// <returns>等しい場合は<see langword="true"/>、等しくない場合は<see langword="false"/>です。</returns>
 		public static bool operator ==(PathString left, PathString right)
 		{
-			return left?.Equals(right) ?? false;
+			if ((left is null) != (right is null)) return false;
+			if ((left is null) && (right is null)) return true;
+			return left.Equals(right);
 		}
 
 		/// <summary>
@@ -372,7 +374,7 @@ namespace TakymLib.IO
 		/// <returns>等しくない場合は<see langword="true"/>、等しい場合は<see langword="false"/>です。</returns>
 		public static bool operator !=(PathString left, PathString right)
 		{
-			return !(left?.Equals(right) ?? false);
+			return !(left == right);
 		}
 
 		/// <summary>

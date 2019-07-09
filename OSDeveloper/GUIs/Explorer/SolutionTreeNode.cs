@@ -56,11 +56,11 @@ namespace OSDeveloper.GUIs.Explorer
 
 		public override void Rename(string newname)
 		{
-			var p = this.Folder.GetSolutionFilePath().GetFileName();
-			for (int i = 0; i < this.Nodes.Count; ++i) {
-				if (this.Nodes[i] is ProjectItemTreeNode pitn && pitn.Metadata.Name == p) {
-					pitn.ProjectItem.Rename(newname + ".osdev_sln");
-					pitn.Text = pitn.ProjectItem.Name;
+			var p     = this.Folder.GetSolutionFilePath().GetFileName();
+			var files = this.Folder.GetFiles();
+			for (int i = 0; i < files.Length; ++i) {
+				if (files[i].Name == p) {
+					files[i].Rename(newname + ".osdev_sln");
 				}
 			}
 			this.ProjectItem.Rename(newname);

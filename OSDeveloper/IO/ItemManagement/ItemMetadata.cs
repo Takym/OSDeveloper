@@ -5,32 +5,28 @@ namespace OSDeveloper.IO.ItemManagement
 {
 	public abstract class ItemMetadata
 	{
-		private          PathString         _path;
-		public           PathString         Path           { get => _path; }
-		public           string             Name           { get => _path.GetFileName(); }
+		public           PathString         Path           { get => this.Parent?.Path?.Bond(_name) ?? ((PathString)(_name)); }
+		private          string             _name;
+		public           string             Name           { get => _name; }
+		public           FolderMetadata     Parent         { get; }
 		public  abstract FileSystemInfo     Info           { get; }
 		public  virtual  FileAttributes     Attributes     { get => this.Info.Attributes; }
 		public  virtual  bool               CanAccess      { get => true; }
 		private          bool               _is_removed;
-		public           bool               IsRemoved      { get => _is_removed || (_is_removed = !_path.Exists()); }
+		public           bool               IsRemoved      { get => _is_removed || (_is_removed = !this.Path.Exists()); }
 		private          ItemExtendedDetail _ied;
 		public           ItemExtendedDetail ExtendedDetail { get => _ied; internal set { _ied = value ?? _ied; _ied.Metadata = this; } }
 
-		public FolderMetadata Parent
-		{
-			get
-			{
-				if (_parent == null) {
-					_parent = ItemList.GetDir(_path.GetDirectory());
-				}
-				return _parent;
-			}
-		}
-		private FolderMetadata _parent;
 
 		protected private ItemMetadata(PathString path)
 		{
-			_path       = path;
+			string p = path;
+			if (p.Length == 3 && p.EndsWith(":\\")) {
+				_name       = p;
+			} else {
+				this.Parent = ItemList.GetDir(path.GetDirectory());
+				_name       = path.GetFileName();
+			}
 			_is_removed = false;
 			this.InitIED();
 		}
@@ -43,9 +39,9 @@ namespace OSDeveloper.IO.ItemManagement
 
 		public virtual bool Rename(string newName)
 		{
-			var oldpath = _path;
-			_path = oldpath.ChangeFileName(newName);
-			return ItemList.RenameItem(oldpath, _path);
+			var oldpath = this.Path;
+			_name = newName;
+			return ItemList.RenameItem(oldpath, this.Path);
 		}
 
 		public virtual ItemMetadata Copy(PathString path)
@@ -56,13 +52,13 @@ namespace OSDeveloper.IO.ItemManagement
 		public virtual bool Delete()
 		{
 			_is_removed = true;
-			return ItemList.RemoveItem(_path);
+			return ItemList.RemoveItem(this.Path);
 		}
 
 		public virtual bool TrashItem()
 		{
 			_is_removed = true;
-			return ItemList.RemoveItem(_path);
+			return ItemList.RemoveItem(this.Path);
 		}
 	}
 }
