@@ -24,8 +24,6 @@ namespace OSDeveloper.GUIs.Explorer
 		internal const    string                       _psver = "WindowsPowerShell\\v1.0";
 		private  readonly Logger                       _logger;
 		private  readonly FormMain                     _mwnd;
-		//private         FileTreeNode                 _wksp_root;
-		//private         bool                         _selected_root;
 		private  readonly List<SolutionTreeNode>       _solutions;
 		private           FolderMetadata               _dir;
 		public            FolderMetadata               Directory { get => _dir; set => this.SetFolder(value); }
@@ -101,17 +99,6 @@ namespace OSDeveloper.GUIs.Explorer
 
 			// 削除済みのアイテムをリストから削除する。
 			await Task.Run(() => ItemList.ClearRemovedItems());
-
-			/*
-			// ファイルまたはディレクトリを読み込んでFileTreeNode生成する。
-			var node = await Task.Run(() => {
-				if (this.Directory.IsRemoved){ // 削除されているディレクトリが参照された場合
-					return new RemovedTreeNode(this.Directory);
-				} else {
-					return this.CreateTreeNode(this.Directory);
-				}
-			});
-			//*/
 
 			// ソリューションの読み込み
 			await Task.Run(() => {
@@ -313,14 +300,10 @@ retry:
 		{
 			_logger.Trace($"executing {nameof(btnNewSln_Click)}...");
 
-			//var ftn = _wksp_root.CreateDir("New Solution");
-			//ftn.CreateFile(ftn.Folder.GetSolutionFilePath());
-			//treeView.Nodes.Add(this.AddSolution(ftn.Metadata.Name));
-
 			var dir = _dir.CreateDir("New Solution");
 			dir.CreateFile(dir.GetSolutionFilePath());
 			var sln = new Solution(dir.Name);
-			sln.AddItem(dir.GetSolutionFile());
+			//sln.AddItem(dir.GetSolutionFile());
 			treeView.Nodes.Add(this.AddSolution(sln));
 
 			_logger.Trace($"completed {nameof(btnNewSln_Click)}");
@@ -364,26 +347,7 @@ retry:
 		private void treeView_BeforeSelect(object sender, TreeViewCancelEventArgs e)
 		{
 			_logger.Trace($"executing {nameof(treeView_BeforeSelect)}...");
-
-			/*
-			if (e.Node == _wksp_root) {
-				cloneMenu .Enabled = false;
-				cutMenu   .Enabled = false;
-				removeMenu.Enabled = false;
-				deleteMenu.Enabled = false;
-				renameMenu.Enabled = false;
-				_selected_root = true;
-			} else if (_selected_root) {
-				cloneMenu .Enabled = true;
-				cutMenu   .Enabled = true;
-				removeMenu.Enabled = true;
-				deleteMenu.Enabled = true;
-				renameMenu.Enabled = true;
-				_selected_root = false;
-			}
-			//*/
 			_logger.Info($"the selected node is: {e.Node.FullPath}");
-
 			_logger.Trace($"completed {nameof(treeView_BeforeSelect)}");
 		}
 
@@ -412,9 +376,6 @@ retry:
 				try {
 					if (!string.IsNullOrWhiteSpace(e.Label) && e.Label != ftn.Metadata.Name) {
 						ftn.Rename(e.Label);
-						if (ftn.Folder != null) {
-							this.OnDirectoryChanged(new DirectoryChangedEventArgs(_dir, _dir, true));
-						}
 					}
 				} catch (Exception error) {
 					_logger.Exception(error);
