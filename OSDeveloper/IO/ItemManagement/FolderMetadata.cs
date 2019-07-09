@@ -13,7 +13,7 @@ namespace OSDeveloper.IO.ItemManagement
 		private          PathString        _slnfile;
 		private          FolderMetadata [] _folders;
 		private          FileMetadata   [] _files;
-		private readonly DirectoryInfo     _dinfo;
+		private          DirectoryInfo     _dinfo;
 		public  override FileSystemInfo    Info      { get => _dinfo; }
 		public  override bool              CanAccess { get; }
 		public           DriveInfo         Drive     { get; }
@@ -136,11 +136,17 @@ namespace OSDeveloper.IO.ItemManagement
 		public override bool Rename(string newName)
 		{
 			try {
+				// NULLチェック
 				if (string.IsNullOrEmpty(newName) || newName == this.Path.GetFileName()) return true;
+				// ディレクトリ名変更
 				Directory.Move(this.Path, this.Path.ChangeFileName(newName));
+				// ディレクトリ情報再取得
+				this.UpdateInfo();
+				// アイテム名変更
 				var result = base.Rename(newName);
+				// 企画設定ファイルの名前を変更
 				_slnfile = this.Path.Bond(this.Path.GetFileName() + ".osdev_sln");
-				this.Refresh();
+				// 結果を返す
 				return result;
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}, newname:{newName}");
@@ -192,6 +198,19 @@ namespace OSDeveloper.IO.ItemManagement
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}");
 				Program.Logger.Exception(e);
 				return false;
+			}
+		}
+
+		internal override void UpdateInfo()
+		{
+			_dinfo = new DirectoryInfo(this.Path);
+			var dirs = this.GetFolders();
+			for (int i = 0; i < dirs.Length; ++i) {
+				dirs[i].UpdateInfo();
+			}
+			var files = this.GetFiles();
+			for (int i = 0; i < files.Length; ++i) {
+				files[i].UpdateInfo();
 			}
 		}
 

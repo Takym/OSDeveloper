@@ -7,7 +7,7 @@ namespace OSDeveloper.IO.ItemManagement
 {
 	public sealed class FileMetadata : ItemMetadata
 	{
-		private readonly FileInfo       _finfo;
+		private          FileInfo       _finfo;
 		public  override FileSystemInfo Info      { get => _finfo; }
 		public  override bool           CanAccess { get; }
 		public           FileFormat     Format    { get; internal set; }
@@ -148,6 +148,11 @@ namespace OSDeveloper.IO.ItemManagement
 				Program.Logger.Exception(e);
 				return false;
 			}
+		}
+
+		internal override void UpdateInfo()
+		{
+			_finfo = new FileInfo(this.Path);
 		}
 	}
 }

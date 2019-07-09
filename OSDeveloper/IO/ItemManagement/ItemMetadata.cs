@@ -17,7 +17,6 @@ namespace OSDeveloper.IO.ItemManagement
 		private          ItemExtendedDetail _ied;
 		public           ItemExtendedDetail ExtendedDetail { get => _ied; internal set { _ied = value ?? _ied; _ied.Metadata = this; } }
 
-
 		protected private ItemMetadata(PathString path)
 		{
 			string p = path;
@@ -60,5 +59,7 @@ namespace OSDeveloper.IO.ItemManagement
 			_is_removed = true;
 			return ItemList.RemoveItem(this.Path);
 		}
+
+		internal virtual void UpdateInfo() { }
 	}
 }
