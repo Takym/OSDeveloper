@@ -140,6 +140,7 @@ namespace OSDeveloper.IO.ItemManagement
 				Directory.Move(this.Path, this.Path.ChangeFileName(newName));
 				var result = base.Rename(newName);
 				_slnfile = this.Path.Bond(this.Path.GetFileName() + ".osdev_sln");
+				this.Refresh();
 				return result;
 			} catch (Exception e) {
 				Program.Logger.Notice($"The exception occurred in {nameof(FolderMetadata)}, filename:{this.Path}, newname:{newName}");

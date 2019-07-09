@@ -412,6 +412,9 @@ retry:
 				try {
 					if (!string.IsNullOrWhiteSpace(e.Label) && e.Label != ftn.Metadata.Name) {
 						ftn.Rename(e.Label);
+						if (ftn.Folder != null) {
+							this.OnDirectoryChanged(new DirectoryChangedEventArgs(_dir, _dir, true));
+						}
 					}
 				} catch (Exception error) {
 					_logger.Exception(error);
