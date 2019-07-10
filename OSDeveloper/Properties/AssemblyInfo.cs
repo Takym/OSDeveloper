@@ -6,7 +6,8 @@ using System.Runtime.InteropServices;
 [assembly: Guid("C81E8634-B7B8-4854-AABE-3A397B1D6900")]
 
 // 共通項目
-[assembly: AssemblyDescription("This software is a development environment to create, build, and debug your operating systems.")]
+[assembly: AssemblyDescription("This software is an integrated development environment"
+	+ "to create, build, and debug your operating systems.")]
 [assembly: AssemblyCompany("Takym")]
 [assembly: AssemblyCopyright("Copyright (C) 2019 Takym.")]
 
