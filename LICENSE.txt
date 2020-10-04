@@ -1,3 +1,0 @@
-A placeholder for the license.
-
-Please assume that this software is under GPLv3 license until I create the license text.
