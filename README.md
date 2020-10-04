@@ -4,7 +4,7 @@ Copyright (C) 2019-2020 Takym.
 ## ※2019年の9月頃から開発が停止しています。
 ## I stopped to develop this app September, 2019.
 
-- TakymLibは[ExapisSOP](## [https://github.com/Takym/ExapisSOP)として開発しています。
+- TakymLibは[ExapisSOP](https://github.com/Takym/ExapisSOP)として開発しています。
 - このリポジトリのTakymLibとは互換性はありません。
 
 ## 概要
